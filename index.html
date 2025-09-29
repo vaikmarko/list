@@ -122,6 +122,7 @@
             }
         }
 
+        /* Large phones (iPhone 13 Pro Max, Galaxy S21+) */
         @media (max-width: 480px) {
             .main-content {
                 padding: 1rem 0;
@@ -152,10 +153,10 @@
             }
         }
 
-        /* iPhone specific */
+        /* Medium phones (iPhone 13 Pro, Galaxy S21) */
         @media (max-width: 390px) {
             .main-content {
-                padding: 0.5rem 0;
+                padding: 0.8rem 0;
             }
 
             .logo {
@@ -176,6 +177,33 @@
             .footer {
                 padding: 0.8rem 0;
                 font-size: 0.8rem;
+            }
+        }
+
+        /* Small phones (iPhone SE, Galaxy A series) */
+        @media (max-width: 375px) {
+            .main-content {
+                padding: 0.5rem 0;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .title {
+                font-size: 1.2rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .footer {
+                padding: 0.6rem 0;
+                font-size: 0.75rem;
             }
         }
 
