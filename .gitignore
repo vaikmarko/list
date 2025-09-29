@@ -1,0 +1,50 @@
+# Äriplaanid ja konfidentsiaalne info
+THE-LIST-*.md
+THE-LIST-*.html
+*.md
+*.html
+
+# Django projekti failid
+rotermann-access-platform/
+rotermann-meeting-processor/
+the-list-services/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Database
+*.sqlite3
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.cursorindexingignore
+.specstory/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Ainult index.html on lubatud
+!index.html
