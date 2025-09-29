@@ -1,0 +1,5 @@
+# The List Services - GitHub Pages Configuration
+# GitHub Pages automatically handles HTTPS and index.html serving
+
+# All requests go to index.html (SPA-like behavior)
+/* /index.html 200
