@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotermann City – Rahavoogude teekond 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --accent: #d4a574;
+            --success: #4ade80;
+            --text: #ffffff;
+            --muted: rgba(255,255,255,0.5);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 48px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 24px;
+        }
+        
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+        
+        h1 span { color: var(--accent); }
+        
+        .subtitle {
+            font-size: 18px;
+            color: var(--muted);
+        }
+        
+        /* Price selector */
+        .price-selector {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        
+        .price-btn {
+            background: var(--card);
+            border: 2px solid var(--border);
+            color: var(--text);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .price-btn:hover {
+            border-color: var(--accent);
+            background: rgba(212, 165, 116, 0.1);
+        }
+        
+        .price-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+        
+        .price-label {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin-top: 32px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+            transform: translateX(-50%);
+        }
+        
+        .phase {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+            align-items: start;
+        }
+        
+        .phase-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        
+        .phase-content.left { text-align: right; }
+        .phase-content.right { grid-column: 3; }
+        .phase-content.left { grid-column: 1; }
+        
+        .phase-marker {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .phase-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent);
+        }
+        
+        .phase-dot.active {
+            background: var(--success);
+            border-color: var(--success);
+            color: var(--bg);
+        }
+        
+        .phase-date {
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+        }
+        
+        .phase-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .phase-buildings {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .phase-content.left .phase-buildings {
+            justify-content: flex-end;
+        }
+        
+        .building-tag {
+            background: rgba(212, 165, 116, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+        }
+        
+        .phase-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .stat-item {
+            text-align: left;
+        }
+        
+        .phase-content.left .stat-item {
+            text-align: right;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-value.green { color: var(--success); }
+        
+        .stat-label {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Summary */
+        .summary {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(212, 165, 116, 0.03) 100%);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 32px;
+            text-align: center;
+        }
+        
+        .summary h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+        
+        .summary-stat {
+            text-align: center;
+        }
+        
+        .summary-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 36px;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        
+        .summary-value.green { color: var(--success); }
+        
+        .summary-label {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Now indicator */
+        .now-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .now-line::before,
+        .now-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--success);
+        }
+        
+        .now-text {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--success);
+            white-space: nowrap;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 13px;
+        }
+        
+        @media (max-width: 800px) {
+            body { padding: 24px 16px; }
+            h1 { font-size: 28px; }
+            .subtitle { font-size: 15px; }
+            
+            .price-selector { 
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            .price-btn { 
+                padding: 10px 20px; 
+                font-size: 14px;
+            }
+            .price-label { font-size: 12px; }
+            
+            .timeline::before { left: 20px; }
+            
+            .phase {
+                grid-template-columns: 40px 1fr;
+                gap: 12px;
+                margin-bottom: 32px;
+            }
+            
+            .phase-marker { grid-column: 1; }
+            .phase-content.left,
+            .phase-content.right { 
+                grid-column: 2; 
+                text-align: left;
+                padding: 20px;
+            }
+            .phase-content.left .phase-buildings,
+            .phase-content.left .stat-item { 
+                justify-content: flex-start;
+                text-align: left;
+            }
+            
+            .phase-dot { width: 36px; height: 36px; font-size: 14px; border-width: 2px; }
+            .phase-date { font-size: 10px; }
+            .phase-title { font-size: 16px; margin-bottom: 10px; }
+            
+            .phase-buildings { gap: 6px; }
+            .building-tag { font-size: 11px; padding: 3px 10px; }
+            
+            .phase-stats { 
+                grid-template-columns: 1fr 1fr; 
+                gap: 8px;
+                margin-top: 12px;
+                padding-top: 12px;
+            }
+            .stat-value { font-size: 18px; }
+            .stat-label { font-size: 9px; }
+            
+            .summary { padding: 24px 20px; margin-top: 24px; }
+            .summary h2 { font-size: 20px; margin-bottom: 20px; }
+            .summary-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 16px;
+            }
+            .summary-value { font-size: 24px; }
+            .summary-label { font-size: 10px; }
+            
+            footer { 
+                font-size: 11px; 
+                margin-top: 32px;
+                padding-top: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body { padding: 16px 12px; }
+            h1 { font-size: 24px; }
+            .subtitle { font-size: 14px; }
+            
+            .badge { font-size: 11px; padding: 6px 12px; }
+            
+            .price-selector { gap: 6px; }
+            .price-btn { 
+                padding: 8px 16px; 
+                font-size: 13px;
+                flex: 1;
+                min-width: 80px;
+            }
+            
+            .timeline::before { left: 16px; }
+            
+            .phase {
+                grid-template-columns: 32px 1fr;
+                gap: 10px;
+                margin-bottom: 24px;
+            }
+            
+            .phase-content.left,
+            .phase-content.right { 
+                padding: 16px;
+            }
+            
+            .phase-dot { width: 28px; height: 28px; font-size: 12px; }
+            .phase-title { font-size: 15px; }
+            
+            .building-tag { font-size: 10px; padding: 2px 8px; }
+            
+            .stat-value { font-size: 16px; }
+            
+            .summary { padding: 20px 16px; }
+            .summary h2 { font-size: 18px; }
+            .summary-value { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="badge">Äpp on live</div>
+        <h1>Rahavoogude <span>teekond</span></h1>
+        <p class="subtitle">Rotermann City digiteenuse käivitamine 2026</p>
+        
+        <div class="price-label">Hind kasutaja kohta kuus</div>
+        <div class="price-selector">
+            <button class="price-btn" data-price="2.9">2,90 €</button>
+            <button class="price-btn" data-price="3.9">3,90 €</button>
+            <button class="price-btn active" data-price="4.9">4,90 €</button>
+        </div>
+    </header>
+    
+    <div class="timeline">
+        <!-- Phase 1: Now -->
+        <div class="phase">
+            <div class="phase-content left">
+                <div class="phase-title">✅ Äpp on live</div>
+                <p style="font-size: 14px; color: var(--muted);">Testimine käib, valmis kasutuselevõtuks</p>
+            </div>
+            <div class="phase-marker">
+                <div class="phase-dot active">1</div>
+                <div class="phase-date">Jaanuar</div>
+            </div>
+            <div></div>
+        </div>
+        
+        <!-- Phase 2: Q1 -->
+        <div class="phase">
+            <div></div>
+            <div class="phase-marker">
+                <div class="phase-dot">2</div>
+                <div class="phase-date">Q1 2026</div>
+            </div>
+            <div class="phase-content right">
+                <div class="phase-title">🚀 Esimesed hooned</div>
+                <div class="phase-buildings">
+                    <span class="building-tag">Ahtri 6 – Golden Gate</span>
+                    <span class="building-tag">Rotermanni 6</span>
+                    <span class="building-tag">Rotermanni 8</span>
+                </div>
+                <p style="font-size: 14px; color: var(--muted);">3 hoonet, 2 232 töötajat</p>
+                <div class="phase-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">4 025 €</div>
+                        <div class="stat-label">Sharry kulu/kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value green" id="revenue-q1">10 937 €</div>
+                        <div class="stat-label">Pot. tulu/kuu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Phase 3: Q2 -->
+        <div class="phase">
+            <div class="phase-content left">
+                <div class="phase-title">📈 Laienemine</div>
+                <div class="phase-buildings">
+                    <span class="building-tag">Rotermanni 2</span>
+                    <span class="building-tag">Rotermanni 14, 6a, 16</span>
+                    <span class="building-tag">Rotermanni 18</span>
+                </div>
+                <p style="font-size: 14px; color: var(--muted);">+3 hoonet, kokku 3 150 töötajat</p>
+                <div class="phase-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">5 683 €</div>
+                        <div class="stat-label">Sharry kulu/kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value green" id="revenue-q2">15 435 €</div>
+                        <div class="stat-label">Pot. tulu/kuu</div>
+                    </div>
+                </div>
+            </div>
+            <div class="phase-marker">
+                <div class="phase-dot">3</div>
+                <div class="phase-date">Q2 2026</div>
+            </div>
+            <div></div>
+        </div>
+        
+        <!-- Phase 4: Q3 -->
+        <div class="phase">
+            <div></div>
+            <div class="phase-marker">
+                <div class="phase-dot">4</div>
+                <div class="phase-date">Q3 2026</div>
+            </div>
+            <div class="phase-content right">
+                <div class="phase-title">🏢 Täielik katvus</div>
+                <div class="phase-buildings">
+                    <span class="building-tag">Roseni 7</span>
+                    <span class="building-tag">Rotermanni 5, 10, 12</span>
+                    <span class="building-tag">+ ülejäänud</span>
+                </div>
+                <p style="font-size: 14px; color: var(--muted);">Kõik 11 hoonet, 4 000 töötajat</p>
+                <div class="phase-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">7 216 €</div>
+                        <div class="stat-label">Sharry kulu/kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value green" id="revenue-full">19 600 €</div>
+                        <div class="stat-label">Pot. tulu/kuu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Summary -->
+    <div class="summary">
+        <h2>Täieliku katvuse korral</h2>
+        <div class="summary-grid">
+            <div class="summary-stat">
+                <div class="summary-value">11</div>
+                <div class="summary-label">Hoonet</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-value">4 000</div>
+                <div class="summary-label">Töötajat</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-value">7 216 €</div>
+                <div class="summary-label">Kulu kuus</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-value green" id="revenue-summary">19 600 €</div>
+                <div class="summary-label">Tulu kuus</div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        Rotermann City Digiprojekt · Jaanuar 2026 · Pot. tulu = töötajad × <span id="price-footer">4,90</span> €/kuu
+    </footer>
+</div>
+
+<script>
+(function() {
+    const employees = {
+        q1: 2232,  // Ahtri 6 + Rotermanni 6 + Rotermanni 8
+        q2: 3150,  // + Rotermanni 2, 14/6a/16, 18
+        full: 4000 // All buildings
+    };
+    
+    const priceButtons = document.querySelectorAll('.price-btn');
+    const revenueQ1 = document.getElementById('revenue-q1');
+    const revenueQ2 = document.getElementById('revenue-q2');
+    const revenueFull = document.getElementById('revenue-full');
+    const revenueSummary = document.getElementById('revenue-summary');
+    const priceFooter = document.getElementById('price-footer');
+    
+    function formatNumber(num) {
+        return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
+    }
+    
+    function updateRevenues(price) {
+        revenueQ1.textContent = formatNumber(employees.q1 * price);
+        revenueQ2.textContent = formatNumber(employees.q2 * price);
+        revenueFull.textContent = formatNumber(employees.full * price);
+        revenueSummary.textContent = formatNumber(employees.full * price);
+        priceFooter.textContent = price.toFixed(2).replace('.', ',');
+    }
+    
+    priceButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            priceButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateRevenues(parseFloat(btn.dataset.price));
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
+
