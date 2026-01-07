@@ -447,7 +447,7 @@
         <h1>Rahavoogude <span>teekond</span></h1>
         <p class="subtitle">Rotermann City digiteenuse käivitamine 2026</p>
         
-        <div class="price-label">Hind kasutaja kohta kuus</div>
+        <div class="price-label">Ligipääsutasu kasutaja kohta kuus</div>
         <div class="price-selector">
             <button class="price-btn" data-price="2.9">2,90 €</button>
             <button class="price-btn" data-price="3.9">3,90 €</button>
@@ -484,14 +484,10 @@
                     <span class="building-tag">Rotermanni 8</span>
                 </div>
                 <p style="font-size: 14px; color: var(--muted);">3 hoonet, 2 232 töötajat</p>
-                <div class="phase-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">4 025 €</div>
-                        <div class="stat-label">Sharry kulu/kuu</div>
-                    </div>
+                <div class="phase-stats" style="grid-template-columns: 1fr;">
                     <div class="stat-item">
                         <div class="stat-value green" id="revenue-q1">10 937 €</div>
-                        <div class="stat-label">Pot. tulu/kuu</div>
+                        <div class="stat-label">Pot. ligipääsutulu/kuu</div>
                     </div>
                 </div>
             </div>
@@ -507,14 +503,10 @@
                     <span class="building-tag">Rotermanni 18</span>
                 </div>
                 <p style="font-size: 14px; color: var(--muted);">+3 hoonet, kokku 3 150 töötajat</p>
-                <div class="phase-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">5 683 €</div>
-                        <div class="stat-label">Sharry kulu/kuu</div>
-                    </div>
+                <div class="phase-stats" style="grid-template-columns: 1fr;">
                     <div class="stat-item">
                         <div class="stat-value green" id="revenue-q2">15 435 €</div>
-                        <div class="stat-label">Pot. tulu/kuu</div>
+                        <div class="stat-label">Pot. ligipääsutulu/kuu</div>
                     </div>
                 </div>
             </div>
@@ -540,53 +532,124 @@
                     <span class="building-tag">+ ülejäänud</span>
                 </div>
                 <p style="font-size: 14px; color: var(--muted);">Kõik 11 hoonet, 4 000 töötajat</p>
-                <div class="phase-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">7 216 €</div>
-                        <div class="stat-label">Sharry kulu/kuu</div>
-                    </div>
+                <div class="phase-stats" style="grid-template-columns: 1fr;">
                     <div class="stat-item">
                         <div class="stat-value green" id="revenue-full">19 600 €</div>
-                        <div class="stat-label">Pot. tulu/kuu</div>
+                        <div class="stat-label">Pot. ligipääsutulu/kuu</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Summary -->
-    <!-- Costs Table -->
+    <!-- Buildings Table -->
     <div class="summary" style="margin-top: 48px;">
-        <h2>Kulude struktuur (täielik katvus)</h2>
-        <table style="width: 100%; max-width: 500px; margin: 24px auto 0; border-collapse: collapse; font-size: 15px;">
-            <tbody>
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <td style="padding: 12px 0; color: var(--muted);">Sharry platvorm</td>
-                    <td style="padding: 12px 0; text-align: right; font-variant-numeric: tabular-nums;">7 216 €/kuu</td>
-                </tr>
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <td style="padding: 12px 0; color: var(--muted);">Strateegiline konsultatsioon</td>
-                    <td style="padding: 12px 0; text-align: right; font-variant-numeric: tabular-nums;">6 230 €/kuu</td>
-                </tr>
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <td style="padding: 12px 0; font-weight: 600;">Kulud kokku</td>
-                    <td style="padding: 12px 0; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">13 446 €/kuu</td>
-                </tr>
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <td style="padding: 12px 0; color: var(--muted);">Potentsiaalne tulu</td>
-                    <td style="padding: 12px 0; text-align: right; color: var(--success); font-variant-numeric: tabular-nums;" id="revenue-table">19 600 €/kuu</td>
-                </tr>
-                <tr>
-                    <td style="padding: 12px 0; font-weight: 600; color: var(--success);">Kasum</td>
-                    <td style="padding: 12px 0; text-align: right; font-weight: 600; color: var(--success); font-variant-numeric: tabular-nums;" id="profit-table">6 154 €/kuu</td>
-                </tr>
-            </tbody>
-        </table>
-        <p style="font-size: 12px; color: var(--muted); margin-top: 16px;">* Tulu sõltub valitud hinnast (4,90 €/kasutaja/kuu)</p>
+        <h2>Hooned ja ligipääsutulu</h2>
+        <div style="overflow-x: auto; margin-top: 24px;">
+            <table style="width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+                        <th style="padding: 10px 8px; text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Hoone</th>
+                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Pindala (m²)</th>
+                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Töötajaid</th>
+                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Sharry (€/kuu)</th>
+                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Ligipääsutulu (€/kuu)*</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Ahtri 6 – Golden Gate</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">12 606</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 069</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 925</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="1069">5 238</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 6 – Ajamaja</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">8 568</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">726</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 311</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="726">3 557</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 8 – Jahuladu</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">5 159</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">437</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">789</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="437">2 141</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 5, 10, 12 – Värvilised</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">5 304</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">450</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">812</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="450">2 205</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 14, 6a, 16</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">4 870</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">413</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">745</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="413">2 024</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 2 – Elevaatorihoone</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">3 822</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">324</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">585</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="324">1 588</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 18</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">2 141</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">181</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">328</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="181">887</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Roseni 7 – Laudsepatöökoda</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 624</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">138</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">248</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="138">676</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 12 – Kruubiveski</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 556</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">132</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">238</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="132">647</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Roseni 8 – Prooviveski</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">969</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">82</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">148</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="82">402</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 8px;">Rotermanni 10</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">568</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">48</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">87</td>
+                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="48">235</td>
+                    </tr>
+                    <tr style="background: rgba(212, 165, 116, 0.1);">
+                        <td style="padding: 10px 8px; font-weight: 600;">KOKKU</td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">47 185</td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">4 000</td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">7 216</td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--success);" id="revenue-summary">19 600</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size: 12px; color: var(--muted); margin-top: 16px; text-align: center;">* Ligipääsutulu = töötajad × valitud hind/kuu | Sharry kulu hinnanguline (~0,15 €/m²/kuu)</p>
     </div>
     
+    <!-- Summary Stats -->
     <div class="summary">
-        <h2>Täieliku katvuse korral</h2>
+        <h2>Kokkuvõte</h2>
         <div class="summary-grid">
             <div class="summary-stat">
                 <div class="summary-value">11</div>
@@ -597,12 +660,12 @@
                 <div class="summary-label">Töötajat</div>
             </div>
             <div class="summary-stat">
-                <div class="summary-value">13 446 €</div>
-                <div class="summary-label">Kulu kuus</div>
+                <div class="summary-value">7 216 €</div>
+                <div class="summary-label">Sharry/kuu</div>
             </div>
             <div class="summary-stat">
-                <div class="summary-value green" id="revenue-summary">19 600 €</div>
-                <div class="summary-label">Tulu kuus</div>
+                <div class="summary-value green" id="revenue-total">19 600 €</div>
+                <div class="summary-label">Ligipääsutulu/kuu</div>
             </div>
         </div>
     </div>
@@ -625,25 +688,28 @@
     const revenueQ2 = document.getElementById('revenue-q2');
     const revenueFull = document.getElementById('revenue-full');
     const revenueSummary = document.getElementById('revenue-summary');
-    const revenueTable = document.getElementById('revenue-table');
-    const profitTable = document.getElementById('profit-table');
+    const revenueTotal = document.getElementById('revenue-total');
+    const revenueCells = document.querySelectorAll('.revenue-cell');
     const priceFooter = document.getElementById('price-footer');
     
-    const totalCost = 13446; // Sharry 7216 + Konsultatsioon 6230
-    
     function formatNumber(num) {
-        return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
+        return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
     
     function updateRevenues(price) {
         const fullRevenue = employees.full * price;
-        const profit = fullRevenue - totalCost;
-        revenueQ1.textContent = formatNumber(employees.q1 * price);
-        revenueQ2.textContent = formatNumber(employees.q2 * price);
-        revenueFull.textContent = formatNumber(fullRevenue);
+        revenueQ1.textContent = formatNumber(employees.q1 * price) + ' €';
+        revenueQ2.textContent = formatNumber(employees.q2 * price) + ' €';
+        revenueFull.textContent = formatNumber(fullRevenue) + ' €';
         revenueSummary.textContent = formatNumber(fullRevenue);
-        revenueTable.textContent = formatNumber(fullRevenue) + '/kuu';
-        profitTable.textContent = formatNumber(profit) + '/kuu';
+        revenueTotal.textContent = formatNumber(fullRevenue) + ' €';
+        
+        // Update table cells
+        revenueCells.forEach(cell => {
+            const emp = parseInt(cell.dataset.employees);
+            cell.textContent = formatNumber(emp * price);
+        });
+        
         priceFooter.textContent = price.toFixed(2).replace('.', ',');
     }
     
