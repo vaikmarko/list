@@ -484,10 +484,18 @@
                     <span class="building-tag">Rotermanni 8</span>
                 </div>
                 <p style="font-size: 14px; color: var(--muted);">3 hoonet, 2 232 töötajat</p>
-                <div class="phase-stats">
+                <div class="phase-stats" style="grid-template-columns: repeat(4, 1fr);">
                     <div class="stat-item">
                         <div class="stat-value">4 025 €</div>
-                        <div class="stat-label">Sharry kulu/kuu</div>
+                        <div class="stat-label">Sharry/kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">6 230 €</div>
+                        <div class="stat-label">Konsult./kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">10 255 €</div>
+                        <div class="stat-label">Kulu kokku/kuu</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value green" id="revenue-q1">10 937 €</div>
@@ -507,10 +515,18 @@
                     <span class="building-tag">Rotermanni 18</span>
                 </div>
                 <p style="font-size: 14px; color: var(--muted);">+3 hoonet, kokku 3 150 töötajat</p>
-                <div class="phase-stats">
+                <div class="phase-stats" style="grid-template-columns: repeat(4, 1fr);">
                     <div class="stat-item">
                         <div class="stat-value">5 683 €</div>
-                        <div class="stat-label">Sharry kulu/kuu</div>
+                        <div class="stat-label">Sharry/kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">6 230 €</div>
+                        <div class="stat-label">Konsult./kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">11 913 €</div>
+                        <div class="stat-label">Kulu kokku/kuu</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value green" id="revenue-q2">15 435 €</div>
@@ -540,10 +556,18 @@
                     <span class="building-tag">+ ülejäänud</span>
                 </div>
                 <p style="font-size: 14px; color: var(--muted);">Kõik 11 hoonet, 4 000 töötajat</p>
-                <div class="phase-stats">
+                <div class="phase-stats" style="grid-template-columns: repeat(4, 1fr);">
                     <div class="stat-item">
                         <div class="stat-value">7 216 €</div>
-                        <div class="stat-label">Sharry kulu/kuu</div>
+                        <div class="stat-label">Sharry/kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">6 230 €</div>
+                        <div class="stat-label">Konsult./kuu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">13 446 €</div>
+                        <div class="stat-label">Kulu kokku/kuu</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value green" id="revenue-full">19 600 €</div>
@@ -557,7 +581,7 @@
     <!-- Summary -->
     <div class="summary">
         <h2>Täieliku katvuse korral</h2>
-        <div class="summary-grid">
+        <div class="summary-grid" style="grid-template-columns: repeat(5, 1fr);">
             <div class="summary-stat">
                 <div class="summary-value">11</div>
                 <div class="summary-label">Hoonet</div>
@@ -567,12 +591,16 @@
                 <div class="summary-label">Töötajat</div>
             </div>
             <div class="summary-stat">
-                <div class="summary-value">7 216 €</div>
+                <div class="summary-value">13 446 €</div>
                 <div class="summary-label">Kulu kuus</div>
             </div>
             <div class="summary-stat">
                 <div class="summary-value green" id="revenue-summary">19 600 €</div>
                 <div class="summary-label">Tulu kuus</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-value green" id="profit-summary">6 154 €</div>
+                <div class="summary-label">Kasum kuus</div>
             </div>
         </div>
     </div>
@@ -595,17 +623,22 @@
     const revenueQ2 = document.getElementById('revenue-q2');
     const revenueFull = document.getElementById('revenue-full');
     const revenueSummary = document.getElementById('revenue-summary');
+    const profitSummary = document.getElementById('profit-summary');
     const priceFooter = document.getElementById('price-footer');
+    
+    const totalCost = 13446; // Sharry 7216 + Konsultatsioon 6230
     
     function formatNumber(num) {
         return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
     }
     
     function updateRevenues(price) {
+        const fullRevenue = employees.full * price;
         revenueQ1.textContent = formatNumber(employees.q1 * price);
         revenueQ2.textContent = formatNumber(employees.q2 * price);
-        revenueFull.textContent = formatNumber(employees.full * price);
-        revenueSummary.textContent = formatNumber(employees.full * price);
+        revenueFull.textContent = formatNumber(fullRevenue);
+        revenueSummary.textContent = formatNumber(fullRevenue);
+        profitSummary.textContent = formatNumber(fullRevenue - totalCost);
         priceFooter.textContent = price.toFixed(2).replace('.', ',');
     }
     
