@@ -641,33 +641,23 @@
                         <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">7 216</td>
                         <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--success);" id="revenue-summary">19 600</td>
                     </tr>
+                    <tr>
+                        <td colspan="5" style="padding: 16px 0;"></td>
+                    </tr>
+                    <tr style="border-top: 1px solid rgba(255,255,255,0.2);">
+                        <td colspan="3" style="padding: 10px 8px; font-weight: 600; color: var(--muted);">Strateegiline konsultatsioon</td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--muted);"></td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--muted);">-6 230</td>
+                    </tr>
+                    <tr style="border-top: 1px solid rgba(255,255,255,0.2);">
+                        <td colspan="3" style="padding: 10px 8px; font-weight: 600; font-size: 16px;">PROJEKTI KASUM</td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;"></td>
+                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-size: 16px; font-variant-numeric: tabular-nums; color: var(--success);" id="profit-summary">6 154</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         <p style="font-size: 12px; color: var(--muted); margin-top: 16px; text-align: center;">* Ligipääsutulu = töötajad × valitud hind/kuu | Sharry kulu hinnanguline (~0,15 €/m²/kuu)</p>
-    </div>
-    
-    <!-- Summary Stats -->
-    <div class="summary">
-        <h2>Kokkuvõte</h2>
-        <div class="summary-grid">
-            <div class="summary-stat">
-                <div class="summary-value">11</div>
-                <div class="summary-label">Hoonet</div>
-            </div>
-            <div class="summary-stat">
-                <div class="summary-value">4 000</div>
-                <div class="summary-label">Töötajat</div>
-            </div>
-            <div class="summary-stat">
-                <div class="summary-value">7 216 €</div>
-                <div class="summary-label">Sharry/kuu</div>
-            </div>
-            <div class="summary-stat">
-                <div class="summary-value green" id="revenue-total">19 600 €</div>
-                <div class="summary-label">Ligipääsutulu/kuu</div>
-            </div>
-        </div>
     </div>
     
     <footer>
@@ -688,9 +678,12 @@
     const revenueQ2 = document.getElementById('revenue-q2');
     const revenueFull = document.getElementById('revenue-full');
     const revenueSummary = document.getElementById('revenue-summary');
-    const revenueTotal = document.getElementById('revenue-total');
+    const profitSummary = document.getElementById('profit-summary');
     const revenueCells = document.querySelectorAll('.revenue-cell');
     const priceFooter = document.getElementById('price-footer');
+    
+    const sharryCost = 7216;
+    const consultCost = 6230;
     
     function formatNumber(num) {
         return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -698,11 +691,13 @@
     
     function updateRevenues(price) {
         const fullRevenue = employees.full * price;
+        const totalProfit = fullRevenue - sharryCost - consultCost;
+        
         revenueQ1.textContent = formatNumber(employees.q1 * price) + ' €';
         revenueQ2.textContent = formatNumber(employees.q2 * price) + ' €';
         revenueFull.textContent = formatNumber(fullRevenue) + ' €';
         revenueSummary.textContent = formatNumber(fullRevenue);
-        revenueTotal.textContent = formatNumber(fullRevenue) + ' €';
+        if (profitSummary) profitSummary.textContent = formatNumber(totalProfit);
         
         // Update table cells
         revenueCells.forEach(cell => {
