@@ -447,10 +447,10 @@
             </div>
             
             <div class="cost-card">
-                <h3>📅 Igakuine kulu (täielik katvus)</h3>
+                <h3>📅 Igakuine kulu (fikseeritud)</h3>
                 <div class="cost-item">
-                    <span>Sharry platvorm (~0,15 €/m²)</span>
-                    <span class="amount">7 216 €</span>
+                    <span>Sharry platvorm (kogu kvartal)</span>
+                    <span class="amount">3 000 €</span>
                 </div>
                 <div class="cost-item">
                     <span>Apple Wallet kasutajatasud*</span>
@@ -462,7 +462,7 @@
                 </div>
                 <div class="cost-item" style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 12px;">
                     <span><strong>Kokku kuus</strong></span>
-                    <span class="amount" style="color: var(--danger);"><strong>~14 216 €</strong></span>
+                    <span class="amount" style="color: var(--danger);"><strong>~10 000 €</strong></span>
                 </div>
             </div>
         </div>
@@ -521,7 +521,7 @@
     <!-- Footnotes -->
     <div class="footnotes">
         <p>* Apple Wallet: 80% kasutajatest Apple seadmega, tasu ~2,88€/kasutaja/aasta + 0,16€/kasutaja/kuu</p>
-        <p>* Sharry kulu arvutatud Golden Gate pakkumise põhjal (~0,15€/m²/kuu kõigile hoonetele)</p>
+        <p>* Sharry kulu ~3000€/kuu on fikseeritud kogu Rotermanni kvartali jaoks (Ingmari hinnang)</p>
         <p>* Tulu = ainult ligipääsutasu, ei sisalda lisateenuseid (lojaalsus, sündmused jms)</p>
         <p>* Kasutajate arv kasvab järk-järgult vastavalt hoonete kasutuselevõtule</p>
     </div>
@@ -551,15 +551,13 @@
     
     // Costs constants
     const INITIAL_INVESTMENT = 12100; // 10000 + 5000 - 2900 (POC juba makstud)
-    const SHARRY_RATE = 0.153; // per m² per month
-    const TOTAL_SQM = 47185;
+    const SHARRY_MONTHLY = 3000; // Fikseeritud igakuine kulu kogu kvartali jaoks
     const CONSULT_COST = 6230;
     
-    // Sharry scales with active buildings (approximation)
+    // Sharry is FIXED monthly cost (not dependent on buildings)
     function getSharryCost(employees) {
-        if (employees === 0) return 0;
-        // Proportional to employees as proxy for active m²
-        return Math.round((employees / 4000) * 7216);
+        // Always 3000€/month once service is live
+        return employees > 0 ? SHARRY_MONTHLY : 0;
     }
     
     // Apple Wallet costs
