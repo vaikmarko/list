@@ -401,9 +401,9 @@
     <!-- Key Numbers -->
     <div class="summary-cards">
         <div class="summary-card danger">
-            <div class="card-label">Alginvestering</div>
-            <div class="card-value danger" id="initial-investment">-17 900 €</div>
-            <div class="card-note">Ühekordne</div>
+            <div class="card-label">Veel tasuda</div>
+            <div class="card-value danger" id="initial-investment">-12 100 €</div>
+            <div class="card-note">POC 2 900€ juba makstud</div>
         </div>
         <div class="summary-card">
             <div class="card-label">Nullpunkt</div>
@@ -436,13 +436,13 @@
                     <span>Mobiilsete kaartide integratsioon (ORIGO)</span>
                     <span class="amount">5 000 €</span>
                 </div>
-                <div class="cost-item">
-                    <span>POC seadistus</span>
-                    <span class="amount">2 900 €</span>
+                <div class="cost-item" style="color: var(--success);">
+                    <span>POC ettemaks (juba makstud)</span>
+                    <span class="amount">-2 900 €</span>
                 </div>
                 <div class="cost-item" style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 12px;">
-                    <span><strong>Kokku</strong></span>
-                    <span class="amount" style="color: var(--danger);"><strong>17 900 €</strong></span>
+                    <span><strong>Veel tasuda</strong></span>
+                    <span class="amount" style="color: var(--danger);"><strong>12 100 €</strong></span>
                 </div>
             </div>
             
@@ -550,7 +550,7 @@
     ];
     
     // Costs constants
-    const INITIAL_INVESTMENT = 17900;
+    const INITIAL_INVESTMENT = 12100; // 10000 + 5000 - 2900 (POC juba makstud)
     const SHARRY_RATE = 0.153; // per m² per month
     const TOTAL_SQM = 47185;
     const CONSULT_COST = 6230;
