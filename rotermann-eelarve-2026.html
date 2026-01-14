@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotermann City – 12 kuu eelarve 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --accent: #d4a574;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+            --text: #ffffff;
+            --muted: rgba(255,255,255,0.5);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 48px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 42px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+        
+        h1 span { color: var(--accent); }
+        
+        .subtitle {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+        
+        /* Price selector */
+        .price-selector {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .price-btn {
+            background: var(--card);
+            border: 2px solid var(--border);
+            color: var(--text);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .price-btn:hover {
+            border-color: var(--accent);
+            background: rgba(212, 165, 116, 0.1);
+        }
+        
+        .price-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        
+        /* Summary cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+        
+        .summary-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .summary-card.highlight {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(212, 165, 116, 0.05) 100%);
+            border-color: rgba(212, 165, 116, 0.3);
+        }
+        
+        .summary-card.success {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.15) 0%, rgba(74, 222, 128, 0.05) 100%);
+            border-color: rgba(74, 222, 128, 0.3);
+        }
+        
+        .summary-card.danger {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        
+        .card-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        
+        .card-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            color: var(--accent);
+        }
+        
+        .card-value.success { color: var(--success); }
+        .card-value.danger { color: var(--danger); }
+        .card-value.warning { color: var(--warning); }
+        
+        .card-note {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        
+        /* Monthly table */
+        .monthly-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        .monthly-table th {
+            padding: 12px 8px;
+            text-align: right;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+        }
+        
+        .monthly-table th:first-child {
+            text-align: left;
+        }
+        
+        .monthly-table td {
+            padding: 10px 8px;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .monthly-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .monthly-table tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .monthly-table .positive { color: var(--success); }
+        .monthly-table .negative { color: var(--danger); }
+        .monthly-table .break-even { background: rgba(74, 222, 128, 0.1); }
+        
+        .monthly-table tfoot td {
+            font-weight: 600;
+            border-top: 2px solid var(--border);
+            background: rgba(212, 165, 116, 0.05);
+        }
+        
+        /* Costs breakdown */
+        .costs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .cost-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        
+        .cost-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px;
+        }
+        
+        .cost-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cost-item .amount {
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Chart placeholder */
+        .chart-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 24px;
+        }
+        
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 200px;
+            padding: 0 16px;
+        }
+        
+        .chart-bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .chart-bar {
+            width: 100%;
+            max-width: 40px;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.3s ease;
+        }
+        
+        .chart-bar.cumulative {
+            background: linear-gradient(180deg, var(--accent) 0%, rgba(212, 165, 116, 0.3) 100%);
+        }
+        
+        .chart-bar.cumulative.positive {
+            background: linear-gradient(180deg, var(--success) 0%, rgba(74, 222, 128, 0.3) 100%);
+        }
+        
+        .chart-bar.cumulative.negative {
+            background: linear-gradient(0deg, var(--danger) 0%, rgba(239, 68, 68, 0.3) 100%);
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .chart-label {
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+        
+        .chart-zero-line {
+            position: relative;
+            width: 100%;
+            height: 2px;
+            background: var(--muted);
+            margin: 16px 0;
+        }
+        
+        .chart-zero-line::before {
+            content: '0 €';
+            position: absolute;
+            left: -40px;
+            top: -8px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 13px;
+        }
+        
+        .footnotes {
+            margin-top: 24px;
+            padding: 20px;
+            background: var(--card);
+            border-radius: 12px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+        
+        .footnotes p {
+            margin-bottom: 6px;
+        }
+        
+        @media (max-width: 900px) {
+            body { padding: 24px 16px; }
+            h1 { font-size: 28px; }
+            
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .card-value { font-size: 24px; }
+            
+            .costs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .monthly-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body { padding: 16px 12px; }
+            h1 { font-size: 24px; }
+            .subtitle { font-size: 14px; }
+            
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-value { font-size: 28px; }
+            
+            .price-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>12 kuu <span>eelarve</span></h1>
+        <p class="subtitle">Rotermann City digiteenuse finantsplaan 2026</p>
+        
+        <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">Ligipääsutasu kasutaja kohta</div>
+        <div class="price-selector">
+            <button class="price-btn" data-price="2.9">2,90 €</button>
+            <button class="price-btn" data-price="3.9">3,90 €</button>
+            <button class="price-btn active" data-price="4.9">4,90 €</button>
+        </div>
+    </header>
+    
+    <!-- Key Numbers -->
+    <div class="summary-cards">
+        <div class="summary-card danger">
+            <div class="card-label">Alginvestering</div>
+            <div class="card-value danger" id="initial-investment">-17 900 €</div>
+            <div class="card-note">Ühekordne</div>
+        </div>
+        <div class="summary-card">
+            <div class="card-label">Nullpunkt</div>
+            <div class="card-value warning" id="break-even-month">Mai</div>
+            <div class="card-note" id="break-even-note">Kumulatiivne +</div>
+        </div>
+        <div class="summary-card success">
+            <div class="card-label">Aasta kasum</div>
+            <div class="card-value success" id="yearly-profit">+47 584 €</div>
+            <div class="card-note">12 kuu kokkuvõte</div>
+        </div>
+        <div class="summary-card highlight">
+            <div class="card-label">ROI</div>
+            <div class="card-value" id="roi">266%</div>
+            <div class="card-note">Aastane tootlus</div>
+        </div>
+    </div>
+    
+    <!-- Costs breakdown -->
+    <div class="section">
+        <h2 class="section-title">Kulude struktuur</h2>
+        <div class="costs-grid">
+            <div class="cost-card">
+                <h3>💰 Ühekordne investeering</h3>
+                <div class="cost-item">
+                    <span>ACS integratsioon (Sharry + Integriti)</span>
+                    <span class="amount">10 000 €</span>
+                </div>
+                <div class="cost-item">
+                    <span>Mobiilsete kaartide integratsioon (ORIGO)</span>
+                    <span class="amount">5 000 €</span>
+                </div>
+                <div class="cost-item">
+                    <span>POC seadistus</span>
+                    <span class="amount">2 900 €</span>
+                </div>
+                <div class="cost-item" style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 12px;">
+                    <span><strong>Kokku</strong></span>
+                    <span class="amount" style="color: var(--danger);"><strong>17 900 €</strong></span>
+                </div>
+            </div>
+            
+            <div class="cost-card">
+                <h3>📅 Igakuine kulu (täielik katvus)</h3>
+                <div class="cost-item">
+                    <span>Sharry platvorm (~0,15 €/m²)</span>
+                    <span class="amount">7 216 €</span>
+                </div>
+                <div class="cost-item">
+                    <span>Apple Wallet kasutajatasud*</span>
+                    <span class="amount">~770 €</span>
+                </div>
+                <div class="cost-item">
+                    <span>Strateegiline konsultatsioon</span>
+                    <span class="amount">6 230 €</span>
+                </div>
+                <div class="cost-item" style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 12px;">
+                    <span><strong>Kokku kuus</strong></span>
+                    <span class="amount" style="color: var(--danger);"><strong>~14 216 €</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Monthly breakdown -->
+    <div class="section">
+        <h2 class="section-title">Kuude kaupa ülevaade</h2>
+        <div style="overflow-x: auto;">
+            <table class="monthly-table">
+                <thead>
+                    <tr>
+                        <th>Kuu</th>
+                        <th>Kasutajaid</th>
+                        <th>Tulu</th>
+                        <th>Sharry</th>
+                        <th>Apple Wallet</th>
+                        <th>Konsult.</th>
+                        <th>Kuu kasum</th>
+                        <th>Kumulatiivne</th>
+                    </tr>
+                </thead>
+                <tbody id="monthly-tbody">
+                    <!-- Generated by JS -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>KOKKU 2026</td>
+                        <td></td>
+                        <td id="total-revenue">176 400 €</td>
+                        <td id="total-sharry">-64 832 €</td>
+                        <td id="total-wallet">-6 084 €</td>
+                        <td id="total-consult">-74 760 €</td>
+                        <td id="total-profit-monthly">30 724 €</td>
+                        <td id="final-cumulative">+12 824 €</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Visual chart -->
+    <div class="section">
+        <h2 class="section-title">Rahavoo graafik</h2>
+        <div class="chart-container">
+            <div style="display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; font-size: 12px;">
+                <span><span style="display: inline-block; width: 12px; height: 12px; background: var(--success); border-radius: 2px; margin-right: 6px;"></span>Positiivne</span>
+                <span><span style="display: inline-block; width: 12px; height: 12px; background: var(--danger); border-radius: 2px; margin-right: 6px;"></span>Negatiivne</span>
+            </div>
+            <div class="chart-bars" id="chart-bars">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footnotes -->
+    <div class="footnotes">
+        <p>* Apple Wallet: 80% kasutajatest Apple seadmega, tasu ~2,88€/kasutaja/aasta + 0,16€/kasutaja/kuu</p>
+        <p>* Sharry kulu arvutatud Golden Gate pakkumise põhjal (~0,15€/m²/kuu kõigile hoonetele)</p>
+        <p>* Tulu = ainult ligipääsutasu, ei sisalda lisateenuseid (lojaalsus, sündmused jms)</p>
+        <p>* Kasutajate arv kasvab järk-järgult vastavalt hoonete kasutuselevõtule</p>
+    </div>
+    
+    <footer>
+        Rotermann City Digiprojekt · Finantsplaan 2026 · Koostatud jaanuar 2026
+    </footer>
+</div>
+
+<script>
+(function() {
+    // Monthly plan data
+    const monthlyPlan = [
+        { month: 'Jaanuar', employees: 0, note: 'Seadistus' },
+        { month: 'Veebruar', employees: 1069, note: 'Golden Gate live' },
+        { month: 'Märts', employees: 2232, note: '+Rot 6, 8' },
+        { month: 'Aprill', employees: 2232, note: '' },
+        { month: 'Mai', employees: 2645, note: '+Rot 2, 14' },
+        { month: 'Juuni', employees: 3150, note: '+Rot 18' },
+        { month: 'Juuli', employees: 3150, note: '' },
+        { month: 'August', employees: 3600, note: '+Värvilised' },
+        { month: 'September', employees: 3600, note: '' },
+        { month: 'Oktoober', employees: 4000, note: 'Täielik katvus' },
+        { month: 'November', employees: 4000, note: '' },
+        { month: 'Detsember', employees: 4000, note: '' }
+    ];
+    
+    // Costs constants
+    const INITIAL_INVESTMENT = 17900;
+    const SHARRY_RATE = 0.153; // per m² per month
+    const TOTAL_SQM = 47185;
+    const CONSULT_COST = 6230;
+    
+    // Sharry scales with active buildings (approximation)
+    function getSharryCost(employees) {
+        if (employees === 0) return 0;
+        // Proportional to employees as proxy for active m²
+        return Math.round((employees / 4000) * 7216);
+    }
+    
+    // Apple Wallet costs
+    function getWalletCost(employees) {
+        if (employees === 0) return 0;
+        // 80% Apple users, ~0.16€/user/month + amortized annual fee
+        const appleUsers = employees * 0.8;
+        const monthlyFee = appleUsers * 0.16;
+        const annualFeeAmortized = (appleUsers * 2.88) / 12;
+        return Math.round(monthlyFee + annualFeeAmortized);
+    }
+    
+    let currentPrice = 4.9;
+    
+    function formatNumber(num) {
+        const absNum = Math.abs(Math.round(num));
+        const formatted = absNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        return num < 0 ? '-' + formatted : formatted;
+    }
+    
+    function calculate() {
+        const tbody = document.getElementById('monthly-tbody');
+        const chartBars = document.getElementById('chart-bars');
+        
+        let cumulative = -INITIAL_INVESTMENT; // Start with initial investment as debt
+        let totalRevenue = 0;
+        let totalSharry = 0;
+        let totalWallet = 0;
+        let totalConsult = 0;
+        let breakEvenMonth = null;
+        
+        let rows = '';
+        let bars = '';
+        let maxCumulative = 0;
+        let minCumulative = cumulative;
+        
+        // First pass to find max/min for chart scaling
+        let tempCumulative = -INITIAL_INVESTMENT;
+        monthlyPlan.forEach(m => {
+            const revenue = m.employees * currentPrice;
+            const sharry = getSharryCost(m.employees);
+            const wallet = getWalletCost(m.employees);
+            const monthProfit = revenue - sharry - wallet - CONSULT_COST;
+            tempCumulative += monthProfit;
+            maxCumulative = Math.max(maxCumulative, tempCumulative);
+            minCumulative = Math.min(minCumulative, tempCumulative);
+        });
+        
+        const chartRange = Math.max(Math.abs(maxCumulative), Math.abs(minCumulative));
+        
+        // Second pass for actual rendering
+        monthlyPlan.forEach((m, i) => {
+            const revenue = m.employees * currentPrice;
+            const sharry = getSharryCost(m.employees);
+            const wallet = getWalletCost(m.employees);
+            const monthProfit = revenue - sharry - wallet - CONSULT_COST;
+            cumulative += monthProfit;
+            
+            totalRevenue += revenue;
+            totalSharry += sharry;
+            totalWallet += wallet;
+            totalConsult += CONSULT_COST;
+            
+            if (breakEvenMonth === null && cumulative >= 0) {
+                breakEvenMonth = m.month;
+            }
+            
+            const isBreakEven = breakEvenMonth === m.month;
+            const profitClass = monthProfit >= 0 ? 'positive' : 'negative';
+            const cumulativeClass = cumulative >= 0 ? 'positive' : 'negative';
+            
+            rows += `
+                <tr class="${isBreakEven ? 'break-even' : ''}">
+                    <td>${m.month}${m.note ? ' <span style="font-size: 10px; color: var(--muted);">(' + m.note + ')</span>' : ''}</td>
+                    <td>${formatNumber(m.employees)}</td>
+                    <td class="positive">${m.employees > 0 ? formatNumber(revenue) + ' €' : '-'}</td>
+                    <td class="negative">${sharry > 0 ? '-' + formatNumber(sharry) + ' €' : '-'}</td>
+                    <td class="negative">${wallet > 0 ? '-' + formatNumber(wallet) + ' €' : '-'}</td>
+                    <td class="negative">-${formatNumber(CONSULT_COST)} €</td>
+                    <td class="${profitClass}">${monthProfit >= 0 ? '+' : ''}${formatNumber(monthProfit)} €</td>
+                    <td class="${cumulativeClass}"><strong>${cumulative >= 0 ? '+' : ''}${formatNumber(cumulative)} €</strong></td>
+                </tr>
+            `;
+            
+            // Chart bars
+            const barHeight = Math.abs(cumulative) / chartRange * 150;
+            const barClass = cumulative >= 0 ? 'positive' : 'negative';
+            bars += `
+                <div class="chart-bar-group">
+                    <div class="chart-bar cumulative ${barClass}" style="height: ${barHeight}px;"></div>
+                    <div class="chart-label">${m.month.substring(0, 3)}</div>
+                </div>
+            `;
+        });
+        
+        tbody.innerHTML = rows;
+        chartBars.innerHTML = bars;
+        
+        // Update summary cards
+        document.getElementById('break-even-month').textContent = breakEvenMonth || 'Ei jõua';
+        document.getElementById('break-even-note').textContent = breakEvenMonth ? 'Kumulatiivne +' : 'Aasta jooksul';
+        
+        const yearlyProfit = totalRevenue - totalSharry - totalWallet - totalConsult - INITIAL_INVESTMENT;
+        document.getElementById('yearly-profit').textContent = (yearlyProfit >= 0 ? '+' : '') + formatNumber(yearlyProfit) + ' €';
+        document.getElementById('yearly-profit').className = 'card-value ' + (yearlyProfit >= 0 ? 'success' : 'danger');
+        
+        const roi = Math.round((yearlyProfit / INITIAL_INVESTMENT) * 100);
+        document.getElementById('roi').textContent = roi + '%';
+        
+        // Update footer totals
+        document.getElementById('total-revenue').textContent = formatNumber(totalRevenue) + ' €';
+        document.getElementById('total-sharry').textContent = '-' + formatNumber(totalSharry) + ' €';
+        document.getElementById('total-wallet').textContent = '-' + formatNumber(totalWallet) + ' €';
+        document.getElementById('total-consult').textContent = '-' + formatNumber(totalConsult) + ' €';
+        document.getElementById('total-profit-monthly').textContent = formatNumber(totalRevenue - totalSharry - totalWallet - totalConsult) + ' €';
+        document.getElementById('final-cumulative').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
+    }
+    
+    // Price selector
+    const priceButtons = document.querySelectorAll('.price-btn');
+    priceButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            priceButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentPrice = parseFloat(btn.dataset.price);
+            calculate();
+        });
+    });
+    
+    // Initial calculation
+    calculate();
+})();
+</script>
+
+</body>
+</html>
