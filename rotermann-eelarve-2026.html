@@ -79,10 +79,29 @@
             background: rgba(212, 165, 116, 0.1);
         }
         
-        .price-btn.active {
+        .price-btn.active,
+        .adoption-btn.active {
             background: var(--accent);
             border-color: var(--accent);
             color: var(--bg);
+        }
+        
+        .adoption-btn {
+            background: var(--card);
+            border: 2px solid var(--border);
+            color: var(--text);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .adoption-btn:hover {
+            border-color: var(--accent);
+            background: rgba(212, 165, 116, 0.1);
         }
         
         /* Section */
@@ -276,7 +295,37 @@
             flex-direction: column;
             align-items: center;
             gap: 8px;
+            position: relative;
+            cursor: pointer;
         }
+        
+        .chart-bar-group:hover .chart-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+        
+        .chart-tooltip {
+            position: absolute;
+            top: -55px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            z-index: 10;
+            text-align: left;
+            line-height: 1.4;
+        }
+        
+        .chart-tooltip.positive { color: var(--success); }
+        .chart-tooltip.negative { color: var(--danger); }
         
         .chart-bar {
             width: 100%;
@@ -343,6 +392,90 @@
         .footnotes p {
             margin-bottom: 6px;
         }
+
+        /* Draft / discussion section */
+        .draft-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            background: rgba(251, 191, 36, 0.08);
+            color: var(--warning);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .draft-note {
+            margin-top: 12px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px dashed rgba(255,255,255,0.18);
+            color: rgba(255,255,255,0.75);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .draft-note strong { color: var(--text); }
+
+        .mini-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .mini-table th {
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mini-table td {
+            padding: 10px 8px;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.8);
+            line-height: 1.45;
+        }
+
+        .mini-table tr:last-child td { border-bottom: none; }
+        .mini-table .muted { color: var(--muted); }
+        .mini-table .accent { color: var(--accent); font-weight: 700; }
+        .mini-table .success { color: var(--success); font-weight: 700; }
+        .mini-table .warning { color: var(--warning); font-weight: 700; }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.25);
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .pill strong { color: var(--accent); }
+
+        .bullets {
+            margin-top: 12px;
+            padding-left: 18px;
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .bullets li { margin: 6px 0; }
         
         @media (max-width: 900px) {
             body { padding: 24px 16px; }
@@ -390,11 +523,24 @@
         <h1>12 kuu <span>eelarve</span></h1>
         <p class="subtitle">Rotermann City digiteenuse finantsplaan 2026</p>
         
-        <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">Ligipääsutasu kasutaja kohta</div>
-        <div class="price-selector">
-            <button class="price-btn" data-price="2.9">2,90 €</button>
-            <button class="price-btn" data-price="3.9">3,90 €</button>
-            <button class="price-btn active" data-price="4.9">4,90 €</button>
+        <div style="display: flex; justify-content: center; gap: 24px; margin-top: 24px; align-items: stretch;">
+            <div style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px;">
+                <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; text-align: center;">Hind / kasutaja</div>
+                <div class="price-selector">
+                    <button class="price-btn" data-price="2.9">2,90 €</button>
+                    <button class="price-btn" data-price="3.9">3,90 €</button>
+                    <button class="price-btn active" data-price="4.9">4,90 €</button>
+                </div>
+            </div>
+            <div style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px;">
+                <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; text-align: center;">Adoptsioon</div>
+                <div class="price-selector">
+                    <button class="adoption-btn" data-adoption="0.5">50%</button>
+                    <button class="adoption-btn" data-adoption="0.7">70%</button>
+                    <button class="adoption-btn active" data-adoption="0.85">85%</button>
+                    <button class="adoption-btn" data-adoption="1.0">100%</button>
+                </div>
+            </div>
         </div>
     </header>
     
@@ -403,70 +549,25 @@
         <div class="summary-card danger">
             <div class="card-label">Veel tasuda</div>
             <div class="card-value danger" id="initial-investment">-12 100 €</div>
-            <div class="card-note">POC 2 900€ juba makstud</div>
+            <div class="card-note">Sharry ettemaks 2 900€ juba makstud</div>
         </div>
         <div class="summary-card">
             <div class="card-label">Nullpunkt</div>
-            <div class="card-value warning" id="break-even-month">Mai</div>
+            <div class="card-value warning" id="break-even-month">Ei jõua</div>
             <div class="card-note" id="break-even-note">Kumulatiivne +</div>
         </div>
         <div class="summary-card success">
             <div class="card-label">Aasta kasum</div>
-            <div class="card-value success" id="yearly-profit">+47 584 €</div>
+            <div class="card-value success" id="yearly-profit">-32 629 €</div>
             <div class="card-note">12 kuu kokkuvõte</div>
         </div>
         <div class="summary-card highlight">
             <div class="card-label">ROI</div>
-            <div class="card-value" id="roi">266%</div>
+            <div class="card-value" id="roi">-270%</div>
             <div class="card-note">Aastane tootlus</div>
         </div>
     </div>
     
-    <!-- Costs breakdown -->
-    <div class="section">
-        <h2 class="section-title">Kulude struktuur</h2>
-        <div class="costs-grid">
-            <div class="cost-card">
-                <h3>💰 Ühekordne investeering</h3>
-                <div class="cost-item">
-                    <span>ACS integratsioon (Sharry + Integriti)</span>
-                    <span class="amount">10 000 €</span>
-                </div>
-                <div class="cost-item">
-                    <span>Mobiilsete kaartide integratsioon (ORIGO)</span>
-                    <span class="amount">5 000 €</span>
-                </div>
-                <div class="cost-item" style="color: var(--success);">
-                    <span>POC ettemaks (juba makstud)</span>
-                    <span class="amount">-2 900 €</span>
-                </div>
-                <div class="cost-item" style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 12px;">
-                    <span><strong>Veel tasuda</strong></span>
-                    <span class="amount" style="color: var(--danger);"><strong>12 100 €</strong></span>
-                </div>
-            </div>
-            
-            <div class="cost-card">
-                <h3>📅 Igakuine kulu (fikseeritud)</h3>
-                <div class="cost-item">
-                    <span>Sharry platvorm (kogu kvartal)</span>
-                    <span class="amount">3 000 €</span>
-                </div>
-                <div class="cost-item">
-                    <span>Apple Wallet kasutajatasud*</span>
-                    <span class="amount">~770 €</span>
-                </div>
-                <div class="cost-item">
-                    <span>Strateegiline konsultatsioon</span>
-                    <span class="amount">6 230 €</span>
-                </div>
-                <div class="cost-item" style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 12px;">
-                    <span><strong>Kokku kuus</strong></span>
-                    <span class="amount" style="color: var(--danger);"><strong>~10 000 €</strong></span>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <!-- Monthly breakdown -->
     <div class="section">
@@ -476,11 +577,12 @@
                 <thead>
                     <tr>
                         <th>Kuu</th>
-                        <th>Kasutajaid</th>
+                        <th>Kasutajaid <span style="font-weight: 400; opacity: 0.7;">/ pot.</span></th>
                         <th>Tulu</th>
                         <th>Sharry</th>
-                        <th>Apple Wallet</th>
+                        <th>Wallet</th>
                         <th>Konsult.</th>
+                        <th>Muu</th>
                         <th>Kuu kasum</th>
                         <th>Kumulatiivne</th>
                     </tr>
@@ -492,38 +594,244 @@
                     <tr>
                         <td>KOKKU 2026</td>
                         <td></td>
-                        <td id="total-revenue">176 400 €</td>
-                        <td id="total-sharry">-64 832 €</td>
-                        <td id="total-wallet">-6 084 €</td>
+                        <td id="total-revenue">123 612 €</td>
+                        <td id="total-sharry">-60 000 €</td>
+                        <td id="total-wallet">-5 181 €</td>
                         <td id="total-consult">-74 760 €</td>
-                        <td id="total-profit-monthly">30 724 €</td>
-                        <td id="final-cumulative">+12 824 €</td>
+                        <td id="total-other">-4 200 €</td>
+                        <td id="total-profit-monthly">-20 529 €</td>
+                        <td id="final-cumulative">-32 629 €</td>
                     </tr>
                 </tfoot>
             </table>
         </div>
     </div>
     
-    <!-- Visual chart -->
+    <!-- Cash injection summary -->
     <div class="section">
-        <h2 class="section-title">Rahavoo graafik</h2>
-        <div class="chart-container">
-            <div style="display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; font-size: 12px;">
-                <span><span style="display: inline-block; width: 12px; height: 12px; background: var(--success); border-radius: 2px; margin-right: 6px;"></span>Positiivne</span>
-                <span><span style="display: inline-block; width: 12px; height: 12px; background: var(--danger); border-radius: 2px; margin-right: 6px;"></span>Negatiivne</span>
+        <h2 class="section-title">2026 investeering</h2>
+        <div class="costs-grid">
+            <div class="cost-card" style="background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(212, 165, 116, 0.05) 100%); border-color: rgba(212, 165, 116, 0.3);">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 13px; color: var(--muted); margin-bottom: 8px;">Vajalik kapital 2026</div>
+                    <div style="font-size: 42px; font-weight: 700; color: var(--accent);" id="total-investment-2026">~55 854 €</div>
+                    <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">sisaldab 30% puhvrit riskide katteks</div>
+                </div>
+                <div class="cost-item">
+                    <span>Sharry integratsioon</span>
+                    <span class="amount">12 100 €</span>
+                </div>
+                <div class="cost-item">
+                    <span>Operatsioonikulud kuni kasumini</span>
+                    <span class="amount" id="ops-until-profit">~30 865 €</span>
+                </div>
+                <div class="cost-item">
+                    <span>Puhver (viivitused, riskid)</span>
+                    <span class="amount" id="buffer-display">~12 889 €</span>
+                </div>
             </div>
-            <div class="chart-bars" id="chart-bars">
-                <!-- Generated by JS -->
+            
+            <div class="cost-card">
+                <div style="font-size: 14px; font-weight: 600; margin-bottom: 16px;">📊 Kuu kaupa ülevaade</div>
+                <div id="monthly-breakdown" style="font-size: 12px; max-height: 300px; overflow-y: auto;">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 24px;">
+            <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 12px; color: var(--muted); margin-bottom: 4px;">Nullpunkt</div>
+                <div style="font-size: 24px; font-weight: 600; color: var(--warning);" id="break-even-display">Ei jõua 2026</div>
+            </div>
+            <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 12px; color: var(--muted); margin-bottom: 4px;">2026 lõppseis</div>
+                <div style="font-size: 24px; font-weight: 600;" id="year-end-balance">-32 629 €</div>
+            </div>
+            <div style="background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.3); border-radius: 12px; padding: 20px; text-align: center;">
+                <div style="font-size: 12px; color: var(--muted); margin-bottom: 4px;">2027 prognoos</div>
+                <div style="font-size: 24px; font-weight: 600; color: var(--success);" id="profit-2027-display">+40 584 €</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add-on revenue (discussion) -->
+    <div class="section">
+        <h2 class="section-title">
+            Võimalikud lisateenused
+            <span class="draft-badge" style="margin-left: 8px;">EI OLE EELARVES</span>
+        </h2>
+
+        <!-- SERVICE 1: Guest Pass -->
+        <div class="cost-card" style="margin-bottom: 20px; border-left: 4px solid var(--success);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div>
+                    <div style="font-size: 20px; font-weight: 600; margin-bottom: 6px;">Külalispääsmete paketid</div>
+                    <div style="font-size: 13px; color: var(--muted);">Üürnikud ostavad kuupakette oma külaliste ligipääsuks</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Prioriteet</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--success);">Kõrge</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 10px;">
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Paketi hind</div>
+                    <div style="font-size: 14px; font-weight: 600;">99–299 €/kuu</div>
+                    <div style="font-size: 11px; color: var(--muted);">20/50/100 pääsme pakett</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Tulu potentsiaal</div>
+                    <div style="font-size: 14px; font-weight: 600;">2 000–6 000 €/kuu</div>
+                    <div style="font-size: 11px; color: var(--muted);">10–20 üürnikut</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Investeering</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--success);">0 €</div>
+                    <div style="font-size: 11px; color: var(--muted);">Olemasolev süsteem</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Käivitusaeg</div>
+                    <div style="font-size: 14px; font-weight: 600;">1–2 nädalat</div>
+                    <div style="font-size: 11px; color: var(--muted);">Protsess + hinnakiri</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICE 2: Executive -->
+        <div class="cost-card" style="margin-bottom: 20px; border-left: 4px solid var(--warning);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div>
+                    <div style="font-size: 20px; font-weight: 600; margin-bottom: 6px;">Executive pakett</div>
+                    <div style="font-size: 13px; color: var(--muted);">Üks kaart, üks arve, null muret — ettevõtte töötaja benefit</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Prioriteet</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--warning);">Keskmine</div>
+                </div>
+            </div>
+
+            <div style="padding: 16px; background: rgba(212, 165, 116, 0.08); border-radius: 10px; margin-bottom: 16px;">
+                <div style="font-size: 12px; font-weight: 600; margin-bottom: 12px; color: var(--accent);">Paketis sisaldub:</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="color: var(--success);">✓</span> Prioriteetne parklakoht (parem asukoht)
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="color: var(--success);">✓</span> Golden Gate jõusaali pääse
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="color: var(--success);">✓</span> Isiklik lukustatav kapp
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="color: var(--success);">✓</span> Concierge teenus
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="color: var(--success);">✓</span> 5 külalispääset kuus
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="color: var(--success);">✓</span> Kõik ühe kaardiga
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 10px;">
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Paketi hind</div>
+                    <div style="font-size: 14px; font-weight: 600;">349–399 €/kuu</div>
+                    <div style="font-size: 11px; color: var(--muted);">Kasutaja kohta</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Tulu potentsiaal</div>
+                    <div style="font-size: 14px; font-weight: 600;">3 500–8 000 €/kuu</div>
+                    <div style="font-size: 11px; color: var(--muted);">10–20 kasutajat</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Investeering</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--warning);">5 000–15 000 €</div>
+                    <div style="font-size: 11px; color: var(--muted);">Vt allpool</div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; color: var(--muted); margin-bottom: 4px;">Käivitusaeg</div>
+                    <div style="font-size: 14px; font-weight: 600;">2–3 kuud</div>
+                    <div style="font-size: 11px; color: var(--muted);">Integratsioonid + bränd</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 16px; font-size: 12px;">
+                <div style="font-weight: 600; margin-bottom: 8px; color: var(--muted);">Investeeringu jaotus:</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div style="padding: 10px; background: rgba(255,255,255,0.02); border-radius: 6px;">
+                        <span style="color: var(--muted);">Jõusaali integratsioon</span>
+                        <span style="float: right;">~2 000 €</span>
+                    </div>
+                    <div style="padding: 10px; background: rgba(255,255,255,0.02); border-radius: 6px;">
+                        <span style="color: var(--muted);">Bränditud kapid (10–20 tk)</span>
+                        <span style="float: right;">~3 000–8 000 €</span>
+                    </div>
+                    <div style="padding: 10px; background: rgba(255,255,255,0.02); border-radius: 6px;">
+                        <span style="color: var(--muted);">Parklakohtade märgistus</span>
+                        <span style="float: right;">~1 000–2 000 €</span>
+                    </div>
+                    <div style="padding: 10px; background: rgba(255,255,255,0.02); border-radius: 6px;">
+                        <span style="color: var(--muted);">Veeb + turundus</span>
+                        <span style="float: right;">~2 000–3 000 €</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 16px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; font-size: 12px; color: var(--muted);">
+                <strong style="color: var(--text);">Sihtgrupp:</strong> Ettevõtted ostavad juhtidele ja võtmetöötajatele benefitina. 
+                Väärtus pole hinnasääst, vaid mugavus ja staatus — üks arve personaliosakonnale, töötajale VIP-kogemus.
+            </div>
+        </div>
+
+        <!-- SERVICE 3: Not recommended -->
+        <div class="cost-card" style="margin-bottom: 24px; border-left: 4px solid var(--danger); opacity: 0.7;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <div style="font-size: 20px; font-weight: 600; margin-bottom: 6px;">Täiendavad investeeringud</div>
+                    <div style="font-size: 13px; color: var(--muted);">Lukustuskapid, infosildid, lisapersonal</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Prioriteet</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--danger);">Madal</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 12px; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; font-size: 13px;">
+                <strong>Märkus:</strong> Mitte investeerida enne kui põhiteenused on käivitunud ja nõudlus tõestatud. 
+                Investeeringu maht 20 000+ €, tulu määramata.
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="cost-card">
+                <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Hinnanguline ajakava</div>
+                <div style="font-size: 13px; line-height: 2;">
+                    <div><span style="color: var(--muted);">Q1–Q2:</span> Külalispääsmete käivitamine</div>
+                    <div><span style="color: var(--muted);">Q2–Q3:</span> Executive paketi piloot (5–10 kasutajat)</div>
+                    <div><span style="color: var(--muted);">Q4:</span> Tulemuste hindamine</div>
+                </div>
+            </div>
+            <div class="cost-card" style="background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(212, 165, 116, 0.05) 100%); border-color: rgba(212, 165, 116, 0.3);">
+                <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Lisatulu potentsiaal</div>
+                <div style="font-size: 28px; font-weight: 700; color: var(--accent);">+40 000 – 80 000 €</div>
+                <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">aastas, kui mõlemad teenused käivituvad</div>
             </div>
         </div>
     </div>
     
     <!-- Footnotes -->
     <div class="footnotes">
-        <p>* Apple Wallet: 80% kasutajatest Apple seadmega, tasu ~2,88€/kasutaja/aasta + 0,16€/kasutaja/kuu</p>
-        <p>* Sharry kulu ~3000€/kuu on fikseeritud kogu Rotermanni kvartali jaoks (Ingmari hinnang)</p>
+        <p>* Wallet kulud: Mobiilsed kaardid 0,16€/kasutaja/aasta + Apple Wallet 2,88€/kasutaja/aasta (80% Apple kasutajad)</p>
+        <p>* Sharry kulu ~6000€/kuu on fikseeritud kogu Rotermanni kvartali jaoks</p>
+        <p>* Konsultatsioonitasu 6230€/kuu kehtib kogu projekti jooksul</p>
+        <p>* Muu: Litsentsid (Cursor jm) 200€/kuu + Riistvara (arvuti jm) 150€/kuu = 350€/kuu</p>
+        <p>* Adoptsioonimäär: mitte kõik töötajad ei võta kohe digitaalset kaarti kasutusele</p>
         <p>* Tulu = ainult ligipääsutasu, ei sisalda lisateenuseid (lojaalsus, sündmused jms)</p>
-        <p>* Kasutajate arv kasvab järk-järgult vastavalt hoonete kasutuselevõtule</p>
     </div>
     
     <footer>
@@ -533,44 +841,48 @@
 
 <script>
 (function() {
-    // Monthly plan data
+    // Monthly plan data (UUENDATUD: veebruar on implementeerimine, esimene tulu märtsis)
     const monthlyPlan = [
         { month: 'Jaanuar', employees: 0, note: 'Seadistus' },
-        { month: 'Veebruar', employees: 1069, note: 'Golden Gate live' },
-        { month: 'Märts', employees: 2232, note: '+Rot 6, 8' },
-        { month: 'Aprill', employees: 2232, note: '' },
-        { month: 'Mai', employees: 2645, note: '+Rot 2, 14' },
-        { month: 'Juuni', employees: 3150, note: '+Rot 18' },
-        { month: 'Juuli', employees: 3150, note: '' },
-        { month: 'August', employees: 3600, note: '+Värvilised' },
-        { month: 'September', employees: 3600, note: '' },
-        { month: 'Oktoober', employees: 4000, note: 'Täielik katvus' },
-        { month: 'November', employees: 4000, note: '' },
+        { month: 'Veebruar', employees: 0, note: 'Implementeerimine' },
+        { month: 'Märts', employees: 1069, note: 'Golden Gate live' },
+        { month: 'Aprill', employees: 2232, note: '+Rot 6, 8' },
+        { month: 'Mai', employees: 2232, note: '' },
+        { month: 'Juuni', employees: 2645, note: '+Rot 2, 14' },
+        { month: 'Juuli', employees: 3150, note: '+Rot 18' },
+        { month: 'August', employees: 3150, note: '' },
+        { month: 'September', employees: 3600, note: '+Värvilised' },
+        { month: 'Oktoober', employees: 3600, note: '' },
+        { month: 'November', employees: 4000, note: 'Täielik katvus' },
         { month: 'Detsember', employees: 4000, note: '' }
     ];
     
     // Costs constants
-    const INITIAL_INVESTMENT = 12100; // 10000 + 5000 - 2900 (POC juba makstud)
-    const SHARRY_MONTHLY = 3000; // Fikseeritud igakuine kulu kogu kvartali jaoks
+    const INITIAL_INVESTMENT = 12100; // 10000 + 5000 - 2900 (Sharry ettemaks juba makstud)
+    const SHARRY_MONTHLY = 6000; // Fikseeritud igakuine kulu kogu kvartali jaoks
     const CONSULT_COST = 6230;
+    const LICENSE_COST = 200; // Litsentsid (Cursor jm)
+    const HARDWARE_COST = 150; // Riistvara (arvuti jm)
     
     // Sharry is FIXED monthly cost (not dependent on buildings)
     function getSharryCost(employees) {
-        // Always 3000€/month once service is live
+        // Always 6000€/month once service is live
         return employees > 0 ? SHARRY_MONTHLY : 0;
     }
     
-    // Apple Wallet costs
+    // Apple Wallet costs (PARANDATUD: 0.16€ on AASTAS kasutaja kohta, mitte kuus)
     function getWalletCost(employees) {
         if (employees === 0) return 0;
-        // 80% Apple users, ~0.16€/user/month + amortized annual fee
+        // Mobiilsete kaartide tasu: 0.16€/kasutaja/AASTA (kõik kasutajad)
+        const mobileCardMonthly = employees * (0.16 / 12);
+        // Apple Wallet registreerimistasu: 2.88€/kasutaja/aasta (ainult 80% Apple kasutajad)
         const appleUsers = employees * 0.8;
-        const monthlyFee = appleUsers * 0.16;
-        const annualFeeAmortized = (appleUsers * 2.88) / 12;
-        return Math.round(monthlyFee + annualFeeAmortized);
+        const appleAnnualFeeMonthly = (appleUsers * 2.88) / 12;
+        return Math.round(mobileCardMonthly + appleAnnualFeeMonthly);
     }
     
     let currentPrice = 4.9;
+    let currentAdoption = 0.85; // 85% adoptsioonimäär vaikimisi
     
     function formatNumber(num) {
         const absNum = Math.abs(Math.round(num));
@@ -587,6 +899,7 @@
         let totalSharry = 0;
         let totalWallet = 0;
         let totalConsult = 0;
+        let totalOther = 0;
         let breakEvenMonth = null;
         
         let rows = '';
@@ -596,30 +909,38 @@
         
         // First pass to find max/min for chart scaling
         let tempCumulative = -INITIAL_INVESTMENT;
+        let maxDeficitMonth = '';
         monthlyPlan.forEach(m => {
-            const revenue = m.employees * currentPrice;
+            const actualUsers = Math.round(m.employees * currentAdoption);
+            const revenue = actualUsers * currentPrice;
             const sharry = getSharryCost(m.employees);
-            const wallet = getWalletCost(m.employees);
-            const monthProfit = revenue - sharry - wallet - CONSULT_COST;
+            const wallet = getWalletCost(actualUsers);
+            const monthProfit = revenue - sharry - wallet - CONSULT_COST - LICENSE_COST - HARDWARE_COST;
             tempCumulative += monthProfit;
             maxCumulative = Math.max(maxCumulative, tempCumulative);
-            minCumulative = Math.min(minCumulative, tempCumulative);
+            if (tempCumulative < minCumulative) {
+                minCumulative = tempCumulative;
+                maxDeficitMonth = m.month.toLowerCase();
+            }
         });
         
         const chartRange = Math.max(Math.abs(maxCumulative), Math.abs(minCumulative));
         
         // Second pass for actual rendering
         monthlyPlan.forEach((m, i) => {
-            const revenue = m.employees * currentPrice;
-            const sharry = getSharryCost(m.employees);
-            const wallet = getWalletCost(m.employees);
-            const monthProfit = revenue - sharry - wallet - CONSULT_COST;
+            const actualUsers = Math.round(m.employees * currentAdoption); // Tegelikud kasutajad
+            const revenue = actualUsers * currentPrice;
+            const sharry = getSharryCost(m.employees); // Sharry kulu põhineb potentsiaalil, mitte adoptatsioonil
+            const wallet = getWalletCost(actualUsers); // Wallet kulu põhineb tegelikel kasutajatel
+            const otherCosts = LICENSE_COST + HARDWARE_COST; // Litsentsid + riistvara
+            const monthProfit = revenue - sharry - wallet - CONSULT_COST - otherCosts;
             cumulative += monthProfit;
             
             totalRevenue += revenue;
             totalSharry += sharry;
             totalWallet += wallet;
             totalConsult += CONSULT_COST;
+            totalOther += otherCosts;
             
             if (breakEvenMonth === null && cumulative >= 0) {
                 breakEvenMonth = m.month;
@@ -632,11 +953,12 @@
             rows += `
                 <tr class="${isBreakEven ? 'break-even' : ''}">
                     <td>${m.month}${m.note ? ' <span style="font-size: 10px; color: var(--muted);">(' + m.note + ')</span>' : ''}</td>
-                    <td>${formatNumber(m.employees)}</td>
-                    <td class="positive">${m.employees > 0 ? formatNumber(revenue) + ' €' : '-'}</td>
+                    <td>${formatNumber(actualUsers)} <span style="font-size: 10px; color: var(--muted);">/ ${formatNumber(m.employees)}</span></td>
+                    <td class="positive">${actualUsers > 0 ? formatNumber(revenue) + ' €' : '-'}</td>
                     <td class="negative">${sharry > 0 ? '-' + formatNumber(sharry) + ' €' : '-'}</td>
                     <td class="negative">${wallet > 0 ? '-' + formatNumber(wallet) + ' €' : '-'}</td>
                     <td class="negative">-${formatNumber(CONSULT_COST)} €</td>
+                    <td class="negative">-${formatNumber(otherCosts)} €</td>
                     <td class="${profitClass}">${monthProfit >= 0 ? '+' : ''}${formatNumber(monthProfit)} €</td>
                     <td class="${cumulativeClass}"><strong>${cumulative >= 0 ? '+' : ''}${formatNumber(cumulative)} €</strong></td>
                 </tr>
@@ -645,8 +967,13 @@
             // Chart bars
             const barHeight = Math.abs(cumulative) / chartRange * 150;
             const barClass = cumulative >= 0 ? 'positive' : 'negative';
+            const cumulativeValue = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
             bars += `
                 <div class="chart-bar-group">
+                    <div class="chart-tooltip ${barClass}">
+                        <div style="font-size: 11px; margin-bottom: 2px;">${m.month}</div>
+                        <div style="font-size: 14px;">${cumulativeValue}</div>
+                    </div>
                     <div class="chart-bar cumulative ${barClass}" style="height: ${barHeight}px;"></div>
                     <div class="chart-label">${m.month.substring(0, 3)}</div>
                 </div>
@@ -654,26 +981,86 @@
         });
         
         tbody.innerHTML = rows;
-        chartBars.innerHTML = bars;
+        if (chartBars) chartBars.innerHTML = bars;
         
         // Update summary cards
-        document.getElementById('break-even-month').textContent = breakEvenMonth || 'Ei jõua';
+        const breakEvenEl = document.getElementById('break-even-month');
+        breakEvenEl.textContent = breakEvenMonth || 'Ei jõua';
+        breakEvenEl.className = 'card-value ' + (breakEvenMonth ? 'warning' : 'danger');
         document.getElementById('break-even-note').textContent = breakEvenMonth ? 'Kumulatiivne +' : 'Aasta jooksul';
         
-        const yearlyProfit = totalRevenue - totalSharry - totalWallet - totalConsult - INITIAL_INVESTMENT;
+        const yearlyProfit = totalRevenue - totalSharry - totalWallet - totalConsult - totalOther - INITIAL_INVESTMENT;
         document.getElementById('yearly-profit').textContent = (yearlyProfit >= 0 ? '+' : '') + formatNumber(yearlyProfit) + ' €';
         document.getElementById('yearly-profit').className = 'card-value ' + (yearlyProfit >= 0 ? 'success' : 'danger');
         
         const roi = Math.round((yearlyProfit / INITIAL_INVESTMENT) * 100);
         document.getElementById('roi').textContent = roi + '%';
+        document.getElementById('roi').className = 'card-value ' + (roi >= 0 ? '' : 'danger');
         
         // Update footer totals
         document.getElementById('total-revenue').textContent = formatNumber(totalRevenue) + ' €';
         document.getElementById('total-sharry').textContent = '-' + formatNumber(totalSharry) + ' €';
         document.getElementById('total-wallet').textContent = '-' + formatNumber(totalWallet) + ' €';
         document.getElementById('total-consult').textContent = '-' + formatNumber(totalConsult) + ' €';
-        document.getElementById('total-profit-monthly').textContent = formatNumber(totalRevenue - totalSharry - totalWallet - totalConsult) + ' €';
+        document.getElementById('total-other').textContent = '-' + formatNumber(totalOther) + ' €';
+        document.getElementById('total-profit-monthly').textContent = formatNumber(totalRevenue - totalSharry - totalWallet - totalConsult - totalOther) + ' €';
         document.getElementById('final-cumulative').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
+        
+        // Generate monthly breakdown for cash injection view
+        let breakdownHtml = '';
+        let totalCashIn = INITIAL_INVESTMENT;
+        let lastLossMonth = 'jaanuar';
+        let lossMonthsTotal = 0;
+        
+        let tempCum = -INITIAL_INVESTMENT;
+        monthlyPlan.forEach((m, i) => {
+            const actualUsers = Math.round(m.employees * currentAdoption);
+            const rev = actualUsers * currentPrice;
+            const costs = getSharryCost(m.employees) + getWalletCost(actualUsers) + CONSULT_COST + LICENSE_COST + HARDWARE_COST;
+            const profit = rev - costs;
+            tempCum += profit;
+            
+            const isLoss = profit < 0;
+            if (isLoss) {
+                lossMonthsTotal += Math.abs(profit);
+                lastLossMonth = m.month.toLowerCase();
+            }
+            
+            const statusIcon = isLoss ? '🔴' : '🟢';
+            const profitText = profit >= 0 ? '+' + formatNumber(profit) : formatNumber(profit);
+            const profitColor = profit >= 0 ? 'var(--success)' : 'var(--danger)';
+            
+            breakdownHtml += `
+                <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border);">
+                    <span>${statusIcon} <strong>${m.month}</strong></span>
+                    <span>Tulu: ${formatNumber(rev)}€ | Kulud: ${formatNumber(costs)}€ | <strong style="color: ${profitColor}">${profitText}€</strong></span>
+                </div>
+            `;
+        });
+        
+        document.getElementById('monthly-breakdown').innerHTML = breakdownHtml;
+        
+        // Calculate total investment needed with buffer
+        const baseNeed = INITIAL_INVESTMENT + lossMonthsTotal;
+        const buffer = Math.round(baseNeed * 0.30); // 30% puhver
+        const totalInvestment = baseNeed + buffer;
+        
+        document.getElementById('ops-until-profit').textContent = '~' + formatNumber(lossMonthsTotal) + ' €';
+        document.getElementById('buffer-display').textContent = '~' + formatNumber(buffer) + ' €';
+        document.getElementById('total-investment-2026').textContent = '~' + formatNumber(totalInvestment) + ' €';
+        
+        document.getElementById('break-even-display').textContent = breakEvenMonth || 'Ei jõua 2026';
+        
+        document.getElementById('year-end-balance').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
+        document.getElementById('year-end-balance').style.color = cumulative >= 0 ? 'var(--success)' : 'var(--danger)';
+        
+        // 2027 projection
+        const fullYearUsers = Math.round(4000 * currentAdoption);
+        const monthlyRevenue2027 = fullYearUsers * currentPrice;
+        const monthlyWallet2027 = getWalletCost(fullYearUsers);
+        const monthlyCosts2027 = SHARRY_MONTHLY + monthlyWallet2027 + CONSULT_COST + LICENSE_COST + HARDWARE_COST;
+        const annualProfit2027 = (monthlyRevenue2027 - monthlyCosts2027) * 12;
+        document.getElementById('profit-2027-display').textContent = '+' + formatNumber(annualProfit2027) + ' €';
     }
     
     // Price selector
@@ -683,6 +1070,17 @@
             priceButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentPrice = parseFloat(btn.dataset.price);
+            calculate();
+        });
+    });
+    
+    // Adoption rate selector
+    const adoptionButtons = document.querySelectorAll('.adoption-btn');
+    adoptionButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            adoptionButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentAdoption = parseFloat(btn.dataset.adoption);
             calculate();
         });
     });
