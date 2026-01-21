@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotermanni digiplaan 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --card: #ffffff;
+            --card-alt: #fafafa;
+            --border: #e5e5e5;
+            --accent: #E40523;
+            --accent-light: #fef2f2;
+            --burgundy: #4D0D28;
+            --success: #059669;
+            --success-light: #ecfdf5;
+            --warning: #d97706;
+            --warning-light: #fffbeb;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --muted: #94a3b8;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 48px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .header-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        
+        h1 span { color: var(--text); }
+        
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* Section styles */
+        .section {
+            margin-bottom: 56px;
+        }
+        
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            color: var(--text);
+        }
+        
+        .section-title .badge {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 6px 12px;
+            border-radius: 100px;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
+        
+        .badge-phase1 {
+            background: var(--success-light);
+            color: var(--success);
+        }
+        
+        .badge-phase2 {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+        
+        /* Summary cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .summary-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .summary-card.highlight {
+            background: var(--accent-light);
+            border-color: var(--accent);
+        }
+        
+        .summary-card.success {
+            background: var(--success-light);
+            border-color: var(--success);
+        }
+        
+        .summary-card.warning {
+            background: var(--warning-light);
+            border-color: var(--warning);
+        }
+        
+        .summary-card.danger {
+            background: var(--danger-light);
+            border-color: var(--danger);
+        }
+        
+        .card-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .card-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            color: var(--text);
+        }
+        
+        .card-value.accent { color: var(--accent); }
+        .card-value.success { color: var(--success); }
+        .card-value.warning { color: var(--warning); }
+        .card-value.danger { color: var(--danger); }
+        
+        .card-note {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .control-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn {
+            background: white;
+            border: 2px solid var(--border);
+            color: var(--text);
+            padding: 10px 18px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+        
+        .btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        /* Table styles */
+        .table-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .monthly-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        .monthly-table th {
+            padding: 16px 12px;
+            text-align: right;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            background: var(--card-alt);
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .monthly-table th:first-child {
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .monthly-table td {
+            padding: 14px 12px;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .monthly-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            padding-left: 20px;
+        }
+        
+        .monthly-table tr:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        
+        .monthly-table .positive { color: var(--success); font-weight: 600; }
+        .monthly-table .negative { color: var(--danger); }
+        
+        .monthly-table tfoot td {
+            font-weight: 700;
+            border-top: 2px solid var(--border);
+            background: var(--card-alt);
+        }
+        
+        /* Info boxes */
+        .info-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .info-box.highlight {
+            background: var(--accent-light);
+            border-color: var(--accent);
+        }
+        
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        
+        .info-box p {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .info-box li {
+            margin-bottom: 6px;
+        }
+        
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        /* Loyalty section styles */
+        .loyalty-hero {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 48px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .loyalty-hero h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        
+        .loyalty-hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .partner-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .partner-card:hover {
+            border-color: var(--burgundy);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .partner-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .partner-card .benefit {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--burgundy);
+            margin: 8px 0;
+        }
+        
+        .partner-card .note {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-date {
+            flex-shrink: 0;
+            width: 100px;
+            font-weight: 600;
+            color: var(--burgundy);
+            font-size: 14px;
+        }
+        
+        .timeline-content h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Projection table */
+        .projection-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .projection-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .projection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .projection-item {
+            text-align: center;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .projection-item.featured {
+            background: var(--success-light);
+            border-color: var(--success);
+        }
+        
+        .projection-item .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .projection-item .value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        
+        .projection-item.featured .value {
+            color: var(--success);
+        }
+        
+        .projection-item .sub {
+            font-size: 13px;
+            color: var(--muted);
+        }
+        
+        /* Debt section */
+        .debt-section {
+            background: var(--warning-light);
+            border: 1px solid var(--warning);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .debt-section h3 {
+            color: var(--warning);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .debt-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+        }
+        
+        .debt-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 2px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .footnotes {
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--card);
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        .footnotes p {
+            margin-bottom: 6px;
+        }
+        
+        @media (max-width: 900px) {
+            body { padding: 24px 16px; }
+            h1 { font-size: 28px; }
+            
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-2, .grid-3, .projection-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="Kujundus/app-icon-1024x1024-v3.png" alt="Rotermann" class="header-logo">
+        <h1>Rotermanni digiplaan 2026</h1>
+        <p class="subtitle">Ligipääsude digitaliseerimine ja Rotermanni Klubi lojaalsusprogramm</p>
+        <span class="version-badge">Jaanuar 2026</span>
+    </header>
+
+    <!-- DEBT SECTION -->
+    <div class="debt-section">
+        <h3>⚠️ Olemasolevad kohustused</h3>
+        <div class="debt-item">
+            <span>Markole võlad (nov + dets osaliselt maksmata)</span>
+            <span id="marko-debt">9 550 €</span>
+        </div>
+        <div class="debt-item">
+            <span>Forusele võlad (arve 52141277)</span>
+            <span id="forus-debt">3 112 €</span>
+        </div>
+        <div class="debt-item">
+            <span>Sharry litsentsi- ja seadistustasu <span style="color: var(--muted); font-weight: normal;">(15K − 2,9K POC krediit)</span></span>
+            <span>12 100 €</span>
+        </div>
+        <div class="debt-item">
+            <span><strong>Kokku kohustused (veel tasuda)</strong></span>
+            <span id="total-debt"><strong>24 762 €</strong></span>
+        </div>
+    </div>
+
+    <!-- ==================== FAAS 1: LIGIPÄÄSUD ==================== -->
+    <div class="section">
+        <h2 class="section-title">
+            Faas 1: Ligipääsude digitaliseerimine
+            <span class="badge badge-phase1">Käivitamine</span>
+        </h2>
+        
+        <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 17px;">
+            Rotermanni kvartali töötajate ligipääsukaartide üleviimine mobiilsetele NFC kaartidele. 
+            See on infrastruktuuri alus, millele ehitame lojaalsusprogrammi.
+        </p>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <div class="control-group">
+                <div class="control-label">Ligipääsu hind / kasutaja</div>
+                <div class="btn-group">
+                    <button class="btn" data-price="2.9">2,90 €</button>
+                    <button class="btn" data-price="3.9">3,90 €</button>
+                    <button class="btn active" data-price="4.9">4,90 €</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Adoptsioonimäär</div>
+                <div class="btn-group">
+                    <button class="btn adoption-btn" data-adoption="0.5">50%</button>
+                    <button class="btn adoption-btn" data-adoption="0.7">70%</button>
+                    <button class="btn adoption-btn active" data-adoption="0.85">85%</button>
+                    <button class="btn adoption-btn" data-adoption="1.0">100%</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summary cards for Phase 1 -->
+        <div class="summary-cards">
+            <div class="summary-card danger">
+                <div class="card-label">Veel tasuda (Sharry)</div>
+                <div class="card-value danger">-12 100 €</div>
+                <div class="card-note">Ühekordne makse (15K setup − 2,9K POC krediit)</div>
+            </div>
+            <div class="summary-card warning">
+                <div class="card-label">Faas 1 tulemus</div>
+                <div class="card-value warning" id="phase1-result">-32 629 €</div>
+                <div class="card-note">2026 aasta lõpuks</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">Kasutajaid (töötajad)</div>
+                <div class="card-value" id="total-users">3 400</div>
+                <div class="card-note">Detsember 2026</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">Kuukulu</div>
+                <div class="card-value danger" id="monthly-cost">-6 580 €</div>
+                <div class="card-note">Keskmine operatsioonikulu</div>
+            </div>
+        </div>
+        
+        <!-- Monthly table -->
+        <div class="table-container">
+            <table class="monthly-table">
+                <thead>
+                    <tr>
+                        <th>Kuu</th>
+                        <th>Kasutajaid</th>
+                        <th>Tulu</th>
+                        <th>Sharry</th>
+                        <th>Wallet</th>
+                        <th>Konsult.</th>
+                        <th>Muu</th>
+                        <th>Kuu kasum</th>
+                        <th>Kumulatiivne</th>
+                    </tr>
+                </thead>
+                <tbody id="monthly-tbody">
+                    <!-- Generated by JS -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>KOKKU 2026</td>
+                        <td></td>
+                        <td id="total-revenue">0 €</td>
+                        <td id="total-sharry">-60 000 €</td>
+                        <td id="total-wallet">-5 000 €</td>
+                        <td id="total-consult">-74 760 €</td>
+                        <td id="total-other">-4 200 €</td>
+                        <td id="total-profit">-20 000 €</td>
+                        <td id="final-cumulative">-32 629 €</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="info-box" style="margin-top: 24px;" id="phase1-conclusion">
+            <h3>Faas 1 kokkuvõte</h3>
+            <p id="conclusion-text">Arvutatakse...</p>
+        </div>
+    </div>
+
+    <!-- ==================== FAAS 2: LOJAALSUSPROGRAMM ==================== -->
+    <div class="section">
+        <h2 class="section-title">
+            Faas 2: Rotermanni Klubi
+            <span class="badge badge-phase2">Kasvu mootor</span>
+        </h2>
+        
+        <div class="loyalty-hero">
+            <h2>Rotermanni Klubi lojaalsusprogramm</h2>
+            <p>Laiendame digitaalset kaarti kvartali töötajatelt kõikidele Rotermanni külastajatele. 
+            Iga Rotermanni Klubi liige saab soodustusi kvartali ettevõtetelt.</p>
+        </div>
+        
+        <!-- Target numbers -->
+        <div class="summary-cards" style="margin-bottom: 40px;">
+            <div class="summary-card highlight">
+                <div class="card-label">Klubi liikmeid</div>
+                <div class="card-value accent">13 900+</div>
+                <div class="card-note">3 400 töötajat (85%) + 10 000 külastajat + 500 VIP</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">Töötajatele</div>
+                <div class="card-value">4,90 €/kuu</div>
+                <div class="card-note">Ligipääs + cashback</div>
+            </div>
+            <div class="summary-card success">
+                <div class="card-label">Külastajatele</div>
+                <div class="card-value success">TASUTA</div>
+                <div class="card-note">Cashback ilma kuutasuta</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">Käive läbi süsteemi</div>
+                <div class="card-value">1,46M €/kuu</div>
+                <div class="card-note">10K×80€ + 3,4K×150€ + 0,5K×300€</div>
+            </div>
+        </div>
+        
+        <!-- Tier system -->
+        <div style="margin-bottom: 40px;">
+            <h3 style="font-size: 20px; margin-bottom: 20px;">Kolmetasemeline süsteem</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">Kaupmehed annavad 10% — jagame selle kasutaja ja platvormi vahel vastavalt tasemele. Töötajad ja elanikud tunnevad ennast erilisena, külastajad tahavad liituda.</p>
+            
+            <div class="grid-3">
+                <div class="info-box" style="border-top: 4px solid #9e9e9e;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="color: #616161;">WHITE</h3>
+                        <span style="background: #f5f5f5; color: #616161; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;">TASUTA</span>
+                    </div>
+                    <p style="font-weight: 600; margin-bottom: 12px;">Külastajad</p>
+                    <div style="font-size: 32px; font-weight: 700; color: #616161; margin: 16px 0;">3%</div>
+                    <p style="font-size: 14px; color: var(--text-secondary);">cashback</p>
+                    <ul style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">
+                        <li>Liitumine äpis 2 minutiga</li>
+                        <li>Cashback kõigilt partneritelt</li>
+                        <li>Forus -5% allahindlus</li>
+                        <li>Klubi sündmused</li>
+                    </ul>
+                    <p style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted);">Meie marginaal: 7%</p>
+                </div>
+                
+                <div class="info-box" style="border-top: 4px solid #e53935; background: linear-gradient(to bottom, #fff5f5, white);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="color: #c62828;">RED</h3>
+                        <span style="background: #ffebee; color: #c62828; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;">4,90 €/kuu</span>
+                    </div>
+                    <p style="font-weight: 600; margin-bottom: 12px;">Töötajad + elanikud</p>
+                    <div style="font-size: 32px; font-weight: 700; color: #c62828; margin: 16px 0;">5%</div>
+                    <p style="font-size: 14px; color: var(--text-secondary);">cashback</p>
+                    <ul style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">
+                        <li><strong>Ligipääs hoonetesse (NFC)</strong></li>
+                        <li>Kõrgem cashback kui külastajatel</li>
+                        <li>Forus -5% allahindlus</li>
+                        <li>Parkimine 2h tasuta/kuu</li>
+                        <li>Priority booking</li>
+                    </ul>
+                    <p style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted);">Meie marginaal: 5% + liikmetasu</p>
+                </div>
+                
+                <div class="info-box" style="border-top: 4px solid #1a1a1a; background: linear-gradient(to bottom, #f5f5f5, white);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="color: #1a1a1a;">BLACK</h3>
+                        <span style="background: #1a1a1a; color: white; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;">VIP</span>
+                    </div>
+                    <p style="font-weight: 600; margin-bottom: 12px;">Teenitud või 9,90 €/kuu</p>
+                    <div style="font-size: 32px; font-weight: 700; color: #1a1a1a; margin: 16px 0;">7%</div>
+                    <p style="font-size: 14px; color: var(--text-secondary);">cashback</p>
+                    <ul style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">
+                        <li>Kõik RED eelised</li>
+                        <li>Kõrgeim cashback</li>
+                        <li>VIP sündmused</li>
+                        <li>Concierge teenus</li>
+                        <li>Eksklusiivne staatus</li>
+                    </ul>
+                    <p style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted);">Teenimiseks: 500€ oste / 3 kuud</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-box" style="margin-bottom: 40px; background: var(--card-alt);">
+            <h3>Kuidas 10% jaguneb?</h3>
+            <table class="monthly-table" style="margin-top: 16px;">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Tase</th>
+                        <th>Kasutajale</th>
+                        <th>Platvormile</th>
+                        <th>Loyal Solutions</th>
+                        <th>Kokku</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>WHITE</strong> (külastajad)</td>
+                        <td>3%</td>
+                        <td class="positive">6%</td>
+                        <td>1%</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RED</strong> (töötajad/elanikud)</td>
+                        <td>5%</td>
+                        <td class="positive">4%</td>
+                        <td>1%</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BLACK</strong> (VIP)</td>
+                        <td>7%</td>
+                        <td class="positive">2%</td>
+                        <td>1%</td>
+                        <td>10%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">RED ja BLACK liikmed toovad vähem marginaali tehingult, aga maksavad liikmetasu ja on lojaalsemad (rohkem tehinguid).</p>
+        </div>
+        
+        <!-- Quick-win partners -->
+        <h3 style="font-size: 20px; margin-bottom: 20px;">Partnervõrgustik ja soodustused</h3>
+        
+        <div class="grid-2" style="margin-bottom: 24px;">
+            <div class="info-box" style="background: var(--accent-light); border-color: var(--accent);">
+                <h3 style="color: var(--accent);">Cashback kõikidelt ostudelt</h3>
+                <p style="font-size: 24px; font-weight: 700; color: var(--accent); margin: 12px 0;">3-7%</p>
+                <p>Kõik kvartali partnerid: restoranid, kohvikud, teenused, poed. Klubi liige maksab tavahinda, cashback laekub automaatselt kontole.</p>
+            </div>
+            <div class="info-box">
+                <h3>Partnerite eripakkumised</h3>
+                <p>Lisaks cashbackile pakuvad valitud partnerid Klubi liikmetele eripakkumisi: happy hour, eelisjärjekord, tasuta lisa jne.</p>
+            </div>
+        </div>
+        
+        <div class="grid-3" style="margin-bottom: 40px;">
+            <div class="partner-card">
+                <h4>Forus Takso</h4>
+                <div class="benefit">-5% allahindlus</div>
+                <div class="note">Kõikidelt sõitudelt. Kohene allahindlus + cashback peale.</div>
+            </div>
+            <div class="partner-card">
+                <h4>Restoranid & kohvikud</h4>
+                <div class="benefit">3-7% cashback</div>
+                <div class="note">25+ söögikohta. Automaatne cashback igalt ostult.</div>
+            </div>
+            <div class="partner-card">
+                <h4>Golden Club</h4>
+                <div class="benefit">Erihinnad</div>
+                <div class="note">Klubi liikmetele sooduspaketid. Olemasolev koostöö.</div>
+            </div>
+            <div class="partner-card">
+                <h4>Parkimine</h4>
+                <div class="benefit">2h tasuta / kuu</div>
+                <div class="note">Rotermanni parkla. Klubi liikme boonus.</div>
+            </div>
+            <div class="partner-card">
+                <h4>Teenused</h4>
+                <div class="benefit">3-7% cashback</div>
+                <div class="note">Juuksur, ilu, pesumaja jne. Automaatne cashback.</div>
+            </div>
+            <div class="partner-card">
+                <h4>Poed & muud</h4>
+                <div class="benefit">3-7% cashback</div>
+                <div class="note">Kvartali kauplused ja teenusepakkujad.</div>
+            </div>
+        </div>
+        
+        <!-- Implementation timeline -->
+        <div class="info-box" style="margin-bottom: 40px;">
+            <h3>Rakendamise ajakava</h3>
+            <div class="timeline-item">
+                <div class="timeline-date">Veeb-Märts</div>
+                <div class="timeline-content">
+                    <h4>Ligipääsude kiirkäivitus</h4>
+                    <p>Sharry integratsioon, Golden Gate + Rot 6, 8, 2, 14 korraga. ~2600 töötajat märtsi lõpuks.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Apr-Mai</div>
+                <div class="timeline-content">
+                    <h4>Täielik katvus + lojaalsuse piloot</h4>
+                    <p>Kõik hooned (~3 400 töötajat 85% adoptsiooniga). Esimesed partnerlepingud (Forus -5%, restoranid). Loyal Solutions integratsioon.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Juuni-Aug</div>
+                <div class="timeline-content">
+                    <h4>Klubi laienemine</h4>
+                    <p>Klubi avamine külalistele. Turunduskampaania. Siht: 7000+ liiget suveks.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Sept-Dets</div>
+                <div class="timeline-content">
+                    <h4>Täismaht ja kasv</h4>
+                    <p>Kõik partnerid aktiivsed. 10,000+ liiget. Cashback süsteem täies mahus. Positiivne rahavoog.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Financial projections -->
+        <div class="projection-card">
+            <h3>Finantsprognoos tasemepõhise mudeliga</h3>
+            <div class="projection-grid">
+                <div class="projection-item">
+                    <div class="label">Klubi liikmeid</div>
+                    <div class="value">13 900</div>
+                    <div class="sub">10K WHITE + 3,4K RED + 500 BLACK</div>
+                </div>
+                <div class="projection-item">
+                    <div class="label">Käive läbi süsteemi</div>
+                    <div class="value">1,46M €/kuu</div>
+                    <div class="sub">17,5M € aastas</div>
+                    <div class="sub" style="margin-top: 8px; font-size: 11px; line-height: 1.4; color: var(--muted);">
+                        10K × 80€ + 3,4K × 150€ + 0,5K × 300€<br>
+                        = 800K + 510K + 150K
+                    </div>
+                </div>
+                <div class="projection-item featured">
+                    <div class="label">Aastane puhaskasum</div>
+                    <div class="value">+918K €</div>
+                    <div class="sub">~76,5K €/kuu täismahus</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border);">
+                <h4 style="text-align: center; margin-bottom: 20px;">Kuidas käive 1,46M € kujuneb?</h4>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;">Käive = liikmete arv × keskmine kulutus kvartali partnerite juures kuus</p>
+                
+                <div class="grid-3" style="margin-bottom: 32px;">
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; text-align: center; border-left: 4px solid #9e9e9e;">
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">WHITE (külastajad)</div>
+                        <div style="font-size: 14px; margin-bottom: 12px;">10 000 liiget × <strong>80 €/kuu</strong></div>
+                        <div style="font-size: 24px; font-weight: 700;">800 000 €</div>
+                        <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">~2-3 külastust kuus</div>
+                    </div>
+                    <div style="background: #ffebee; padding: 20px; border-radius: 12px; text-align: center; border-left: 4px solid #e53935;">
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">RED (töötajad, 85%)</div>
+                        <div style="font-size: 14px; margin-bottom: 12px;">3 400 liiget × <strong>150 €/kuu</strong></div>
+                        <div style="font-size: 24px; font-weight: 700;">510 000 €</div>
+                        <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">~7 €/päev (lõuna ~5 € + kohv ~2 €)</div>
+                    </div>
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; text-align: center; border-left: 4px solid #1a1a1a;">
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">BLACK (VIP)</div>
+                        <div style="font-size: 14px; margin-bottom: 12px;">500 liiget × <strong>300 €/kuu</strong></div>
+                        <div style="font-size: 24px; font-weight: 700;">150 000 €</div>
+                        <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">Aktiivsed kasutajad</div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--card-alt); padding: 16px; border-radius: 8px; text-align: center; margin-bottom: 32px;">
+                    <span style="color: var(--text-secondary);">800 000 + 510 000 + 150 000 = </span>
+                    <strong style="font-size: 18px;">1 460 000 €/kuu</strong>
+                    <span style="color: var(--text-secondary);"> kogukäive partnerite juures</span>
+                </div>
+                
+                <h4 style="text-align: center; margin-bottom: 20px;">Tulu tasemete kaupa (kuus)</h4>
+                <table class="monthly-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left;">Tase</th>
+                            <th>Liikmeid</th>
+                            <th>Käive/kuu</th>
+                            <th>Marginaal</th>
+                            <th>Liikmetasu</th>
+                            <th>Tulu kokku</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: #616161;">WHITE</strong> (külastajad)</td>
+                            <td>10 000</td>
+                            <td>800 000 €</td>
+                            <td class="positive">48 000 € <span style="color: var(--muted);">(6%)</span></td>
+                            <td>0 €</td>
+                            <td class="positive"><strong>48 000 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #c62828;">RED</strong> (töötajad, 85%)</td>
+                            <td>3 400</td>
+                            <td>510 000 €</td>
+                            <td class="positive">20 400 € <span style="color: var(--muted);">(4%)</span></td>
+                            <td class="positive">16 660 €</td>
+                            <td class="positive"><strong>37 060 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #1a1a1a;">BLACK</strong> (VIP)</td>
+                            <td>500</td>
+                            <td>150 000 €</td>
+                            <td class="positive">3 000 € <span style="color: var(--muted);">(2%)</span></td>
+                            <td class="positive">4 950 €</td>
+                            <td class="positive"><strong>7 950 €</strong></td>
+                        </tr>
+                        <tr style="background: var(--success-light);">
+                            <td><strong>KOKKU</strong></td>
+                            <td><strong>13 900</strong></td>
+                            <td><strong>1 460 000 €</strong></td>
+                            <td class="positive"><strong>71 400 €</strong></td>
+                            <td class="positive"><strong>21 610 €</strong></td>
+                            <td class="positive"><strong>93 010 €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4 style="text-align: center; margin: 32px 0 20px 0;">Kulud ja puhaskasum (kuus)</h4>
+                <table class="monthly-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left;">Kuluartikkel</th>
+                            <th>Kuus</th>
+                            <th>Aastas</th>
+                            <th>Selgitus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: var(--success-light);">
+                            <td><strong>Tulu kokku</strong></td>
+                            <td class="positive"><strong>93 010 €</strong></td>
+                            <td class="positive"><strong>1 116 120 €</strong></td>
+                            <td>Marginaal + liikmetasud</td>
+                        </tr>
+                        <tr>
+                            <td>Sharry + Wallet</td>
+                            <td class="negative">-6 500 €</td>
+                            <td class="negative">-78 000 €</td>
+                            <td>Fikseeritud infrastruktuur</td>
+                        </tr>
+                        <tr>
+                            <td>Operatsioon</td>
+                            <td class="negative">-10 000 €</td>
+                            <td class="negative">-120 000 €</td>
+                            <td>Personal, turundus, IT</td>
+                        </tr>
+                        <tr style="background: var(--card-alt);">
+                            <td><strong>Kokku kulud</strong></td>
+                            <td class="negative"><strong>-16 500 €</strong></td>
+                            <td class="negative"><strong>-198 000 €</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr style="background: var(--success-light); font-size: 16px;">
+                            <td><strong>PUHASKASUM</strong></td>
+                            <td class="positive"><strong>+76 510 €</strong></td>
+                            <td class="positive"><strong>+918 120 €</strong></td>
+                            <td>ROI: ~610%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="background: var(--success-light); border: 1px solid var(--success); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+                    <div style="font-size: 14px; color: var(--success); margin-bottom: 8px;">Tasemepõhine mudel täismahus</div>
+                    <span style="color: var(--success); font-weight: 700; font-size: 24px;">+76 500 €/kuu = +918 000 €/aasta</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Growth scenarios -->
+        <div style="margin-top: 40px;">
+            <h3 style="font-size: 20px; margin-bottom: 20px;">Kasvustsenaariumid</h3>
+            <div class="grid-3">
+                <div class="info-box">
+                    <h3 style="color: var(--text-secondary);">Konservatiivne</h3>
+                    <p><strong>3 400 RED</strong></p>
+                    <p>Ainult töötajad (85% adoptsioon)</p>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Käive: 510K €/kuu</p>
+                    <p style="font-size: 20px; font-weight: 700; color: var(--text); margin-top: 12px;">+240K €/aasta</p>
+                    <p style="font-size: 12px; color: var(--muted);">4% marginaal + liikmetasud</p>
+                </div>
+                <div class="info-box highlight">
+                    <h3 style="color: var(--accent);">Baasstsenaarium</h3>
+                    <p><strong>10K WHITE + 3,4K RED + 500 BLACK</strong></p>
+                    <p>Aktiivne Klubi turundus</p>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Käive: 1,46M €/kuu</p>
+                    <p style="font-size: 20px; font-weight: 700; color: var(--accent); margin-top: 12px;">+918K €/aasta</p>
+                    <p style="font-size: 12px; color: var(--muted);">Tasemepõhine marginaal</p>
+                </div>
+                <div class="info-box" style="background: var(--success-light); border-color: var(--success);">
+                    <h3 style="color: var(--success);">Ambitsioonikas</h3>
+                    <p><strong>30K WHITE + 3,4K RED + 2K BLACK</strong></p>
+                    <p>Tallinna lojaalsusprogramm</p>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Käive: 3,9M €/kuu</p>
+                    <p style="font-size: 20px; font-weight: 700; color: var(--success); margin-top: 12px;">+2,3M €/aasta</p>
+                    <p style="font-size: 12px; color: var(--muted);">Skaalaefekt</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== INVESTEERINGUVAJADUS ==================== -->
+    <div class="section">
+        <h2 class="section-title">Kapitali vajadus</h2>
+        
+        <!-- Rahavoo selgitus finantsistidele -->
+        <div class="info-box" style="margin-bottom: 24px; background: linear-gradient(135deg, #fff8e1 0%, #fff3e0 100%); border-left: 4px solid #f57c00;">
+            <h3 style="color: #e65100; margin-bottom: 16px;">💰 Rahavoo loogika finantsistidele</h3>
+            <div style="display: grid; gap: 16px;">
+                <div style="padding: 12px; background: white; border-radius: 8px;">
+                    <strong style="color: #e65100;">Miks kapital on vajalik?</strong>
+                    <p style="margin: 8px 0 0 0; font-size: 14px; line-height: 1.5;">Projekt genereerib tulu alles pärast käivitamist. Enne seda tuleb katta: <em>platvormi arendustasud, operatsioonkulud kuni esimeste tuludeni, turunduskulud liikmelisuse kasvatamiseks.</em></p>
+                </div>
+                <div style="padding: 12px; background: white; border-radius: 8px;">
+                    <strong style="color: #e65100;">Millal kapital vabaneb?</strong>
+                    <p style="margin: 8px 0 0 0; font-size: 14px; line-height: 1.5;">
+                        <strong>Q1–Q2:</strong> Investeering platvormi ja lojaalsusprogrammi käivitamiseks (160K €).<br>
+                        <strong>Q3:</strong> Ramp-up periood — esimesed tulud, aga veel puudujääk (40K €).<br>
+                        <strong>Q4:</strong> Esimesed kasumikuud — ramp-up jätkub 2027.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <div class="info-box">
+                <h3 style="color: var(--burgundy);">Faas 1: Ligipääsude digitaliseerimine</h3>
+                <div style="background: #e3f2fd; padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; font-size: 13px;">
+                    <strong>📅 Vajadus:</strong> Jaan–Märts 2026 &nbsp;|&nbsp; <strong>Katab:</strong> kuni Q2 esimeste tuludeni
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border);">
+                    <span>Platvormi integratsioon (Sharry)</span>
+                    <span><strong>12 100 €</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border);">
+                    <span>Operatsioonkulud (6 kuud)</span>
+                    <span><strong>40 000 €</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 13px; color: var(--muted);">
+                    <span style="padding-left: 12px;">→ Sharry ~6 500 €/kuu × 6 = 39 000 €</span>
+                    <span></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                    <span>Reserv</span>
+                    <span><strong>7 900 €</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 16px 0; margin-top: 12px; border-top: 2px solid var(--border); font-size: 18px;">
+                    <span><strong>Kokku</strong></span>
+                    <span><strong>60 000 €</strong></span>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3 style="color: var(--burgundy);">Faas 2: Lojaalsusprogramm</h3>
+                <div style="background: #e8f5e9; padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; font-size: 13px;">
+                    <strong>📅 Vajadus:</strong> Q2–Q3 2026 (Apr–Sept) &nbsp;|&nbsp; <strong>Katab:</strong> kuni Q4 kasumisse jõudmiseni
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border);">
+                    <span>Tehnoloogia (Loyal Solutions)</span>
+                    <span><strong>45 000 €</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 13px; color: var(--muted);">
+                    <span style="padding-left: 12px;">→ Setup ~45K €, seejärel 1% käibest (~9 750 €/kuu)</span>
+                    <span></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border);">
+                    <span>Turundus ja lanseerimine</span>
+                    <span><strong>30 000 €</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border);">
+                    <span>Operatsioonkulud (6 kuud)</span>
+                    <span><strong>50 000 €</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 13px; color: var(--muted);">
+                    <span style="padding-left: 12px;">→ Personal + haldus + Loyal Solutions min. tasud</span>
+                    <span></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                    <span>Reserv</span>
+                    <span><strong>15 000 €</strong></span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 16px 0; margin-top: 12px; border-top: 2px solid var(--border); font-size: 18px;">
+                    <span><strong>Kokku</strong></span>
+                    <span><strong>140 000 €</strong></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Kapitali kasutamise ajakava -->
+        <div class="info-box" style="margin-top: 24px;">
+            <h4 style="margin-bottom: 16px;">📊 Kapitali kasutamise ajakava</h4>
+            <table class="monthly-table" style="font-size: 14px;">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Periood</th>
+                        <th>Kapitali kulu</th>
+                        <th>Kumulatiivne</th>
+                        <th>Rahavoo staatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Q1 2026</strong> (Jaan–Märts)</td>
+                        <td class="negative">60 000 €</td>
+                        <td class="negative">-60 000 €</td>
+                        <td style="color: #e65100;">Investeering – Faas 1 käivitamine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q2 2026</strong> (Apr–Juuni)</td>
+                        <td class="negative">100 000 €</td>
+                        <td class="negative">-160 000 €</td>
+                        <td style="color: #e65100;">Investeering – Faas 2 käivitamine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q3 2026</strong> (Juuli–Sept)</td>
+                        <td class="negative">40 000 €</td>
+                        <td class="negative">-200 000 €</td>
+                        <td style="color: #f57c00;">Ramp-up – esimesed tulud</td>
+                    </tr>
+                    <tr style="background: var(--success-light);">
+                        <td><strong>Q4 2026</strong> (Okt–Dets)</td>
+                        <td class="positive">+65 000 €</td>
+                        <td class="negative">-135 000 €</td>
+                        <td style="color: var(--success);">Esimesed kasumikuud</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="summary-cards" style="margin-top: 24px;">
+            <div class="summary-card" style="border-left: 4px solid var(--burgundy);">
+                <div class="card-label">Kapitali vajadus</div>
+                <div class="card-value" style="color: var(--burgundy);">200 000 €</div>
+                <div class="card-note">Kogu projekti käivitamine</div>
+            </div>
+            <div class="summary-card" style="border-left: 4px solid var(--warning);">
+                <div class="card-label">Tasuvusaeg</div>
+                <div class="card-value" style="color: var(--warning);">18-24 kuud</div>
+                <div class="card-note">Konservatiivne prognoos</div>
+            </div>
+            <div class="summary-card" style="border-left: 4px solid var(--success);">
+                <div class="card-label">ROI (3 aastat)</div>
+                <div class="card-value" style="color: var(--success);">300-500%</div>
+                <div class="card-note">Konservatiivne–baas</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">Aastane kasum</div>
+                <div class="card-value">240-918K €</div>
+                <div class="card-note">Konservatiivne–baas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footnotes -->
+    <div class="footnotes">
+        <p><strong>Märkused:</strong></p>
+        <p>* <strong>Loyal Solutions tasu:</strong> Kaupmehed annavad 10% → sellest 1% läheb LS-ile (min 9 750 €/kuu). Marginaalid (6%, 4%, 2%) on PÄRAST LS mahaarvamist. Setup ~45 000 € (~50K USD).</p>
+        <p>* <strong>LS miinimum:</strong> Kui 1% käibest < 9 750 €, maksame vahe. Täismahus (1,46M käive): 1% = 14 600 € > miinimum, seega OK. Konservatiivses (510K): 1% = 5 100 €, vahe 4 650 €/kuu lisandub kuludele.</p>
+        <p>* <strong>Cashback tasemete kaupa:</strong> WHITE 3%, RED 5%, BLACK 7% (kaupmehed annavad 10%, LS võtab 1%, meie marginaal vastavalt 6%, 4%, 2%)</p>
+        <p>* <strong>Sharry:</strong> ~6 000 €/kuu (konservatiivne, enne lepingut) + Wallet ~500 €/kuu = kokku ~6 500 €/kuu. Setup: 12 100 € (15K − 2,9K POC krediit).</p>
+        <p>* <strong>Wallet kulud:</strong> 0,16 €/kasutaja/aasta (kõik) + Apple Wallet 2,88 €/kasutaja/aasta (80% kasutajatest)</p>
+        <p>* <strong>Keskmised kulutused tasemete kaupa:</strong> WHITE 80 €/kuu (~2-3 külastust), RED 150 €/kuu (~7 €/päev), BLACK 300 €/kuu</p>
+        <p>* <strong>Adoptsioonimäär:</strong> Töötajate puhul 85% (4000 potentsiaalist → 3400 tegelikku kasutajat)</p>
+        <p>* <strong>Liikmetasud:</strong> WHITE tasuta, RED 4,90 €/kuu (ligipääs), BLACK 9,90 €/kuu</p>
+    </div>
+    
+    <footer>
+        Rotermanni digiplaan 2026 · Koostatud jaanuar 2026
+    </footer>
+</div>
+
+<script>
+(function() {
+    // Monthly plan data (2X KIIREM ADOPTSIOON)
+    const monthlyPlan = [
+        { month: 'Jaanuar', employees: 0, note: 'Seadistus' },
+        { month: 'Veebruar', employees: 1069, note: 'Golden Gate live' },
+        { month: 'Märts', employees: 2645, note: '+Rot 6, 8, 2, 14' },
+        { month: 'Aprill', employees: 3600, note: '+Rot 18, Värvilised' },
+        { month: 'Mai', employees: 4000, note: 'Täielik katvus' },
+        { month: 'Juuni', employees: 4000, note: '' },
+        { month: 'Juuli', employees: 4000, note: '' },
+        { month: 'August', employees: 4000, note: '' },
+        { month: 'September', employees: 4000, note: '' },
+        { month: 'Oktoober', employees: 4000, note: '' },
+        { month: 'November', employees: 4000, note: '' },
+        { month: 'Detsember', employees: 4000, note: '' }
+    ];
+    
+    const INITIAL_INVESTMENT = 12100; // 15K setup - 2,9K POC krediit = 12,1K veel tasuda
+    const SHARRY_MONTHLY = 6000;
+    const CONSULT_COST = 6230;
+    const LICENSE_COST = 200;
+    const HARDWARE_COST = 250;
+    
+    function getSharryCost(employees) {
+        return employees > 0 ? SHARRY_MONTHLY : 0;
+    }
+    
+    function getWalletCost(employees) {
+        if (employees === 0) return 0;
+        const mobileCardMonthly = employees * (0.16 / 12);
+        const appleUsers = employees * 0.8;
+        const appleAnnualFeeMonthly = (appleUsers * 2.88) / 12;
+        return Math.round(mobileCardMonthly + appleAnnualFeeMonthly);
+    }
+    
+    let currentPrice = 4.9;
+    let currentAdoption = 0.85;
+    
+    function formatNumber(num) {
+        const absNum = Math.abs(Math.round(num));
+        const formatted = absNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        return num < 0 ? '-' + formatted : formatted;
+    }
+    
+    function calculate() {
+        const tbody = document.getElementById('monthly-tbody');
+        
+        let cumulative = -INITIAL_INVESTMENT;
+        let totalRevenue = 0;
+        let totalSharry = 0;
+        let totalWallet = 0;
+        let totalConsult = 0;
+        let totalOther = 0;
+        
+        let rows = '';
+        
+        monthlyPlan.forEach((m, i) => {
+            const actualUsers = Math.round(m.employees * currentAdoption);
+            const revenue = actualUsers * currentPrice;
+            const sharry = getSharryCost(m.employees);
+            const wallet = getWalletCost(actualUsers);
+            const otherCosts = LICENSE_COST + HARDWARE_COST;
+            const monthProfit = revenue - sharry - wallet - CONSULT_COST - otherCosts;
+            cumulative += monthProfit;
+            
+            totalRevenue += revenue;
+            totalSharry += sharry;
+            totalWallet += wallet;
+            totalConsult += CONSULT_COST;
+            totalOther += otherCosts;
+            
+            const profitClass = monthProfit >= 0 ? 'positive' : 'negative';
+            const cumulativeClass = cumulative >= 0 ? 'positive' : 'negative';
+            
+            rows += `
+                <tr>
+                    <td>${m.month}${m.note ? ' <span style="font-size: 11px; color: var(--muted);">(' + m.note + ')</span>' : ''}</td>
+                    <td>${actualUsers > 0 ? formatNumber(actualUsers) : '-'}</td>
+                    <td class="positive">${actualUsers > 0 ? formatNumber(revenue) + ' €' : '-'}</td>
+                    <td class="negative">${sharry > 0 ? '-' + formatNumber(sharry) + ' €' : '-'}</td>
+                    <td class="negative">${wallet > 0 ? '-' + formatNumber(wallet) + ' €' : '-'}</td>
+                    <td class="negative">-${formatNumber(CONSULT_COST)} €</td>
+                    <td class="negative">-${formatNumber(otherCosts)} €</td>
+                    <td class="${profitClass}">${monthProfit >= 0 ? '+' : ''}${formatNumber(monthProfit)} €</td>
+                    <td class="${cumulativeClass}"><strong>${cumulative >= 0 ? '+' : ''}${formatNumber(cumulative)} €</strong></td>
+                </tr>
+            `;
+        });
+        
+        tbody.innerHTML = rows;
+        
+        // Update totals
+        document.getElementById('total-revenue').textContent = formatNumber(totalRevenue) + ' €';
+        document.getElementById('total-sharry').textContent = '-' + formatNumber(totalSharry) + ' €';
+        document.getElementById('total-wallet').textContent = '-' + formatNumber(totalWallet) + ' €';
+        document.getElementById('total-consult').textContent = '-' + formatNumber(totalConsult) + ' €';
+        document.getElementById('total-other').textContent = '-' + formatNumber(totalOther) + ' €';
+        
+        const totalProfit = totalRevenue - totalSharry - totalWallet - totalConsult - totalOther;
+        document.getElementById('total-profit').textContent = formatNumber(totalProfit) + ' €';
+        document.getElementById('final-cumulative').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
+        
+        // Update summary cards
+        document.getElementById('phase1-result').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
+        document.getElementById('phase1-result').className = 'card-value ' + (cumulative >= 0 ? 'success' : 'warning');
+        
+        // Update conclusion dynamically
+        const conclusionBox = document.getElementById('phase1-conclusion');
+        const conclusionText = document.getElementById('conclusion-text');
+        if (cumulative >= 0) {
+            conclusionBox.style.background = 'var(--success-light)';
+            conclusionBox.style.borderColor = 'var(--success)';
+            conclusionText.innerHTML = 'Ligipääsude digitaliseerimine katab oma kulud ja toob <strong>' + formatNumber(cumulative) + ' €</strong> kasumit. Kiire adoptsioon võimaldab alustada Faas 2 lojaalsusprogrammiga juba Q2 2026.';
+        } else if (cumulative > -15000) {
+            conclusionBox.style.background = 'var(--success-light)';
+            conclusionBox.style.borderColor = 'var(--success)';
+            conclusionText.innerHTML = 'Ligipääsude digitaliseerimine katab ennast ära (<strong>' + formatNumber(cumulative) + ' €</strong>). Kiire adoptsioon loob infrastruktuuri, mis võimaldab käivitada Faas 2 lojaalsusprogrammi Q2 2026.';
+        } else {
+            conclusionBox.style.background = 'var(--card)';
+            conclusionBox.style.borderColor = 'var(--border)';
+            conclusionText.innerHTML = 'Ligipääsude digitaliseerimine nõuab investeeringut (<strong>' + formatNumber(cumulative) + ' €</strong>). See loob infrastruktuuri Faas 2 lojaalsusprogrammile, mis hakkab tulu teenima Q2 2026.';
+        }
+        
+        const lastMonth = monthlyPlan[monthlyPlan.length - 1];
+        const finalUsers = Math.round(lastMonth.employees * currentAdoption);
+        document.getElementById('total-users').textContent = formatNumber(finalUsers);
+        
+        // Calculate average monthly cost
+        const avgMonthlyCost = Math.round((totalSharry + totalWallet + totalConsult + totalOther) / 12);
+        document.getElementById('monthly-cost').textContent = '-' + formatNumber(avgMonthlyCost) + ' €';
+    }
+    
+    // Price buttons
+    document.querySelectorAll('.btn[data-price]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.btn[data-price]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentPrice = parseFloat(btn.dataset.price);
+            calculate();
+        });
+    });
+    
+    // Adoption buttons
+    document.querySelectorAll('.adoption-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.adoption-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentAdoption = parseFloat(btn.dataset.adoption);
+            calculate();
+        });
+    });
+    
+    calculate();
+})();
+</script>
+
+</body>
+</html>
