@@ -806,15 +806,16 @@
         </p>
 
         <div class="info-box" style="margin-bottom: 24px; background: var(--success-light); border-color: var(--success);">
-            <h3 style="color: var(--success);">Faas 1 hinnastus</h3>
+            <h3 style="color: var(--success);">Faas 1 hinnastus ja tingimused</h3>
             <ul style="margin-top: 8px;">
+                <li><strong>35 000 €</strong> Rotermann Whitelabel äpp + digitaalsed ligipääsud setup (USRE investeering)</li>
                 <li><strong>1 240 €</strong> liidestus per üürnik (ühekordne)</li>
                 <li><strong>2,90 €</strong> kuutasu per kasutaja (võti + äpp + wallet)</li>
                 <li><strong>4 500 € / kuu</strong> USRE kanalitasu (uudised, sündmused, teavitused, haldus)</li>
             </ul>
             <p style="margin-top: 12px; font-size: 14px;">
-                Mudel eeldab, et Golden Gate 17 üürnikku onboarditakse järk-järgult märtsist juunini,
-                mitte kõiki korraga esimesel nädalal.
+                Mudel eeldab, et Golden Gate 17 üürnikku onboarditakse järk-järgult märtsist juunini.
+                Varasemad Sharry kuutasu viited on eemaldatud.
             </p>
         </div>
 
@@ -822,18 +823,17 @@
             <div class="info-box">
                 <h3>Tuluvood (Faas 1)</h3>
                 <ul style="margin-top: 8px;">
-                    <li><strong>Kuutasu USRE:</strong> 4 500 € / kuu (reklaamikanal 4 000 inimesele, sündmused, teavitused, lõunapakkumised, uudised, äpp, igakuine haldus)</li>
+                    <li><strong>Kuutasu USRE:</strong> 4 500 € / kuu (reklaamikanal, sündmused, teavitused, haldus)</li>
                     <li><strong>Golden Gate liidestus:</strong> 17 üürnikku × 1 240 € = 21 080 € (ühekordne)</li>
                     <li><strong>Golden Gate kasutustasu:</strong> 1 000 töötajat × 2,90 € = 2 900 € / kuu</li>
                 </ul>
             </div>
             <div class="info-box" style="background: var(--card-alt);">
-                <h3>USRE tingimused</h3>
-                <ul style="margin-top: 8px;">
-                    <li><strong>Rotermann Whitelabel äpp + digitaalsed ligipääsud setup:</strong> 35 000 €</li>
-                </ul>
-                <p style="margin-top: 10px; font-size: 13px; color: var(--muted);">
-                    Siin on ainult USRE setup-tingimus. Varasemad Sharry kuutasu viited on teadlikult eemaldatud, et vältida segadust.
+                <h3>USRE investeering (Tehtud)</h3>
+                <div style="font-size: 32px; font-weight: 700; color: var(--success); margin: 16px 0;">35 000 €</div>
+                <p style="font-size: 14px; color: var(--text-secondary);">Whitelabel litsents ja seadistus.</p>
+                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
+                    See on ühekordne käivituskulu, mis on juba eelarvesse arvestatud.
                 </p>
             </div>
         </div>
@@ -842,10 +842,7 @@
         <div class="controls">
             <div class="control-group">
                 <div class="control-label">Ligipääsu hind / kasutaja</div>
-                <div class="btn-group">
-                    <button class="btn active" data-price="2.9">2,90 €</button>
-                    <button class="btn" data-price="3.9">3,90 €</button>
-                </div>
+                <div style="font-size: 24px; font-weight: 700; color: var(--accent); text-align: center;">2,90 €</div>
             </div>
             <div class="control-group">
                 <div class="control-label">Adoptsioonimäär</div>
@@ -1635,16 +1632,6 @@
             conclusionText.innerHTML = 'Faas 1 vajab veel optimeerimist. Tulem parandamiseks tuleb kasvatada adoptsiooni ja hoida onboardingu tempo stabiilsena.';
         }
     }
-    
-    // Price buttons
-    document.querySelectorAll('.btn[data-price]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.btn[data-price]').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentPrice = parseFloat(btn.dataset.price);
-            calculate();
-        });
-    });
     
     // Adoption buttons
     document.querySelectorAll('.adoption-btn').forEach(btn => {
