@@ -76,50 +76,57 @@
         .subtitle {
             font-size: 18px;
             color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
-        /* Price selector */
-        .price-selector {
+        /* Pricing Card */
+        .pricing-display {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 24px;
+            gap: 24px;
+            margin-top: 32px;
         }
-        
-        .price-btn {
+
+        .price-card {
             background: var(--card);
-            border: 2px solid var(--border);
+            border: 1px solid var(--border);
+            padding: 20px 32px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .price-card.highlight {
+            border-color: var(--accent);
+            background: rgba(212, 165, 116, 0.05);
+        }
+
+        .price-amount {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
             color: var(--text);
-            padding: 12px 24px;
-            border-radius: 100px;
-            font-family: 'DM Sans', sans-serif;
+        }
+
+        .price-amount span {
             font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .price-btn:hover {
-            border-color: var(--accent);
-            background: rgba(212, 165, 116, 0.1);
-        }
-        
-        .price-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--bg);
-        }
-        
-        .price-label {
-            font-size: 13px;
+            font-family: 'DM Sans', sans-serif;
             color: var(--muted);
-            margin-bottom: 8px;
+        }
+
+        .price-desc {
+            font-size: 13px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+            font-weight: 600;
         }
         
         /* Timeline */
         .timeline {
             position: relative;
-            margin-top: 32px;
+            margin-top: 48px;
         }
         
         .timeline::before {
@@ -226,16 +233,12 @@
             border-top: 1px solid var(--border);
         }
         
-        .stat-item {
-            text-align: left;
-        }
-        
         .phase-content.left .stat-item {
             text-align: right;
         }
         
         .stat-value {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--accent);
         }
@@ -266,60 +269,69 @@
             margin-bottom: 32px;
         }
         
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
+        /* Table Styles */
+        .financial-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 24px;
         }
-        
-        .summary-stat {
-            text-align: center;
-        }
-        
-        .summary-value {
-            font-family: 'DM Serif Display', serif;
-            font-size: 36px;
-            color: var(--accent);
-            margin-bottom: 4px;
-        }
-        
-        .summary-value.green { color: var(--success); }
-        
-        .summary-label {
-            font-size: 12px;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        /* Now indicator */
-        .now-line {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .now-line::before,
-        .now-line::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--success);
-        }
-        
-        .now-text {
-            font-size: 11px;
+
+        .financial-table th {
+            padding: 12px 16px;
+            text-align: right;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--success);
-            white-space: nowrap;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .financial-table th:first-child {
+            text-align: left;
+        }
+
+        .financial-table td {
+            padding: 12px 16px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .financial-table td:first-child {
+            text-align: left;
+        }
+
+        .financial-table .row-highlight {
+            background: rgba(74, 222, 128, 0.05);
+            font-weight: 600;
+        }
+
+        .financial-table .row-total {
+            background: rgba(212, 165, 116, 0.1);
+            font-weight: 700;
+            border-top: 2px solid var(--accent);
         }
         
+        .section-header td {
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            padding-top: 24px;
+            padding-bottom: 8px;
+            border-bottom: none;
+        }
+
+        .one-off-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--border);
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -333,109 +345,12 @@
         @media (max-width: 800px) {
             body { padding: 24px 16px; }
             h1 { font-size: 28px; }
-            .subtitle { font-size: 15px; }
-            
-            .price-selector { 
-                gap: 8px;
-                flex-wrap: wrap;
-            }
-            .price-btn { 
-                padding: 10px 20px; 
-                font-size: 14px;
-            }
-            .price-label { font-size: 12px; }
-            
+            .pricing-display { flex-direction: column; gap: 12px; }
             .timeline::before { left: 20px; }
-            
-            .phase {
-                grid-template-columns: 40px 1fr;
-                gap: 12px;
-                margin-bottom: 32px;
-            }
-            
+            .phase { grid-template-columns: 40px 1fr; gap: 12px; }
             .phase-marker { grid-column: 1; }
-            .phase-content.left,
-            .phase-content.right { 
-                grid-column: 2; 
-                text-align: left;
-                padding: 20px;
-            }
-            .phase-content.left .phase-buildings,
-            .phase-content.left .stat-item { 
-                justify-content: flex-start;
-                text-align: left;
-            }
-            
-            .phase-dot { width: 36px; height: 36px; font-size: 14px; border-width: 2px; }
-            .phase-date { font-size: 10px; }
-            .phase-title { font-size: 16px; margin-bottom: 10px; }
-            
-            .phase-buildings { gap: 6px; }
-            .building-tag { font-size: 11px; padding: 3px 10px; }
-            
-            .phase-stats { 
-                grid-template-columns: 1fr 1fr; 
-                gap: 8px;
-                margin-top: 12px;
-                padding-top: 12px;
-            }
-            .stat-value { font-size: 18px; }
-            .stat-label { font-size: 9px; }
-            
-            .summary { padding: 24px 20px; margin-top: 24px; }
-            .summary h2 { font-size: 20px; margin-bottom: 20px; }
-            .summary-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 16px;
-            }
-            .summary-value { font-size: 24px; }
-            .summary-label { font-size: 10px; }
-            
-            footer { 
-                font-size: 11px; 
-                margin-top: 32px;
-                padding-top: 24px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body { padding: 16px 12px; }
-            h1 { font-size: 24px; }
-            .subtitle { font-size: 14px; }
-            
-            .badge { font-size: 11px; padding: 6px 12px; }
-            
-            .price-selector { gap: 6px; }
-            .price-btn { 
-                padding: 8px 16px; 
-                font-size: 13px;
-                flex: 1;
-                min-width: 80px;
-            }
-            
-            .timeline::before { left: 16px; }
-            
-            .phase {
-                grid-template-columns: 32px 1fr;
-                gap: 10px;
-                margin-bottom: 24px;
-            }
-            
-            .phase-content.left,
-            .phase-content.right { 
-                padding: 16px;
-            }
-            
-            .phase-dot { width: 28px; height: 28px; font-size: 12px; }
-            .phase-title { font-size: 15px; }
-            
-            .building-tag { font-size: 10px; padding: 2px 8px; }
-            
-            .stat-value { font-size: 16px; }
-            
-            .summary { padding: 20px 16px; }
-            .summary h2 { font-size: 18px; }
-            .summary-value { font-size: 20px; }
+            .phase-content.left, .phase-content.right { grid-column: 2; text-align: left; }
+            .phase-content.left .phase-buildings, .phase-content.left .stat-item { justify-content: flex-start; text-align: left; }
         }
     </style>
 </head>
@@ -445,279 +360,183 @@
     <header>
         <div class="badge">Äpp on live</div>
         <h1>Rahavoogude <span>teekond</span></h1>
-        <p class="subtitle">Rotermann City digiteenuse käivitamine 2026</p>
+        <p class="subtitle">
+            The List Services pakub Rotermannile terviklikku digitaalset ligipääsu- ja turundusplatvormi. 
+            Investeeringud on tehtud, liigume kasumlikku faasi.
+        </p>
         
-        <div class="price-label">Ligipääsutasu kasutaja kohta kuus</div>
-        <div class="price-selector">
-            <button class="price-btn" data-price="2.9">2,90 €</button>
-            <button class="price-btn" data-price="3.9">3,90 €</button>
-            <button class="price-btn active" data-price="4.9">4,90 €</button>
+        <div class="pricing-display">
+            <div class="price-card highlight">
+                <div class="price-desc">Ligipääs & Äpp</div>
+                <div class="price-amount">2,90 € <span>/ kasutaja</span></div>
+            </div>
+            <div class="price-card">
+                <div class="price-desc">USRE Haldustasu</div>
+                <div class="price-amount">4 500 € <span>/ kuu</span></div>
+            </div>
+            <div class="price-card">
+                <div class="price-desc">Liidestamine</div>
+                <div class="price-amount">1 240 € <span>/ üürnik</span></div>
+            </div>
         </div>
     </header>
     
     <div class="timeline">
-        <!-- Phase 1: Now -->
+        <!-- Phase 1 -->
         <div class="phase">
             <div class="phase-content left">
-                <div class="phase-title">✅ Äpp on live</div>
-                <p style="font-size: 14px; color: var(--muted);">Testimine käib, valmis kasutuselevõtuks</p>
+                <div class="phase-title">✅ Faas 1: Platvormi Käivitamine</div>
+                <p style="font-size: 14px; color: var(--muted);">Äpp on valmis, testitud ja töötab. USRE investeeringud tehnoloogiasse on tehtud.</p>
+                <div class="phase-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">35 000 €</div>
+                        <div class="stat-label">Whitelabel Litsents (Tehtud)</div>
+                    </div>
+                </div>
             </div>
             <div class="phase-marker">
                 <div class="phase-dot active">1</div>
-                <div class="phase-date">Jaanuar</div>
+                <div class="phase-date">Veebruar</div>
             </div>
             <div></div>
         </div>
         
-        <!-- Phase 2: Q1 -->
+        <!-- Phase 2: Golden Gate -->
         <div class="phase">
             <div></div>
             <div class="phase-marker">
-                <div class="phase-dot">2</div>
-                <div class="phase-date">Q1 2026</div>
+                <div class="phase-dot active">2</div>
+                <div class="phase-date">Märts 2026</div>
             </div>
             <div class="phase-content right">
-                <div class="phase-title">🚀 Esimesed hooned</div>
+                <div class="phase-title">🚀 Faas 2: Golden Gate</div>
                 <div class="phase-buildings">
                     <span class="building-tag">Ahtri 6 – Golden Gate</span>
-                    <span class="building-tag">Rotermanni 6</span>
-                    <span class="building-tag">Rotermanni 8</span>
                 </div>
-                <p style="font-size: 14px; color: var(--muted);">3 hoonet, 2 232 töötajat</p>
-                <div class="phase-stats" style="grid-template-columns: 1fr;">
+                <p style="font-size: 14px; color: var(--muted);">17 üürnikku, ~1000 töötajat. Esimene suuremahuline liidestamine.</p>
+                <div class="phase-stats">
                     <div class="stat-item">
-                        <div class="stat-value green" id="revenue-q1">10 937 €</div>
-                        <div class="stat-label">Pot. ligipääsutulu/kuu</div>
+                        <div class="stat-value">21 080 €</div>
+                        <div class="stat-label">Ühekordne tulu (Liidestus)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value green">7 400 €</div>
+                        <div class="stat-label">Kuumakse kokku</div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Phase 3: Q2 -->
+        <!-- Phase 3: Expansion -->
         <div class="phase">
             <div class="phase-content left">
-                <div class="phase-title">📈 Laienemine</div>
+                <div class="phase-title">📈 Faas 3: Terve kvartal</div>
                 <div class="phase-buildings">
-                    <span class="building-tag">Rotermanni 2</span>
-                    <span class="building-tag">Rotermanni 14, 6a, 16</span>
-                    <span class="building-tag">Rotermanni 18</span>
+                    <span class="building-tag">Kõik 11 hoonet</span>
                 </div>
-                <p style="font-size: 14px; color: var(--muted);">+3 hoonet, kokku 3 150 töötajat</p>
-                <div class="phase-stats" style="grid-template-columns: 1fr;">
+                <p style="font-size: 14px; color: var(--muted);">Järkjärguline laiendamine ülejäänud üürnikele.</p>
+                <div class="phase-stats">
                     <div class="stat-item">
-                        <div class="stat-value green" id="revenue-q2">15 435 €</div>
-                        <div class="stat-label">Pot. ligipääsutulu/kuu</div>
+                        <div class="stat-value">~4 000</div>
+                        <div class="stat-label">Kasutajat kokku</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value green">16 100 €</div>
+                        <div class="stat-label">Potentsiaalne kuutulu</div>
                     </div>
                 </div>
             </div>
             <div class="phase-marker">
                 <div class="phase-dot">3</div>
-                <div class="phase-date">Q2 2026</div>
+                <div class="phase-date">Q2-Q3 2026</div>
             </div>
             <div></div>
-        </div>
-        
-        <!-- Phase 4: Q3 -->
-        <div class="phase">
-            <div></div>
-            <div class="phase-marker">
-                <div class="phase-dot">4</div>
-                <div class="phase-date">Q3 2026</div>
-            </div>
-            <div class="phase-content right">
-                <div class="phase-title">🏢 Täielik katvus</div>
-                <div class="phase-buildings">
-                    <span class="building-tag">Roseni 7</span>
-                    <span class="building-tag">Rotermanni 5, 10, 12</span>
-                    <span class="building-tag">+ ülejäänud</span>
-                </div>
-                <p style="font-size: 14px; color: var(--muted);">Kõik 11 hoonet, 4 000 töötajat</p>
-                <div class="phase-stats" style="grid-template-columns: 1fr;">
-                    <div class="stat-item">
-                        <div class="stat-value green" id="revenue-full">19 600 €</div>
-                        <div class="stat-label">Pot. ligipääsutulu/kuu</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     
-    <!-- Buildings Table -->
-    <div class="summary" style="margin-top: 48px;">
-        <h2>Hooned ja ligipääsutulu</h2>
-        <div style="overflow-x: auto; margin-top: 24px;">
-            <table style="width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13px;">
+    <!-- Financial Table -->
+    <div class="summary">
+        <h2>Rahavoogude Detailvaade</h2>
+        <div style="overflow-x: auto;">
+            <table class="financial-table">
                 <thead>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
-                        <th style="padding: 10px 8px; text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Hoone</th>
-                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Pindala (m²)</th>
-                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Töötajaid</th>
-                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Sharry (€/kuu)</th>
-                        <th style="padding: 10px 8px; text-align: right; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Ligipääsutulu (€/kuu)*</th>
+                    <tr>
+                        <th>Tuluallikas / Kulu</th>
+                        <th>Maht</th>
+                        <th>Ühikuhind</th>
+                        <th>Käive (€)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Ahtri 6 – Golden Gate</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">12 606</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 069</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 925</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="1069">5 238</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 6 – Ajamaja</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">8 568</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">726</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 311</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="726">3 557</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 8 – Jahuladu</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">5 159</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">437</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">789</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="437">2 141</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 5, 10, 12 – Värvilised</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">5 304</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">450</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">812</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="450">2 205</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 14, 6a, 16</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">4 870</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">413</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">745</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="413">2 024</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 2 – Elevaatorihoone</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">3 822</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">324</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">585</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="324">1 588</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 18</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">2 141</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">181</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">328</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="181">887</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Roseni 7 – Laudsepatöökoda</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 624</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">138</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">248</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="138">676</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 12 – Kruubiveski</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">1 556</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">132</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">238</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="132">647</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Roseni 8 – Prooviveski</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">969</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">82</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">148</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="82">402</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <td style="padding: 8px;">Rotermanni 10</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">568</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">48</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums;">87</td>
-                        <td style="padding: 8px; text-align: right; font-variant-numeric: tabular-nums; color: var(--success);" class="revenue-cell" data-employees="48">235</td>
-                    </tr>
-                    <tr style="background: rgba(212, 165, 116, 0.1);">
-                        <td style="padding: 10px 8px; font-weight: 600;">KOKKU</td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">47 185</td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">4 000</td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;">7 216</td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--success);" id="revenue-summary">19 600</td>
+                    <!-- USRE Section -->
+                    <tr class="section-header">
+                        <td colspan="4">USRE Investeeringud & Kulud (Ühes kohas)</td>
                     </tr>
                     <tr>
-                        <td colspan="5" style="padding: 16px 0;"></td>
+                        <td>Whitelabel Äpp & Litsents (Faas 1 - Tehtud)</td>
+                        <td>1 litsents</td>
+                        <td>35 000 €</td>
+                        <td style="color: var(--muted);">35 000 (Ühekordne)</td>
                     </tr>
-                    <tr style="border-top: 1px solid rgba(255,255,255,0.2);">
-                        <td colspan="3" style="padding: 10px 8px; font-weight: 600; color: var(--muted);">Strateegiline konsultatsioon</td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--muted);"></td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--muted);">-6 230</td>
+                    <tr>
+                        <td style="color: var(--accent); font-weight: 600;">USRE Kuumakse (Reklaamikanal & Haldus)</td>
+                        <td>1 leping</td>
+                        <td>4 500 €</td>
+                        <td>4 500 / kuu</td>
                     </tr>
-                    <tr style="border-top: 1px solid rgba(255,255,255,0.2);">
-                        <td colspan="3" style="padding: 10px 8px; font-weight: 600; font-size: 16px;">PROJEKTI KASUM</td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums;"></td>
-                        <td style="padding: 10px 8px; text-align: right; font-weight: 600; font-size: 16px; font-variant-numeric: tabular-nums; color: var(--success);" id="profit-summary">6 154</td>
+
+                    <!-- Tenant Section -->
+                    <tr class="section-header">
+                        <td colspan="4">Üürnike Teenused (Golden Gate Näitel)</td>
+                    </tr>
+                    <tr>
+                        <td>Üürnike Liidestamine (Onboarding)</td>
+                        <td>17 üürnikku</td>
+                        <td>1 240 €</td>
+                        <td>21 080 (Ühekordne)</td>
+                    </tr>
+                    <tr>
+                        <td>Ligipääsud (Äpp + Wallet)</td>
+                        <td>1 000 kasutajat</td>
+                        <td>2,90 €</td>
+                        <td>2 900 / kuu</td>
+                    </tr>
+
+                    <!-- Monthly Summary -->
+                    <tr class="section-header">
+                        <td colspan="4">Igakuine Rahavoog (Alates Märts)</td>
+                    </tr>
+                    <tr class="row-highlight">
+                        <td>KOKKU KUUTULU</td>
+                        <td></td>
+                        <td></td>
+                        <td style="color: var(--success);">7 400</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--muted);">Sharry Litsents & Tehniline Haldus</td>
+                        <td>Fikseeritud</td>
+                        <td></td>
+                        <td style="color: var(--muted);">-6 000</td>
+                    </tr>
+                    <tr class="row-total">
+                        <td>TEGEVUSKASUM (Kuu)</td>
+                        <td></td>
+                        <td></td>
+                        <td style="color: var(--success);">1 400</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin-top: 16px; text-align: center;">* Ligipääsutulu = töötajad × valitud hind/kuu | Sharry kulu hinnanguline (~0,15 €/m²/kuu)</p>
+        
+        <p style="font-size: 13px; color: var(--muted); margin-top: 24px; max-width: 700px; margin-left: auto; margin-right: auto;">
+            * USRE on teinud alginvesteeringu (35k) platvormi käivitamiseks. Edasine mudel on püsikulude katmiseks ja kasumi teenimiseks optimeeritud läbi üürnike kuutasude ja liidestamiste.
+        </p>
     </div>
     
     <footer>
-        Rotermann City Digiprojekt · Jaanuar 2026 · Pot. tulu = töötajad × <span id="price-footer">4,90</span> €/kuu
+        The List Services · Rotermann City Digiprojekt 2026
     </footer>
 </div>
 
-<script>
-(function() {
-    const employees = {
-        q1: 2232,  // Ahtri 6 + Rotermanni 6 + Rotermanni 8
-        q2: 3150,  // + Rotermanni 2, 14/6a/16, 18
-        full: 4000 // All buildings
-    };
-    
-    const priceButtons = document.querySelectorAll('.price-btn');
-    const revenueQ1 = document.getElementById('revenue-q1');
-    const revenueQ2 = document.getElementById('revenue-q2');
-    const revenueFull = document.getElementById('revenue-full');
-    const revenueSummary = document.getElementById('revenue-summary');
-    const profitSummary = document.getElementById('profit-summary');
-    const revenueCells = document.querySelectorAll('.revenue-cell');
-    const priceFooter = document.getElementById('price-footer');
-    
-    const sharryCost = 7216;
-    const consultCost = 6230;
-    
-    function formatNumber(num) {
-        return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    }
-    
-    function updateRevenues(price) {
-        const fullRevenue = employees.full * price;
-        const totalProfit = fullRevenue - sharryCost - consultCost;
-        
-        revenueQ1.textContent = formatNumber(employees.q1 * price) + ' €';
-        revenueQ2.textContent = formatNumber(employees.q2 * price) + ' €';
-        revenueFull.textContent = formatNumber(fullRevenue) + ' €';
-        revenueSummary.textContent = formatNumber(fullRevenue);
-        if (profitSummary) profitSummary.textContent = formatNumber(totalProfit);
-        
-        // Update table cells
-        revenueCells.forEach(cell => {
-            const emp = parseInt(cell.dataset.employees);
-            cell.textContent = formatNumber(emp * price);
-        });
-        
-        priceFooter.textContent = price.toFixed(2).replace('.', ',');
-    }
-    
-    priceButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            priceButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            updateRevenues(parseFloat(btn.dataset.price));
-        });
-    });
-})();
-</script>
-
 </body>
 </html>
-
