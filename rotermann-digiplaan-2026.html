@@ -818,7 +818,7 @@
             </p>
         </div>
 
-        <div class="grid-2" style="margin-bottom: 24px;">
+        <div class="grid-2" style="margin-bottom: 24px; display: block;">
             <div class="info-box">
                 <h3>Tuluvood (Faas 1)</h3>
                 <ul style="margin-top: 8px;">
@@ -827,14 +827,6 @@
                     <li><strong>Golden Gate liidestus:</strong> 17 üürnikku × 1 240 € = 21 080 € (ühekordne)</li>
                     <li><strong>Golden Gate kasutustasu:</strong> 1 000 töötajat × 2,90 € = 2 900 € / kuu</li>
                 </ul>
-            </div>
-            <div class="info-box" style="background: var(--card-alt);">
-                <h3>USRE investeering</h3>
-                <div style="font-size: 32px; font-weight: 700; color: var(--success); margin: 16px 0;">35 000 €</div>
-                <p style="font-size: 14px; color: var(--text-secondary);">Whitelabel litsents ja seadistus.</p>
-                <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
-                    See on ühekordne tulu, mis lisandub projekti rahavoogudesse (arve esitatakse USRE-le).
-                </p>
             </div>
         </div>
         
@@ -890,7 +882,7 @@
                         <th>Ühekordsed tulud</th>
                         <th>Ligipääsu tulu</th>
                         <th>USRE kuutasu</th>
-                        <th>Platvormikulu</th>
+                        <th>Kulud (Litsents + Konsult)</th>
                         <th>Kuu kasum</th>
                         <th>Kumulatiivne</th>
                     </tr>
@@ -1519,7 +1511,8 @@
     const USRE_SETUP_FEE = 35000;
     const FEB_SETUP_COST = 12100;
     const FEB_PLATFORM_COST = 6500;
-    const PLATFORM_MONTHLY_COST = 1600;
+    const PLATFORM_MONTHLY_COST = 6000;
+    const CONSULTATION_MONTHLY_FEE = 6500;
     const OPS_MONTHLY_COST = 1200;
     
     function getWalletCost(users) {
@@ -1572,9 +1565,10 @@
             const basePlatformCost = m.month === 'Veebruar'
                 ? FEB_PLATFORM_COST
                 : (m.usreActive ? PLATFORM_MONTHLY_COST : 0);
+            const consultationCost = m.usreActive ? CONSULTATION_MONTHLY_FEE : 0;
             const oneTimeCost = m.month === 'Veebruar' ? FEB_SETUP_COST : 0;
             const opsCost = m.usreActive ? OPS_MONTHLY_COST : 0;
-            const platformCost = basePlatformCost + walletCost + oneTimeCost + opsCost;
+            const platformCost = basePlatformCost + consultationCost + walletCost + oneTimeCost + opsCost;
             
             const monthProfit = oneTimeRevenue + accessRevenue + usreRevenue - platformCost;
             cumulative += monthProfit;
