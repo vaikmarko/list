@@ -882,7 +882,8 @@
                         <th>Ühekordsed tulud</th>
                         <th>Ligipääsu tulu</th>
                         <th>USRE kuutasu</th>
-                        <th>Platvormikulu</th>
+                        <th>Sharry litsents</th>
+                        <th>Haldus & Wallet</th>
                         <th>Konsultatsioon</th>
                         <th>Kuu kasum</th>
                         <th>Kumulatiivne</th>
@@ -899,7 +900,8 @@
                         <td id="total-integration">21 080 €</td>
                         <td id="total-access">74 010 €</td>
                         <td id="total-usre">45 000 €</td>
-                        <td id="total-platform">-62 800 €</td>
+                        <td id="total-sharry">-60 000 €</td>
+                        <td id="total-ops">-15 000 €</td>
                         <td id="total-consultation">-65 000 €</td>
                         <td id="total-profit">+77 290 €</td>
                         <td id="final-cumulative">+77 290 €</td>
@@ -1544,7 +1546,8 @@
         let totalIntegration = 0;
         let totalAccess = 0;
         let totalUsre = 0;
-        let totalPlatform = 0;
+        let totalSharry = 0;
+        let totalOps = 0;
         let totalConsultation = 0;
         let totalProfit = 0;
         let lastMonthProfit = 0;
@@ -1565,16 +1568,20 @@
             const usreRevenue = m.usreActive ? USRE_MONTHLY_FEE : 0;
             const walletCost = getWalletCost(activeUsers);
             
-            const basePlatformCost = m.month === 'Veebruar'
-                ? FEB_PLATFORM_COST
+            // Kulude eraldamine
+            const sharryCost = m.month === 'Veebruar'
+                ? 5000 // Veebruaris ka 5000 (oli varem 6500)
                 : (m.usreActive ? PLATFORM_MONTHLY_COST : 0);
+                
             const consultationCost = m.usreActive ? CONSULTATION_MONTHLY_FEE : 0;
+            
             const oneTimeCost = m.month === 'Veebruar' ? FEB_SETUP_COST : 0;
-            const opsCost = m.usreActive ? OPS_MONTHLY_COST : 0;
+            const opsMonthly = m.usreActive ? OPS_MONTHLY_COST : 0;
+            const opsTotal = opsMonthly + walletCost + oneTimeCost;
             
-            const platformTotalCost = basePlatformCost + walletCost + oneTimeCost + opsCost;
+            const totalMonthlyCost = sharryCost + opsTotal + consultationCost;
             
-            const monthProfit = oneTimeRevenue + accessRevenue + usreRevenue - platformTotalCost - consultationCost;
+            const monthProfit = oneTimeRevenue + accessRevenue + usreRevenue - totalMonthlyCost;
             cumulative += monthProfit;
             lastMonthProfit = monthProfit;
             previousTenants = m.tenants;
@@ -1584,7 +1591,8 @@
             totalIntegration += oneTimeRevenue;
             totalAccess += accessRevenue;
             totalUsre += usreRevenue;
-            totalPlatform += platformTotalCost;
+            totalSharry += sharryCost;
+            totalOps += opsTotal;
             totalConsultation += consultationCost;
             totalProfit += monthProfit;
             
@@ -1599,7 +1607,8 @@
                     <td class="positive">${oneTimeRevenue > 0 ? '+' + formatNumber(oneTimeRevenue) + ' €' : '-'}</td>
                     <td class="positive">${accessRevenue > 0 ? '+' + formatNumber(accessRevenue) + ' €' : '-'}</td>
                     <td class="positive">${usreRevenue > 0 ? '+' + formatNumber(usreRevenue) + ' €' : '-'}</td>
-                    <td class="negative">${platformTotalCost > 0 ? '-' + formatNumber(platformTotalCost) + ' €' : '-'}</td>
+                    <td class="negative">${sharryCost > 0 ? '-' + formatNumber(sharryCost) + ' €' : '-'}</td>
+                    <td class="negative">${opsTotal > 0 ? '-' + formatNumber(opsTotal) + ' €' : '-'}</td>
                     <td class="negative">${consultationCost > 0 ? '-' + formatNumber(consultationCost) + ' €' : '-'}</td>
                     <td class="${profitClass}">${monthProfit >= 0 ? '+' : ''}${formatNumber(monthProfit)} €</td>
                     <td class="${cumulativeClass}"><strong>${cumulative >= 0 ? '+' : ''}${formatNumber(cumulative)} €</strong></td>
@@ -1613,7 +1622,8 @@
         document.getElementById('total-integration').textContent = '+' + formatNumber(totalIntegration) + ' €';
         document.getElementById('total-access').textContent = '+' + formatNumber(totalAccess) + ' €';
         document.getElementById('total-usre').textContent = '+' + formatNumber(totalUsre) + ' €';
-        document.getElementById('total-platform').textContent = '-' + formatNumber(totalPlatform) + ' €';
+        document.getElementById('total-sharry').textContent = '-' + formatNumber(totalSharry) + ' €';
+        document.getElementById('total-ops').textContent = '-' + formatNumber(totalOps) + ' €';
         document.getElementById('total-consultation').textContent = '-' + formatNumber(totalConsultation) + ' €';
         document.getElementById('total-profit').textContent = (totalProfit >= 0 ? '+' : '') + formatNumber(totalProfit) + ' €';
         document.getElementById('final-cumulative').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
