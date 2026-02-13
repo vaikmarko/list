@@ -1515,7 +1515,7 @@
     const USRE_SETUP_FEE = 35000;
     const FEB_SETUP_COST = 12100;
     const FEB_PLATFORM_COST = 6500;
-    const PLATFORM_MONTHLY_COST = 5000;
+    const PLATFORM_MONTHLY_COST = 4900;
     const CONSULTATION_MONTHLY_FEE = 6500;
     const OPS_MONTHLY_COST = 1200;
     
@@ -1570,7 +1570,7 @@
             
             // Kulude eraldamine
             const sharryCost = m.month === 'Veebruar'
-                ? 5000 // Veebruaris ka 5000 (oli varem 6500)
+                ? 4900 // Veebruaris ka 4900
                 : (m.usreActive ? PLATFORM_MONTHLY_COST : 0);
                 
             const consultationCost = m.usreActive ? CONSULTATION_MONTHLY_FEE : 0;
