@@ -811,7 +811,7 @@
                 <li><strong>35 000 €</strong> Rotermann Whitelabel äpp + digitaalsed ligipääsud setup (USRE investeering)</li>
                 <li><strong>1 240 €</strong> liidestus per üürnik (ühekordne)</li>
                 <li><strong>2,90 €</strong> kuutasu per kasutaja (võti + äpp + wallet)</li>
-                <li><strong>4 500 € / kuu</strong> USRE kanalitasu (uudised, sündmused, teavitused, haldus)</li>
+                <li><strong>4 900 € / kuu</strong> USRE kanalitasu (uudised, sündmused, teavitused, haldus)</li>
             </ul>
             <p style="margin-top: 12px; font-size: 14px;">
                 Mudel eeldab, et Golden Gate 17 üürnikku onboarditakse järk-järgult märtsist juunini.
@@ -823,7 +823,7 @@
                 <h3>Tuluvood (Faas 1)</h3>
                 <ul style="margin-top: 8px;">
                     <li><strong>USRE setup-tasu:</strong> 35 000 € (ühekordne, whitelabel litsents ja seadistus)</li>
-                    <li><strong>Kuutasu USRE:</strong> 4 500 € / kuu (reklaamikanal, sündmused, teavitused, haldus)</li>
+                    <li><strong>Kuutasu USRE:</strong> 4 900 € / kuu (reklaamikanal, sündmused, teavitused, haldus)</li>
                     <li><strong>Golden Gate liidestus:</strong> 17 üürnikku × 1 240 € = 21 080 € (ühekordne)</li>
                     <li><strong>Golden Gate kasutustasu:</strong> 1 000 töötajat × 2,90 € = 2 900 € / kuu</li>
                 </ul>
@@ -882,7 +882,8 @@
                         <th>Ühekordsed tulud</th>
                         <th>Ligipääsu tulu</th>
                         <th>USRE kuutasu</th>
-                        <th>Kulud (Litsents + Konsult)</th>
+                        <th>Platvormikulu</th>
+                        <th>Konsultatsioon</th>
                         <th>Kuu kasum</th>
                         <th>Kumulatiivne</th>
                     </tr>
@@ -899,6 +900,7 @@
                         <td id="total-access">74 010 €</td>
                         <td id="total-usre">45 000 €</td>
                         <td id="total-platform">-62 800 €</td>
+                        <td id="total-consultation">-65 000 €</td>
                         <td id="total-profit">+77 290 €</td>
                         <td id="final-cumulative">+77 290 €</td>
                     </tr>
@@ -1507,11 +1509,11 @@
     ];
     
     const INTEGRATION_FEE_PER_TENANT = 1240;
-    const USRE_MONTHLY_FEE = 4500;
+    const USRE_MONTHLY_FEE = 4900;
     const USRE_SETUP_FEE = 35000;
     const FEB_SETUP_COST = 12100;
     const FEB_PLATFORM_COST = 6500;
-    const PLATFORM_MONTHLY_COST = 6000;
+    const PLATFORM_MONTHLY_COST = 5000;
     const CONSULTATION_MONTHLY_FEE = 6500;
     const OPS_MONTHLY_COST = 1200;
     
@@ -1543,6 +1545,7 @@
         let totalAccess = 0;
         let totalUsre = 0;
         let totalPlatform = 0;
+        let totalConsultation = 0;
         let totalProfit = 0;
         let lastMonthProfit = 0;
         
@@ -1568,9 +1571,10 @@
             const consultationCost = m.usreActive ? CONSULTATION_MONTHLY_FEE : 0;
             const oneTimeCost = m.month === 'Veebruar' ? FEB_SETUP_COST : 0;
             const opsCost = m.usreActive ? OPS_MONTHLY_COST : 0;
-            const platformCost = basePlatformCost + consultationCost + walletCost + oneTimeCost + opsCost;
             
-            const monthProfit = oneTimeRevenue + accessRevenue + usreRevenue - platformCost;
+            const platformTotalCost = basePlatformCost + walletCost + oneTimeCost + opsCost;
+            
+            const monthProfit = oneTimeRevenue + accessRevenue + usreRevenue - platformTotalCost - consultationCost;
             cumulative += monthProfit;
             lastMonthProfit = monthProfit;
             previousTenants = m.tenants;
@@ -1580,7 +1584,8 @@
             totalIntegration += oneTimeRevenue;
             totalAccess += accessRevenue;
             totalUsre += usreRevenue;
-            totalPlatform += platformCost;
+            totalPlatform += platformTotalCost;
+            totalConsultation += consultationCost;
             totalProfit += monthProfit;
             
             const profitClass = monthProfit >= 0 ? 'positive' : 'negative';
@@ -1594,7 +1599,8 @@
                     <td class="positive">${oneTimeRevenue > 0 ? '+' + formatNumber(oneTimeRevenue) + ' €' : '-'}</td>
                     <td class="positive">${accessRevenue > 0 ? '+' + formatNumber(accessRevenue) + ' €' : '-'}</td>
                     <td class="positive">${usreRevenue > 0 ? '+' + formatNumber(usreRevenue) + ' €' : '-'}</td>
-                    <td class="negative">${platformCost > 0 ? '-' + formatNumber(platformCost) + ' €' : '-'}</td>
+                    <td class="negative">${platformTotalCost > 0 ? '-' + formatNumber(platformTotalCost) + ' €' : '-'}</td>
+                    <td class="negative">${consultationCost > 0 ? '-' + formatNumber(consultationCost) + ' €' : '-'}</td>
                     <td class="${profitClass}">${monthProfit >= 0 ? '+' : ''}${formatNumber(monthProfit)} €</td>
                     <td class="${cumulativeClass}"><strong>${cumulative >= 0 ? '+' : ''}${formatNumber(cumulative)} €</strong></td>
                 </tr>
@@ -1608,6 +1614,7 @@
         document.getElementById('total-access').textContent = '+' + formatNumber(totalAccess) + ' €';
         document.getElementById('total-usre').textContent = '+' + formatNumber(totalUsre) + ' €';
         document.getElementById('total-platform').textContent = '-' + formatNumber(totalPlatform) + ' €';
+        document.getElementById('total-consultation').textContent = '-' + formatNumber(totalConsultation) + ' €';
         document.getElementById('total-profit').textContent = (totalProfit >= 0 ? '+' : '') + formatNumber(totalProfit) + ' €';
         document.getElementById('final-cumulative').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
         
