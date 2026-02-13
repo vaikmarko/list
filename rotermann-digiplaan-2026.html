@@ -772,20 +772,24 @@
     <div class="debt-section">
         <h3>⚠️ Olemasolevad kohustused</h3>
         <div class="debt-item">
-            <span>Markole võlad (nov + dets osaliselt maksmata)</span>
-            <span id="marko-debt">9 550 €</span>
+            <span>Strateegiline konsultatsioon ja teenuse arendus</span>
+            <span>6 230 €</span>
         </div>
         <div class="debt-item">
-            <span>Forusele võlad (arve 52141277)</span>
-            <span id="forus-debt">3 112 €</span>
+            <span>Cursor subscription</span>
+            <span>250 €</span>
         </div>
         <div class="debt-item">
-            <span>Sharry litsentsi- ja seadistustasu <span style="color: var(--muted); font-weight: normal;">(15K − 2,9K POC krediit)</span></span>
-            <span>12 100 €</span>
+            <span>Sharry litsentsid ja seadistuse tasud + rakenduse kuutasu</span>
+            <span>16 000 €</span>
         </div>
         <div class="debt-item">
-            <span><strong>Kokku kohustused (veel tasuda)</strong></span>
-            <span id="total-debt"><strong>24 762 €</strong></span>
+            <span>Forus serverite uuendused Sharryga ja seadmete vahetus</span>
+            <span>3 122 €</span>
+        </div>
+        <div class="debt-item">
+            <span><strong>Kokku</strong></span>
+            <span><strong>25 602 €</strong></span>
         </div>
     </div>
 
@@ -796,19 +800,52 @@
             <span class="badge badge-phase1">Käivitamine</span>
         </h2>
         
-        <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 17px;">
-            Rotermanni kvartali töötajate ligipääsukaartide üleviimine mobiilsetele NFC kaartidele. 
+        <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 17px;">
+            Rotermanni kvartali töötajate ligipääsukaartide üleviimine mobiilsetele NFC kaartidele.
             See on infrastruktuuri alus, millele ehitame lojaalsusprogrammi.
         </p>
+
+        <div class="info-box" style="margin-bottom: 24px; background: var(--success-light); border-color: var(--success);">
+            <h3 style="color: var(--success);">Faas 1 hinnastus (uuendatud)</h3>
+            <ul style="margin-top: 8px;">
+                <li><strong>1 240 €</strong> liidestus per üürnik (ühekordne)</li>
+                <li><strong>2,90 €</strong> kuutasu per kasutaja (võti + äpp + wallet)</li>
+                <li><strong>4 500 € / kuu</strong> USRE kanalitasu (uudised, sündmused, teavitused, haldus)</li>
+            </ul>
+            <p style="margin-top: 12px; font-size: 14px;">
+                Mudel eeldab, et Golden Gate 17 üürnikku onboarditakse järk-järgult märtsist juunini,
+                mitte kõiki korraga esimesel nädalal.
+            </p>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 24px;">
+            <div class="info-box">
+                <h3>Tuluvood (Faas 1)</h3>
+                <ul style="margin-top: 8px;">
+                    <li><strong>Kuutasu USRE:</strong> 4 500 € / kuu (reklaamikanal 4 000 inimesele, sündmused, teavitused, lõunapakkumised, uudised, äpp, igakuine haldus)</li>
+                    <li><strong>Golden Gate liidestus:</strong> 17 üürnikku × 1 240 € = 21 080 € (ühekordne)</li>
+                    <li><strong>Golden Gate kasutustasu:</strong> 1 000 töötajat × 2,90 € = 2 900 € / kuu</li>
+                </ul>
+            </div>
+            <div class="info-box" style="background: var(--card-alt);">
+                <h3>Kommertstingimused (kinnitamisel)</h3>
+                <ul style="margin-top: 8px;">
+                    <li><strong>Rotermanni äpi kuutasu:</strong> 6 500 €</li>
+                    <li><strong>Rotermann Whitelabel äpp + digitaalsed ligipääsud litsents:</strong> 35 000 €</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 13px; color: var(--muted);">
+                    Need read on eraldi välja toodud, et juhtkond näeks baas-rahavoogu ja lisaks kinnitatavaid kommertstingimusi.
+                </p>
+            </div>
+        </div>
         
         <!-- Controls -->
         <div class="controls">
             <div class="control-group">
                 <div class="control-label">Ligipääsu hind / kasutaja</div>
                 <div class="btn-group">
-                    <button class="btn" data-price="2.9">2,90 €</button>
+                    <button class="btn active" data-price="2.9">2,90 €</button>
                     <button class="btn" data-price="3.9">3,90 €</button>
-                    <button class="btn active" data-price="4.9">4,90 €</button>
                 </div>
             </div>
             <div class="control-group">
@@ -824,14 +861,14 @@
         
         <!-- Summary cards for Phase 1 -->
         <div class="summary-cards">
-            <div class="summary-card danger">
-                <div class="card-label">Veel tasuda (Sharry)</div>
-                <div class="card-value danger">-12 100 €</div>
-                <div class="card-note">Ühekordne makse (15K setup − 2,9K POC krediit)</div>
+            <div class="summary-card highlight">
+                <div class="card-label">Liidestuse tulu</div>
+                <div class="card-value accent" id="integration-revenue">21 080 €</div>
+                <div class="card-note">17 üürnikku x 1 240 €</div>
             </div>
-            <div class="summary-card warning">
+            <div class="summary-card success">
                 <div class="card-label">Faas 1 tulemus</div>
-                <div class="card-value warning" id="phase1-result">-32 629 €</div>
+                <div class="card-value success" id="phase1-result">+77 290 €</div>
                 <div class="card-note">2026 aasta lõpuks</div>
             </div>
             <div class="summary-card">
@@ -840,9 +877,9 @@
                 <div class="card-note">Detsember 2026</div>
             </div>
             <div class="summary-card">
-                <div class="card-label">Kuukulu</div>
-                <div class="card-value danger" id="monthly-cost">-6 580 €</div>
-                <div class="card-note">Keskmine operatsioonikulu</div>
+                <div class="card-label">Täiskatte kuutulu</div>
+                <div class="card-value success" id="steady-monthly-revenue">14 360 €</div>
+                <div class="card-note">Ligipääs + USRE kuutasu</div>
             </div>
         </div>
         
@@ -853,11 +890,11 @@
                     <tr>
                         <th>Kuu</th>
                         <th>Kasutajaid</th>
-                        <th>Tulu</th>
-                        <th>Sharry</th>
-                        <th>Wallet</th>
-                        <th>Konsult.</th>
-                        <th>Muu</th>
+                        <th>Uusi üürnikke</th>
+                        <th>Liidestus</th>
+                        <th>Ligipääsu tulu</th>
+                        <th>USRE kuutasu</th>
+                        <th>Platvormikulu</th>
                         <th>Kuu kasum</th>
                         <th>Kumulatiivne</th>
                     </tr>
@@ -869,13 +906,13 @@
                     <tr>
                         <td>KOKKU 2026</td>
                         <td></td>
-                        <td id="total-revenue">0 €</td>
-                        <td id="total-sharry">-60 000 €</td>
-                        <td id="total-wallet">-5 000 €</td>
-                        <td id="total-consult">-74 760 €</td>
-                        <td id="total-other">-4 200 €</td>
-                        <td id="total-profit">-20 000 €</td>
-                        <td id="final-cumulative">-32 629 €</td>
+                        <td id="total-new-tenants">17</td>
+                        <td id="total-integration">21 080 €</td>
+                        <td id="total-access">74 010 €</td>
+                        <td id="total-usre">45 000 €</td>
+                        <td id="total-platform">-62 800 €</td>
+                        <td id="total-profit">+77 290 €</td>
+                        <td id="final-cumulative">+77 290 €</td>
                     </tr>
                 </tfoot>
             </table>
@@ -883,7 +920,7 @@
         
         <div class="info-box" style="margin-top: 24px;" id="phase1-conclusion">
             <h3>Faas 1 kokkuvõte</h3>
-            <p id="conclusion-text">Arvutatakse...</p>
+            <p id="conclusion-text">Faas 1 muutub isetasuvaks pärast launch'i, sest kuutasuline mudel katab jooksvad kulud ning liidestuse tulu aitab stardikulud tagasi teenida.</p>
         </div>
     </div>
 
@@ -909,7 +946,7 @@
             </div>
             <div class="summary-card">
                 <div class="card-label">Töötajatele</div>
-                <div class="card-value">4,90 €/kuu</div>
+                <div class="card-value">2,90 €/kuu</div>
                 <div class="card-note">Ligipääs + boonuspunktid</div>
             </div>
             <div class="summary-card success">
@@ -950,7 +987,7 @@
                 <div class="info-box" style="border-top: 4px solid #e53935; background: linear-gradient(to bottom, #fff5f5, white);">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <h3 style="color: #c62828;">RED</h3>
-                        <span style="background: #ffebee; color: #c62828; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;">4,90 €/kuu</span>
+                        <span style="background: #ffebee; color: #c62828; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;">2,90 €/kuu</span>
                     </div>
                     <p style="font-weight: 600; margin-bottom: 12px;">Töötajad + elanikud</p>
                     <div style="font-size: 32px; font-weight: 700; color: #c62828; margin: 16px 0;">7%</div>
@@ -1450,11 +1487,11 @@
         <p>* <strong>Loyal Solutions tasu:</strong> Kaupmehed annavad 10-12% → sellest 1% läheb LS-ile (min 9 750 €/kuu). Marginaalid (4%, 2%, 1%) on PÄRAST LS mahaarvamist. Setup ~45 000 € (~50K USD).</p>
         <p>* <strong>LS miinimum:</strong> Kui 1% käibest < 9 750 €, maksame vahe. Täismahus (1,46M käive): 1% = 14 600 € > miinimum, seega OK. Konservatiivses (510K): 1% = 5 100 €, vahe 4 650 €/kuu lisandub kuludele.</p>
         <p>* <strong>Boonuspunktid tasemete kaupa:</strong> WHITE 5%, RED 7%, BLACK 10% (kaupmehed annavad 10-12%, LS võtab 1%, meie marginaal vastavalt 4%, 2%, 1%)</p>
-        <p>* <strong>Sharry:</strong> ~6 000 €/kuu (konservatiivne, enne lepingut) + Wallet ~500 €/kuu = kokku ~6 500 €/kuu. Setup: 12 100 € (15K − 2,9K POC krediit).</p>
+        <p>* <strong>Faas 1 kululoogika:</strong> Veebruaris arvestame setup-kulu 12 100 € ning seejärel kuupõhist platvormikulu + wallet + operatsioonihaldus.</p>
         <p>* <strong>Wallet kulud:</strong> 0,16 €/kasutaja/aasta (kõik) + Apple Wallet 2,88 €/kasutaja/aasta (80% kasutajatest)</p>
         <p>* <strong>Keskmised kulutused tasemete kaupa:</strong> WHITE 80 €/kuu (~2-3 külastust), RED 150 €/kuu (~7 €/päev), BLACK 300 €/kuu</p>
         <p>* <strong>Adoptsioonimäär:</strong> Töötajate puhul 85% (4000 potentsiaalist → 3400 tegelikku kasutajat)</p>
-        <p>* <strong>Liikmetasud:</strong> WHITE tasuta, RED 4,90 €/kuu (ligipääs), BLACK 9,90 €/kuu</p>
+        <p>* <strong>Liikmetasud:</strong> WHITE tasuta, RED 2,90 €/kuu (ligipääs), BLACK 9,90 €/kuu</p>
     </div>
     
     <footer>
@@ -1465,41 +1502,38 @@
 
 <script>
 (function() {
-    // Monthly plan data (REALISTLIK RAMP-UP)
+    // Faas 1: realistlik ramp-up, kus Golden Gate 17 üürnikku onboarditakse järk-järgult
     const monthlyPlan = [
-        { month: 'Jaanuar', employees: 0, note: 'Seadistus' },
-        { month: 'Veebruar', employees: 1500, note: 'Golden Gate + Rot 6' },
-        { month: 'Märts', employees: 3000, note: '+Rot 8, 2, 14' },
-        { month: 'Aprill', employees: 4000, note: 'Täielik katvus' },
-        { month: 'Mai', employees: 4000, note: '' },
-        { month: 'Juuni', employees: 4000, note: '' },
-        { month: 'Juuli', employees: 4000, note: '' },
-        { month: 'August', employees: 4000, note: '' },
-        { month: 'September', employees: 4000, note: '' },
-        { month: 'Oktoober', employees: 4000, note: '' },
-        { month: 'November', employees: 4000, note: '' },
-        { month: 'Detsember', employees: 4000, note: '' }
+        { month: 'Jaanuar', employees: 0, tenants: 0, usreActive: false, note: 'Piloot + ettevalmistus' },
+        { month: 'Veebruar', employees: 0, tenants: 0, usreActive: false, note: 'Setup ja veebruari kulud' },
+        { month: 'Märts', employees: 900, tenants: 7, usreActive: true, note: 'Golden Gate launch' },
+        { month: 'Aprill', employees: 1300, tenants: 11, usreActive: true, note: 'Onboarding jatkub' },
+        { month: 'Mai', employees: 1700, tenants: 14, usreActive: true, note: 'Onboarding jatkub' },
+        { month: 'Juuni', employees: 2000, tenants: 17, usreActive: true, note: 'Golden Gate valmis' },
+        { month: 'Juuli', employees: 2400, tenants: 17, usreActive: true, note: 'Rot 6/8 laiendus' },
+        { month: 'August', employees: 2800, tenants: 17, usreActive: true, note: '' },
+        { month: 'September', employees: 3100, tenants: 17, usreActive: true, note: '' },
+        { month: 'Oktoober', employees: 3300, tenants: 17, usreActive: true, note: '' },
+        { month: 'November', employees: 3400, tenants: 17, usreActive: true, note: '' },
+        { month: 'Detsember', employees: 3400, tenants: 17, usreActive: true, note: '' }
     ];
     
-    const INITIAL_INVESTMENT = 12100; // 15K setup - 2,9K POC krediit = 12,1K veel tasuda
-    const SHARRY_MONTHLY = 6000;
-    const CONSULT_COST = 6230;
-    const LICENSE_COST = 200;
-    const HARDWARE_COST = 250;
+    const INTEGRATION_FEE_PER_TENANT = 1240;
+    const USRE_MONTHLY_FEE = 4500;
+    const FEB_SETUP_COST = 12100;
+    const FEB_PLATFORM_COST = 6500;
+    const PLATFORM_MONTHLY_COST = 1600;
+    const OPS_MONTHLY_COST = 1200;
     
-    function getSharryCost(employees) {
-        return employees > 0 ? SHARRY_MONTHLY : 0;
-    }
-    
-    function getWalletCost(employees) {
-        if (employees === 0) return 0;
-        const mobileCardMonthly = employees * (0.16 / 12);
-        const appleUsers = employees * 0.8;
+    function getWalletCost(users) {
+        if (users === 0) return 0;
+        const mobileCardMonthly = users * (0.16 / 12);
+        const appleUsers = users * 0.8;
         const appleAnnualFeeMonthly = (appleUsers * 2.88) / 12;
         return Math.round(mobileCardMonthly + appleAnnualFeeMonthly);
     }
     
-    let currentPrice = 4.9;
+    let currentPrice = 2.9;
     let currentAdoption = 0.85;
     
     function formatNumber(num) {
@@ -1511,29 +1545,46 @@
     function calculate() {
         const tbody = document.getElementById('monthly-tbody');
         
-        let cumulative = -INITIAL_INVESTMENT;
-        let totalRevenue = 0;
-        let totalSharry = 0;
-        let totalWallet = 0;
-        let totalConsult = 0;
-        let totalOther = 0;
+        let cumulative = 0;
+        let previousTenants = 0;
+        let totalUsers = 0;
+        let totalNewTenants = 0;
+        let totalIntegration = 0;
+        let totalAccess = 0;
+        let totalUsre = 0;
+        let totalPlatform = 0;
+        let totalProfit = 0;
+        let lastMonthProfit = 0;
         
         let rows = '';
         
-        monthlyPlan.forEach((m, i) => {
-            const actualUsers = Math.round(m.employees * currentAdoption);
-            const revenue = actualUsers * currentPrice;
-            const sharry = getSharryCost(m.employees);
-            const wallet = getWalletCost(actualUsers);
-            const otherCosts = LICENSE_COST + HARDWARE_COST;
-            const monthProfit = revenue - sharry - wallet - CONSULT_COST - otherCosts;
-            cumulative += monthProfit;
+        monthlyPlan.forEach((m) => {
+            const activeUsers = Math.round(m.employees * currentAdoption);
+            const newTenants = Math.max(m.tenants - previousTenants, 0);
+            const integrationRevenue = newTenants * INTEGRATION_FEE_PER_TENANT;
+            const accessRevenue = activeUsers * currentPrice;
+            const usreRevenue = m.usreActive ? USRE_MONTHLY_FEE : 0;
+            const walletCost = getWalletCost(activeUsers);
             
-            totalRevenue += revenue;
-            totalSharry += sharry;
-            totalWallet += wallet;
-            totalConsult += CONSULT_COST;
-            totalOther += otherCosts;
+            const basePlatformCost = m.month === 'Veebruar'
+                ? FEB_PLATFORM_COST
+                : (m.usreActive ? PLATFORM_MONTHLY_COST : 0);
+            const oneTimeCost = m.month === 'Veebruar' ? FEB_SETUP_COST : 0;
+            const opsCost = m.usreActive ? OPS_MONTHLY_COST : 0;
+            const platformCost = basePlatformCost + walletCost + oneTimeCost + opsCost;
+            
+            const monthProfit = integrationRevenue + accessRevenue + usreRevenue - platformCost;
+            cumulative += monthProfit;
+            lastMonthProfit = monthProfit;
+            previousTenants = m.tenants;
+            
+            totalUsers += activeUsers;
+            totalNewTenants += newTenants;
+            totalIntegration += integrationRevenue;
+            totalAccess += accessRevenue;
+            totalUsre += usreRevenue;
+            totalPlatform += platformCost;
+            totalProfit += monthProfit;
             
             const profitClass = monthProfit >= 0 ? 'positive' : 'negative';
             const cumulativeClass = cumulative >= 0 ? 'positive' : 'negative';
@@ -1541,12 +1592,12 @@
             rows += `
                 <tr>
                     <td>${m.month}${m.note ? ' <span style="font-size: 11px; color: var(--muted);">(' + m.note + ')</span>' : ''}</td>
-                    <td>${actualUsers > 0 ? formatNumber(actualUsers) : '-'}</td>
-                    <td class="positive">${actualUsers > 0 ? formatNumber(revenue) + ' €' : '-'}</td>
-                    <td class="negative">${sharry > 0 ? '-' + formatNumber(sharry) + ' €' : '-'}</td>
-                    <td class="negative">${wallet > 0 ? '-' + formatNumber(wallet) + ' €' : '-'}</td>
-                    <td class="negative">-${formatNumber(CONSULT_COST)} €</td>
-                    <td class="negative">-${formatNumber(otherCosts)} €</td>
+                    <td>${activeUsers > 0 ? formatNumber(activeUsers) : '-'}</td>
+                    <td>${newTenants > 0 ? formatNumber(newTenants) : '-'}</td>
+                    <td class="positive">${integrationRevenue > 0 ? '+' + formatNumber(integrationRevenue) + ' €' : '-'}</td>
+                    <td class="positive">${accessRevenue > 0 ? '+' + formatNumber(accessRevenue) + ' €' : '-'}</td>
+                    <td class="positive">${usreRevenue > 0 ? '+' + formatNumber(usreRevenue) + ' €' : '-'}</td>
+                    <td class="negative">${platformCost > 0 ? '-' + formatNumber(platformCost) + ' €' : '-'}</td>
                     <td class="${profitClass}">${monthProfit >= 0 ? '+' : ''}${formatNumber(monthProfit)} €</td>
                     <td class="${cumulativeClass}"><strong>${cumulative >= 0 ? '+' : ''}${formatNumber(cumulative)} €</strong></td>
                 </tr>
@@ -1555,45 +1606,35 @@
         
         tbody.innerHTML = rows;
         
-        // Update totals
-        document.getElementById('total-revenue').textContent = formatNumber(totalRevenue) + ' €';
-        document.getElementById('total-sharry').textContent = '-' + formatNumber(totalSharry) + ' €';
-        document.getElementById('total-wallet').textContent = '-' + formatNumber(totalWallet) + ' €';
-        document.getElementById('total-consult').textContent = '-' + formatNumber(totalConsult) + ' €';
-        document.getElementById('total-other').textContent = '-' + formatNumber(totalOther) + ' €';
-        
-        const totalProfit = totalRevenue - totalSharry - totalWallet - totalConsult - totalOther;
-        document.getElementById('total-profit').textContent = formatNumber(totalProfit) + ' €';
+        document.getElementById('total-new-tenants').textContent = formatNumber(totalNewTenants);
+        document.getElementById('total-integration').textContent = '+' + formatNumber(totalIntegration) + ' €';
+        document.getElementById('total-access').textContent = '+' + formatNumber(totalAccess) + ' €';
+        document.getElementById('total-usre').textContent = '+' + formatNumber(totalUsre) + ' €';
+        document.getElementById('total-platform').textContent = '-' + formatNumber(totalPlatform) + ' €';
+        document.getElementById('total-profit').textContent = (totalProfit >= 0 ? '+' : '') + formatNumber(totalProfit) + ' €';
         document.getElementById('final-cumulative').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
         
-        // Update summary cards
+        document.getElementById('integration-revenue').textContent = formatNumber(totalIntegration) + ' €';
         document.getElementById('phase1-result').textContent = (cumulative >= 0 ? '+' : '') + formatNumber(cumulative) + ' €';
         document.getElementById('phase1-result').className = 'card-value ' + (cumulative >= 0 ? 'success' : 'warning');
         
-        // Update conclusion dynamically
+        const finalUsers = Math.round(monthlyPlan[monthlyPlan.length - 1].employees * currentAdoption);
+        document.getElementById('total-users').textContent = formatNumber(finalUsers);
+        document.getElementById('steady-monthly-revenue').textContent = formatNumber((finalUsers * currentPrice) + USRE_MONTHLY_FEE) + ' €';
+        
         const conclusionBox = document.getElementById('phase1-conclusion');
         const conclusionText = document.getElementById('conclusion-text');
-        if (cumulative >= 0) {
+        if (cumulative >= 0 && lastMonthProfit >= 0) {
             conclusionBox.style.background = 'var(--success-light)';
             conclusionBox.style.borderColor = 'var(--success)';
-            conclusionText.innerHTML = 'Ligipääsude digitaliseerimine katab oma kulud ja toob <strong>' + formatNumber(cumulative) + ' €</strong> kasumit. Kiire adoptsioon võimaldab alustada Faas 2 lojaalsusprogrammiga juba Q2 2026.';
-        } else if (cumulative > -15000) {
-            conclusionBox.style.background = 'var(--success-light)';
-            conclusionBox.style.borderColor = 'var(--success)';
-            conclusionText.innerHTML = 'Ligipääsude digitaliseerimine katab ennast ära (<strong>' + formatNumber(cumulative) + ' €</strong>). Kiire adoptsioon loob infrastruktuuri, mis võimaldab käivitada Faas 2 lojaalsusprogrammi Q2 2026.';
+            conclusionText.innerHTML = 'Faas 1 on 2026 lõpuks <strong>kasumlik (+'
+                + formatNumber(cumulative)
+                + ' €)</strong>. Pärast veebruari ühekordseid kulusid jookseb mudel kuutasupõhiselt ning toetab laienemist ilma suurte lisainvesteeringuteta.';
         } else {
-            conclusionBox.style.background = 'var(--card)';
-            conclusionBox.style.borderColor = 'var(--border)';
-            conclusionText.innerHTML = 'Ligipääsude digitaliseerimine nõuab investeeringut (<strong>' + formatNumber(cumulative) + ' €</strong>). See loob infrastruktuuri Faas 2 lojaalsusprogrammile, mis hakkab tulu teenima Q2 2026.';
+            conclusionBox.style.background = 'var(--warning-light)';
+            conclusionBox.style.borderColor = 'var(--warning)';
+            conclusionText.innerHTML = 'Faas 1 vajab veel optimeerimist. Tulem parandamiseks tuleb kasvatada adoptsiooni ja hoida onboardingu tempo stabiilsena.';
         }
-        
-        const lastMonth = monthlyPlan[monthlyPlan.length - 1];
-        const finalUsers = Math.round(lastMonth.employees * currentAdoption);
-        document.getElementById('total-users').textContent = formatNumber(finalUsers);
-        
-        // Calculate average monthly cost
-        const avgMonthlyCost = Math.round((totalSharry + totalWallet + totalConsult + totalOther) / 12);
-        document.getElementById('monthly-cost').textContent = '-' + formatNumber(avgMonthlyCost) + ' €';
     }
     
     // Price buttons
