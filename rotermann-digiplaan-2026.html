@@ -822,17 +822,18 @@
             <div class="info-box">
                 <h3>Tuluvood (Faas 1)</h3>
                 <ul style="margin-top: 8px;">
+                    <li><strong>USRE setup-tasu:</strong> 35 000 € (ühekordne, whitelabel litsents ja seadistus)</li>
                     <li><strong>Kuutasu USRE:</strong> 4 500 € / kuu (reklaamikanal, sündmused, teavitused, haldus)</li>
                     <li><strong>Golden Gate liidestus:</strong> 17 üürnikku × 1 240 € = 21 080 € (ühekordne)</li>
                     <li><strong>Golden Gate kasutustasu:</strong> 1 000 töötajat × 2,90 € = 2 900 € / kuu</li>
                 </ul>
             </div>
             <div class="info-box" style="background: var(--card-alt);">
-                <h3>USRE investeering (Tehtud)</h3>
+                <h3>USRE investeering</h3>
                 <div style="font-size: 32px; font-weight: 700; color: var(--success); margin: 16px 0;">35 000 €</div>
                 <p style="font-size: 14px; color: var(--text-secondary);">Whitelabel litsents ja seadistus.</p>
                 <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
-                    See on ühekordne käivituskulu, mis on juba eelarvesse arvestatud.
+                    See on ühekordne tulu, mis lisandub projekti rahavoogudesse (arve esitatakse USRE-le).
                 </p>
             </div>
         </div>
@@ -857,9 +858,9 @@
         <!-- Summary cards for Phase 1 -->
         <div class="summary-cards">
             <div class="summary-card highlight">
-                <div class="card-label">Liidestuse tulu</div>
-                <div class="card-value accent" id="integration-revenue">21 080 €</div>
-                <div class="card-note">17 üürnikku x 1 240 €</div>
+                <div class="card-label">Ühekordsed tulud</div>
+                <div class="card-value accent" id="integration-revenue">56 080 €</div>
+                <div class="card-note">35k USRE + 21k Liidestus</div>
             </div>
             <div class="summary-card success">
                 <div class="card-label">Faas 1 tulemus</div>
@@ -886,7 +887,7 @@
                         <th>Kuu</th>
                         <th>Kasutajaid</th>
                         <th>Uusi üürnikke</th>
-                        <th>Liidestus</th>
+                        <th>Ühekordsed tulud</th>
                         <th>Ligipääsu tulu</th>
                         <th>USRE kuutasu</th>
                         <th>Platvormikulu</th>
@@ -1515,6 +1516,7 @@
     
     const INTEGRATION_FEE_PER_TENANT = 1240;
     const USRE_MONTHLY_FEE = 4500;
+    const USRE_SETUP_FEE = 35000;
     const FEB_SETUP_COST = 12100;
     const FEB_PLATFORM_COST = 6500;
     const PLATFORM_MONTHLY_COST = 1600;
@@ -1556,7 +1558,13 @@
         monthlyPlan.forEach((m) => {
             const activeUsers = Math.round(m.employees * currentAdoption);
             const newTenants = Math.max(m.tenants - previousTenants, 0);
-            const integrationRevenue = newTenants * INTEGRATION_FEE_PER_TENANT;
+            
+            // Ühekordsed tulud: liidestus + USRE setup (veebruaris)
+            let oneTimeRevenue = newTenants * INTEGRATION_FEE_PER_TENANT;
+            if (m.month === 'Veebruar') {
+                oneTimeRevenue += USRE_SETUP_FEE;
+            }
+            
             const accessRevenue = activeUsers * currentPrice;
             const usreRevenue = m.usreActive ? USRE_MONTHLY_FEE : 0;
             const walletCost = getWalletCost(activeUsers);
@@ -1568,14 +1576,14 @@
             const opsCost = m.usreActive ? OPS_MONTHLY_COST : 0;
             const platformCost = basePlatformCost + walletCost + oneTimeCost + opsCost;
             
-            const monthProfit = integrationRevenue + accessRevenue + usreRevenue - platformCost;
+            const monthProfit = oneTimeRevenue + accessRevenue + usreRevenue - platformCost;
             cumulative += monthProfit;
             lastMonthProfit = monthProfit;
             previousTenants = m.tenants;
             
             totalUsers += activeUsers;
             totalNewTenants += newTenants;
-            totalIntegration += integrationRevenue;
+            totalIntegration += oneTimeRevenue;
             totalAccess += accessRevenue;
             totalUsre += usreRevenue;
             totalPlatform += platformCost;
@@ -1589,7 +1597,7 @@
                     <td>${m.month}${m.note ? ' <span style="font-size: 11px; color: var(--muted);">(' + m.note + ')</span>' : ''}</td>
                     <td>${activeUsers > 0 ? formatNumber(activeUsers) : '-'}</td>
                     <td>${newTenants > 0 ? formatNumber(newTenants) : '-'}</td>
-                    <td class="positive">${integrationRevenue > 0 ? '+' + formatNumber(integrationRevenue) + ' €' : '-'}</td>
+                    <td class="positive">${oneTimeRevenue > 0 ? '+' + formatNumber(oneTimeRevenue) + ' €' : '-'}</td>
                     <td class="positive">${accessRevenue > 0 ? '+' + formatNumber(accessRevenue) + ' €' : '-'}</td>
                     <td class="positive">${usreRevenue > 0 ? '+' + formatNumber(usreRevenue) + ' €' : '-'}</td>
                     <td class="negative">${platformCost > 0 ? '-' + formatNumber(platformCost) + ' €' : '-'}</td>
