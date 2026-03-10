@@ -1,5 +1,9 @@
 # The List Services - GitHub Pages Configuration
 # GitHub Pages automatically handles HTTPS and index.html serving
 
+# Rotermann infra esitlus
+/rotermann-infra  /rotermann-infra/index.html  200
+/rotermann-infra/  /rotermann-infra/index.html  200
+
 # All requests go to index.html (SPA-like behavior)
 /* /index.html 200

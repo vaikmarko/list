@@ -1,13 +1,14 @@
 # Äriplaanid ja konfidentsiaalne info
 THE-LIST-*.md
 THE-LIST-*.html
-*.md
-*.html
+the-list-*.md
+the-list-*.html
+VESTLUSE-*.md
+OLD *.html
 
 # Django projekti failid
 rotermann-access-platform/
 rotermann-meeting-processor/
-the-list-services/
 
 # Node.js
 node_modules/
@@ -46,5 +47,15 @@ Thumbs.db
 # Logs
 *.log
 
-# Ainult index.html on lubatud
+# Ainult vajalikud avalikud failid on lubatud
 !index.html
+!404.html
+!CNAME
+!_redirects
+!rotermann-infra/
+
+# Django kood on avalikus repos
+!manage.py
+!the_list_platform/
+!access_control/
+!app/
