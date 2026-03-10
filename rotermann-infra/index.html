@@ -9,16 +9,16 @@
         :root {
             --bg-dark: #ffffff;
             --bg-darker: #f8f8f8;
-            --accent: #1e3a5f;
-            --accent-light: #2c5282;
+            --accent: #c0392b;
+            --accent-light: #e74c3c;
             --success: #16803c;
             --danger: #dc2626;
             --warning: #b45309;
             --blue: #2563eb;
-            --text: #1a1a1a;
-            --text-muted: rgba(0,0,0,0.55);
-            --card-bg: rgba(0,0,0,0.02);
-            --border: rgba(0,0,0,0.1);
+            --text: #222222;
+            --text-muted: rgba(0,0,0,0.5);
+            --card-bg: #fafafa;
+            --border: #e5e5e5;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -220,7 +220,7 @@
 
         .card:hover {
             background: rgba(0,0,0,0.03);
-            border-color: rgba(30, 58, 95, 0.3);
+            border-color: rgba(192, 57, 43, 0.3);
         }
 
         .card-icon { font-size: 48px; margin-bottom: 20px; }
@@ -245,7 +245,7 @@
         .stat-value {
             font-family: 'DM Serif Display', Georgia, serif;
             font-size: clamp(36px, 5vw, 56px);
-            color: var(--accent);
+            color: var(--text);
             line-height: 1;
             margin-bottom: 8px;
         }
@@ -295,7 +295,7 @@
             letter-spacing: 0.05em;
             color: var(--accent);
             padding-top: 24px;
-            border-bottom: 1px solid rgba(30, 58, 95, 0.25);
+            border-bottom: 1px solid rgba(192, 57, 43, 0.25);
             background: transparent;
         }
 
@@ -308,10 +308,10 @@
         .inv-table tr.grand-total td {
             font-weight: 700;
             font-size: 18px;
-            color: var(--accent);
+            color: var(--text);
             border-bottom: none;
             padding-top: 20px;
-            background: rgba(30, 58, 95, 0.08);
+            background: #f0f0f0;
             border-radius: 0;
         }
 
@@ -333,13 +333,13 @@
         }
 
         .tag-usre { background: rgba(37, 99, 235, 0.1); color: var(--blue); }
-        .tag-list { background: rgba(30, 58, 95, 0.1); color: var(--accent); }
+        .tag-list { background: rgba(192, 57, 43, 0.1); color: var(--accent); }
         .tag-shared { background: rgba(22, 128, 60, 0.1); color: var(--success); }
 
         /* Highlight box */
         .highlight-box {
-            background: rgba(30, 58, 95, 0.04);
-            border: 1px solid rgba(30, 58, 95, 0.2);
+            background: rgba(192, 57, 43, 0.04);
+            border: 1px solid rgba(192, 57, 43, 0.2);
             border-radius: 20px;
             padding: 32px;
             margin-top: 32px;
@@ -374,7 +374,7 @@
         }
 
         .flow-box.blue { border-color: rgba(37, 99, 235, 0.25); background: rgba(37, 99, 235, 0.04); }
-        .flow-box.gold { border-color: rgba(30, 58, 95, 0.25); background: rgba(30, 58, 95, 0.04); }
+        .flow-box.gold { border-color: rgba(192, 57, 43, 0.25); background: rgba(192, 57, 43, 0.04); }
         .flow-box.green { border-color: rgba(22, 128, 60, 0.25); background: rgba(22, 128, 60, 0.04); }
 
         .flow-box .icon { font-size: 36px; margin-bottom: 12px; }
@@ -470,7 +470,7 @@
         }
 
         .bar-fill.blue { background: linear-gradient(90deg, rgba(37, 99, 235, 0.5), rgba(37, 99, 235, 0.2)); }
-        .bar-fill.gold { background: linear-gradient(90deg, rgba(30, 58, 95, 0.5), rgba(30, 58, 95, 0.2)); }
+        .bar-fill.gold { background: linear-gradient(90deg, rgba(192, 57, 43, 0.5), rgba(192, 57, 43, 0.2)); }
 
         .bar-value {
             font-size: 15px;
@@ -667,7 +667,7 @@
         <p>The Listi investeering tarkvarasse, integratsioonidesse ja mobiilsete võtmete infrastruktuuri.</p>
 
         <div class="monthly-grid">
-            <div class="monthly-card" style="border-color: rgba(30, 58, 95, 0.2);">
+            <div class="monthly-card" style="border-color: rgba(192, 57, 43, 0.2);">
                 <h4><span style="font-size: 24px;">🔧</span> Ühekordne setup</h4>
                 <div class="monthly-item">
                     <span>Sharry platvormi käivitamine<br><span style="font-size: 12px; color: var(--text-muted);">Platform Launch Assistance</span></span>
@@ -771,77 +771,77 @@
                         <td>12 606</td>
                         <td>17</td>
                         <td>1 069</td>
-                        <td style="color: var(--accent);">1 604</td>
+                        <td>1 604</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 6 &ndash; Ajamaja</td>
                         <td>8 568</td>
                         <td>10</td>
                         <td>726</td>
-                        <td style="color: var(--accent);">1 089</td>
+                        <td>1 089</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 5, 10, 12 &ndash; Värvilised</td>
                         <td>5 304</td>
                         <td>26</td>
                         <td>450</td>
-                        <td style="color: var(--accent);">675</td>
+                        <td>675</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 8 &ndash; Jahuladu</td>
                         <td>5 159</td>
                         <td>10</td>
                         <td>437</td>
-                        <td style="color: var(--accent);">656</td>
+                        <td>656</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 14, 6a, 16</td>
                         <td>4 870</td>
                         <td>18</td>
                         <td>413</td>
-                        <td style="color: var(--accent);">620</td>
+                        <td>620</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 2/4 &ndash; Elevaatorihoone</td>
                         <td>3 822</td>
                         <td>21</td>
                         <td>324</td>
-                        <td style="color: var(--accent);">486</td>
+                        <td>486</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 18</td>
                         <td>2 141</td>
                         <td>14</td>
                         <td>181</td>
-                        <td style="color: var(--accent);">272</td>
+                        <td>272</td>
                     </tr>
                     <tr>
                         <td>Roseni 7 &ndash; Laudsepatöökoda</td>
                         <td>1 624</td>
                         <td>16</td>
                         <td>138</td>
-                        <td style="color: var(--accent);">207</td>
+                        <td>207</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 12 &ndash; Kruubiveski</td>
                         <td>1 556</td>
                         <td>2</td>
                         <td>132</td>
-                        <td style="color: var(--accent);">198</td>
+                        <td>198</td>
                     </tr>
                     <tr>
                         <td>Roseni 8 &ndash; Prooviveski</td>
                         <td>969</td>
                         <td>2</td>
                         <td>82</td>
-                        <td style="color: var(--accent);">123</td>
+                        <td>123</td>
                     </tr>
                     <tr>
                         <td>Rotermanni 10</td>
                         <td>568</td>
                         <td>2</td>
                         <td>48</td>
-                        <td style="color: var(--accent);">72</td>
+                        <td>72</td>
                     </tr>
                     <tr class="grand-total">
                         <td><strong>KOKKU</strong></td>
@@ -868,7 +868,7 @@
         <p>The List Services on USRE tütarettevõte, kes ehitab ja opereerib Rotermanni digitaalset platvormi. USRE maksab The Listile teenustasu, mille eest saab täisfunktsionaalsusega mobiiliäpi kogu kvartalile.</p>
 
         <div class="monthly-grid">
-            <div class="monthly-card" style="border-color: rgba(30, 58, 95, 0.2);">
+            <div class="monthly-card" style="border-color: rgba(192, 57, 43, 0.2);">
                 <h4><span style="font-size: 24px;">🔧</span> USRE maksab The Listile &ndash; setup</h4>
                 <div class="monthly-item">
                     <span>Platvormi käivitamine<br><span style="font-size: 12px; color: var(--text-muted);">Sharry integratsioonid, Wallet, branding, koolitused</span></span>
@@ -926,7 +926,7 @@
                 <div class="bar-row">
                     <div class="bar-label"><span class="tag tag-list">The List</span> IT-platvorm</div>
                     <div class="bar-track"><div class="bar-fill gold" style="width: 32%;"></div></div>
-                    <div class="bar-value" style="color: var(--accent);">~36 500 €</div>
+                    <div class="bar-value">~36 500 €</div>
                 </div>
             </div>
 
@@ -940,7 +940,7 @@
                 <div class="bar-row">
                     <div class="bar-label"><span class="tag tag-list">The List</span> IT-platvorm</div>
                     <div class="bar-track"><div class="bar-fill gold" style="width: 100%;"></div></div>
-                    <div class="bar-value" style="color: var(--accent);">~6 500 €</div>
+                    <div class="bar-value">~6 500 €</div>
                 </div>
             </div>
         </div>
@@ -952,7 +952,7 @@
                 <div class="stat-value" style="color: var(--blue); font-size: clamp(28px, 4vw, 44px);">~80 000 €</div>
                 <div class="stat-label">USRE setup</div>
             </div>
-            <div class="stat" style="border-color: rgba(30, 58, 95, 0.2);">
+            <div class="stat" style="border-color: rgba(192, 57, 43, 0.2);">
                 <div class="stat-value" style="font-size: clamp(28px, 4vw, 44px);">~36 500 €</div>
                 <div class="stat-label">The List setup</div>
             </div>
@@ -1024,7 +1024,7 @@
                     <li>Rentnike kontod + kaardistamine</li>
                 </ul>
             </div>
-            <div class="card" style="border-color: rgba(30, 58, 95, 0.25);">
+            <div class="card" style="border-color: rgba(192, 57, 43, 0.25);">
                 <h4 style="color: var(--accent); margin-bottom: 16px;">USRE maksab The Listile</h4>
                 <ul style="list-style: none; font-size: 15px; line-height: 2; color: var(--text-muted);">
                     <li>~36 500 € platvormi käivitamine</li>
