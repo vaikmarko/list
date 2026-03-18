@@ -519,9 +519,8 @@
             .stat-label { font-size: 11px; }
             .date-badge { font-size: 12px; padding: 10px 18px; margin-top: 32px; }
 
-            /* Force all inline 2/3-col grids to single column on mobile */
-            [style*="grid-template-columns: 1fr 1fr 1fr"],
-            [style*="grid-template-columns: 1fr 1fr"] {
+            /* Force all inline multi-col grids to single column on mobile */
+            [style*="grid-template-columns"] {
                 grid-template-columns: 1fr !important;
             }
         }
@@ -746,85 +745,88 @@
 
 
 <!-- SLIDE 5: Buildings & Users -->
-<div class="slide" style="padding-top: 24px; padding-bottom: 24px; justify-content: flex-start;">
+<div class="slide" style="padding-top: 32px; padding-bottom: 24px; justify-content: flex-start;">
     <div class="slide-content">
-        <h3 style="margin-bottom: 8px;">Ülevaade</h3>
-        <h2 style="margin-bottom: 8px; font-size: clamp(28px, 4vw, 48px);">Hooned, üürnikud ja <span class="accent">tuluvoog</span></h2>
+        <h3 style="margin-bottom: 6px;">Ülevaade</h3>
+        <h2 style="margin-bottom: 8px; font-size: clamp(28px, 4vw, 44px);">Hooned, üürnikud ja <span class="accent">tuluvoog</span></h2>
 
-        <div style="overflow-x: auto; max-width: 100%;">
-            <table class="inv-table" style="min-width: 600px; margin-top: 4px; font-size: 13px;">
-                <thead>
-                    <tr>
-                        <th style="padding: 6px 10px;">Hoone</th>
-                        <th style="padding: 6px 10px;">m&sup2;</th>
-                        <th style="padding: 6px 10px;">Üürnikke</th>
-                        <th style="padding: 6px 10px;">Töötajaid</th>
-                        <th style="padding: 6px 10px;">Tulu (€/kuu)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td style="padding:5px 10px">Ahtri 6 &ndash; Golden Gate</td><td style="padding:5px 10px">12 606</td><td style="padding:5px 10px">17</td><td style="padding:5px 10px">1 069</td><td style="padding:5px 10px">1 604</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 6 &ndash; Ajamaja</td><td style="padding:5px 10px">8 568</td><td style="padding:5px 10px">10</td><td style="padding:5px 10px">726</td><td style="padding:5px 10px">1 089</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 5, 10, 12 &ndash; Värvilised</td><td style="padding:5px 10px">5 304</td><td style="padding:5px 10px">26</td><td style="padding:5px 10px">450</td><td style="padding:5px 10px">675</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 8 &ndash; Jahuladu</td><td style="padding:5px 10px">5 159</td><td style="padding:5px 10px">10</td><td style="padding:5px 10px">437</td><td style="padding:5px 10px">656</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 14, 6a, 16</td><td style="padding:5px 10px">4 870</td><td style="padding:5px 10px">18</td><td style="padding:5px 10px">413</td><td style="padding:5px 10px">620</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 2/4 &ndash; Elevaatorihoone</td><td style="padding:5px 10px">3 822</td><td style="padding:5px 10px">21</td><td style="padding:5px 10px">324</td><td style="padding:5px 10px">486</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 18</td><td style="padding:5px 10px">2 141</td><td style="padding:5px 10px">14</td><td style="padding:5px 10px">181</td><td style="padding:5px 10px">272</td></tr>
-                    <tr><td style="padding:5px 10px">Roseni 7 &ndash; Laudsepatöökoda</td><td style="padding:5px 10px">1 624</td><td style="padding:5px 10px">16</td><td style="padding:5px 10px">138</td><td style="padding:5px 10px">207</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 12 &ndash; Kruubiveski</td><td style="padding:5px 10px">1 556</td><td style="padding:5px 10px">2</td><td style="padding:5px 10px">132</td><td style="padding:5px 10px">198</td></tr>
-                    <tr><td style="padding:5px 10px">Roseni 8 &ndash; Prooviveski</td><td style="padding:5px 10px">969</td><td style="padding:5px 10px">2</td><td style="padding:5px 10px">82</td><td style="padding:5px 10px">123</td></tr>
-                    <tr><td style="padding:5px 10px">Rotermanni 10</td><td style="padding:5px 10px">568</td><td style="padding:5px 10px">2</td><td style="padding:5px 10px">48</td><td style="padding:5px 10px">72</td></tr>
-                    <tr class="grand-total" style="font-size: 14px;">
-                        <td style="padding:8px 10px"><strong>KOKKU</strong></td>
-                        <td style="padding:8px 10px"><strong>47 185</strong></td>
-                        <td style="padding:8px 10px"><strong>138</strong></td>
-                        <td style="padding:8px 10px"><strong>4 000</strong></td>
-                        <td style="padding:8px 10px"><strong>6 000</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-            Tulu = töötajad &times; 1,50 €/kuu (digitaalse võtme tasu, kajastub üürnike arvetel)
-        </p>
-
-        <div class="highlight-box" style="margin-top: 12px; text-align: left; padding: 16px 24px;">
-            <h4 style="text-align: center; margin-bottom: 10px; font-size: 20px;">The Listi <span class="accent">rahavoo mudel</span></h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
-                    <div style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px;">Tulud (80% penetratsioon)</div>
-                    <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
-                        <span>USRE äpi teenustasu</span>
-                        <span class="val">6 000 €</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
-                        <span>Mobiilsed võtmed (3 200 &times; 1,50)</span>
-                        <span class="val">4 800 €</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 6px 0 0; border-top: 2px solid var(--border); font-size: 14px; font-weight: 700;">
-                        <span>Kokku</span>
-                        <span style="color: var(--success);">10 800 €</span>
-                    </div>
+        <div style="display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start;">
+            <!-- Left: Table -->
+            <div>
+                <div style="overflow-x: auto; max-width: 100%;">
+                    <table class="inv-table" style="min-width: 500px; margin-top: 0; font-size: 12px;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 5px 8px;">Hoone</th>
+                                <th style="padding: 5px 8px;">m&sup2;</th>
+                                <th style="padding: 5px 8px;">Üürnikke</th>
+                                <th style="padding: 5px 8px;">Töötajaid</th>
+                                <th style="padding: 5px 8px;">Tulu €/kuu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding:4px 8px">Ahtri 6 &ndash; Golden Gate</td><td style="padding:4px 8px">12 606</td><td style="padding:4px 8px">17</td><td style="padding:4px 8px">1 069</td><td style="padding:4px 8px">1 604</td></tr>
+                            <tr><td style="padding:4px 8px">Rotermanni 6 &ndash; Ajamaja</td><td style="padding:4px 8px">8 568</td><td style="padding:4px 8px">10</td><td style="padding:4px 8px">726</td><td style="padding:4px 8px">1 089</td></tr>
+                            <tr><td style="padding:4px 8px">Rot. 5, 10, 12 &ndash; Värvilised</td><td style="padding:4px 8px">5 304</td><td style="padding:4px 8px">26</td><td style="padding:4px 8px">450</td><td style="padding:4px 8px">675</td></tr>
+                            <tr><td style="padding:4px 8px">Rotermanni 8 &ndash; Jahuladu</td><td style="padding:4px 8px">5 159</td><td style="padding:4px 8px">10</td><td style="padding:4px 8px">437</td><td style="padding:4px 8px">656</td></tr>
+                            <tr><td style="padding:4px 8px">Rotermanni 14, 6a, 16</td><td style="padding:4px 8px">4 870</td><td style="padding:4px 8px">18</td><td style="padding:4px 8px">413</td><td style="padding:4px 8px">620</td></tr>
+                            <tr><td style="padding:4px 8px">Rot. 2/4 &ndash; Elevaatorihoone</td><td style="padding:4px 8px">3 822</td><td style="padding:4px 8px">21</td><td style="padding:4px 8px">324</td><td style="padding:4px 8px">486</td></tr>
+                            <tr><td style="padding:4px 8px">Rotermanni 18</td><td style="padding:4px 8px">2 141</td><td style="padding:4px 8px">14</td><td style="padding:4px 8px">181</td><td style="padding:4px 8px">272</td></tr>
+                            <tr><td style="padding:4px 8px">Roseni 7 &ndash; Laudsepatöökoda</td><td style="padding:4px 8px">1 624</td><td style="padding:4px 8px">16</td><td style="padding:4px 8px">138</td><td style="padding:4px 8px">207</td></tr>
+                            <tr><td style="padding:4px 8px">Rot. 12 &ndash; Kruubiveski</td><td style="padding:4px 8px">1 556</td><td style="padding:4px 8px">2</td><td style="padding:4px 8px">132</td><td style="padding:4px 8px">198</td></tr>
+                            <tr><td style="padding:4px 8px">Roseni 8 &ndash; Prooviveski</td><td style="padding:4px 8px">969</td><td style="padding:4px 8px">2</td><td style="padding:4px 8px">82</td><td style="padding:4px 8px">123</td></tr>
+                            <tr><td style="padding:4px 8px">Rotermanni 10</td><td style="padding:4px 8px">568</td><td style="padding:4px 8px">2</td><td style="padding:4px 8px">48</td><td style="padding:4px 8px">72</td></tr>
+                            <tr class="grand-total" style="font-size: 13px;">
+                                <td style="padding:6px 8px"><strong>KOKKU</strong></td>
+                                <td style="padding:6px 8px"><strong>47 185</strong></td>
+                                <td style="padding:6px 8px"><strong>138</strong></td>
+                                <td style="padding:6px 8px"><strong>4 000</strong></td>
+                                <td style="padding:6px 8px"><strong>6 000</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div>
-                    <div style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px;">Kulud</div>
-                    <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
-                        <span>Juhtimine ja opereerimine</span>
-                        <span class="val">6 500 €</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
-                        <span>Tarkvaraplatvorm + litsentsid</span>
-                        <span class="val">2 500 €</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 6px 0 0; border-top: 2px solid var(--border); font-size: 14px; font-weight: 700;">
-                        <span>Kokku</span>
-                        <span>~9 000 €</span>
-                    </div>
-                </div>
+                <p style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">
+                    Tulu = töötajad &times; 1,50 €/kuu (digitaalse võtme tasu, kajastub üürnike arvetel)
+                </p>
             </div>
-            <div style="text-align: center; margin-top: 10px; padding-top: 10px; border-top: 2px solid rgba(22, 128, 60, 0.2);">
-                <span style="font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; color: var(--success);">+1 800 €/kuu</span>
-                <span style="font-size: 12px; color: var(--text-muted); margin-left: 10px;">Break-even ~75% (~3 000 kasutajat)</span>
+
+            <!-- Right: Cash flow model -->
+            <div class="highlight-box" style="text-align: left; padding: 20px; margin-top: 0;">
+                <h4 style="text-align: center; margin-bottom: 12px; font-size: 18px;">The Listi <span class="accent">rahavoo mudel</span></h4>
+
+                <div style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px;">Tulud (80% penetratsioon)</div>
+                <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+                    <span>USRE teenustasu</span>
+                    <span class="val">6 000 €</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+                    <span>Mobiilsed võtmed</span>
+                    <span class="val">4 800 €</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 2px solid var(--border); font-size: 13px; font-weight: 700;">
+                    <span>Tulud kokku</span>
+                    <span style="color: var(--success);">10 800 €</span>
+                </div>
+
+                <div style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin: 12px 0 6px;">Kulud</div>
+                <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+                    <span>Juhtimine</span>
+                    <span class="val">6 500 €</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+                    <span>Platvorm + litsentsid</span>
+                    <span class="val">2 500 €</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 2px solid var(--border); font-size: 13px; font-weight: 700;">
+                    <span>Kulud kokku</span>
+                    <span>~9 000 €</span>
+                </div>
+
+                <div style="text-align: center; margin-top: 16px; padding-top: 14px; border-top: 2px solid rgba(22, 128, 60, 0.2);">
+                    <div style="font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; color: var(--success);">+1 800 €/kuu</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Break-even ~75% (~3 000 kasutajat)</div>
+                </div>
             </div>
         </div>
     </div>
