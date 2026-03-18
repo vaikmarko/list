@@ -24,7 +24,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
-            scroll-snap-type: y proximity;
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
 
@@ -75,7 +75,7 @@
 
         .scroll-hint {
             position: fixed;
-            bottom: 32px
+            bottom: 32px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -118,6 +118,46 @@
 
         .slide-counter .current { color: var(--accent); font-weight: 600; }
 
+        .slide-controls {
+            position: fixed;
+            left: 32px;
+            bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .slide-control-btn {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.92);
+            color: var(--text);
+            border-radius: 999px;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-control-btn:hover:not(:disabled) {
+            border-color: rgba(192, 57, 43, 0.35);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .slide-control-btn:disabled {
+            opacity: 0.45;
+            cursor: default;
+            transform: none;
+        }
+
+        .slide-control-btn.primary {
+            border-color: rgba(192, 57, 43, 0.22);
+        }
+
         .slide::before {
             content: '';
             position: absolute;
@@ -129,7 +169,7 @@
         .slide-content {
             position: relative;
             z-index: 1;
-            max-width: 1200px;
+            max-width: 1320px;
             margin: 0 auto;
             width: 100%;
         }
@@ -334,7 +374,18 @@
 
         .tag-usre { background: rgba(37, 99, 235, 0.1); color: var(--blue); }
         .tag-list { background: rgba(192, 57, 43, 0.1); color: var(--accent); }
-        .tag-shared { background: rgba(22, 128, 60, 0.1); color: var(--success); }
+        .inv-table .tag-shared { background: rgba(22, 128, 60, 0.1); color: var(--success); }
+
+        .compact-table th, .compact-table td {
+            padding: 4px 8px;
+        }
+        .compact-table {
+            font-size: 13px;
+        }
+        .compact-table tr.grand-total td {
+            padding-top: 8px;
+            font-size: 15px;
+        }
 
         /* Highlight box */
         .highlight-box {
@@ -478,9 +529,103 @@
             font-variant-numeric: tabular-nums;
         }
 
+        .slide-overview {
+            padding-top: 48px;
+            padding-bottom: 40px;
+            justify-content: center;
+        }
+
+        .slide-overview .slide-content {
+            max-width: 1360px;
+        }
+
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin: 24px 0 28px;
+        }
+
+        .overview-stat {
+            text-align: left;
+            padding: 22px 24px;
+        }
+
+        .overview-stat .stat-value {
+            font-size: clamp(28px, 3vw, 42px);
+            margin-bottom: 10px;
+        }
+
+        .overview-stat .stat-label {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .overview-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(340px, 420px);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .overview-table-wrap {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 18px 20px 14px;
+        }
+
+        .overview-table-wrap .inv-table {
+            margin-top: 0;
+        }
+
+        .overview-table {
+            font-size: 14px;
+        }
+
+        .overview-table th,
+        .overview-table td {
+            padding: 8px 10px;
+        }
+
+        .overview-table th:first-child,
+        .overview-table td:first-child {
+            width: 42%;
+        }
+
+        .overview-table td {
+            white-space: nowrap;
+        }
+
+        .overview-table td:first-child {
+            white-space: normal;
+        }
+
+        .overview-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        .overview-cashflow {
+            text-align: left;
+            padding: 24px 26px;
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .overview-cashflow h4 {
+            text-align: left;
+            margin-bottom: 16px;
+            font-size: 26px;
+        }
+
         /* Responsive */
         @media (max-width: 1400px) {
             .slide { padding: 48px 60px; }
+            .overview-layout { grid-template-columns: minmax(0, 1.45fr) 360px; }
         }
 
         @media (max-width: 900px) {
@@ -496,6 +641,8 @@
             .slide-nav { right: 12px; }
             .slide-nav-dot { width: 6px; height: 6px; }
             .slide-counter { right: 12px; bottom: 12px; font-size: 12px; }
+            .slide-controls { left: 12px; bottom: 12px; gap: 8px; }
+            .slide-control-btn { padding: 10px 14px; font-size: 12px; }
             h1 { font-size: clamp(22px, 6vw, 48px); margin-bottom: 12px; overflow-wrap: anywhere; }
             .slide-title h1 { font-size: clamp(22px, 6.5vw, 48px); overflow-wrap: anywhere; }
             h2 { font-size: clamp(24px, 5vw, 48px); margin-bottom: 16px; }
@@ -523,11 +670,55 @@
                 grid-template-columns: 1fr !important;
                 gap: 16px !important;
             }
+
+            .slide-overview {
+                justify-content: flex-start;
+                padding-top: 40px;
+                padding-bottom: 24px;
+            }
+
+            .overview-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            .overview-stat {
+                padding: 18px 16px;
+            }
+
+            .overview-layout {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .overview-table-wrap {
+                padding: 14px 14px 12px;
+                overflow-x: auto;
+            }
+
+            .overview-table {
+                min-width: 640px;
+                font-size: 12px;
+            }
+
+            .overview-table th,
+            .overview-table td {
+                padding: 7px 8px;
+            }
+
+            .overview-cashflow {
+                padding: 20px 16px;
+            }
+
+            .overview-cashflow h4 {
+                font-size: 22px;
+            }
         }
 
         @media print {
             .slide { page-break-after: always; min-height: auto; padding: 40px; }
-            .slide-nav, .scroll-hint, .slide-counter { display: none; }
+            .slide-nav, .scroll-hint, .slide-counter, .slide-controls { display: none; }
         }
     </style>
 </head>
@@ -542,6 +733,11 @@
 
 <div class="slide-counter" id="slideCounter">
     <span class="current">1</span> / <span class="total">10</span>
+</div>
+
+<div class="slide-controls">
+    <button class="slide-control-btn" id="prevSlide" type="button" aria-label="Eelmine slaid">← Eelmine</button>
+    <button class="slide-control-btn primary" id="nextSlide" type="button" aria-label="Järgmine slaid">Järgmine →</button>
 </div>
 
 
@@ -607,7 +803,7 @@
         <p>Kaardilugejate vahetus HID Signo 20-le, Integriti kontrollerid, rentnike kontode seadistamine ja kaardistamine.</p>
 
         <div style="overflow-x: auto; max-width: 100%;">
-            <table class="inv-table" style="min-width: 700px;">
+            <table class="inv-table compact-table" style="min-width: 700px;">
                 <thead>
                     <tr>
                         <th>Pakkumine</th>
@@ -745,16 +941,34 @@
 
 
 <!-- SLIDE 5: Buildings & Users -->
-<div class="slide" style="padding-top: 48px; padding-bottom: 32px; justify-content: flex-start;">
+<div class="slide slide-overview">
     <div class="slide-content">
         <h3>Ülevaade</h3>
         <h2>Hooned, üürnikud ja <span class="accent">tuluvoog</span></h2>
 
-        <div class="grid-side-by-side" style="display: grid; grid-template-columns: 1fr 440px; gap: 48px; align-items: start;">
-            <!-- Left: Table -->
-            <div>
+        <div class="overview-stats">
+            <div class="stat overview-stat">
+                <div class="stat-value">47 185</div>
+                <div class="stat-label">m&sup2; kogupind</div>
+            </div>
+            <div class="stat overview-stat">
+                <div class="stat-value">138</div>
+                <div class="stat-label">üürnikku</div>
+            </div>
+            <div class="stat overview-stat">
+                <div class="stat-value">4 000</div>
+                <div class="stat-label">töötajat</div>
+            </div>
+            <div class="stat overview-stat">
+                <div class="stat-value">6 000 €</div>
+                <div class="stat-label">potentsiaalne tulu kuus<br>digitaalse võtme tasust</div>
+            </div>
+        </div>
+
+        <div class="overview-layout">
+            <div class="overview-table-wrap">
                 <div style="overflow-x: auto; max-width: 100%;">
-                    <table class="inv-table" style="margin-top: 0;">
+                    <table class="inv-table compact-table overview-table">
                         <thead>
                             <tr>
                                 <th>Hoone</th>
@@ -776,56 +990,48 @@
                             <tr><td>Rotermanni 12 &ndash; Kruubiveski</td><td>1 556</td><td>2</td><td>132</td><td>198</td></tr>
                             <tr><td>Roseni 8 &ndash; Prooviveski</td><td>969</td><td>2</td><td>82</td><td>123</td></tr>
                             <tr><td>Rotermanni 10</td><td>568</td><td>2</td><td>48</td><td>72</td></tr>
-                            <tr class="grand-total">
-                                <td><strong>KOKKU</strong></td>
-                                <td><strong>47 185</strong></td>
-                                <td><strong>138</strong></td>
-                                <td><strong>4 000</strong></td>
-                                <td><strong>6 000</strong></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+                <p class="overview-note">
                     Tulu = töötajad &times; 1,50 €/kuu (digitaalse võtme tasu, kajastub üürnike arvetel)
                 </p>
             </div>
 
-            <!-- Right: Cash flow model -->
-            <div class="highlight-box" style="text-align: left; padding: 28px 32px; margin-top: 0;">
-                <h4 style="text-align: center; margin-bottom: 16px;">The Listi <span class="accent">rahavoo mudel</span></h4>
+            <div class="highlight-box overview-cashflow">
+                <h4>The Listi <span class="accent">rahavoo mudel</span></h4>
 
-                <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px;">Tulud (80% penetratsioon)</div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 15px;">
+                <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px;">Tulud (80% penetratsioon)</div>
+                <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px;">
                     <span>USRE teenustasu</span>
                     <span class="val">6 000 €</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 15px;">
+                <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px;">
                     <span>Mobiilsed võtmed (3 200 &times; 1,50)</span>
                     <span class="val">4 800 €</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 10px 0 0; border-top: 2px solid var(--border); font-size: 16px; font-weight: 700;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0 0; border-top: 2px solid var(--border); font-size: 15px; font-weight: 700;">
                     <span>Tulud kokku</span>
                     <span style="color: var(--success);">10 800 €</span>
                 </div>
 
-                <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin: 20px 0 8px;">Kulud</div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 15px;">
+                <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin: 16px 0 6px;">Kulud</div>
+                <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px;">
                     <span>Juhtimine ja opereerimine</span>
                     <span class="val">6 500 €</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 15px;">
+                <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px;">
                     <span>Platvorm + litsentsid</span>
                     <span class="val">2 500 €</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 10px 0 0; border-top: 2px solid var(--border); font-size: 16px; font-weight: 700;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0 0; border-top: 2px solid var(--border); font-size: 15px; font-weight: 700;">
                     <span>Kulud kokku</span>
                     <span>~9 000 €</span>
                 </div>
 
-                <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 2px solid rgba(22, 128, 60, 0.2);">
-                    <div style="font-family: 'DM Serif Display', Georgia, serif; font-size: 36px; color: var(--success);">+1 800 €/kuu</div>
-                    <div style="font-size: 14px; color: var(--text-muted); margin-top: 6px;">Break-even ~75% penetratsioonil (~3 000 kasutajat)</div>
+                <div style="text-align: center; margin-top: 18px; padding-top: 18px; border-top: 2px solid rgba(22, 128, 60, 0.2);">
+                    <div style="font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; color: var(--success); line-height: 1;">+1 800 €/kuu</div>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Break-even ~75% penetratsioonil (~3 000 kasutajat)</div>
                 </div>
             </div>
         </div>
@@ -1111,14 +1317,36 @@
     const nav = document.getElementById('slideNav');
     const counter = document.getElementById('slideCounter');
     const scrollHint = document.getElementById('scrollHint');
+    const prevSlideButton = document.getElementById('prevSlide');
+    const nextSlideButton = document.getElementById('nextSlide');
     const totalSlides = slides.length;
 
     counter.querySelector('.total').textContent = totalSlides;
 
+    function getCurrentIndex() {
+        return parseInt(counter.querySelector('.current').textContent, 10) - 1;
+    }
+
+    let isScrolling = false;
+
+    function updateSlideControls(index) {
+        prevSlideButton.disabled = index <= 0;
+        nextSlideButton.disabled = index >= slides.length - 1;
+    }
+
+    function scrollToSlide(index) {
+        const boundedIndex = Math.max(0, Math.min(index, slides.length - 1));
+        if (boundedIndex === getCurrentIndex() || isScrolling) return;
+        isScrolling = true;
+        slides[boundedIndex].scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => { isScrolling = false; }, 800);
+    }
+
     slides.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.className = 'slide-nav-dot';
-        dot.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth' }));
+        dot.setAttribute('aria-label', `Ava slaid ${i + 1}`);
+        dot.addEventListener('click', () => scrollToSlide(i));
         nav.appendChild(dot);
     });
 
@@ -1131,30 +1359,39 @@
                 dots.forEach((d, i) => d.classList.toggle('active', i === idx));
                 counter.querySelector('.current').textContent = idx + 1;
                 scrollHint.classList.toggle('hidden', idx > 0);
+                updateSlideControls(idx);
             }
         });
     }, { threshold: 0.5 });
 
     slides.forEach(s => observer.observe(s));
 
-    let isScrolling = false;
+    updateSlideControls(0);
+
+    prevSlideButton.addEventListener('click', () => scrollToSlide(getCurrentIndex() - 1));
+    nextSlideButton.addEventListener('click', () => scrollToSlide(getCurrentIndex() + 1));
+
     document.addEventListener('keydown', (e) => {
         if (isScrolling) return;
-        const currentIndex = parseInt(counter.querySelector('.current').textContent) - 1;
+        const currentIndex = getCurrentIndex();
         let targetIndex = currentIndex;
 
-        if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
             e.preventDefault();
             targetIndex = Math.min(currentIndex + 1, slides.length - 1);
-        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
             e.preventDefault();
             targetIndex = Math.max(currentIndex - 1, 0);
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            targetIndex = 0;
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            targetIndex = slides.length - 1;
         }
 
         if (targetIndex !== currentIndex) {
-            isScrolling = true;
-            slides[targetIndex].scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => { isScrolling = false; }, 800);
+            scrollToSlide(targetIndex);
         }
     });
 </script>
