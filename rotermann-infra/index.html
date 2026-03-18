@@ -491,23 +491,39 @@
             .flow { flex-direction: column; }
             .flow-arrow { transform: rotate(90deg); }
             .flow-box { max-width: 100%; }
-            .bar-row { grid-template-columns: 120px 1fr 80px; gap: 8px; }
-            .bar-label { font-size: 12px; }
+            .bar-row { grid-template-columns: 100px 1fr 80px; gap: 6px; }
+            .bar-label { font-size: 11px; }
             .slide-nav { right: 12px; }
             .slide-nav-dot { width: 6px; height: 6px; }
             .slide-counter { right: 12px; bottom: 12px; font-size: 12px; }
-            h1 { font-size: clamp(32px, 7vw, 64px); margin-bottom: 16px; }
-            h2 { font-size: clamp(28px, 5vw, 48px); margin-bottom: 24px; }
-            p, .lead { font-size: clamp(16px, 3vw, 20px); }
-            .card { padding: 24px 20px; }
-            .card-icon { font-size: 36px; }
-            .card h4 { font-size: 16px; }
-            .card p { font-size: 14px; }
-            .inv-table { font-size: 13px; }
-            .inv-table th, .inv-table td { padding: 10px 8px; }
-            .highlight-box { padding: 24px; }
-            .highlight-box h4 { font-size: 22px; }
-            .stat-value { font-size: clamp(32px, 7vw, 48px); }
+            h1 { font-size: clamp(28px, 7vw, 64px); margin-bottom: 16px; }
+            .slide-title h1 { font-size: clamp(28px, 8vw, 64px); }
+            h2 { font-size: clamp(24px, 5vw, 48px); margin-bottom: 16px; }
+            h3 { font-size: 12px; margin-bottom: 10px; }
+            p, .lead { font-size: clamp(14px, 3vw, 20px); }
+            .subtitle { font-size: clamp(16px, 3vw, 24px); }
+            .card { padding: 20px 16px; }
+            .card-icon { font-size: 32px; margin-bottom: 12px; }
+            .card h4 { font-size: 15px; }
+            .card p { font-size: 13px; }
+            .inv-table { font-size: 12px; }
+            .inv-table th, .inv-table td { padding: 8px 6px; }
+            .inv-table tr.grand-total td { font-size: 14px; padding-top: 12px; }
+            .highlight-box { padding: 20px 16px; }
+            .highlight-box h4 { font-size: 18px; margin-bottom: 10px; }
+            .monthly-card { padding: 24px 20px; }
+            .monthly-item { font-size: 14px; padding: 8px 0; }
+            .monthly-total { font-size: 16px; }
+            .stat { padding: 20px 12px; }
+            .stat-value { font-size: clamp(24px, 6vw, 40px); }
+            .stat-label { font-size: 11px; }
+            .date-badge { font-size: 12px; padding: 10px 18px; margin-top: 32px; }
+
+            /* Force all inline 2/3-col grids to single column on mobile */
+            [style*="grid-template-columns: 1fr 1fr 1fr"],
+            [style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
         }
 
         @media print {
