@@ -519,9 +519,16 @@
             .stat-label { font-size: 11px; }
             .date-badge { font-size: 12px; padding: 10px 18px; margin-top: 32px; }
 
-            /* Force all inline multi-col grids to single column on mobile */
+            /* Force all multi-col grids to single column on mobile */
             [style*="grid-template-columns"] {
                 grid-template-columns: 1fr !important;
+            }
+            .grid-side-by-side {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+            .grid-side-by-side .inv-table {
+                min-width: auto !important;
             }
         }
 
@@ -750,7 +757,7 @@
         <h3 style="margin-bottom: 6px;">Ülevaade</h3>
         <h2 style="margin-bottom: 8px; font-size: clamp(28px, 4vw, 44px);">Hooned, üürnikud ja <span class="accent">tuluvoog</span></h2>
 
-        <div style="display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start;">
+        <div class="grid-side-by-side" style="display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start;">
             <!-- Left: Table -->
             <div>
                 <div style="overflow-x: auto; max-width: 100%;">
