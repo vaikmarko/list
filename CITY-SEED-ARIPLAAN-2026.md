@@ -549,7 +549,10 @@ Go/No-Go otsus eelduste täitmisel (~kuu 12):
 | **Kvartaleid (lõpus)** | 1 | 5 | 15 | 40 | 80 |
 | **Keskmine aktiivne kvartal** | 0.5 | 3 | 10 | 27 | 60 |
 | **Kasutajaid kokku** | 1 000 | 6 000 | 20 000 | 54 000 | 120 000 |
+| **GMV (platvormi läbikäik)** | 1.4M€ | 8.6M€ | 28.8M€ | 77.8M€ | 172.8M€ |
 | **Riike** | 1 | 1 | 3 | 5 | 8+ |
+
+**GMV arvutus:** keskm. aktiivne kvartal × 2 000 kasutajat × 120€/kuu × 12 kuud. See on kogu tehingumaht mis läbib City Seed platvormi.
 
 ### 11.3 Realistlik finantsplaan
 
@@ -576,9 +579,11 @@ Go/No-Go otsus eelduste täitmisel (~kuu 12):
 
 | Metric | A1 | A2 | A3 | A4 | A5 |
 |--------|-----|-----|-----|-----|-----|
-| **ARR** | 83K | 500K | 1 670K | 4 510K | 10 020K |
+| **GMV (platvormi läbikäik)** | 1.4M | 8.6M | 28.8M | 77.8M | 172.8M |
+| **ARR (City Seed tulu)** | 83K | 500K | 1 670K | 4 510K | 10 020K |
+| **Take rate (ARR/GMV)** | 5.9% | 5.8% | 5.8% | 5.8% | 5.8% |
 | **ARR kasv** | - | 502% | 234% | 170% | 122% |
-| **Gross margin** | 30% | 56% | 71% | 77% | 80% |
+| **Brutomarginaal** | 30% | 56% | 71% | 77% | 80% |
 | **Kasum %** | -372% | -16% | +29% | +61% | +75% |
 | **Kvartaleid** | 1 | 5 | 15 | 40 | 80 |
 
@@ -590,8 +595,10 @@ Go/No-Go otsus eelduste täitmisel (~kuu 12):
 | **Seed investeering** | 500-750K€ |
 | **Kogu investeering (aasta 1-2)** | 700K-1M€ |
 | **Break-even** | Aasta 3 |
-| **ARR aasta 3** | ~1.7M€ (Series A territory) |
-| **ARR aasta 5** | ~10M€ (Series B territory) |
+| **GMV aasta 3** | ~28.8M€ (platvormi läbikäik) |
+| **GMV aasta 5** | ~172.8M€ |
+| **ARR aasta 3** | ~1.7M€ (Series A tase) |
+| **ARR aasta 5** | ~10M€ (Series B tase) |
 | **Ettevõtte väärtus aasta 5** | **50-100M€** (10× ARR) |
 | **LTV per kvartal** | ~500K€ (3a × 167K€) |
 | **CAC per kvartal** | ~15-25K€ |
