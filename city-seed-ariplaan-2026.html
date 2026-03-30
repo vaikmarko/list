@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITY SEED - Kvartalipohine Lojaalsusplatvorm | Ariplaan 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8faf9;
+            --card: #ffffff;
+            --border: #d1d5db;
+            --accent: #059669;
+            --accent-light: #ecfdf5;
+            --accent-dark: #047857;
+            --accent-darker: #022c22;
+            --gold: #d97706;
+            --gold-light: #fffbeb;
+            --success: #059669;
+            --success-light: #ecfdf5;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #022c22 0%, #047857 50%, #059669 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+        }
+        .header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 8px;
+            position: relative;
+            letter-spacing: 8px;
+        }
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .header .tagline {
+            font-size: 1.05em;
+            opacity: 0.85;
+            position: relative;
+            font-style: italic;
+        }
+        .header .conf {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 16px;
+            position: relative;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8em;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent-dark);
+        }
+        .section-num {
+            color: var(--accent);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.6em;
+            vertical-align: super;
+            margin-right: 4px;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: var(--accent-dark);
+        }
+        .card p { margin-bottom: 8px; }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* KEY NUMBERS */
+        .key-numbers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .key-num {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .key-num .value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .key-num .label {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .key-num.gold .value { color: var(--gold); }
+        .key-num.green .value { color: var(--success); }
+        .key-num.red .value { color: var(--danger); }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.92em;
+        }
+        th {
+            background: var(--accent-light);
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent-dark);
+            white-space: nowrap;
+        }
+        td {
+            padding: 9px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:hover { background: #f0fdf4; }
+        .right { text-align: right; }
+        .bold { font-weight: 700; }
+        .accent { color: var(--accent); font-weight: 700; }
+        .green { color: var(--success); font-weight: 700; }
+        .red { color: var(--danger); font-weight: 700; }
+        .gold { color: var(--gold); font-weight: 700; }
+        tr.total-row td { border-top: 2px solid var(--text); font-weight: 700; background: #f8fafc; }
+        tr.highlight-row td { background: var(--accent-light); }
+        tr.success-row td { background: var(--success-light); }
+        tr.danger-row td { background: var(--danger-light); }
+        tr.gold-row td { background: var(--gold-light); }
+
+        /* FLOW */
+        .flow-box {
+            background: #022c22;
+            color: white;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 20px;
+            font-family: 'DM Sans', monospace;
+            font-size: 0.9em;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+        .flow-box .flow-accent { color: #6ee7b7; font-weight: 700; }
+        .flow-box .flow-green { color: #6ee7b7; font-weight: 700; }
+        .flow-box .flow-gold { color: #fcd34d; font-weight: 700; }
+
+        /* HIGHLIGHT BOXES */
+        .highlight-box {
+            padding: 20px 24px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+        .highlight-box.green { background: var(--accent-light); border-left: 4px solid var(--accent); }
+        .highlight-box.gold { background: var(--gold-light); border-left: 4px solid var(--gold); }
+        .highlight-box.red { background: var(--danger-light); border-left: 4px solid var(--danger); }
+        .highlight-box strong { display: block; margin-bottom: 6px; }
+
+        /* FLOW DIAGRAM CSS */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+        .flow-node {
+            background: var(--accent-dark);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            min-width: 140px;
+        }
+        .flow-node.gold-node {
+            background: linear-gradient(135deg, #92400e, #d97706);
+        }
+        .flow-node .flow-emoji {
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .flow-arrow {
+            font-size: 1.6em;
+            color: var(--accent);
+            padding: 0 12px;
+            font-weight: 700;
+        }
+
+        /* PHANTOM EQUITY VISUAL */
+        .phantom-visual {
+            background: linear-gradient(135deg, #022c22 0%, #047857 50%, #059669 100%);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            text-align: center;
+            color: white;
+        }
+        .phantom-visual .phantom-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3em;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+        .phantom-stages {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+        .phantom-stage {
+            text-align: center;
+            padding: 16px;
+        }
+        .phantom-stage .amount {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #fcd34d;
+            line-height: 1.2;
+        }
+        .phantom-stage .period {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+        .phantom-arrow {
+            font-size: 2em;
+            color: rgba(255,255,255,0.5);
+            padding: 0 8px;
+        }
+
+        /* ONBOARDING STEPS */
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.9em;
+            flex: 1;
+            min-width: 200px;
+        }
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        /* REVENUE FLOW */
+        .revenue-flow {
+            background: #022c22;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 20px 0;
+            color: white;
+        }
+        .revenue-flow-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #6ee7b7;
+        }
+        .revenue-chain {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin: 12px 0;
+        }
+        .rev-box {
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .rev-box.start { background: rgba(255,255,255,0.15); }
+        .rev-box.client { background: rgba(110,231,183,0.2); color: #6ee7b7; }
+        .rev-box.platform { background: rgba(252,211,77,0.2); color: #fcd34d; }
+        .rev-box.breakage { background: rgba(252,211,77,0.15); color: #fcd34d; }
+        .rev-arrow { color: rgba(255,255,255,0.4); font-size: 1.2em; }
+
+        /* INVESTOR RETURN HERO */
+        .investor-hero {
+            background: linear-gradient(135deg, #78350f 0%, #92400e 40%, #d97706 100%);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin: 24px 0;
+        }
+        .investor-hero .hero-label {
+            font-size: 1em;
+            opacity: 0.85;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .investor-hero .hero-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4em;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .investor-hero .hero-sub {
+            font-size: 1em;
+            opacity: 0.8;
+        }
+        .investor-hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .investor-hero-stat {
+            background: rgba(255,255,255,0.12);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .investor-hero-stat .stat-val {
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+        .investor-hero-stat .stat-label {
+            font-size: 0.8em;
+            opacity: 0.75;
+        }
+
+        /* PHASE CARDS */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .phase-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .phase-header {
+            padding: 12px 16px;
+            color: white;
+            font-weight: 700;
+            font-size: 1em;
+        }
+        .phase-body {
+            padding: 14px 16px;
+            background: var(--card);
+            font-size: 0.88em;
+        }
+        .phase-body p { margin-bottom: 4px; }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--gold));
+            border-radius: 3px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--accent-light);
+        }
+        .timeline-item h4 {
+            color: var(--accent-dark);
+            margin-bottom: 6px;
+        }
+
+        /* LISTS */
+        ul { list-style: none; padding: 0; }
+        ul li { padding: 4px 0 4px 20px; position: relative; }
+        ul li::before { content: "\2192"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+        ol { padding-left: 20px; }
+        ol li { padding: 4px 0; }
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .badge.green { background: var(--accent-light); color: var(--accent-dark); }
+        .badge.gold { background: var(--gold-light); color: var(--gold); }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border);
+            margin-top: 48px;
+        }
+        .footer strong { color: var(--accent-dark); }
+        .footer .footer-brand {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8em;
+            color: var(--accent-dark);
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+        .footer .footer-tagline {
+            font-style: italic;
+            color: var(--accent);
+            font-size: 1.05em;
+        }
+
+        /* EFFECT CARDS */
+        .effect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .effect-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+        .effect-card .effect-emoji {
+            font-size: 1.6em;
+            margin-bottom: 6px;
+        }
+        .effect-card h4 {
+            color: var(--accent-dark);
+            font-size: 0.95em;
+            margin-bottom: 4px;
+        }
+        .effect-card p {
+            font-size: 0.82em;
+            color: var(--text-secondary);
+        }
+
+        /* NUMBERED LIST */
+        .numbered-list {
+            counter-reset: item;
+            list-style: none;
+            padding: 0;
+        }
+        .numbered-list li {
+            counter-increment: item;
+            padding: 10px 0 10px 44px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .numbered-list li::before {
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+
+        /* BIG TABLE */
+        .big-table-wrap {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .big-table-wrap table {
+            margin-bottom: 0;
+            min-width: 700px;
+        }
+
+        /* CAP TABLE TIMELINE */
+        .cap-timeline {
+            display: flex;
+            gap: 0;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .cap-stage {
+            flex: 1;
+            min-width: 200px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .cap-stage:first-child { border-radius: 12px 0 0 12px; }
+        .cap-stage:last-child { border-radius: 0 12px 12px 0; }
+        .cap-stage h4 {
+            color: var(--accent-dark);
+            margin-bottom: 4px;
+        }
+        .cap-stage .cap-amount {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .cap-stage .cap-val {
+            font-size: 0.82em;
+            color: var(--text-secondary);
+        }
+        .cap-arrow {
+            display: flex;
+            align-items: center;
+            font-size: 1.4em;
+            color: var(--accent);
+            padding: 0 4px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.4em; letter-spacing: 4px; }
+            .key-numbers { grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 20px 16px; }
+            .flow-diagram { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            .phantom-stages { flex-direction: column; }
+            .phantom-arrow { transform: rotate(90deg); }
+            .phantom-stage .amount { font-size: 1.6em; }
+            .investor-hero .hero-value { font-size: 2.8em; }
+            .cap-timeline { flex-direction: column; }
+            .cap-stage:first-child { border-radius: 12px 12px 0 0; }
+            .cap-stage:last-child { border-radius: 0 0 12px 12px; }
+            .cap-arrow { justify-content: center; transform: rotate(90deg); padding: 4px 0; }
+            .phase-grid { grid-template-columns: 1fr; }
+            .effect-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps { flex-direction: column; }
+            td, th { padding: 7px 8px; font-size: 0.85em; }
+        }
+
+        @media print {
+            body { font-size: 12px; }
+            .header { padding: 30px; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 1. HEADER -->
+    <div class="header">
+        <h1>CITY SEED</h1>
+        <div class="subtitle">Kvartalipohine Lojaalsusplatvorm</div>
+        <div class="tagline">&ldquo;Kasva koos kvartaliga.&rdquo;</div>
+        <div class="conf">Ariplaan 2026 &middot; Konfidentsiaalne</div>
+    </div>
+
+    <!-- 2. EXECUTIVE SUMMARY -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">01</span> Executive Summary</h2>
+
+        <p style="font-size:1.05em; margin-bottom:20px;"><strong>City Seed</strong> on globaalselt skaleeritav kvartalipohine lojaalsusplatvorm, mis lahendab mixed-use arenduste uhise probleemi: kuidas luua terviklik lojaalsusprogramm kvartalile, ilma et see maksaks pool miljonit eurot. City Seed jagab kulubaasi kvartalite vahel &mdash; esimene kvartal maksab platvormi kaivitamise kinni, iga jargmine kvartal on peaaegu puhas marginaal.</p>
+
+        <div class="key-numbers">
+            <div class="key-num">
+                <div class="value">200-300K&euro;</div>
+                <div class="label">Pre-seed investeering</div>
+            </div>
+            <div class="key-num gold">
+                <div class="value">~10.6M&euro;</div>
+                <div class="label">ARR aasta 5</div>
+            </div>
+            <div class="key-num green">
+                <div class="value">50-100M&euro;</div>
+                <div class="label">Vaartus aasta 5</div>
+            </div>
+            <div class="key-num">
+                <div class="value">Aasta 3</div>
+                <div class="label">Break-even</div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>&#x1f3d7; Kvartalipohine</h3>
+                <p>Uks platvorm koigile kvartali ettevottetele &mdash; Rotermann Rewards, HafenCity Rewards jne.</p>
+            </div>
+            <div class="card">
+                <h3>&#x1f4b3; Card Linking</h3>
+                <p>VISA + Mastercard automaatne tehingutuvastus. Klient maksab pangakaardiga, cashback tuleb automaatselt.</p>
+            </div>
+            <div class="card">
+                <h3>&#x1f4c8; Omanikutunne</h3>
+                <p>Iga kvartal saab osaluse City Seed&rsquo;is &mdash; mida varem liituvad, seda suurem osa.</p>
+            </div>
+            <div class="card">
+                <h3>&#x1f310; Globaalselt skaleeritav</h3>
+                <p>5000+ mixed-use arendust maailmas. Uks keskne platvorm, embeddable igale kvartalile.</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Parameeter</th><th>Vaartus</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Pre-seed investeering</td><td class="bold">200-300K&euro; (US Invest)</td></tr>
+                <tr><td>Seed (aasta 2)</td><td class="bold">500-750K&euro;</td></tr>
+                <tr><td>Break-even</td><td class="bold accent">Aasta 3</td></tr>
+                <tr><td>ARR aasta 3</td><td class="bold">~1.8M&euro;</td></tr>
+                <tr><td>ARR aasta 5</td><td class="bold accent">~10.6M&euro;</td></tr>
+                <tr><td>Ettevotte vaartus aasta 5</td><td class="bold gold">50-100M&euro;</td></tr>
+                <tr><td>Strateegiline partner</td><td class="bold">VISA (50K&euro; in-kind investeering)</td></tr>
+                <tr><td>Anchor investor</td><td class="bold">US Invest</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 3. PROBLEEM -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">02</span> Probleem</h2>
+
+        <h3 style="margin-bottom:12px;">Mixed-use kvartalid on globaalne megatrend</h3>
+        <p style="margin-bottom:16px;">Linnad ule maailma ehitavad terviklikke kvartaleid, kus uhes piirkonnas on elamine, tootamine, soomine, teenused ja meelelahutus.</p>
+
+        <table>
+            <thead>
+                <tr><th>Kvartal</th><th>Linn</th><th class="right">Ettevotteid</th><th class="right">Elanikud/tootajad</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Rotermann</td><td>Tallinn</td><td class="right">50+</td><td class="right">10 000+</td></tr>
+                <tr><td>Ulemiste City</td><td>Tallinn</td><td class="right">200+</td><td class="right">10 000+ tootajat</td></tr>
+                <tr><td>Telliskivi</td><td>Tallinn</td><td class="right">80+</td><td class="right">Tuhandeid kulastajaid paevs</td></tr>
+                <tr><td>Jatkasaari</td><td>Helsinki</td><td class="right">100+</td><td class="right">18 000 elanikku</td></tr>
+                <tr><td>HafenCity</td><td>Hamburg</td><td class="right">300+</td><td class="right">15 000 + 45 000</td></tr>
+                <tr><td>Aspern Seestadt</td><td>Wien</td><td class="right">100+</td><td class="right">25 000 planeeritud</td></tr>
+                <tr><td>Nordhavn</td><td>Kopenhaagen</td><td class="right">50+</td><td class="right">40 000 planeeritud</td></tr>
+                <tr><td>Hudson Yards</td><td>New York</td><td class="right">100+</td><td class="right">60 000+ kulastajat/paev</td></tr>
+                <tr><td>Canary Wharf</td><td>London</td><td class="right">300+</td><td class="right">120 000 tootajat</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin-bottom:20px;"><strong>Globaalne TAM:</strong> 5000+ mixed-use arendust maailmas, igauks 30-300+ ettevottega.</p>
+
+        <h3 style="margin-bottom:12px;">Kvartali haldaja tanased valikud</h3>
+        <table>
+            <thead>
+                <tr><th>Valik</th><th class="right">Kulu</th><th>Probleem</th></tr>
+            </thead>
+            <tbody>
+                <tr class="danger-row"><td>Oma programm nullist</td><td class="right bold">500K-1M&euro; + 100K&euro;/a</td><td>Liiga kallis, liiga pikk</td></tr>
+                <tr><td>Fidel / LoyaltyLion / jt</td><td class="right">50-150K&euro;/a</td><td>Loodud uksikettevottetele, mitte kvartalitele</td></tr>
+                <tr><td>Mitte midagi teha</td><td class="right">0&euro;</td><td>Ettevotted lahkuvad, pole andmeid</td></tr>
+                <tr class="highlight-row"><td><strong>City Seed</strong></td><td class="right bold accent">15-30K&euro; setup</td><td><strong>Kvartalipohine, card linking, omanikutunne</strong></td></tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box green">
+            <strong>&#x1f50d; Lunk turul:</strong>
+            Puudub taskukohane, kvartalipohine lojaalsusplatvorm mis pakub card linking&rsquo;ut ja omanikutunnet. Olemasolevad lahendused on ehitatud uhele ettevottele, mitte kvartalile.
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Vajadus</th><th>Uksikettevotte platvorm</th><th>City Seed</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Uks programm koigile kvartali ettevottetele</td><td class="red">&#x2717;</td><td class="green">&#x2713;</td></tr>
+                <tr><td>Kvartali-tasandi analytics</td><td class="red">&#x2717;</td><td class="green">&#x2713;</td></tr>
+                <tr><td>Cross-promotion ettevotete vahel</td><td class="red">&#x2717;</td><td class="green">&#x2713;</td></tr>
+                <tr><td>Kvartali branding</td><td class="red">&#x2717;</td><td class="green">&#x2713;</td></tr>
+                <tr><td>Omanikutunne kvartalile</td><td class="red">&#x2717;</td><td class="green">&#x2713;</td></tr>
+                <tr><td>Card linking (automaatne)</td><td>Monel</td><td class="green">&#x2713;</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 4. LAHENDUS -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">03</span> Lahendus: City Seed</h2>
+
+        <h3 style="margin-bottom:16px;">Kuidas see tootab</h3>
+
+        <div class="flow-diagram">
+            <div class="flow-node">
+                <span class="flow-emoji">&#x1f464;</span>
+                KLIENT<br><small>Maksab kaardiga</small>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node" style="background: linear-gradient(135deg, #047857, #059669);">
+                <span class="flow-emoji">&#x1f3d7;</span>
+                KVARTAL<br><small>Card linking (VISA/MC) tuvastab</small>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node gold-node">
+                <span class="flow-emoji">&#x1f331;</span>
+                CITY SEED<br><small>Jaotab: 10% klient, 2% platvorm</small>
+            </div>
+        </div>
+
+        <div class="flow-box">
+<span class="flow-accent">KLIENT</span> maksab kaardiga kvartali ettevottes
+    &darr;
+<span class="flow-accent">CARD LINKING</span> (VISA + Mastercard) tuvastab tehingu automaatselt
+    &darr;
+Klient saab <span class="flow-green">10% cashback</span> automaatselt kaardile
+Ettevote maksab <span class="flow-gold">12%</span> (kord nadalas, Stripe kaudu)
+    &darr;
+<span class="flow-green">10&euro; &rarr; kliendile</span> | <span class="flow-gold">2&euro; &rarr; platvormile</span>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Kolm kliendisegmenti</h3>
+        <div class="card-grid">
+            <div class="card">
+                <h3>&#x1f3d7; A) Kvartalid (primary)</h3>
+                <p><strong>Leping kvartali haldaja/arendajaga</strong></p>
+                <p>Setup fee + kuutasu + revenue share</p>
+                <p>Dashboard: merchant ROI, district GMV, foot traffic</p>
+                <p><strong>Omanikutunne:</strong> osalus City Seed&rsquo;i edus</p>
+            </div>
+            <div class="card">
+                <h3>&#x1f3ea; B) Ettevotted (merchants)</h3>
+                <p>Universaalne liitumislink kvartali kaudu</p>
+                <p>Liitumine = linnukesega kinnitamine + kaardi linkimine</p>
+                <p>Dashboard: kaive, kliendid, cashback, kampaaniad</p>
+                <p><strong>Onboarding&rsquo;u teeb kvartali haldaja</strong></p>
+            </div>
+            <div class="card">
+                <h3>&#x1f464; C) Kasutajad (end users)</h3>
+                <p>Seeds PWA app (punktid + asukohad kaardil)</p>
+                <p>SDK/API: linkimine olemasolevasse appi</p>
+                <p>Teavitused: SMS, WhatsApp, push</p>
+                <p><strong>Cashback otse kaardile</strong></p>
+            </div>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Merchant onboarding (automaatne, &lt;15 min)</h3>
+        <div class="steps">
+            <div class="step"><div class="step-num">1</div> Kvartal saadab ettevottele lingi</div>
+            <div class="step"><div class="step-num">2</div> Ettevote taidab vormi</div>
+            <div class="step"><div class="step-num">3</div> Noustub tingimusega</div>
+            <div class="step"><div class="step-num">4</div> Lingib ettevotte kaardi (Stripe)</div>
+            <div class="step"><div class="step-num">5</div> Saab QR, kleebised, dashboard</div>
+            <div class="step"><div class="step-num">6</div> LIVE</div>
+        </div>
+    </div>
+
+    <!-- 5. ARIMUDEL -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">04</span> Arimudel</h2>
+
+        <h3 style="margin-bottom:12px;">12% rahavoo struktuur</h3>
+
+        <div class="revenue-flow">
+            <div class="revenue-flow-title">Klient ostab 100&euro; eest kvartali ettevottes</div>
+            <div class="revenue-chain">
+                <div class="rev-box start">100&euro; ost</div>
+                <span class="rev-arrow">&rarr;</span>
+                <div class="rev-box start">Ettevote maksab 12% = 12&euro;</div>
+            </div>
+            <div style="margin: 16px 0 8px; font-size:0.95em;">Jaotus:</div>
+            <div class="revenue-chain">
+                <div class="rev-box client">10&euro; &rarr; KLIENDILE (cashback)</div>
+            </div>
+            <div style="margin-left:24px; font-size:0.88em; color: rgba(255,255,255,0.7); margin-bottom:8px;">
+                &#8226; ~85% kasutatakse ara = 8.50&euro; valjamakse<br>
+                &#8226; ~15% aegub = <span style="color:#fcd34d; font-weight:700;">1.50&euro; &rarr; City Seed tulu</span>
+            </div>
+            <div class="revenue-chain">
+                <div class="rev-box platform">2&euro; &rarr; CITY SEED PLATVORMILE (teenustasu)</div>
+            </div>
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.15);">
+                <span style="color:#6ee7b7; font-weight:700;">City Seed efektiivne tulu per 100&euro; tehing:</span>
+                <span style="color:#fcd34d; font-weight:700; font-size:1.1em;"> 2&euro; + 1.50&euro; = 3.50&euro; (3.5%)</span>
+            </div>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Tuluallikad</h3>
+        <table>
+            <thead>
+                <tr><th>Tuluallikas</th><th>Kes maksab</th><th>Summa</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Kvartali setup fee</strong></td><td>Kvartal</td><td>15 000 - 30 000&euro; (uhekordne)</td></tr>
+                <tr><td><strong>SaaS kuutasu</strong></td><td>Kvartal</td><td>3 000 - 5 000&euro;/kuu</td></tr>
+                <tr><td><strong>Tehingutasu</strong></td><td>Ettevotted (12% &rarr; 2% platvormile)</td><td>2% tehingumahust</td></tr>
+                <tr><td><strong>Breakage</strong></td><td>Automaatne (aegunud cashback)</td><td>~15% cashback&rsquo;ist</td></tr>
+                <tr><td><strong>Premium features</strong></td><td>Kvartal</td><td>1 000 - 2 000&euro;/kuu</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin: 24px 0 12px;">Tulu per kvartal (keskmine)</h3>
+        <p style="margin-bottom:12px; color: var(--text-secondary);">Eeldused: 30 ettevottet, 2 000 aktiivset kasutajat, 120&euro;/kuu keskmine kulutus</p>
+        <table>
+            <thead>
+                <tr><th>Tuluallikas</th><th>Arvutus</th><th class="right">Kuu</th><th class="right">Aasta</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>SaaS kuutasu</td><td>-</td><td class="right">4 000&euro;</td><td class="right">48 000&euro;</td></tr>
+                <tr><td>Tehingutasu (2%)</td><td>2000 &times; 120&euro; &times; 2%</td><td class="right">4 800&euro;</td><td class="right">57 600&euro;</td></tr>
+                <tr><td>Breakage (15%)</td><td>2000 &times; 120&euro; &times; 10% &times; 15%</td><td class="right">3 600&euro;</td><td class="right">43 200&euro;</td></tr>
+                <tr><td>Premium features</td><td>-</td><td class="right">1 500&euro;</td><td class="right">18 000&euro;</td></tr>
+                <tr class="total-row"><td><strong>KOKKU per kvartal</strong></td><td></td><td class="right accent">~13 900&euro;</td><td class="right accent">~166 800&euro;</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 6. KVARTALI OMANIKUTUNNE -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">05</span> Kvartali omanikutunne</h2>
+
+        <div class="highlight-box green">
+            <strong>&#x1f31f; Tuumak-eristaja</strong>
+            See on City Seed&rsquo;i kõige voiksam muugiargument. Mitte ukski teine lojaalsusplatvorm ei paku kvartalitele osalust platvormi kasvus. &ldquo;See pole kulu, see on investeering.&rdquo;
+        </div>
+
+        <div class="phantom-visual">
+            <div class="phantom-title">Phantom equity arvutuskaik &mdash; Naide: 5. kvartal, 1.2% osa</div>
+            <div class="phantom-stages">
+                <div class="phantom-stage">
+                    <div class="amount">36 000&euro;</div>
+                    <div class="period">&#x1f331; Tana</div>
+                    <div style="font-size:0.8em; opacity:0.6;">CS vaartus: 3M&euro;</div>
+                </div>
+                <div class="phantom-arrow">&rarr;</div>
+                <div class="phantom-stage">
+                    <div class="amount">300 000&euro;</div>
+                    <div class="period">&#x1f333; 3 aasta parast</div>
+                    <div style="font-size:0.8em; opacity:0.6;">CS vaartus: 25M&euro;</div>
+                </div>
+                <div class="phantom-arrow">&rarr;</div>
+                <div class="phantom-stage">
+                    <div class="amount">900 000&euro;</div>
+                    <div class="period">&#x1f30d; 5 aasta parast</div>
+                    <div style="font-size:0.8em; opacity:0.6;">CS vaartus: 75M&euro;</div>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-bottom:16px; color: var(--text-secondary); font-size:0.9em;">Tingimused: vesting 3-4 aastat, varasem liitumine = suurem osa, phantom equity (lubadus lepingus), realiseerub exit&rsquo;i korral (M&amp;A/IPO) voi secondary sale.</p>
+
+        <h3 style="margin: 20px 0 12px;">5 efekti</h3>
+        <div class="effect-grid">
+            <div class="effect-card">
+                <div class="effect-emoji">&#x23f3;</div>
+                <h4>FOMO</h4>
+                <p>Esimesed 20 kvartalit saavad suurema osa &mdash; ara jaa hiljaks</p>
+            </div>
+            <div class="effect-card">
+                <div class="effect-emoji">&#x1f512;</div>
+                <h4>Lock-in</h4>
+                <p>Vesting hoiab kvartali platvormil 3-4 aastat</p>
+            </div>
+            <div class="effect-card">
+                <div class="effect-emoji">&#x1f4e3;</div>
+                <h4>Evangelist</h4>
+                <p>Kvartalil on motivatsioon tuua teisi kvartaleid</p>
+            </div>
+            <div class="effect-card">
+                <div class="effect-emoji">&#x26a1;</div>
+                <h4>Sales cycle</h4>
+                <p>&ldquo;See pole kulu, see on investeering&rdquo; &mdash; luhem muugitsukkel</p>
+            </div>
+            <div class="effect-card">
+                <div class="effect-emoji">&#x1f947;</div>
+                <h4>Diferentsiaator</h4>
+                <p>Keegi teine ei paku seda</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. TECH STACK -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">06</span> Tehnoloogiline platvorm</h2>
+
+        <table>
+            <thead>
+                <tr><th>Komponent</th><th>Pakkuja</th><th>Mida teeb</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Lojaalsusplatvorm</strong></td><td>Loyal Solutions</td><td>Kasutajahaldus, punktisusteem, kampaaniate mootor, dashboard</td></tr>
+                <tr><td><strong>Card linking</strong></td><td>VISA (labi Loyal Solutions)</td><td>Automaatne tehingutuvastus &mdash; kes, kus, millal, palju</td></tr>
+                <tr><td><strong>Card linking</strong></td><td>Mastercard</td><td>EU turgude katvus (labirakimised kaivad)</td></tr>
+                <tr><td><strong>Maksete kogumine</strong></td><td>Stripe</td><td>Iganadalane arveldus ettevotetega</td></tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box green">
+            <strong>&#x1f4b3; VISA partnerlus</strong>
+            VISA pakub <strong>50K&euro; in-kind investeeringu</strong> Loyal Solutions&rsquo;i kaudu: card linking setup ilma lisatasuta. &ldquo;VISA on investorina paadis&rdquo; &mdash; tugev signaal kvartalitele ja investoritele.
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Setup investeering</h3>
+        <table>
+            <thead>
+                <tr><th>Komponent</th><th class="right">Summa</th><th>Markus</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Loyal Solutions setup</td><td class="right">57 349&euro;</td><td>Platvormi konfig, branding, integratsioon</td></tr>
+                <tr><td>VISA card linking</td><td class="right green">0&euro;</td><td>50K&euro; allahindlus VISA&rsquo;lt</td></tr>
+                <tr><td>Mastercard setup</td><td class="right">50 602&euro;</td><td>Labirakimisel</td></tr>
+                <tr><td>Integratsioon ja kohandamine</td><td class="right">15 000&euro;</td><td>Forus, SDK, UI</td></tr>
+                <tr><td>Juriidika</td><td class="right">8 000&euro;</td><td>GDPR, DPA, lepingud</td></tr>
+                <tr><td>Branding ja materjalid</td><td class="right">10 000&euro;</td><td>City Seed + Seeds app visuaal</td></tr>
+                <tr><td>Puhver</td><td class="right">10 000&euro;</td><td></td></tr>
+                <tr class="total-row"><td><strong>SETUP KOKKU</strong></td><td class="right accent">~151 000&euro;</td><td></td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin: 24px 0 12px;">Platvormi pusikulud</h3>
+        <table>
+            <thead>
+                <tr><th>Kulukategooria</th><th class="right">Kuu (PoC)</th><th class="right">Kuu (taismaht)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Loyal Solutions</td><td class="right">5 700&euro;</td><td class="right">8 200&euro;</td></tr>
+                <tr><td>Mastercard card linking</td><td class="right">6 325&euro;</td><td class="right">6 325&euro;</td></tr>
+                <tr><td>Stripe (variable)</td><td class="right">500-2 000&euro;</td><td class="right">2 500&euro;</td></tr>
+                <tr><td>Infra + tools</td><td class="right">1 000&euro;</td><td class="right">2 000&euro;</td></tr>
+                <tr class="total-row"><td><strong>Platvorm KOKKU</strong></td><td class="right accent">~13 500-15 000&euro;</td><td class="right accent">~19 000&euro;</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 8. SKALEERIMISE STRATEEGIA -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">07</span> Skaleerimise strateegia</h2>
+
+        <div class="phase-grid">
+            <div class="phase-card">
+                <div class="phase-header" style="background: linear-gradient(135deg, #022c22, #047857);">F1: Managed</div>
+                <div class="phase-body">
+                    <p><strong>1-5 kvartalit</strong></p>
+                    <p>City Seed seadistab ise (high-touch)</p>
+                    <p>Kulu: 3-5K&euro;, 2-4 nadalat</p>
+                    <p>A1-A2</p>
+                </div>
+            </div>
+            <div class="phase-card">
+                <div class="phase-header" style="background: linear-gradient(135deg, #047857, #059669);">F2: Self-Service</div>
+                <div class="phase-body">
+                    <p><strong>5-25 kvartalit</strong></p>
+                    <p>Admin portal, kvartal seadistab ise</p>
+                    <p>Kulu: 1-2K&euro;, 1 nadal</p>
+                    <p>A2-A3</p>
+                </div>
+            </div>
+            <div class="phase-card">
+                <div class="phase-header" style="background: linear-gradient(135deg, #059669, #10b981);">F3: Platform</div>
+                <div class="phase-body">
+                    <p><strong>25-100 kvartalit</strong></p>
+                    <p>Taisautomaatne (Shopify-like)</p>
+                    <p>Kulu: ~0&euro;, automaatne</p>
+                    <p>A3-A4</p>
+                </div>
+            </div>
+            <div class="phase-card">
+                <div class="phase-header" style="background: linear-gradient(135deg, #10b981, #34d399);">F4: Ecosystem</div>
+                <div class="phase-body">
+                    <p><strong>100+ kvartalit</strong></p>
+                    <p>API-first, channel partners</p>
+                    <p>Partnerid maksavad meile</p>
+                    <p>A4+</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin: 20px 0 12px;">Automatiseerimine vs inimkatt</h3>
+        <table>
+            <thead>
+                <tr><th>Protsess</th><th>F1-F2</th><th>F3-F4</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Kvartali onboarding</td><td>Inimene</td><td class="green">Automaatne</td></tr>
+                <tr><td>Ettevotte liitumine</td><td>Kvartali haldaja jagab linki</td><td class="green">Self-serve</td></tr>
+                <tr><td>Card linking setup</td><td>Inimene (API)</td><td class="green">Pre-approved, automaatne</td></tr>
+                <tr><td>Branding</td><td>Disainer</td><td class="green">Templates + admin panel</td></tr>
+                <tr><td>Kampaaniad</td><td>Customer success</td><td class="green">Kvartal ise</td></tr>
+                <tr><td>Raportid</td><td>Kustom</td><td class="green">Dashboard (automaatne)</td></tr>
+                <tr><td>Billing</td><td>Pool-automaatne</td><td class="green">Taisautomaatne</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 9. OMANDISTRUKTUUR -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">08</span> Omandistruktuur ja investeeringud</h2>
+
+        <p style="margin-bottom:20px;">US Invest on anchor investor ja katab algsed voorud. Ettevotte struktuur on algusest peale selline, et valine kapital saab tulla &mdash; aga ei pea. US Invest kontrollib tempot.</p>
+
+        <div class="cap-timeline">
+            <div class="cap-stage">
+                <h4>&#x1f331; Pre-seed</h4>
+                <div class="cap-amount">200-300K&euro;</div>
+                <div class="cap-val">Valuation: 1-1.5M&euro;</div>
+                <div class="cap-val">US Invest ainuke</div>
+                <div class="cap-val">H2 2026</div>
+            </div>
+            <div class="cap-arrow">&rarr;</div>
+            <div class="cap-stage">
+                <h4>&#x1f33f; Seed</h4>
+                <div class="cap-amount">500-750K&euro;</div>
+                <div class="cap-val">Valuation: 3-5M&euro;</div>
+                <div class="cap-val">US Invest (+valine?)</div>
+                <div class="cap-val">~Kuu 12</div>
+            </div>
+            <div class="cap-arrow">&rarr;</div>
+            <div class="cap-stage">
+                <h4>&#x1f333; Series A</h4>
+                <div class="cap-amount">3-5M&euro;</div>
+                <div class="cap-val">Valuation: 15-25M&euro;</div>
+                <div class="cap-val">Vajadusel</div>
+                <div class="cap-val">Aasta 3+</div>
+            </div>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Cap table (Pre-seed)</h3>
+        <table>
+            <thead>
+                <tr><th>Osanik</th><th class="right">Osalus</th><th>Markus</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Asutajad</strong></td><td class="right bold">60-70%</td><td></td></tr>
+                <tr><td><strong>US Invest</strong></td><td class="right bold accent">15-25%</td><td>Pre-seed ainuke investor</td></tr>
+                <tr><td>VISA (in-kind)</td><td class="right">~3-5%</td><td>50K&euro; allahindlus</td></tr>
+                <tr><td>Kvartali pool (ESOP)</td><td class="right">10%</td><td>Reserveeritud kvartalitele</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin: 24px 0 12px;">Go/No-Go KPI-d (Seed otsus, ~kuu 12)</h3>
+        <table>
+            <thead>
+                <tr><th>KPI</th><th class="right">Minimaalne</th><th class="right">Oodatav</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Aktiivsed kvartalid</td><td class="right">2</td><td class="right green">3+</td></tr>
+                <tr><td>Aktiivsed kasutajad</td><td class="right">3 000</td><td class="right green">5 000+</td></tr>
+                <tr><td>Kuine tulu</td><td class="right">20K&euro;</td><td class="right green">30K&euro;+</td></tr>
+                <tr><td>Pipeline (LOI-d)</td><td class="right">3</td><td class="right green">5+</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin: 24px 0 12px;">Miks see struktuur maksimeerib vaartust</h3>
+        <ul class="numbered-list">
+            <li><strong>US Invest saab parima tulemuse</strong> &mdash; varane investeering madalal valuatsioonil, tugevnev positsioon iga ringiga</li>
+            <li><strong>Struktuur on VC-ready</strong> &mdash; puhas cap table, ESOP pool, milestone-based valuatsioon</li>
+            <li><strong>Kvartalitele on omanikutunne</strong> &mdash; 10% ESOP pool, ettevote on investeeritav</li>
+            <li><strong>Paindlikkus</strong> &mdash; iga ringi juures saab otsustada: rohkem oma raha vs valine kapital</li>
+            <li><strong>Exit on voimalik</strong> &mdash; ei ole tutarettevote, puhas struktuur</li>
+        </ul>
+    </div>
+
+    <!-- 10. MEESKOND -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">09</span> Meeskond</h2>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>&#x1f465; Aasta 1 (PoC + 1-2 kvartalit)</h3>
+                <table>
+                    <thead><tr><th>Roll</th><th class="right">Bruto/kuu</th></tr></thead>
+                    <tbody>
+                        <tr><td>CEO/Founder (1.0 FTE)</td><td class="right">6 500&euro;</td></tr>
+                        <tr><td>Kaasasutaja / ops (1.0 FTE)</td><td class="right">5 000&euro;</td></tr>
+                        <tr><td>Customer Success (0.5 FTE)</td><td class="right">2 500&euro;</td></tr>
+                        <tr class="total-row"><td><strong>KOKKU</strong></td><td class="right accent">~125K&euro;/a</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h3>&#x1f465; Aasta 2 (3-8 kvartalit)</h3>
+                <table>
+                    <thead><tr><th>Roll</th><th class="right">Bruto/kuu</th></tr></thead>
+                    <tbody>
+                        <tr><td>CEO/Founder (1.0)</td><td class="right">7 500&euro;</td></tr>
+                        <tr><td>Kaasasutaja / ops (1.0)</td><td class="right">6 000&euro;</td></tr>
+                        <tr><td>Customer Success (1.0)</td><td class="right">3 500&euro;</td></tr>
+                        <tr><td>Sales/BD Euroopa (1.0)</td><td class="right">5 000&euro;+</td></tr>
+                        <tr><td>Dev (1.0)</td><td class="right">4 000&euro;</td></tr>
+                        <tr><td>Marketing (1.0)</td><td class="right">3 500&euro;</td></tr>
+                        <tr class="total-row"><td><strong>KOKKU</strong></td><td class="right accent">~355K&euro;/a</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>&#x1f465; Aasta 3 (10-25 kvartalit, mitu riiki)</h3>
+            <table>
+                <thead><tr><th>Roll</th><th class="right">Bruto/kuu</th></tr></thead>
+                <tbody>
+                    <tr><td>CEO/Founder (1.0)</td><td class="right">8 500&euro;</td></tr>
+                    <tr><td>Kaasasutaja / ops (1.0)</td><td class="right">7 000&euro;</td></tr>
+                    <tr><td>Customer Success &times; 2 (2.0)</td><td class="right">2 &times; 4 000&euro;</td></tr>
+                    <tr><td>Sales/BD &times; 2 (2.0)</td><td class="right">2 &times; 5 000&euro;</td></tr>
+                    <tr><td>Dev &times; 2 (2.0)</td><td class="right">2 &times; 4 500&euro;</td></tr>
+                    <tr><td>Marketing (1.0)</td><td class="right">4 500&euro;</td></tr>
+                    <tr class="total-row"><td><strong>KOKKU</strong></td><td class="right accent">~615K&euro;/a</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 11. TURUSTRATEEGIA -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">10</span> Turustrateegia</h2>
+
+        <h3 style="margin-bottom:12px;">5 muugiargumenti</h3>
+        <ul class="numbered-list">
+            <li><strong>&ldquo;Sinu kvartal saab lojaalsusprogrammi 10&times; odavamalt&rdquo;</strong> &mdash; 15-30K&euro; setup vs 500K&euro;+ nullist</li>
+            <li><strong>&ldquo;VISA on meie partner&rdquo;</strong> &mdash; usaldusvaarsus, card linking toimib</li>
+            <li><strong>&ldquo;Sa saad osaluse meie ettevottes&rdquo;</strong> &mdash; see pole kulu, see on investeering</li>
+            <li><strong>&ldquo;Rotermann juba tootab&rdquo;</strong> &mdash; referents, numbrid, case study</li>
+            <li><strong>&ldquo;Iga uus kvartal suurendab sinu vaartust&rdquo;</strong> &mdash; network effect</li>
+        </ul>
+
+        <h3 style="margin: 24px 0 12px;">Muugikanalid</h3>
+        <table>
+            <thead>
+                <tr><th>Faas</th><th>Kanal</th><th class="right">CAC per kvartal</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>F1 (Eesti)</td><td>Founder-led sales</td><td class="right">~5K&euro;</td></tr>
+                <tr><td>F2 (Nordics + DACH)</td><td>Dedicated sales + konverentsid</td><td class="right">~15-25K&euro;</td></tr>
+                <tr><td>F3 (Globaalne)</td><td>Channel partners + inbound</td><td class="right">~8-15K&euro;</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin: 24px 0 12px;">Turunduseelarve</h3>
+        <table>
+            <thead>
+                <tr><th>Tegevus</th><th class="right">A1</th><th class="right">A2</th><th class="right">A3</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Content + case studies</td><td class="right">12K&euro;</td><td class="right">24K&euro;</td><td class="right">36K&euro;</td></tr>
+                <tr><td>Konverentsid + messid</td><td class="right">5K&euro;</td><td class="right">25K&euro;</td><td class="right">50K&euro;</td></tr>
+                <tr><td>Digital (LinkedIn, Google)</td><td class="right">6K&euro;</td><td class="right">18K&euro;</td><td class="right">30K&euro;</td></tr>
+                <tr><td>PR + brand</td><td class="right">13K&euro;</td><td class="right">18K&euro;</td><td class="right">25K&euro;</td></tr>
+                <tr><td>Referral</td><td class="right">0</td><td class="right">10K&euro;</td><td class="right">20K&euro;</td></tr>
+                <tr class="total-row"><td><strong>KOKKU</strong></td><td class="right accent">36K&euro;</td><td class="right accent">95K&euro;</td><td class="right accent">161K&euro;</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin: 24px 0 12px;">Pipeline</h3>
+        <table>
+            <thead>
+                <tr><th>Faas</th><th>Kvartalid</th><th>Ajakava</th></tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>PoC</strong></td><td>Rotermann (Tallinn) + Forus</td><td>H2 2026</td></tr>
+                <tr><td>Eesti</td><td>Ulemiste City, Telliskivi, Global/Balti Jaam</td><td>H1 2027</td></tr>
+                <tr><td>Nordics</td><td>Jatkasaari, Kalasatama (Helsinki)</td><td>H2 2027</td></tr>
+                <tr><td>DACH</td><td>Aspern Seestadt (Wien), HafenCity (Hamburg)</td><td>H1 2028</td></tr>
+                <tr><td>Skandinaavia</td><td>Nordhavn (Kopenhaagen)</td><td>H2 2028</td></tr>
+                <tr><td>Globaalne</td><td>UK, Iberia, USA</td><td>2029+</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 12. FINANTSPROGNOOS -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">11</span> Finantsprognoos (5 aastat)</h2>
+
+        <h3 style="margin-bottom:12px;">Kasvu trajektoor</h3>
+        <div class="big-table-wrap">
+        <table>
+            <thead>
+                <tr><th></th><th class="right">A1</th><th class="right">A2</th><th class="right">A3</th><th class="right">A4</th><th class="right">A5</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Kvartaleid (lopus)</strong></td><td class="right">1</td><td class="right">5</td><td class="right">15</td><td class="right">40</td><td class="right">80</td></tr>
+                <tr><td><strong>Keskm. aktiivne kvartal</strong></td><td class="right">0.5</td><td class="right">3</td><td class="right">10</td><td class="right">27</td><td class="right">60</td></tr>
+                <tr><td><strong>Kasutajaid kokku</strong></td><td class="right">1 000</td><td class="right">6 000</td><td class="right">20 000</td><td class="right">54 000</td><td class="right bold">120 000</td></tr>
+                <tr><td><strong>Riike</strong></td><td class="right">1</td><td class="right">1</td><td class="right">3</td><td class="right">5</td><td class="right">8+</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Realistlik finantsplaan</h3>
+        <div class="big-table-wrap">
+        <table>
+            <thead>
+                <tr><th></th><th class="right">A1</th><th class="right">A2</th><th class="right">A3</th><th class="right">A4</th><th class="right">A5</th></tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="6" style="background:#f0fdf4; font-weight:700; color:var(--accent-dark);">TULUD</td></tr>
+                <tr><td>Recurring (SaaS + tx + breakage)</td><td class="right">83K</td><td class="right">500K</td><td class="right">1 670K</td><td class="right">4 510K</td><td class="right bold">10 020K</td></tr>
+                <tr><td>Setup fees</td><td class="right">20K</td><td class="right">80K</td><td class="right">200K</td><td class="right">500K</td><td class="right">800K</td></tr>
+                <tr class="total-row"><td><strong>Tulu kokku</strong></td><td class="right accent">103K</td><td class="right accent">580K</td><td class="right accent">1 870K</td><td class="right accent">5 010K</td><td class="right accent">10 820K</td></tr>
+                <tr><td colspan="6" style="background:#fef2f2; font-weight:700; color:var(--danger);">KULUD</td></tr>
+                <tr><td>Personal</td><td class="right">125K</td><td class="right">355K</td><td class="right">615K</td><td class="right">900K</td><td class="right">1 300K</td></tr>
+                <tr><td>Platvorm (LS + card linking)</td><td class="right">144K</td><td class="right">175K</td><td class="right">175K</td><td class="right">200K</td><td class="right">250K</td></tr>
+                <tr><td>Turundus</td><td class="right">36K</td><td class="right">95K</td><td class="right">161K</td><td class="right">250K</td><td class="right">400K</td></tr>
+                <tr><td>Setup investeering</td><td class="right">151K</td><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td></tr>
+                <tr><td>Infra + muud</td><td class="right">30K</td><td class="right">50K</td><td class="right">80K</td><td class="right">120K</td><td class="right">180K</td></tr>
+                <tr><td>Uued turud (riigid)</td><td class="right">0</td><td class="right">0</td><td class="right">300K</td><td class="right">500K</td><td class="right">600K</td></tr>
+                <tr class="total-row"><td><strong>Kulud kokku</strong></td><td class="right red">486K</td><td class="right red">675K</td><td class="right red">1 331K</td><td class="right red">1 970K</td><td class="right red">2 730K</td></tr>
+                <tr><td colspan="6"></td></tr>
+                <tr style="background: #f0fdf4;"><td><strong>KASUM</strong></td><td class="right red bold" style="font-size:1.05em;">-383K</td><td class="right red bold" style="font-size:1.05em;">-95K</td><td class="right green bold" style="font-size:1.05em;">+539K</td><td class="right green bold" style="font-size:1.05em;">+3 040K</td><td class="right green bold" style="font-size:1.05em;">+8 090K</td></tr>
+                <tr style="background: #ecfdf5;"><td><strong>Kumulatiivne</strong></td><td class="right red bold">-383K</td><td class="right red bold">-478K</td><td class="right green bold">+61K</td><td class="right green bold">+3 101K</td><td class="right green bold" style="font-size:1.1em;">+11 191K</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Key metrics</h3>
+        <div class="big-table-wrap">
+        <table>
+            <thead>
+                <tr><th>Metric</th><th class="right">A1</th><th class="right">A2</th><th class="right">A3</th><th class="right">A4</th><th class="right">A5</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>ARR</strong></td><td class="right">83K</td><td class="right">500K</td><td class="right">1 670K</td><td class="right">4 510K</td><td class="right bold accent">10 020K</td></tr>
+                <tr><td><strong>ARR kasv</strong></td><td class="right">-</td><td class="right">502%</td><td class="right">234%</td><td class="right">170%</td><td class="right">122%</td></tr>
+                <tr><td><strong>Gross margin</strong></td><td class="right">30%</td><td class="right">56%</td><td class="right">71%</td><td class="right">77%</td><td class="right green">80%</td></tr>
+                <tr><td><strong>Kasum %</strong></td><td class="right red">-372%</td><td class="right red">-16%</td><td class="right green">+29%</td><td class="right green">+61%</td><td class="right green">+75%</td></tr>
+                <tr><td><strong>Kvartaleid</strong></td><td class="right">1</td><td class="right">5</td><td class="right">15</td><td class="right">40</td><td class="right bold">80</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <!-- INVESTOR RETURN HERO -->
+        <div class="investor-hero">
+            <div class="hero-label">Pre-seed investor return</div>
+            <div class="hero-value">40-80&times;</div>
+            <div class="hero-sub">US Invest 250K&euro; &rarr; 10-20M&euro; vaartus aasta 5</div>
+            <div class="investor-hero-grid">
+                <div class="investor-hero-stat">
+                    <div class="stat-val">50-100M&euro;</div>
+                    <div class="stat-label">Ettevotte vaartus A5</div>
+                </div>
+                <div class="investor-hero-stat">
+                    <div class="stat-val">20-30:1</div>
+                    <div class="stat-label">LTV:CAC</div>
+                </div>
+                <div class="investor-hero-stat">
+                    <div class="stat-val">~10M&euro;</div>
+                    <div class="stat-label">ARR aasta 5</div>
+                </div>
+                <div class="investor-hero-stat">
+                    <div class="stat-val">+11.2M&euro;</div>
+                    <div class="stat-label">5a kumulatiivne kasum</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Pre-seed investor return (US Invest)</h3>
+        <table>
+            <thead>
+                <tr><th>Stsenaarium</th><th class="right">Investeering</th><th class="right">Osalus</th><th class="right">Vaartus A5</th><th class="right">Return</th></tr>
+            </thead>
+            <tbody>
+                <tr class="gold-row"><td><strong>Pre-seed ainult</strong></td><td class="right">250K&euro;</td><td class="right">~20%</td><td class="right gold bold">10-20M&euro;</td><td class="right gold bold" style="font-size:1.3em;">40-80&times;</td></tr>
+                <tr><td>Pre-seed + seed</td><td class="right">750K&euro;</td><td class="right">~35%</td><td class="right bold">17.5-35M&euro;</td><td class="right bold">23-47&times;</td></tr>
+                <tr><td>Konservatiivne</td><td class="right">750K&euro;</td><td class="right">~35%</td><td class="right">10M&euro;</td><td class="right">13&times;</td></tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr><th>Metric</th><th>Vaartus</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>LTV per kvartal</td><td class="bold">~500K&euro; (3a &times; 167K&euro;)</td></tr>
+                <tr><td>CAC per kvartal</td><td>~15-25K&euro;</td></tr>
+                <tr class="highlight-row"><td><strong>LTV:CAC</strong></td><td class="bold accent" style="font-size:1.2em;">20-30:1</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 13. FORUS TOKEN -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">12</span> Forus Token integratsioon</h2>
+
+        <p style="margin-bottom:16px;">Forus Token&rsquo;i (US Token) olemasolevad omanikud saavad uue kasutuse:</p>
+
+        <div class="highlight-box green">
+            <strong>&#x1f504; Forus teatab oma tokenite omanikele:</strong>
+            &ldquo;Sinu US Tokenid on nuud konverteeritavad Seeds punktideks. Kasuta neid Rotermanni kvartali ettevotetes.&rdquo;
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Parameeter</th><th>Detail</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Konverteerimiskurss</td><td>Forus maarab (nt 1 Token = 10 Seeds punkti)</td></tr>
+                <tr><td>Suund</td><td>Token &rarr; Seeds (uhesuunaline)</td></tr>
+                <tr><td>Mida see annab</td><td>Tokenite omanikud saavad lopuks reaalselt kasutada oma tokeneid</td></tr>
+                <tr><td>Kes haldab</td><td>Forus haldab konverteerimist, City Seed tunnustab punkte</td></tr>
+            </tbody>
+        </table>
+
+        <p style="color: var(--text-secondary); font-size:0.9em;">NB: See pole City Seed&rsquo;i arimudeli osa &mdash; see on Foruse otsus oma tokenite kohta. City Seed lihtsalt tunnustab konverteeritud punkte partnerite juures.</p>
+    </div>
+
+    <!-- 14. RISKIANALUUS -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">13</span> Riskianaluus</h2>
+
+        <div class="big-table-wrap">
+        <table>
+            <thead>
+                <tr><th>Risk</th><th>Toenaosus</th><th>Moju</th><th>Maandamine</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Kvartalite muugitsukkel liiga pikk</strong></td><td>35%</td><td class="red">Korge</td><td>Omanikutunne luhendab tsuklit; Rotermann referents; VISA nimi avab uksed</td></tr>
+                <tr><td><strong>Kasutajate aktiivsus madal</strong></td><td>30%</td><td class="red">Korge</td><td>10% cashback on tugev motivaator; card linking = null friktsiooni</td></tr>
+                <tr><td><strong>Ettevotted ei taha 12% maksta</strong></td><td>25%</td><td class="red">Korge</td><td>12% on tulemusepohine (mitte ette); sama grupi ettevotted liituvad PoC-s</td></tr>
+                <tr><td><strong>Mastercard hinnastamine liiga korge</strong></td><td>30%</td><td class="gold">Keskmine</td><td>Labirakimised kaivad; VISA on backup; mahtude kasv annab labirakimisjourdu</td></tr>
+                <tr><td><strong>Loyal Solutions ei skaleeru</strong></td><td>20%</td><td class="gold">Keskmine</td><td>Migration oma platvormile 18-24 kuu parast</td></tr>
+                <tr><td><strong>Konkurent kopeerib mudelit</strong></td><td>20%</td><td class="gold">Keskmine</td><td>First-mover + VISA + referentsid + kvartali ESOP = tugev moat</td></tr>
+                <tr><td><strong>Globaalne laienemine kallim</strong></td><td>40%</td><td class="gold">Keskmine</td><td>Iga riik: 100-150K&euro;. Budget olemas; channel partners vahendavad kulu</td></tr>
+                <tr><td><strong>Breakage madalam oodatust</strong></td><td>35%</td><td>Madal</td><td>Ka 10% breakage&rsquo;iga arimudel tootab (SaaS + 2% katab kulud)</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Stresstest 1: Mis kui kasvu on 50% vahem?</h3>
+        <table>
+            <thead>
+                <tr><th></th><th class="right">Realistlik</th><th class="right">50% vahem</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Kvartaleid A3</td><td class="right">15</td><td class="right red">8</td></tr>
+                <tr><td>ARR A3</td><td class="right">1.67M&euro;</td><td class="right red">890K&euro;</td></tr>
+                <tr><td>Kasum A3</td><td class="right green">+539K&euro;</td><td class="right red">-20K&euro;</td></tr>
+                <tr><td>Kumulatiivne A3</td><td class="right green">+61K&euro;</td><td class="right red">-498K&euro;</td></tr>
+                <tr class="highlight-row"><td><strong>Break-even</strong></td><td class="right accent bold">A3</td><td class="right bold">A4 algus</td></tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box gold">
+            <strong>&#x26a0; 50% vaiksema kasvuga on City Seed veel elujouline</strong> &mdash; lihtsalt break-even lukkub aasta vorra.
+        </div>
+
+        <h3 style="margin: 24px 0 12px;">Stresstest 2: Maksimaalne kahjum kui lopetame parast PoC-d</h3>
+        <table>
+            <thead>
+                <tr><th>Kategooria</th><th class="right">Summa</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Setup investeering</td><td class="right">151 000&euro;</td></tr>
+                <tr><td>9 kuu opereerimine</td><td class="right">~170 000&euro;</td></tr>
+                <tr><td>9 kuu tulud</td><td class="right green">-~52 000&euro;</td></tr>
+                <tr class="total-row"><td><strong>Maksimaalne kahjum</strong></td><td class="right red bold" style="font-size:1.1em;">~270 000&euro;</td></tr>
+            </tbody>
+        </table>
+        <p style="color: var(--text-secondary);">Pre-seed investeeringu piires. Risk on hallatud.</p>
+    </div>
+
+    <!-- 15. KONKURENTSIEELIS -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">14</span> Konkurentsieelis</h2>
+
+        <table>
+            <thead>
+                <tr><th>Eelis</th><th>Selgitus</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>&#x1f4b3; VISA partnerlus</strong></td><td>Strateegiline partner + in-kind investeering. Usaldusvaarsus, madalam card linking kulu</td></tr>
+                <tr><td><strong>&#x1f4c8; Kvartali ESOP</strong></td><td>Mitte keegi teine ei paku kvartalitele osalust &mdash; unikaalne muugiargument</td></tr>
+                <tr><td><strong>&#x1f3d7; Rotermann referents</strong></td><td>Toestatud PoC premium kvartaliga &mdash; koigile naidata</td></tr>
+                <tr><td><strong>&#x1f947; First mover</strong></td><td>Kvartalipohist lojaalsusplatvormi POLE olemas &mdash; defineerime kategooria</td></tr>
+                <tr><td><strong>&#x1f310; Network effect</strong></td><td>Iga kvartal suurendab vaartust koigile &mdash; kasutajad, ettevotted, operaatorid</td></tr>
+                <tr><td><strong>&#x1f3e6; US Invest anchor</strong></td><td>Strateegiline investor kinnisvara + fintech ristumiskohas</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin: 24px 0 12px;">Kaitsevallid (moats)</h3>
+        <ul class="numbered-list">
+            <li><strong>VISA partnerlus</strong> &mdash; raske replitseerida</li>
+            <li><strong>Kvartalite ESOP lock-in</strong> &mdash; vesting hoiab kliente 3-4 aastat</li>
+            <li><strong>Andmeeelis</strong> &mdash; kvartali-tasandi analytics mida keegi teine ei kogu</li>
+            <li><strong>Referentsid</strong> &mdash; iga uus kvartal on case study jargmisele</li>
+            <li><strong>Network effects</strong> &mdash; cross-quarter kasutajad (elab uhes, tootab teises)</li>
+        </ul>
+    </div>
+
+    <!-- 16. TEGEVUSKAVA -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">15</span> Tegevuskava</h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>&#x1f331; Q2 2026: Ettevalmistus</h4>
+                <table>
+                    <thead><tr><th>Nadal</th><th>Tegevus</th></tr></thead>
+                    <tbody>
+                        <tr><td>1-2</td><td>City Seed OU asutamine, investeerimisleping US Investiga</td></tr>
+                        <tr><td>1-2</td><td>Loyal Solutions setup kaivitamine</td></tr>
+                        <tr><td>2-4</td><td>VISA card linking integratsioon (labi LS)</td></tr>
+                        <tr><td>2-4</td><td>Mastercard labirakimised</td></tr>
+                        <tr><td>3-4</td><td>Rotermanni partnerite onboarding</td></tr>
+                        <tr><td>4-6</td><td>Seeds app / PWA disain ja arendus</td></tr>
+                        <tr><td>5-6</td><td>Beta-test</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="timeline-item">
+                <h4>&#x1f680; Q3 2026: Rotermann PoC Launch</h4>
+                <table>
+                    <thead><tr><th>Tegevus</th><th>Detail</th></tr></thead>
+                    <tbody>
+                        <tr><td>25 ettevottet LIVE</td><td>Rotermanni kvartal</td></tr>
+                        <tr><td>Seeds app launch</td><td>PWA + SDK Forus apile</td></tr>
+                        <tr><td>Turunduskampaania</td><td>Rotermanni kvartalisisene</td></tr>
+                        <tr><td>Eesmark</td><td class="bold accent">1 000 kasutajat kuu 3 lopuks</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="timeline-item">
+                <h4>&#x1f4c8; Q4 2026 - Q1 2027: Kasv + pipeline</h4>
+                <table>
+                    <thead><tr><th>Tegevus</th><th>Detail</th></tr></thead>
+                    <tbody>
+                        <tr><td>Kasutajate kasv</td><td>2 000-4 000 aktiivset</td></tr>
+                        <tr><td>Pipeline ehitamine</td><td>LOI-d 3-5 uuelt kvartalilt</td></tr>
+                        <tr><td>Tallinna kvartalid</td><td>Ulemiste City, Telliskivi</td></tr>
+                        <tr><td>Go/No-Go otsus</td><td class="bold">Seed investeeringu otsus</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="timeline-item">
+                <h4>&#x1f30d; 2027-2028: Euroopa laienemine</h4>
+                <table>
+                    <thead><tr><th>Ajakava</th><th>Tegevus</th></tr></thead>
+                    <tbody>
+                        <tr><td>H1 2027</td><td>3-5 Eesti kvartalit LIVE</td></tr>
+                        <tr><td>H2 2027</td><td>Helsinki (Jatkasaari, Kalasatama)</td></tr>
+                        <tr><td>H1 2028</td><td>Wien + Hamburg</td></tr>
+                        <tr><td>H2 2028</td><td>Kopenhaagen + UK pipeline</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 17. KOKKUVOTE -->
+    <div class="section">
+        <h2 class="section-title"><span class="section-num">16</span> Kokkuvote</h2>
+
+        <p style="font-size:1.05em; margin-bottom:20px;"><strong>City Seed</strong> on globaalselt skaleeritav kvartalipohine lojaalsusplatvorm &mdash; esimene omalaadne &mdash; VISA strateegiline partner, US Invest anchor investor.</p>
+
+        <h3 style="margin-bottom:12px;">Investeerimisotsus</h3>
+        <table>
+            <thead>
+                <tr><th>Ring</th><th class="right">Summa</th><th>Investor</th><th>Milestone</th></tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row"><td><strong>Pre-seed</strong></td><td class="right bold">200-300K&euro;</td><td>US Invest</td><td>Rotermann PoC LIVE</td></tr>
+                <tr><td><strong>Seed</strong></td><td class="right bold">500-750K&euro;</td><td>US Invest (+valine?)</td><td>3+ kvartalit, ARR &gt;300K&euro;</td></tr>
+                <tr><td><strong>Series A</strong></td><td class="right bold">3-5M&euro;</td><td>Vajadusel</td><td>15+ kvartalit, ARR &gt;1.5M&euro;</td></tr>
+            </tbody>
+        </table>
+
+        <div class="key-numbers" style="margin-top:24px;">
+            <div class="key-num">
+                <div class="value">700K-1M&euro;</div>
+                <div class="label">Kogu investeering A1-A2</div>
+            </div>
+            <div class="key-num green">
+                <div class="value">Aasta 3</div>
+                <div class="label">Break-even</div>
+            </div>
+            <div class="key-num green">
+                <div class="value">+11.2M&euro;</div>
+                <div class="label">5a kumulatiivne kasum</div>
+            </div>
+            <div class="key-num gold">
+                <div class="value">50-100M&euro;</div>
+                <div class="label">Ettevotte vaartus A5</div>
+            </div>
+        </div>
+
+        <div class="investor-hero" style="margin-top:24px;">
+            <div class="hero-label">Pre-seed investor return</div>
+            <div class="hero-value">40-80&times;</div>
+            <div class="hero-sub">200-300K&euro; investeering &rarr; 10-20M&euro; vaartus 5 aastaga</div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-brand">CITY SEED</div>
+        <div class="footer-tagline">&ldquo;Kasva koos kvartaliga.&rdquo;</div>
+        <p style="margin-top:16px;">Marts 2026 &middot; Konfidentsiaalne</p>
+    </div>
+
+</div>
+</body>
+</html>
