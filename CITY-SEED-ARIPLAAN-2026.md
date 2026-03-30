@@ -31,8 +31,8 @@ Kvartaliarendajad üle maailma tahavad pakkuda oma elanikele ja töötajatele ü
 | Pre-seed investeering | **200-300K€** (US Invest) |
 | Seed (aasta 2) | **500-750K€** |
 | Break-even | **Aasta 3** |
-| ARR aasta 3 | **~1.8M€** |
-| ARR aasta 5 | **~10.6M€** |
+| ARR aasta 3 | **~1.7M€** |
+| ARR aasta 5 | **~10M€** |
 | Ettevõtte väärtus aasta 5 | **50-100M€** |
 | Strateegiline partner | **VISA** (50K€ in-kind investeering) |
 | Anchor investor | **US Invest** |
