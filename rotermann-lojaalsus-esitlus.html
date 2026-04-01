@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotermanni Lojaalsusprogramm — Kulud & Tulud</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0f14;
+  --surface: #161a22;
+  --surface2: #1e232e;
+  --accent: #e8553d;
+  --accent-light: #ff7f6a;
+  --green: #3ecf8e;
+  --green-dim: #2a9e68;
+  --gold: #f5c842;
+  --text: #eceef4;
+  --text-dim: #8b92a5;
+  --radius: 14px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+.slide {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp .7s ease forwards;
+}
+
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+.slide-num {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+h1 span.accent { color: var(--accent); }
+
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: var(--text-dim);
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  padding: 28px 28px 24px;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
+}
+
+.card .label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.card .big {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  line-height: 1.1;
+}
+
+.card .note {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.card.accent-card { border-left: 4px solid var(--accent); }
+.card.green-card  { border-left: 4px solid var(--green); }
+.card.gold-card   { border-left: 4px solid var(--gold); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 15px;
+}
+
+th {
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  border-bottom: 2px solid rgba(255,255,255,.08);
+}
+
+td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.04); }
+tr:hover td { background: rgba(255,255,255,.02); }
+
+.num { font-variant-numeric: tabular-nums; text-align: right; font-weight: 600; }
+.positive { color: var(--green); }
+.negative { color: var(--accent); }
+.highlight-row td { background: rgba(232,85,61,.08); }
+
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.flow-box {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 24px 32px;
+  text-align: center;
+  min-width: 160px;
+}
+
+.flow-box .flow-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.flow-box .flow-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+}
+
+.flow-arrow {
+  font-size: 28px;
+  color: var(--accent);
+  padding: 0 16px;
+}
+
+.callout {
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.callout.green { border-left: 4px solid var(--green); }
+.callout.gold  { border-left: 4px solid var(--gold); }
+.callout.red   { border-left: 4px solid var(--accent); }
+
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tier {
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.tier.white { background: linear-gradient(145deg, #e0e0e0, #f5f5f5); color: #222; }
+.tier.red   { background: linear-gradient(145deg, #b02a1a, var(--accent)); color: #fff; }
+.tier.black { background: linear-gradient(145deg, #1a1a1a, #333); color: #fff; border: 1px solid rgba(255,255,255,.12); }
+
+.tier h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.tier ul { list-style: none; font-size: 14px; line-height: 2; }
+
+.timeline {
+  display: flex;
+  gap: 0;
+  margin: 32px 0;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 24px; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,.08);
+}
+
+.tl-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding-top: 44px;
+}
+
+.tl-item::before {
+  content: '';
+  width: 14px; height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  top: 18px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.tl-item.active::before { background: var(--green); box-shadow: 0 0 12px rgba(62,207,142,.5); }
+
+.tl-date { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.tl-desc { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+
+.nav {
+  position: fixed;
+  bottom: 24px;
+  right: 40px;
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.nav a {
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--text);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background .2s;
+}
+
+.nav a:hover { background: var(--accent); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: var(--text-dim);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100% { opacity:.4; } 50% { opacity:1; } }
+
+table { font-size: clamp(12px, 1.4vw, 15px); }
+th, td { padding: clamp(8px, 1vw, 14px) clamp(6px, 1vw, 16px); }
+
+@media (max-width: 1200px) {
+  .slide { padding: 40px 48px; }
+  .card .big { font-size: clamp(24px, 3vw, 36px); }
+}
+
+@media (max-width: 768px) {
+  .slide { padding: 32px 20px; }
+  .slide-num { top: 20px; right: 20px; }
+  h2 { font-size: 24px; margin-bottom: 16px; }
+  .subtitle { font-size: 16px; margin-bottom: 20px; }
+  .tiers { grid-template-columns: 1fr; }
+  .flow { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+  .timeline { flex-direction: column; gap: 16px; }
+  .timeline::before { display: none; }
+  .tl-item { padding-top: 0; padding-left: 32px; text-align: left; }
+  .tl-item::before { left: 0; top: 4px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .card .big { font-size: 24px; }
+  .callout { font-size: 14px; padding: 16px; }
+  .nav { bottom: 12px; right: 12px; }
+  .nav a { padding: 8px 12px; font-size: 12px; }
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+@media (max-width: 480px) {
+  .slide { padding: 24px 16px; min-height: auto; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 20px; }
+  .flow-box { min-width: 100px; padding: 16px; }
+  .flow-box .flow-val { font-size: 22px; }
+  .tier { padding: 20px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="#slide1">1</a>
+  <a href="#slide2">2</a>
+  <a href="#slide3">3</a>
+  <a href="#slide4">4</a>
+  <a href="#slide5">5</a>
+  <a href="#slide6">6</a>
+  <a href="#slide7">7</a>
+  <a href="#slide8">8</a>
+</div>
+
+<!-- ═══ SLIDE 1 — TITLE ═══ -->
+<section class="slide" id="slide1">
+  <div class="slide-num">01 / 08</div>
+  <h1>Rotermanni<br><span class="accent">Lojaalsusprogramm</span></h1>
+  <p class="subtitle">Konkreetne näide: kuidas cashback-programm töötab, mida see maksab ja millal muutub kasumlikuks.</p>
+  <div class="scroll-hint">&#8595; Keri alla</div>
+</section>
+
+<!-- ═══ SLIDE 2 — KUIDAS TÖÖTAB ═══ -->
+<section class="slide" id="slide2">
+  <div class="slide-num">02 / 08</div>
+  <h2>Kuidas see töötab?</h2>
+  <p class="subtitle">Klient maksab partneris oma tavapärase pangakaardiga. Mastercard tuvastab tehingu automaatselt ja cashback laekub ilma lisategevuseta.</p>
+
+  <div class="flow">
+    <div class="flow-box">
+      <div class="flow-title">Klient maksab</div>
+      <div class="flow-val">100 €</div>
+    </div>
+    <div class="flow-arrow">&#10140;</div>
+    <div class="flow-box">
+      <div class="flow-title">Partner annab</div>
+      <div class="flow-val" style="color:var(--accent)">12 €</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-top:4px">12% tehingust</div>
+    </div>
+    <div class="flow-arrow">&#10140;</div>
+    <div class="flow-box">
+      <div class="flow-title">Klient saab</div>
+      <div class="flow-val" style="color:var(--green)">10 €</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-top:4px">10% cashback</div>
+    </div>
+    <div class="flow-arrow">&#10140;</div>
+    <div class="flow-box">
+      <div class="flow-title">The List teenib</div>
+      <div class="flow-val" style="color:var(--gold)">2 €</div>
+      <div style="font-size:13px;color:var(--text-dim);margin-top:4px">2% platvormi tasu</div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <strong style="color:var(--gold)">Tuluallikad:</strong>
+    <span style="color:var(--text-dim);margin-left:8px"><strong>1)</strong> Platvormi tasu <strong>2%</strong> igast tehingust — kohe alates 1. kuust. <strong>2)</strong> Aegunud cashback — ~20% cashback'ist jääb kasutamata (kehtivus 12 kuud). See tulu lisandub alates <strong>2. aastast</strong> ja on sama suurusjärk kui platvormi tasu.</span>
+  </div>
+
+  <div class="card-grid" style="margin-top:16px;max-width:700px">
+    <div class="card gold-card">
+      <div class="label">Näide: 100 € tehing</div>
+      <div class="big">2 € platvormi tasu</div>
+      <div class="note">Koheselt igast tehingust</div>
+    </div>
+    <div class="card green-card">
+      <div class="label">+ aegunud cashback (aasta 2+)</div>
+      <div class="big">+2 € lisatulu</div>
+      <div class="note">20% × 10 € cashback'ist = 2 €. Kokku tegelik tulu ~4 € / 100 € kohta.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 3 — KONKREETNE NÄIDE ═══ -->
+<section class="slide" id="slide3">
+  <div class="slide-num">03 / 08</div>
+  <h2>Konkreetne näide: <span style="color:var(--green)">kui palju kulutavad?</span></h2>
+  <p class="subtitle">Mitte kõik liikmed ei kasuta programmi iga kuu. Loyal Solutionsi kogemusel on igal kuul aktiivsed <strong>~35%</strong> kasutajatest. Aktiivne kasutaja kulutab <strong>~100 €/kuu</strong> — ainuüksi lõuna on 8+ € päevas.</p>
+
+  <table style="max-width:750px">
+    <thead>
+      <tr><th>Kasutaja tüüp</th><th class="num">Lingitud</th><th class="num">Aktiivseid igal kuul</th><th class="num">Aktiivse kulutus</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Rotermanni töötaja (tuumik)</td><td class="num">3 400</td><td class="num">~50% → ~1 700</td><td class="num">~100 €</td></tr>
+      <tr><td>Kvartali külastaja</td><td class="num">5 000+</td><td class="num">~30% → ~1 500</td><td class="num">~100 €</td></tr>
+      <tr><td>Forus kasutaja</td><td class="num">30 000+</td><td class="num">~25% → ~7 500</td><td class="num">~100 €</td></tr>
+      <tr class="highlight-row"><td><strong>Kokku</strong></td><td class="num"><strong>38 000+</strong></td><td class="num"><strong>~10 700</strong></td><td class="num"><strong>~100 €</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="card-grid" style="margin-top:28px;max-width:750px">
+    <div class="card accent-card">
+      <div class="label">Loyal Solutions benchmark</div>
+      <div class="big">~60 € / kuu</div>
+      <div class="note">Nende kogemus mujalt (lennuliinid, kaubamajad). Rotermanni restoranid on igapäevane kulutus — meie number on kõrgem.</div>
+    </div>
+    <div class="card gold-card">
+      <div class="label">Meie eeldus</div>
+      <div class="big">100 € / kuu</div>
+      <div class="note">Aktiivse kasutaja keskmine kulutus. Ainuüksi 20 tööpäeva lõunat = 160 €, seega 100 € on konservatiivne.</div>
+    </div>
+    <div class="card green-card">
+      <div class="label">The List teenib aktiivse kasutaja kohta</div>
+      <div class="big">2 € / kuu</div>
+      <div class="note">2% × 100 € — skaleerub aktiivsete kasutajate arvuga</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 4 — KUI PALJU INIMESI ON VAJA ═══ -->
+<section class="slide" id="slide4">
+  <div class="slide-num">04 / 08</div>
+  <h2>Kui palju kasutajaid on <span class="accent">vaja?</span></h2>
+  <p class="subtitle">Eeldus: ~35% lingitud kasutajatest on igal kuul aktiivsed. Aktiivne kasutaja kulutab <strong>~100 €/kuu</strong>. Platvorm teenib <strong>2%</strong> igast tehingust.</p>
+
+  <table style="max-width:900px">
+    <thead>
+      <tr><th>Stsenaarium</th><th class="num">Lingitud</th><th class="num">Aktiivseid / kuu</th><th class="num">Kuu GMV</th><th class="num">Platvormi tulu (2%)</th><th class="num">vs. kulu ~31 000 €</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ainult Rotermann töötajad</td>
+        <td class="num">3 400</td>
+        <td class="num">~1 700</td>
+        <td class="num">170 000 €</td>
+        <td class="num">3 400 €</td>
+        <td class="num negative">-27 600 €</td>
+      </tr>
+      <tr>
+        <td>+ kvartali külastajad</td>
+        <td class="num">8 400</td>
+        <td class="num">~3 200</td>
+        <td class="num">320 000 €</td>
+        <td class="num">6 400 €</td>
+        <td class="num negative">-24 600 €</td>
+      </tr>
+      <tr>
+        <td>+ Forus kasutajad</td>
+        <td class="num">38 400</td>
+        <td class="num">~10 700</td>
+        <td class="num">1 070 000 €</td>
+        <td class="num">21 400 €</td>
+        <td class="num negative">-9 600 €</td>
+      </tr>
+      <tr>
+        <td style="color:var(--gold)"><strong>Break-even</strong></td>
+        <td class="num" style="color:var(--gold)"><strong>~44 300</strong></td>
+        <td class="num" style="color:var(--gold)"><strong>~15 500</strong></td>
+        <td class="num">1 550 000 €</td>
+        <td class="num" style="color:var(--gold)"><strong>31 000 €</strong></td>
+        <td class="num" style="color:var(--gold)"><strong>0 €</strong></td>
+      </tr>
+      <tr>
+        <td style="color:var(--green)"><strong>50 000 lingitud</strong></td>
+        <td class="num" style="color:var(--green)"><strong>50 000</strong></td>
+        <td class="num" style="color:var(--green)"><strong>~17 500</strong></td>
+        <td class="num">1 750 000 €</td>
+        <td class="num" style="color:var(--green)"><strong>35 000 €</strong></td>
+        <td class="num positive"><strong>+4 000 €</strong></td>
+      </tr>
+      <tr>
+        <td style="color:var(--green)"><strong>60 000 lingitud</strong></td>
+        <td class="num" style="color:var(--green)"><strong>60 000</strong></td>
+        <td class="num" style="color:var(--green)"><strong>~21 000</strong></td>
+        <td class="num">2 100 000 €</td>
+        <td class="num" style="color:var(--green)"><strong>42 000 €</strong></td>
+        <td class="num positive"><strong>+11 000 €</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold" style="margin-top:20px">
+    <strong style="color:var(--gold)">Break-even: ~44 300 lingitud kasutajat (~15 500 aktiivset kuus).</strong>
+    <span style="color:var(--text-dim);margin-left:8px">Rotermann + Forus baas on 38 000+ — peaaegu piisav. Skaleerumisel teistesse kvartalitesse jõuame kiirelt üle break-even'i.</span>
+  </div>
+
+  <div class="callout green" style="margin-top:12px">
+    <strong style="color:var(--green)">Alates 2. aastast: aegunud cashback kahekordistab tulu.</strong>
+    <span style="color:var(--text-dim);margin-left:8px">~20% cashback'ist jääb kasutamata (kehtivus 12 kuud). Break-even'i GMV juures tähendab see <strong>+31 000 €/kuu lisatulu</strong> — break-even langeb ~22 000 lingitud kasutajani.</span>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 5 — KULUD: KÄIVITUS ═══ -->
+<section class="slide" id="slide5">
+  <div class="slide-num">05 / 08</div>
+  <h2>Ühekordsed <span class="accent">käivituskulud</span></h2>
+  <p class="subtitle">Loyal Solutions'ilt võtame card linking lahenduse ja punktide arvestuse. Äpp, UI, partneriportaal ja integratsioonid teeme ise.</p>
+
+  <div class="card-grid" style="margin-bottom:28px">
+    <div class="card accent-card">
+      <div class="label">Välised teenused</div>
+      <div class="big">~116 000 €</div>
+      <div class="note">Loyal Solutions 57k + Mastercard 51k + juriidika 8k</div>
+    </div>
+    <div class="card accent-card">
+      <div class="label">Oma arendus</div>
+      <div class="big">~45 000 €</div>
+      <div class="note">Äpp, UI, integratsioonid, partneriportaal</div>
+    </div>
+    <div class="card gold-card">
+      <div class="label">Käivitus kokku</div>
+      <div class="big">~161 000 €</div>
+    </div>
+  </div>
+
+  <table style="max-width:750px">
+    <thead>
+      <tr><th>Komponent</th><th>Kes teeb</th><th class="num">Summa</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Loyal Solutions (card linking + punktid)</td><td>Loyal Solutions</td><td class="num">57 000 €</td></tr>
+      <tr><td>Mastercard Card Linking API</td><td>Mastercard</td><td class="num">51 000 €</td></tr>
+      <tr style="border-top:2px solid rgba(255,255,255,.08)"><td>Mobiiliäpp ja kasutajaliides</td><td><strong>Meie</strong></td><td class="num">20 000 €</td></tr>
+      <tr><td>Partneriportaal ja haldus</td><td><strong>Meie</strong></td><td class="num">10 000 €</td></tr>
+      <tr><td>Integratsioonid (Forus, Stripe)</td><td><strong>Meie</strong></td><td class="num">15 000 €</td></tr>
+      <tr><td>Juriidika (GDPR, lepingud)</td><td>Jurist</td><td class="num">8 000 €</td></tr>
+      <tr class="highlight-row"><td><strong>KOKKU</strong></td><td></td><td class="num"><strong>~161 000 €</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══ SLIDE 6 — KULUD: IGAKUINE ═══ -->
+<section class="slide" id="slide6">
+  <div class="slide-num">06 / 08</div>
+  <h2>Igakuised <span class="accent">püsikulud</span></h2>
+
+  <div class="card-grid" style="margin-bottom:28px">
+    <div class="card accent-card">
+      <div class="label">Tehnoloogia</div>
+      <div class="big">~13 700 €<span style="font-size:18px;color:var(--text-dim)">/kuu</span></div>
+      <div class="note">Fikseeritud — välised teenused ja infrastruktuur</div>
+    </div>
+    <div class="card gold-card">
+      <div class="label">Meeskond</div>
+      <div class="big">~17 000 €<span style="font-size:18px;color:var(--text-dim)">/kuu</span></div>
+      <div class="note">Paindlik — saab optimeerida olemasoleva tiimiga</div>
+    </div>
+    <div class="card" style="border-color:rgba(255,255,255,.2)">
+      <div class="label">Kokku</div>
+      <div class="big">~31 000 €<span style="font-size:18px;color:var(--text-dim)">/kuu</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:32px;flex-wrap:wrap">
+    <div style="flex:1;min-width:300px">
+      <h3 style="color:var(--accent);font-size:16px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px">Tehnoloogia (fikseeritud)</h3>
+      <table>
+        <thead><tr><th>Kuluartikkel</th><th class="num">Summa / kuu</th></tr></thead>
+        <tbody>
+          <tr><td>Loyal Solutions (card linking + punktid)</td><td class="num">5 700 €</td></tr>
+          <tr><td>Mastercard API</td><td class="num">6 500 €</td></tr>
+          <tr><td>Stripe + infrastruktuur</td><td class="num">1 500 €</td></tr>
+          <tr class="highlight-row"><td><strong>Kokku tehnoloogia</strong></td><td class="num"><strong>~13 700 €</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="flex:1;min-width:300px">
+      <h3 style="color:var(--gold);font-size:16px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px">Meeskond (paindlik)</h3>
+      <table>
+        <thead><tr><th>Kuluartikkel</th><th class="num">Summa / kuu</th></tr></thead>
+        <tbody>
+          <tr><td>CEO / projektijuht (0.5 FTE)</td><td class="num">6 000 €</td></tr>
+          <tr><td>Turundus</td><td class="num">5 000 €</td></tr>
+          <tr><td>Arendus ja haldus</td><td class="num">4 000 €</td></tr>
+          <tr><td>Kasutajatugi (0.5 FTE)</td><td class="num">2 000 €</td></tr>
+          <tr class="highlight-row"><td><strong>Kokku meeskond</strong></td><td class="num"><strong>~17 000 €</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout gold" style="margin-top:24px">
+    <strong style="color:var(--gold)">Kui meeskond on olemasolevast tiimist:</strong>
+    <span style="color:var(--text-dim);margin-left:8px">Meeskonnakulu langeb oluliselt. Näiteks kui projektijuht ja tugi on juba palgal, jääb lisanduvaks puhtalt <strong>~13 700 € tehnoloogia + ~9 000 € turundus ja arendus = ~23 000 €/kuu</strong>.</span>
+  </div>
+
+  <div class="callout red" style="margin-top:12px">
+    <strong style="color:var(--accent)">Oluline:</strong>
+    <span style="color:var(--text-dim);margin-left:8px">Loyal Solutions annab meile ainult card linking lahenduse ja punktide arvestuse. Kogu äpp, UI, partneriportaal ja integratsioonid arendame ja haldame ise.</span>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 7 — TASEMED ═══ -->
+<section class="slide" id="slide7">
+  <div class="slide-num">07 / 08</div>
+  <h2>Lojaalsustasemed</h2>
+  <p class="subtitle">10% cashback kõigile. Kõrgemad tasemed pakuvad lisaboonuseid.</p>
+
+  <div class="tiers">
+    <div class="tier white">
+      <h3>White</h3>
+      <ul>
+        <li>Kõigile avatud</li>
+        <li>10% cashback</li>
+        <li>Tervitusboonus 5 €</li>
+      </ul>
+    </div>
+    <div class="tier red">
+      <h3>Red</h3>
+      <ul>
+        <li>Töötajad & elanikud</li>
+        <li>10% cashback</li>
+        <li>Sünnipäev 15 €</li>
+        <li>2h tasuta parkimine/kuu</li>
+      </ul>
+    </div>
+    <div class="tier black">
+      <h3>Black</h3>
+      <ul>
+        <li>500 €/3 kuu kulutus v. 79 €/kuu</li>
+        <li>10% cashback</li>
+        <li>Sünnipäev 50 €</li>
+        <li>4h tasuta parkimine/kuu</li>
+        <li>Eriüritused</li>
+        <li>Sport -50%</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 8 — AJAKAVA ═══ -->
+<section class="slide" id="slide8">
+  <div class="slide-num">08 / 08</div>
+  <h2>Ajakava & <span style="color:var(--green)">otsusepunktid</span></h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">Kuu 1–3</div>
+      <div class="tl-desc">25 partnerit<br>1 000 lingitud</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Kuu 4–6</div>
+      <div class="tl-desc">3 000 lingitud<br>Forus integratsioon</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Kuu 7–9</div>
+      <div class="tl-desc">5 000+ lingitud<br>50 partnerit</div>
+    </div>
+    <div class="tl-item active">
+      <div class="tl-date">Kuu 12</div>
+      <div class="tl-desc"><strong>Go / No-Go otsus</strong><br>≥ 30 000 lingitud?</div>
+    </div>
+  </div>
+
+  <h2 style="font-size:24px;margin-top:48px;">Go/No-Go otsus (kuu 12)</h2>
+  <p style="color:var(--text-dim);margin-bottom:16px">Kas programm näitab piisavat kasvutempot, et skaleerides kasumini jõuda?</p>
+  <table style="max-width:700px;margin-top:16px">
+    <thead>
+      <tr><th>Mõõdik</th><th class="num">Miinimum (Go)</th><th class="num">Eesmärk</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lingitud kasutajad</td><td class="num">≥ 30 000</td><td class="num positive">45 000+</td></tr>
+      <tr><td>Aktiivseid kuus (~35%)</td><td class="num">≥ 10 500</td><td class="num positive">15 500+</td></tr>
+      <tr><td>Keskm. aktiivse kulutus</td><td class="num">≥ 100 €</td><td class="num positive">100 €+</td></tr>
+      <tr><td>Kuu GMV</td><td class="num">≥ 840 000 €</td><td class="num positive">1 550 000 €</td></tr>
+      <tr><td>Kuu tulu (2%)</td><td class="num">≥ 16 800 €</td><td class="num positive">31 000 € (break-even)</td></tr>
+      <tr><td>Partnerite rahulolu</td><td class="num">NPS &gt; 6</td><td class="num positive">&gt; 7</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card-grid" style="margin-top:32px;max-width:700px">
+    <div class="card accent-card">
+      <div class="label">Maksimaalne risk (12 kuu PoC)</div>
+      <div class="big">~533 000 €</div>
+      <div class="note">Käivitus ~161 000 € + 12 × ~31 000 € püsikulud. Kui lõpetame pärast PoC-d — rohkem ei kaota.</div>
+    </div>
+    <div class="card green-card">
+      <div class="label">Eesmärk kuu 12</div>
+      <div class="big">Break-even</div>
+      <div class="note">~15 500 aktiivset kasutajat × 100 €/kuu kulutus = 31 000 € platvormi tulu = katab püsikulud.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animationDelay = '0s';
+        e.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.slide').forEach(s => {
+    s.style.animationPlayState = 'paused';
+    observer.observe(s);
+  });
+});
+</script>
+
+</body>
+</html>
