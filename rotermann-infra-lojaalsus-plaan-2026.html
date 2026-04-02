@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotermanni digi- ja lojaalsusplaan</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #ffffff;
+            --bg-darker: #f8f8f8;
+            --accent: #b42318;
+            --accent-light: #fef3f2;
+            --success: #15803d;
+            --success-light: #ecfdf3;
+            --warning: #b45309;
+            --warning-light: #fffbeb;
+            --blue: #1d4ed8;
+            --blue-light: #eff6ff;
+            --text: #222222;
+            --text-muted: rgba(0, 0, 0, 0.58);
+            --card-bg: #fafafa;
+            --border: #e5e5e5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .slide-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .slide-nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .slide-nav-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+            z-index: 100;
+        }
+
+        .slide-counter .current {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .slide-title {
+            background: linear-gradient(135deg, #181311 0%, #351713 100%);
+            color: white;
+        }
+
+        h1 {
+            font-family: "DM Serif Display", Georgia, serif;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 22px;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-family: "DM Serif Display", Georgia, serif;
+            font-size: clamp(36px, 5vw, 62px);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .slide-title h3,
+        .slide-title p,
+        .slide-title .mini,
+        .slide-title .stat-label,
+        .slide-title .stat-note {
+            color: rgba(255,255,255,0.78);
+        }
+
+        p {
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--text-muted);
+            max-width: 900px;
+        }
+
+        .lead {
+            font-size: clamp(24px, 3vw, 34px);
+            color: var(--text);
+        }
+
+        .slide-title .lead,
+        .slide-title p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .subtitle {
+            font-size: clamp(22px, 3vw, 34px);
+            color: rgba(255,255,255,0.75);
+            max-width: 880px;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            padding: 12px 22px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 36px;
+            color: white;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px; }
+
+        .card, .stat, .note-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .card.red, .note-box.red { background: var(--accent-light); border-color: #f4c7c4; }
+        .card.green, .note-box.green { background: var(--success-light); border-color: #b9e6c7; }
+        .card.blue-bg, .note-box.blue-bg { background: var(--blue-light); border-color: #cad7ff; }
+        .card.gold, .note-box.gold { background: var(--warning-light); border-color: #f2db9b; }
+
+        .card h4,
+        .note-box h4,
+        .stat h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .big-number {
+            font-family: "DM Serif Display", Georgia, serif;
+            font-size: clamp(34px, 4vw, 54px);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .mini {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 36px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .stat-value {
+            font-family: "DM Serif Display", Georgia, serif;
+            font-size: clamp(30px, 4vw, 48px);
+            line-height: 1;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .stat-note {
+            font-size: 13px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            font-size: 15px;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            font-variant-numeric: tabular-nums;
+            vertical-align: top;
+        }
+
+        td:last-child,
+        th:last-child,
+        .num {
+            text-align: right;
+        }
+
+        .table-wrap {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 8px 2px;
+            margin-top: 24px;
+            overflow-x: auto;
+        }
+
+        tr.total td {
+            font-weight: 700;
+            background: rgba(0,0,0,0.02);
+        }
+
+        .check-list {
+            list-style: none;
+            margin-top: 14px;
+        }
+
+        .check-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .check-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .decision-box {
+            margin-top: 36px;
+            padding: 28px 32px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(180,35,24,0.05), rgba(29,78,216,0.05));
+            border: 1px solid var(--border);
+        }
+
+        .accent-text { color: var(--accent); font-weight: 700; }
+        .success-text { color: var(--success); font-weight: 700; }
+
+        @media (max-width: 1100px) {
+            .grid-4,
+            .stat-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .slide { padding: 34px 20px 80px; }
+            .grid-2, .grid-3, .grid-4, .stat-row { grid-template-columns: 1fr; }
+            .slide-nav { right: 12px; }
+            .slide-counter { right: 12px; bottom: 12px; }
+            h1 { font-size: clamp(34px, 9vw, 56px); }
+            h2 { font-size: clamp(28px, 7vw, 44px); }
+            p, .lead { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="slide-nav" id="slideNav"></nav>
+<div class="slide-counter" id="slideCounter"><span class="current">1</span> / <span class="total">9</span></div>
+
+<div class="slide slide-title">
+    <div class="slide-content">
+        <h3>Rotermann City</h3>
+        <h1>Digiinfra kõigepealt.<br>Kasum tuleb lojaalsusest.</h1>
+        <p class="subtitle">Juhtkonnamaterjal nõukogule: kuidas projekt käivitub, kust raha tuleb ja kui suureks saab see äri kasvada.</p>
+        <div class="stat-row">
+            <div class="stat">
+                <div class="stat-label">Rotermann City investeering infrastruktuuri</div>
+                <div class="stat-value">79 980 €</div>
+                <div class="stat-note">Foruse tööd</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Äpi kuutasu</div>
+                <div class="stat-value">6 500 €</div>
+                <div class="stat-note">fikseeritud kuutasu</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Digivõti</div>
+                <div class="stat-value">1,50 €</div>
+                <div class="stat-note">iga aktiivse võtme kohta kuus</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Lojaalsuse kuukulu</div>
+                <div class="stat-value">12 000 €</div>
+                <div class="stat-note">Loyal Solutions + Mastercard</div>
+            </div>
+        </div>
+        <div class="date-badge">Märts 2026 · The List Services</div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-content">
+        <h3>Põhisõnum</h3>
+        <h2>Kaks sammu, üks loogiline tee</h2>
+        <p class="lead">Kõigepealt teeme Rotermanni digitaalse ligipääsu korda. Seejärel kasutame sama äppi, et ehitada üles kogu kvartali ja hiljem kogu linna lojaalsusprogramm.</p>
+
+        <div class="grid-3">
+            <div class="card blue-bg">
+                <h4>1. Infra</h4>
+                <div class="big-number">käivitab</div>
+                <p>Digivõti ja äpp annavad kohe igapäevase kasutuse. See tähendab reaalseid kasutajaid, mitte ainult ideed.</p>
+            </div>
+            <div class="card gold">
+                <h4>2. Lojaalsus</h4>
+                <div class="big-number">teenib</div>
+                <p>Kui inimesed juba kasutavad äppi, saab sinna peale ehitada cashback'i, pakkumised ja partnerite võrgustiku.</p>
+            </div>
+            <div class="card green">
+                <h4>3. Skaala</h4>
+                <div class="big-number">kasvatab</div>
+                <p>Kui programm liigub Rotermannist välja Foruse ja teiste partnerite juurde, muutub sellest suur linnapõhine äri.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-content">
+        <h3>Infra</h3>
+        <h2>Kuidas raha liigub esimeses etapis</h2>
+        <div class="grid-2">
+            <div class="card blue-bg">
+                <h4>Rotermann City maksab</h4>
+                <ul class="check-list">
+                    <li>Forusele infrastruktuuri eest <strong>79 980 €</strong></li>
+                    <li>The Listile äpi setup'i eest <strong>36 500 €</strong></li>
+                    <li>The Listile äpi kasutamise eest <strong>6 500 € kuus</strong></li>
+                </ul>
+            </div>
+            <div class="card gold">
+                <h4>Üürnike arvetel on eraldi</h4>
+                <ul class="check-list">
+                    <li><strong>1,50 € kuus</strong> iga aktiivse digivõtme kohta</li>
+                    <li>see ei ole osa 6 500 € kuutasust</li>
+                    <li>see kajastub eraldi real üüriarvel</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="decision-box">
+            <p class="lead">Esimese etapi otsus on lihtne: <strong>Rotermann City investeerib infrastruktuuri</strong>, et Rotermannis tekiks ühtne digitaalne ligipääs ja igapäevane äpi kasutus.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-content">
+        <h3>Infra tulemus</h3>
+        <h2>Infra on tugev baas, aga mitte veel suur kasum</h2>
+        <p>Allpool on The Listi igakuine tulemus siis, kui äpi kuutasu on 6 500 eurot ja igalt aktiivselt digivõtmelt lisandub 1,50 eurot.</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stsenaarium</th>
+                        <th class="num">Aktiivseid võtmeid</th>
+                        <th class="num">Võtmete tulu</th>
+                        <th class="num">Äpi tulu</th>
+                        <th class="num">Sharry kulu</th>
+                        <th class="num">The Listi püsikulu</th>
+                        <th class="num">Tulemus kuus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Osaline kasutus</td>
+                        <td class="num">2 000</td>
+                        <td class="num">3 000 €</td>
+                        <td class="num">6 500 €</td>
+                        <td class="num">-6 500 €</td>
+                        <td class="num">-6 500 €</td>
+                        <td class="num accent-text">-3 500 €</td>
+                    </tr>
+                    <tr>
+                        <td>Hea kasutus</td>
+                        <td class="num">3 000</td>
+                        <td class="num">4 500 €</td>
+                        <td class="num">6 500 €</td>
+                        <td class="num">-6 500 €</td>
+                        <td class="num">-6 500 €</td>
+                        <td class="num accent-text">-2 000 €</td>
+                    </tr>
+                    <tr class="total">
+                        <td>Täismaht</td>
+                        <td class="num">4 000</td>
+                        <td class="num">6 000 €</td>
+                        <td class="num">6 500 €</td>
+                        <td class="num">-6 500 €</td>
+                        <td class="num">-6 500 €</td>
+                        <td class="num accent-text">-500 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid-2">
+            <div class="note-box blue-bg">
+                <h4>Mida see tähendab</h4>
+                <p>Infra on vajalik, sest see loob kasutajabaasi ja igapäevase äpi kasutuse.</p>
+            </div>
+            <div class="note-box gold">
+                <h4>Mida see ei tee</h4>
+                <p>Infra üksi ei tee veel sellest projektist suurt kasumimasinat. Selleks on vaja teist etappi: lojaalsust.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-content">
+        <h3>Lojaalsus</h3>
+        <h2>Kuidas teine etapp raha teenib</h2>
+        <div class="grid-3">
+            <div class="card red">
+                <h4>Käivituskulu</h4>
+                <div class="big-number">110 000 €</div>
+                <p>Ühekordne setup.</p>
+            </div>
+            <div class="card blue-bg">
+                <h4>Igakuine kulu</h4>
+                <div class="big-number">12 000 €</div>
+                <p>Ligikaudu pooleks Loyal Solutionsi ja Mastercardi vahel.</p>
+            </div>
+            <div class="card green">
+                <h4>The Listi osa</h4>
+                <div class="big-number">2%</div>
+                <p>Partner annab 12%, klient saab 10% cashback'ina tagasi, The Listile jääb 2%.</p>
+            </div>
+        </div>
+
+        <div class="decision-box">
+            <p class="lead">Teise etapi mõte on lihtne: <strong>iga ost läbi programmi toob The Listile väikese osa</strong>. Kui liikmeid ja oste on piisavalt palju, muutub kogu mudel kasumlikuks.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-content">
+        <h3>Kui palju on vaja</h3>
+        <h2>Liikmete arv üksi ei loe. Loeb see, kui palju nad kuus kulutavad.</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Liikmeid</th>
+                        <th class="num">Keskmine kulu kuus</th>
+                        <th class="num">Käive kuus</th>
+                        <th class="num">The Listi 2% tulu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5 000</td>
+                        <td class="num">50 €</td>
+                        <td class="num">250 000 €</td>
+                        <td class="num success-text">5 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>10 000</td>
+                        <td class="num">100 €</td>
+                        <td class="num">1 000 000 €</td>
+                        <td class="num success-text">20 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>20 000</td>
+                        <td class="num">50 €</td>
+                        <td class="num">1 000 000 €</td>
+                        <td class="num success-text">20 000 €</td>
+                    </tr>
+                    <tr class="total">
+                        <td>30 000</td>
+                        <td class="num">40 €</td>
+                        <td class="num">1 200 000 €</td>
+                        <td class="num success-text">24 000 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid-3">
+            <div class="card gold">
+                <h4>Alla 600 000 € käibe</h4>
+                <p>Lojaalsus katab vaevu oma kuukulu.</p>
+            </div>
+            <div class="card blue-bg">
+                <h4>Umbes 1 000 000 € käivet</h4>
+                <p>Programm hakkab juba korralikult tööle.</p>
+            </div>
+            <div class="card green">
+                <h4>Üle 1 000 000 € käibe</h4>
+                <p>Siit alates hakkab tekkima tugev kasvuruum.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-content">
+        <h3>Forus Takso stsenaarium</h3>
+        <h2>Mis juhtub siis, kui Forus toob 30 000 klienti</h2>
+        <p>See on väga oluline kasvustsenaarium, sest siis ei sõltu programm enam ainult Rotermanni enda jalajäljest.</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>30 000 kliendi stsenaarium</th>
+                        <th class="num">Keskmine kulu kuus</th>
+                        <th class="num">Käive kokku</th>
+                        <th class="num">The Listi 2% tulu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tagasihoidlik kasutus</td>
+                        <td class="num">20 €</td>
+                        <td class="num">600 000 €</td>
+                        <td class="num success-text">12 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>Hea kasutus</td>
+                        <td class="num">30 €</td>
+                        <td class="num">900 000 €</td>
+                        <td class="num success-text">18 000 €</td>
+                    </tr>
+                    <tr class="total">
+                        <td>Tugev kasutus</td>
+                        <td class="num">40 €</td>
+                        <td class="num">1 200 000 €</td>
+                        <td class="num success-text">24 000 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="decision-box">
+            <p class="lead">Kui Forus toob programmi 30 000 klienti ja igaüks kasutab seda keskmiselt <strong>30 kuni 40 euro ulatuses kuus</strong>, on see juba piisav, et viia mudel selgelt kasumisse.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="slide-content">
+        <h3>Skaala</h3>
+        <h2>Milline võiks olla suurem lõppmudel</h2>
+
+        <div class="grid-3">
+            <div class="card blue-bg">
+                <h4>Rotermann on süda</h4>
+                <p>Siit algab programm. Siin on infrastruktuur, äpp ja esimene tugev partnerite võrgustik.</p>
+            </div>
+            <div class="card gold">
+                <h4>Forus toob mahu</h4>
+                <p>Takso, parkimine, teenused ja muud kontaktpunktid toovad programmi suure liikmeskonna.</p>
+            </div>
+            <div class="card green">
+                <h4>Linn toob skaala</h4>
+                <p>Kui mudel töötab, saab sellest teha äride ülese lojaalsusprogrammi, mitte ainult ühe kvartali lahenduse.</p>
+            </div>
+        </div>
+
+        <div class="grid-3">
+            <div class="card">
+                <h4>Tasuta linnakaart</h4>
+                <div class="big-number">5%</div>
+                <p>Kõigile lihtne sisenemine. Parim viis liikmete arvu kiiresti kasvatada.</p>
+            </div>
+            <div class="card">
+                <h4>Premium liige</h4>
+                <div class="big-number">1,99 €</div>
+                <p>Võib anda paremad hüved, kuid ei tohiks olla esimene sissepääs kogu programmile.</p>
+            </div>
+            <div class="card">
+                <h4>Kinnisvara ostja</h4>
+                <div class="big-number">10%</div>
+                <p>Eriklass, mis annab kõrgema cashback'i ja tugevama seose kinnisvaraäriga.</p>
+            </div>
+        </div>
+
+        <div class="note-box green">
+            <h4>Soovituslik stardimudel</h4>
+            <p>Alustada tasuta liikmest, et kasvatada mahtu kiiresti. Kui kasutus on tekkinud, lisada premium tase ja kõrgema väärtusega eriklassid.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide slide-title">
+    <div class="slide-content">
+        <h3>Lõppjäreldus</h3>
+        <h1 style="font-size: clamp(40px, 6vw, 72px);">Rotermannist saab<br>digitaalne süda,<br>mille peale saab ehitada<br>suure lojaalsusäri.</h1>
+
+        <div class="grid-3">
+            <div class="card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14);">
+                <h4 style="color:white;">Täna</h4>
+                <p style="color: rgba(255,255,255,0.76); font-size: 16px;">Otsus digitaalse ligipääsu ja äpi käivitamiseks.</p>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14);">
+                <h4 style="color:white;">Järgmisena</h4>
+                <p style="color: rgba(255,255,255,0.76); font-size: 16px;">Lojaalsusprogramm, mis teenib raha ostukäibe pealt.</p>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14);">
+                <h4 style="color:white;">Pikem võit</h4>
+                <p style="color: rgba(255,255,255,0.76); font-size: 16px;">Rotermannist algav programm, mis skaleerub üle teiste partnerite ja üle linna.</p>
+            </div>
+        </div>
+
+        <div class="date-badge">Soovitus: käivitada infra, valmistada ette tasuta stardiga lojaalsusmudel</div>
+    </div>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const nav = document.getElementById('slideNav');
+    const counter = document.getElementById('slideCounter');
+    const totalSlides = slides.length;
+
+    counter.querySelector('.total').textContent = totalSlides;
+
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'slide-nav-dot';
+        dot.addEventListener('click', () => slides[i].scrollIntoView({ behavior: 'smooth' }));
+        nav.appendChild(dot);
+    });
+
+    const dots = nav.querySelectorAll('.slide-nav-dot');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const idx = Array.from(slides).indexOf(entry.target);
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+                counter.querySelector('.current').textContent = idx + 1;
+            }
+        });
+    }, { threshold: 0.5 });
+
+    slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
