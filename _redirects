@@ -1,9 +1,8 @@
-# The List Services - GitHub Pages Configuration
-# GitHub Pages automatically handles HTTPS and index.html serving
+# Cloudflare Pages reeglid (oli enne GitHub Pages config, alates 2026-05-25 CF Pages).
 
-# Rotermann infra esitlus
-/rotermann-infra  /rotermann-infra/index.html  200
-/rotermann-infra/  /rotermann-infra/index.html  200
+# Rotermann infra esitlus (trailing slash variant)
+/rotermann-infra/   /rotermann-infra/index.html  200
 
-# All requests go to index.html (SPA-like behavior)
-/* /index.html 200
+# Blokeeri internal kataloogid - mitte serveerida avalikult
+/migrations/*       /404.html  404
+/.wrangler/*        /404.html  404

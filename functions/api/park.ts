@@ -103,26 +103,67 @@ function companyForFloor(floor: string | null): string | null {
   return null;
 }
 
-// Lihtne rate limit: max RL_MAX p\u00e4ringut RL_WINDOW_MIN minutis sama IP-lt.
+// Rate limit 1: per IP - max RL_IP_MAX p\u00e4ringut RL_IP_WINDOW_MIN minutis.
 // Counts ALL events (sh validation errors) - et brute force katse plate'idele
-// ka loendub. Fail-open: kui D1 query eba6nnestub, lubame requesti.
-const RL_MAX = 20;
-const RL_WINDOW_MIN = 5;
+// ka loendub.
+const RL_IP_MAX = 20;
+const RL_IP_WINDOW_MIN = 5;
 
-async function checkRateLimit(db: D1Database | undefined, ip: string): Promise<{ allowed: boolean; count: number }> {
+// Rate limit 2: per Sharry user email - max RL_EMAIL_MAX edukat parkimist
+// RL_EMAIL_WINDOW_MIN minutis. Counts AINULT park.ok event'e (validation errors
+// ja Europark vead ei loendu, et tippvigade puhul ei l\u00f6\u00f6gita).
+// Kui kasutaja ei tulnud Sharry-st (email tyhi), see reegel ei rakendu.
+const RL_EMAIL_MAX = 10;
+const RL_EMAIL_WINDOW_MIN = 60;
+
+// Fail-open: kui D1 query eba6nnestub, lubame requesti.
+async function checkIpRateLimit(db: D1Database | undefined, ip: string): Promise<{ allowed: boolean; count: number }> {
   if (!ip || !db) return { allowed: true, count: 0 };
-  const sinceIso = new Date(Date.now() - RL_WINDOW_MIN * 60 * 1000).toISOString();
+  const sinceIso = new Date(Date.now() - RL_IP_WINDOW_MIN * 60 * 1000).toISOString();
   try {
     const res = await db
       .prepare("SELECT COUNT(*) AS c FROM parking_events WHERE ip = ? AND ts >= ?")
       .bind(ip, sinceIso)
       .first<{ c: number }>();
     const count = res?.c ?? 0;
-    return { allowed: count < RL_MAX, count };
+    return { allowed: count < RL_IP_MAX, count };
   } catch (err) {
-    console.error("rate_limit: query failed", err instanceof Error ? err.message : String(err));
+    console.error("rate_limit.ip: query failed", err instanceof Error ? err.message : String(err));
     return { allowed: true, count: 0 };
   }
+}
+
+async function checkEmailRateLimit(
+  db: D1Database | undefined,
+  email: string | null,
+): Promise<{ allowed: boolean; count: number }> {
+  if (!email || !db) return { allowed: true, count: 0 };
+  const sinceIso = new Date(Date.now() - RL_EMAIL_WINDOW_MIN * 60 * 1000).toISOString();
+  try {
+    const res = await db
+      .prepare("SELECT COUNT(*) AS c FROM parking_events WHERE event = 'park.ok' AND user_email = ? AND ts >= ?")
+      .bind(email, sinceIso)
+      .first<{ c: number }>();
+    const count = res?.c ?? 0;
+    return { allowed: count < RL_EMAIL_MAX, count };
+  } catch (err) {
+    console.error("rate_limit.email: query failed", err instanceof Error ? err.message : String(err));
+    return { allowed: true, count: 0 };
+  }
+}
+
+// Eralda Sharry kontekstist user email (case-insensitive votmenimedega).
+function extractUserEmail(ctx: Record<string, string>): string | null {
+  const lower: Record<string, string> = {};
+  for (const k of Object.keys(ctx)) lower[k.toLowerCase()] = ctx[k];
+  return (
+    lower["user e-mail"] ||
+    lower["user_email"] ||
+    lower["email"] ||
+    lower["e"] ||
+    lower["user-email"] ||
+    null
+  );
 }
 
 type Floor = "5" | "6";
@@ -267,9 +308,9 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     );
   };
 
-  // Rate limit kontroll (per IP, viimase 5 min jooksul).
-  const rl = await checkRateLimit(env.DB, cfMeta.ip);
-  if (!rl.allowed) {
+  // Rate limit 1: per IP (viimase 5 min jooksul, k\u00f5ik event'id).
+  const rlIp = await checkIpRateLimit(env.DB, cfMeta.ip);
+  if (!rlIp.allowed) {
     logAudit({
       event: "park.validation_error",
       floor: floor ?? null,
@@ -279,13 +320,37 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
       europark_status: null,
       start_time: null,
       end_time: null,
-      error_code: "rate_limited",
-      error_message: `${rl.count} requests in last ${RL_WINDOW_MIN} min from this IP (max ${RL_MAX})`,
+      error_code: "rate_limited_ip",
+      error_message: `${rlIp.count} requests in last ${RL_IP_WINDOW_MIN} min from this IP (max ${RL_IP_MAX})`,
     });
     return jsonResponse(429, {
       ok: false,
-      error: "rate_limited",
+      error: "rate_limited_ip",
       message: "Too many requests. Please wait a few minutes and try again.",
+    });
+  }
+
+  // Rate limit 2: per user email (viimase tunni jooksul, ainult park.ok event'id).
+  // Rakendub ainult kui kasutaja tuli Sharry kaudu (email t\u00e4idetud).
+  const userEmail = extractUserEmail(userContext);
+  const rlEmail = await checkEmailRateLimit(env.DB, userEmail);
+  if (!rlEmail.allowed) {
+    logAudit({
+      event: "park.validation_error",
+      floor: floor ?? null,
+      company: companyForFloor(floor ?? null),
+      plate: plateRaw || null,
+      europark_session_id: null,
+      europark_status: null,
+      start_time: null,
+      end_time: null,
+      error_code: "rate_limited_email",
+      error_message: `${rlEmail.count} successful parkings in last ${RL_EMAIL_WINDOW_MIN} min from ${userEmail} (max ${RL_EMAIL_MAX})`,
+    });
+    return jsonResponse(429, {
+      ok: false,
+      error: "rate_limited_email",
+      message: `Too many parkings registered (max ${RL_EMAIL_MAX} per hour). Please try again later.`,
     });
   }
 
@@ -469,11 +534,12 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
         ? JSON.stringify(upstreamBody).slice(0, 500)
         : String(upstreamBody).slice(0, 500),
     });
+    // Kliendile ei tagasta tooret Europark response'i (v\u00f5ib sisaldada API key
+     // fragmente, server stack'i jne). D1 audit log saab kogu info logAudit kaudu.
     return jsonResponse(upstream.status >= 500 ? 502 : 400, {
       ok: false,
       error: `upstream_${upstream.status}`,
       message,
-      upstream: upstreamBody,
     });
   }
 

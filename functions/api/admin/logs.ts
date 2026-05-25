@@ -123,11 +123,13 @@ export const onRequestGet: PagesFunction<Env> = async (ctx) => {
       rows: rowsRes.results ?? [],
     });
   } catch (err) {
+    // L\u00e4nelogi sisemine viga, aga kliendile lihtsalt geneeriline t\u00f5rge
+    // (SQL/D1 vea s\u00f5num v\u00f5ib lekitada DB skeemi v\u00f5i path infi).
     console.error("admin.logs: query failed", err);
     return jsonResponse(500, {
       ok: false,
       error: "query_failed",
-      message: err instanceof Error ? err.message : String(err),
+      message: "Query failed. Check Function logs.",
     });
   }
 };

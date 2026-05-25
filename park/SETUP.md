@@ -134,6 +134,24 @@ https://list.ee/park/us-invest-p7n5q8/?u={User ID}&e={User e-mail}&n={User name}
 
 ---
 
+## Schema muudatused (D1 migrations)
+
+Iga D1 skeemi muudatus (uus veerg, uus tabel, jne) k\u00e4ib l\u00e4bi
+[migrations/](../migrations/) kausta. **Mitte muuta otse REST API kaudu**
+edaspidi.
+
+Loo uus migration:
+```bash
+npx wrangler d1 migrations create list-parking-log lisa_mobile_veerg
+```
+
+Rakenda live'i:
+```bash
+npx wrangler d1 migrations apply list-parking-log --remote
+```
+
+T\u00e4ielik juhend on [migrations/README.md](../migrations/README.md) failis.
+
 ## Ajav\u00f6\u00f6nd
 
 **Europark API quirk:** Europark ignoreerib ISO ajatempli `Z` (UTC) suffixit ja k\u00e4sitleb saadetud kella alati Estonian local time'ina. Sellep\u00e4rast saadame v\u00e4lja explicit `+03:00` (suvi EEST) v\u00f5i `+02:00` (talv EET) ajatempliga, DST-aware kasutades JS `Intl.DateTimeFormat("Europe/Tallinn")`. See toimib korrektselt nii suvi- kui talveajal.
