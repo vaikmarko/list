@@ -22,32 +22,26 @@
         </div>
       </div>
       <div class="title-block">
-        <div class="title-eyebrow">Külaliste parkimine</div>
         <h1 class="title">5. korrus</h1>
-        <p class="subtitle">Sisesta külalise auto number, parkimine kestab 3 tundi.</p>
       </div>
     </header>
 
     <section id="view-form">
       <form id="park-form" class="form" data-floor="5" novalidate autocomplete="off">
-        <div class="field">
-          <label class="label" for="plate">Auto registreerimisnumber</label>
-          <input
-            id="plate"
-            class="plate-input"
-            type="text"
-            inputmode="text"
-            autocapitalize="characters"
-            autocomplete="off"
-            autocorrect="off"
-            spellcheck="false"
-            maxlength="10"
-            placeholder="123ABC"
-            aria-label="Sisesta auto registreerimisnumber"
-            required
-          >
-          <p class="hint">Ainult tähed ja numbrid, ilma tühikuteta.</p>
-        </div>
+        <input
+          id="plate"
+          class="plate-input"
+          type="text"
+          inputmode="text"
+          autocapitalize="characters"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          maxlength="10"
+          placeholder="123ABC"
+          aria-label="Autonumber"
+          required
+        >
 
         <div class="cta">
           <button id="submit-btn" class="btn-primary" type="submit">
@@ -60,18 +54,13 @@
 
     <section id="view-result" class="result" hidden>
       <div id="result-icon" class="result-icon success">✓</div>
-      <h2 id="result-title" class="result-title">Auto on pargitud</h2>
+      <h2 id="result-title" class="result-title">Pargitud</h2>
       <div id="result-plate" class="result-plate"></div>
-      <p id="result-text" class="result-text"></p>
       <div id="result-meta" class="result-meta" hidden></div>
       <div class="result-actions">
-        <button id="result-action" class="btn-secondary" type="button">Pargi veel auto</button>
+        <button id="result-action" class="btn-secondary" type="button">Pargi uus auto</button>
       </div>
     </section>
-
-    <footer class="footer">
-      Pakub <strong>U.S. Real Estate</strong>
-    </footer>
   </main>
 
   <script src="/park/app.js" defer></script>

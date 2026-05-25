@@ -17,7 +17,6 @@
   var resultIcon = document.getElementById('result-icon');
   var resultTitle = document.getElementById('result-title');
   var resultPlate = document.getElementById('result-plate');
-  var resultText = document.getElementById('result-text');
   var resultMeta = document.getElementById('result-meta');
   var resultActionBtn = document.getElementById('result-action');
 
@@ -81,14 +80,13 @@
     if (success) {
       resultIcon.className = 'result-icon success';
       resultIcon.textContent = '\u2713';
-      resultTitle.textContent = 'Auto on pargitud!';
+      resultTitle.textContent = 'Pargitud';
       resultPlate.textContent = plate;
       resultPlate.hidden = false;
-      resultText.textContent = 'Tasuta parkimine 3 tundi. Ait2h, et k2lastasite Rotermanni!';
       if (data && data.end_time) {
-        var end = new Date(data.end_time);
-        if (!isNaN(end.getTime())) {
-          resultMeta.textContent = 'Parkimine kestab kuni ' + formatTime(end);
+        var end = parseEuroparkTime(data.end_time);
+        if (end) {
+          resultMeta.textContent = 'kuni ' + formatTime(end);
           resultMeta.hidden = false;
         } else {
           resultMeta.hidden = true;
@@ -96,16 +94,27 @@
       } else {
         resultMeta.hidden = true;
       }
-      resultActionBtn.textContent = 'Pargi veel auto';
+      resultActionBtn.textContent = 'Pargi uus auto';
     } else {
       resultIcon.className = 'result-icon error';
       resultIcon.textContent = '!';
-      resultTitle.textContent = 'Parkimine ei 6nnestunud';
+      resultTitle.textContent = errorMessage || 'Viga';
       resultPlate.hidden = true;
-      resultText.textContent = errorMessage || 'Tundmatu viga.';
       resultMeta.hidden = true;
       resultActionBtn.textContent = 'Proovi uuesti';
     }
+  }
+
+  // Europark tagastab "dd.mm.yyyy HH:MM" Eesti aja j2rgi
+  function parseEuroparkTime(s) {
+    if (!s) return null;
+    var iso = new Date(s);
+    if (!isNaN(iso.getTime())) return iso;
+    var m = String(s).match(/^(\d{2})\.(\d{2})\.(\d{4})\s+(\d{2}):(\d{2})$/);
+    if (m) {
+      return new Date(parseInt(m[3],10), parseInt(m[2],10)-1, parseInt(m[1],10), parseInt(m[4],10), parseInt(m[5],10));
+    }
+    return null;
   }
 
   resultActionBtn.addEventListener('click', function () {

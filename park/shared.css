@@ -98,36 +98,16 @@ body {
 }
 
 .title-block {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 8px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 
-.title-eyebrow {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--rotermann-red);
-  text-transform: uppercase;
-  margin-top: 14px;
-}
-
 .title {
-  font-size: 40px;
+  font-size: 44px;
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 0.95;
   color: var(--rotermann-burgundy);
-  margin-top: 6px;
-}
-
-.subtitle {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-top: 10px;
 }
 
 /* Vorm */
@@ -135,21 +115,8 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--rotermann-burgundy);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  gap: 24px;
+  padding-top: 24px;
 }
 
 .plate-input {
@@ -187,14 +154,6 @@ body {
 .plate-input:disabled {
   opacity: 0.55;
   cursor: not-allowed;
-}
-
-.hint {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-align: center;
-  letter-spacing: -0.005em;
 }
 
 /* CTA */
@@ -324,56 +283,27 @@ body {
 
 .result-plate {
   font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  padding: 12px 22px;
+  padding: 14px 24px;
   background: var(--bg-soft);
   border-radius: var(--radius-input);
   color: var(--rotermann-burgundy);
-  margin: 2px 0;
-}
-
-.result-text {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text-muted);
-  max-width: 320px;
-  line-height: 1.5;
-  letter-spacing: -0.005em;
+  margin: 4px 0;
 }
 
 .result-meta {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--rotermann-burgundy);
-  background: var(--bg-soft);
-  padding: 10px 18px;
-  border-radius: var(--radius-input);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.01em;
 }
 
 .result-actions {
   width: 100%;
-  margin-top: 16px;
-}
-
-/* Footer */
-.footer {
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0;
-}
-
-.footer strong {
-  color: var(--rotermann-burgundy);
-  font-weight: 700;
+  margin-top: 24px;
 }
 
 [hidden] { display: none !important; }
