@@ -1,0 +1,9 @@
+# Cloudflare Pages local dev secrets
+# Kopeeri see fail nimega `.dev.vars` (gitignored) ja t2ida pa6rased v6tmed.
+# `wrangler pages dev .` loeb need automaatselt.
+#
+# Production-is seadistame samad v6tmed Cloudflare dashboardis:
+#   Workers & Pages > list-ee > Settings > Environment variables > Production > Secret
+
+EUROPARK_API_KEY_5="paste_5th_floor_api_key_here"
+EUROPARK_API_KEY_6="paste_6th_floor_api_key_here"

@@ -16,6 +16,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Cloudflare local dev secrets (NEVER commit)
+.dev.vars
+.wrangler/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -53,6 +57,16 @@ Thumbs.db
 !CNAME
 !_redirects
 !rotermann-infra/
+
+# Külaliste parkimise MVP (Cloudflare Pages + Functions)
+!park/
+!park/**
+!functions/
+!functions/**
+!package.json
+!package-lock.json
+!wrangler.toml
+!.dev.vars.example
 
 # Django kood on avalikus repos
 !manage.py

@@ -1,0 +1,26 @@
+name = "list-ee"
+compatibility_date = "2025-05-25"
+pages_build_output_dir = "."
+
+# Mittesalajased keskkonnamuutujad (production-i jaoks)
+# API v6tmed (EUROPARK_API_KEY_5, EUROPARK_API_KEY_6) seadistame Cloudflare dashboardis
+# secrets'ina, mitte siin failis (siin oleks need git'is loetavad).
+
+[vars]
+EUROPARK_PARTNER_ID = "4994"
+EUROPARK_PRODUCT_ID_5 = "3324"
+EUROPARK_PRODUCT_ID_6 = "3325"
+EUROPARK_API_BASE = "https://partner.europark.ee/admin/api/v2/public"
+EUROPARK_COMMENT_PREFIX_5 = "USRE kulaline"
+EUROPARK_COMMENT_PREFIX_6 = "6. korrus kulaline"
+PARKING_HOURS = "3"
+
+# Preview keskkond (kasutab Europark prelive serverit)
+[env.preview.vars]
+EUROPARK_PARTNER_ID = "4994"
+EUROPARK_PRODUCT_ID_5 = "3324"
+EUROPARK_PRODUCT_ID_6 = "3325"
+EUROPARK_API_BASE = "https://partner-prelive.europark.ee/admin/api/v2/public"
+EUROPARK_COMMENT_PREFIX_5 = "USRE kulaline (PREVIEW)"
+EUROPARK_COMMENT_PREFIX_6 = "6. korrus kulaline (PREVIEW)"
+PARKING_HOURS = "3"
