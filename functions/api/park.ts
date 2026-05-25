@@ -103,7 +103,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   const hours = Math.max(1, Math.min(24, parseInt(env.PARKING_HOURS || "3", 10) || 3));
-  const startDate = new Date();
+  // Europark n6uab start_time olema rangelt "after now" - lisame 60 sek puhvri,
+  // et v2ltida server clock drift'i vigu ("The start time must be a date after now.")
+  const startDate = new Date(Date.now() + 60 * 1000);
   const endDate = new Date(startDate.getTime() + hours * 60 * 60 * 1000);
   const startTime = toEuroparkTime(startDate);
   const endTime = toEuroparkTime(endDate);
