@@ -9,18 +9,16 @@
   --rotermann-burgundy: #4D0D28;
   --rotermann-pink: #FAEBE8;
 
-  --bg: #FFFFFF;
+  --bg: #4D0D28;
   --bg-soft: #FAEBE8;
-  --text: #4D0D28;
-  --text-muted: #856368;
+  --text: #FAEBE8;
+  --text-muted: rgba(250, 235, 232, 0.55);
   --text-on-red: #FFFFFF;
-  --border: rgba(77, 13, 40, 0.12);
-  --border-strong: rgba(77, 13, 40, 0.32);
+  --border: rgba(250, 235, 232, 0.14);
+  --border-strong: rgba(250, 235, 232, 0.35);
 
-  --success: #14532D;
-  --success-bg: #DCFCE7;
-  --error: #B91C1C;
-  --error-bg: #FEE2E2;
+  --error: #FCA5A5;
+  --error-bg: rgba(252, 165, 165, 0.16);
 
   --radius-input: 6px;
   --radius-button: 6px;
@@ -80,7 +78,7 @@ body {
   font-weight: 800;
   font-size: 22px;
   letter-spacing: -0.04em;
-  color: var(--rotermann-burgundy);
+  color: var(--rotermann-pink);
   text-transform: none;
   line-height: 1;
 }
@@ -107,7 +105,7 @@ body {
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 0.95;
-  color: var(--rotermann-burgundy);
+  color: var(--rotermann-pink);
 }
 
 /* Vorm */
@@ -129,8 +127,8 @@ body {
   padding: 22px 16px;
   border: 2px solid var(--border-strong);
   border-radius: var(--radius-input);
-  background: var(--bg);
-  color: var(--rotermann-burgundy);
+  background: rgba(250, 235, 232, 0.06);
+  color: var(--rotermann-pink);
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
@@ -140,15 +138,15 @@ body {
 }
 
 .plate-input::placeholder {
-  color: rgba(77, 13, 40, 0.25);
+  color: rgba(250, 235, 232, 0.28);
   font-weight: 600;
   letter-spacing: 0.06em;
 }
 
 .plate-input:focus {
   border-color: var(--rotermann-red);
-  background: var(--bg);
-  box-shadow: 0 0 0 4px rgba(228, 5, 35, 0.10);
+  background: rgba(250, 235, 232, 0.10);
+  box-shadow: 0 0 0 4px rgba(228, 5, 35, 0.20);
 }
 
 .plate-input:disabled {
@@ -184,18 +182,18 @@ body {
   -webkit-tap-highlight-color: transparent;
   transition: background 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
   min-height: 60px;
-  box-shadow: 0 4px 0 0 rgba(77, 13, 40, 0.18);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.30);
 }
 
 .btn-primary:active:not(:disabled) {
-  background: var(--rotermann-burgundy);
+  background: #c20420;
   transform: translateY(2px);
-  box-shadow: 0 2px 0 0 rgba(77, 13, 40, 0.18);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.30);
 }
 
 .btn-primary:disabled {
-  background: var(--rotermann-pink);
-  color: rgba(77, 13, 40, 0.4);
+  background: rgba(228, 5, 35, 0.25);
+  color: rgba(250, 235, 232, 0.45);
   cursor: not-allowed;
   box-shadow: none;
 }
@@ -210,18 +208,19 @@ body {
   font-weight: 700;
   letter-spacing: -0.005em;
   font-family: inherit;
-  color: var(--rotermann-burgundy);
+  color: var(--rotermann-pink);
   background: transparent;
   border: 2px solid var(--border-strong);
   border-radius: var(--radius-button);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   min-height: 52px;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-secondary:active {
-  background: var(--bg-soft);
+  background: rgba(250, 235, 232, 0.08);
+  border-color: var(--rotermann-pink);
 }
 
 /* Spinner */
@@ -278,7 +277,7 @@ body {
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1;
-  color: var(--rotermann-burgundy);
+  color: var(--rotermann-pink);
 }
 
 .result-plate {
@@ -287,7 +286,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   padding: 14px 24px;
-  background: var(--bg-soft);
+  background: var(--rotermann-pink);
   border-radius: var(--radius-input);
   color: var(--rotermann-burgundy);
   margin: 4px 0;
