@@ -17,3 +17,11 @@ EUROPARK_API_BASE = "https://partner.europark.ee/admin/api/v2/public"
 EUROPARK_COMMENT_PREFIX_5 = "U.S. Real Estate guest"
 EUROPARK_COMMENT_PREFIX_6 = "U.S. Invest guest"
 PARKING_HOURS = "3"
+
+# D1 SQLite audit log database (parkimissundmuste persistent salvestus).
+# Cloudflare Pages projektile on binding seatud ka REST API kaudu
+# (production + preview env) - see siin lubab lokaalset wrangler dev arendust.
+[[d1_databases]]
+binding = "DB"
+database_name = "list-parking-log"
+database_id = "bbc15fcd-6478-45b1-8322-f5df25be12d6"

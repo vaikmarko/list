@@ -22,6 +22,85 @@ interface Env {
   EUROPARK_COMMENT_PREFIX_5: string;
   EUROPARK_COMMENT_PREFIX_6: string;
   PARKING_HOURS: string;
+  DB: D1Database;
+}
+
+// Audit log kirje D1-i salvestamiseks (parking_events tabel).
+interface AuditEvent {
+  event: "park.ok" | "park.upstream_error" | "park.validation_error" | "park.misconfig";
+  floor: string | null;
+  company: string | null;
+  plate: string | null;
+  europark_session_id: number | null;
+  europark_status: string | null;
+  start_time: string | null;
+  end_time: string | null;
+  cf: { ip: string; country: string; ua: string; referer: string };
+  user: Record<string, string>;
+  error_code: string | null;
+  error_message: string | null;
+  duration_ms: number;
+}
+
+async function writeAuditLog(db: D1Database | undefined, ev: AuditEvent): Promise<void> {
+  if (!db) {
+    console.warn("audit: no DB binding, skipping persistent log");
+    return;
+  }
+  const lower: Record<string, string> = {};
+  for (const k of Object.keys(ev.user)) lower[k.toLowerCase()] = ev.user[k];
+  const userEmail =
+    lower["user e-mail"] || lower["user_email"] || lower["email"] || lower["e"] || lower["user-email"] || null;
+  const userName = lower["user name"] || lower["user_name"] || lower["name"] || lower["n"] || null;
+  const userId = lower["user id"] || lower["user_id"] || lower["userid"] || lower["u"] || null;
+  const tenantId = lower["tenant id"] || lower["tenant_id"] || lower["tenantid"] || lower["t"] || null;
+  const tenantName = lower["tenant name"] || lower["tenant_name"] || lower["tn"] || null;
+  try {
+    await db
+      .prepare(
+        `INSERT INTO parking_events (
+          ts, event, floor, company, plate,
+          europark_session_id, europark_status, start_time, end_time,
+          user_email, user_name, user_id, tenant_id, tenant_name,
+          ip, country, user_agent, referer, raw_context,
+          error_code, error_message, duration_ms
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        new Date().toISOString(),
+        ev.event,
+        ev.floor,
+        ev.company,
+        ev.plate,
+        ev.europark_session_id,
+        ev.europark_status,
+        ev.start_time,
+        ev.end_time,
+        userEmail,
+        userName,
+        userId,
+        tenantId,
+        tenantName,
+        ev.cf.ip,
+        ev.cf.country,
+        ev.cf.ua,
+        ev.cf.referer,
+        Object.keys(ev.user).length ? JSON.stringify(ev.user) : null,
+        ev.error_code,
+        ev.error_message,
+        ev.duration_ms,
+      )
+      .run();
+  } catch (err) {
+    // Audit log kunagi ei tohi katkestada parkimise t66d.
+    console.error("audit: D1 INSERT failed", err instanceof Error ? err.message : String(err));
+  }
+}
+
+function companyForFloor(floor: string | null): string | null {
+  if (floor === "5") return "U.S. Real Estate";
+  if (floor === "6") return "U.S. Invest";
+  return null;
 }
 
 type Floor = "5" | "6";
@@ -110,10 +189,46 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   const plateRaw = (body.plate ?? "").toString().trim().toUpperCase();
   const userContext = sanitizeContext(body.context);
 
+  // Helper - logi audit D1-i taustal, blokeerimata vastust.
+  const logAudit = (ev: Omit<AuditEvent, "cf" | "user" | "duration_ms">) => {
+    ctx.waitUntil(
+      writeAuditLog(env.DB, {
+        ...ev,
+        cf: cfMeta,
+        user: userContext,
+        duration_ms: Date.now() - requestStart,
+      }),
+    );
+  };
+
   if (floor !== "5" && floor !== "6") {
+    logAudit({
+      event: "park.validation_error",
+      floor: floor ? String(floor) : null,
+      company: null,
+      plate: plateRaw || null,
+      europark_session_id: null,
+      europark_status: null,
+      start_time: null,
+      end_time: null,
+      error_code: "invalid_floor",
+      error_message: "Invalid floor.",
+    });
     return jsonResponse(400, { ok: false, error: "invalid_floor", message: "Invalid floor." });
   }
   if (!PLATE_REGEX.test(plateRaw)) {
+    logAudit({
+      event: "park.validation_error",
+      floor,
+      company: companyForFloor(floor),
+      plate: plateRaw || null,
+      europark_session_id: null,
+      europark_status: null,
+      start_time: null,
+      end_time: null,
+      error_code: "invalid_plate",
+      error_message: "License plate must be 2-10 characters (A-Z, 0-9).",
+    });
     return jsonResponse(400, {
       ok: false,
       error: "invalid_plate",
@@ -130,6 +245,18 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
       productId,
       partnerId: env.EUROPARK_PARTNER_ID,
       base: env.EUROPARK_API_BASE,
+    });
+    logAudit({
+      event: "park.misconfig",
+      floor,
+      company: companyForFloor(floor),
+      plate: plateRaw,
+      europark_session_id: null,
+      europark_status: null,
+      start_time: null,
+      end_time: null,
+      error_code: "server_misconfigured",
+      error_message: "Server configuration error.",
     });
     return jsonResponse(500, { ok: false, error: "server_misconfigured", message: "Server configuration error." });
   }
@@ -184,6 +311,18 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     });
   } catch (err) {
     console.error("park: upstream fetch failed", err);
+    logAudit({
+      event: "park.upstream_error",
+      floor,
+      company: companyForFloor(floor),
+      plate: plateRaw,
+      europark_session_id: null,
+      europark_status: null,
+      start_time: startTime,
+      end_time: endTime,
+      error_code: "upstream_unreachable",
+      error_message: err instanceof Error ? err.message : String(err),
+    });
     return jsonResponse(502, {
       ok: false,
       error: "upstream_unreachable",
@@ -223,6 +362,20 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     } else if (upstream.status === 404) {
       message = "Parking service not found. Please notify the administrator.";
     }
+    logAudit({
+      event: "park.upstream_error",
+      floor,
+      company: companyForFloor(floor),
+      plate: plateRaw,
+      europark_session_id: null,
+      europark_status: null,
+      start_time: startTime,
+      end_time: endTime,
+      error_code: `upstream_${upstream.status}`,
+      error_message: typeof upstreamBody === "object" && upstreamBody !== null
+        ? JSON.stringify(upstreamBody).slice(0, 500)
+        : String(upstreamBody).slice(0, 500),
+    });
     return jsonResponse(upstream.status >= 500 ? 502 : 400, {
       ok: false,
       error: `upstream_${upstream.status}`,
@@ -243,8 +396,9 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   };
   const session = (upstreamBody as EuroparkSession)?.data ?? {};
 
-  // AUDIT LOG: kogu info kes-millal-mida pargitud. Cloudflare Real-time logs +
-  // Logpush (kui setup'tud) salvestab need JSON-i abil hiljem otsimiseks.
+  // AUDIT LOG: kogu info kes-millal-mida pargitud.
+  // (1) console.log -> Cloudflare Real-time logs (kuvatakse ~3 paeva)
+  // (2) D1 INSERT -> parking_events tabel (persistent, queryable)
   console.log(JSON.stringify({
     event: "park.ok",
     session_id: session.id ?? null,
@@ -257,6 +411,19 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     user: userContext,
     duration_ms: Date.now() - requestStart,
   }));
+  const sessionIdNum = session.id != null ? Number(session.id) : null;
+  logAudit({
+    event: "park.ok",
+    floor,
+    company: companyForFloor(floor),
+    plate: plateRaw,
+    europark_session_id: Number.isFinite(sessionIdNum) ? sessionIdNum : null,
+    europark_status: session.status ?? null,
+    start_time: session.start_time ?? startTime,
+    end_time: session.end_time ?? endTime,
+    error_code: null,
+    error_message: null,
+  });
 
   return jsonResponse(200, {
     ok: true,
