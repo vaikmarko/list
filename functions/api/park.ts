@@ -54,13 +54,13 @@ function selectCredentials(floor: Floor, env: Env): { productId: string; apiKey:
     return {
       productId: env.EUROPARK_PRODUCT_ID_5,
       apiKey: env.EUROPARK_API_KEY_5,
-      comment: env.EUROPARK_COMMENT_PREFIX_5 || "Floor 5 guest",
+      comment: env.EUROPARK_COMMENT_PREFIX_5 || "U.S. Real Estate guest",
     };
   }
   return {
     productId: env.EUROPARK_PRODUCT_ID_6,
     apiKey: env.EUROPARK_API_KEY_6,
-    comment: env.EUROPARK_COMMENT_PREFIX_6 || "Floor 6 guest",
+    comment: env.EUROPARK_COMMENT_PREFIX_6 || "U.S. Invest guest",
   };
 }
 
