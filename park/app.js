@@ -100,14 +100,10 @@
       resultTitle.textContent = 'Parked';
       resultPlate.textContent = plate;
       resultPlate.hidden = false;
-      if (data && data.end_time) {
-        var end = parseEuroparkTime(data.end_time);
-        if (end) {
-          resultMeta.textContent = 'until ' + formatTime(end);
-          resultMeta.hidden = false;
-        } else {
-          resultMeta.hidden = true;
-        }
+      // Server tagastab valmis Estonia HH:MM (DST-aware) - kuva ilma parsing'uta.
+      if (data && data.end_time_local) {
+        resultMeta.textContent = 'until ' + data.end_time_local;
+        resultMeta.hidden = false;
       } else {
         resultMeta.hidden = true;
       }
@@ -122,18 +118,6 @@
     }
   }
 
-  // Europark tagastab "dd.mm.yyyy HH:MM" Eesti aja j2rgi
-  function parseEuroparkTime(s) {
-    if (!s) return null;
-    var iso = new Date(s);
-    if (!isNaN(iso.getTime())) return iso;
-    var m = String(s).match(/^(\d{2})\.(\d{2})\.(\d{4})\s+(\d{2}):(\d{2})$/);
-    if (m) {
-      return new Date(parseInt(m[3],10), parseInt(m[2],10)-1, parseInt(m[1],10), parseInt(m[4],10), parseInt(m[5],10));
-    }
-    return null;
-  }
-
   resultActionBtn.addEventListener('click', function () {
     plateInput.value = '';
     submitBtn.disabled = true;
@@ -141,10 +125,4 @@
     formView.hidden = false;
     plateInput.focus();
   });
-
-  function formatTime(date) {
-    var hh = String(date.getHours()).padStart(2, '0');
-    var mm = String(date.getMinutes()).padStart(2, '0');
-    return hh + ':' + mm;
-  }
 })();

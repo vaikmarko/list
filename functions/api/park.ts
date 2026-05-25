@@ -144,10 +144,54 @@ function jsonResponse(status: number, body: unknown): Response {
   });
 }
 
-function toEuroparkTime(date: Date): string {
-  // ISO 8601 UTC, sekundi tapsusega, ilma millisekunditeta.
-  // Naide: "2026-05-25T08:30:00Z"
-  return date.toISOString().replace(/\.\d{3}Z$/, "Z");
+// Europark API ootab Estonian local time'i. Saame seda usaldusvaarselt teha
+// DST-aware Intl API kaudu (Europe/Tallinn timezone), mis kasutab korrektselt
+// EEST (UTC+3, suvi) v6i EET (UTC+2, talv).
+function toEstoniaISO(date: Date): string {
+  const fmt = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Tallinn",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+  });
+  const parts = fmt.formatToParts(date);
+  const p = (t: string) => parts.find((x) => x.type === t)!.value;
+  const y = p("year");
+  const m = p("month");
+  const d = p("day");
+  const hh = p("hour");
+  const mm = p("minute");
+  const ss = p("second");
+  // Arvuta offset DST-aware: vaheaeg local Estonia hetkest ja UTC hetkest.
+  const asUtcWithSameLocal = Date.UTC(
+    parseInt(y, 10),
+    parseInt(m, 10) - 1,
+    parseInt(d, 10),
+    parseInt(hh, 10),
+    parseInt(mm, 10),
+    parseInt(ss, 10),
+  );
+  const offsetMinutes = Math.round((asUtcWithSameLocal - date.getTime()) / 60000);
+  const sign = offsetMinutes >= 0 ? "+" : "-";
+  const abs = Math.abs(offsetMinutes);
+  const oh = String(Math.floor(abs / 60)).padStart(2, "0");
+  const om = String(abs % 60).padStart(2, "0");
+  return `${y}-${m}-${d}T${hh}:${mm}:${ss}${sign}${oh}:${om}`;
+}
+
+// Kasutaja jaoks valmis kuvatav Estonia HH:MM string ("17:25").
+function toEstoniaHHMM(date: Date): string {
+  const fmt = new Intl.DateTimeFormat("et-EE", {
+    timeZone: "Europe/Tallinn",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  });
+  return fmt.format(date);
 }
 
 function selectCredentials(floor: Floor, env: Env): { productId: string; apiKey: string; comment: string } {
@@ -266,8 +310,13 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   // et v2ltida server clock drift'i vigu ("The start time must be a date after now.")
   const startDate = new Date(Date.now() + 60 * 1000);
   const endDate = new Date(startDate.getTime() + hours * 60 * 60 * 1000);
-  const startTime = toEuroparkTime(startDate);
-  const endTime = toEuroparkTime(endDate);
+  // Saadame Estonian local time +03:00/+02:00 (DST-aware) - Europark ignoreerib
+  // Z suffix-it ja kasutab toore kella, nii et explicit Estonia TZ on kindlaim.
+  const startTime = toEstoniaISO(startDate);
+  const endTime = toEstoniaISO(endDate);
+  // Kliendile saadame valmis HH:MM (Estonia) string, et v2ltida frontend TZ-bug'e.
+  const startLocal = toEstoniaHHMM(startDate);
+  const endLocal = toEstoniaHHMM(endDate);
 
   // 3) Kutsu Europark API
   // Lisame kasutaja info comment'i, et Europark dashboardis oleks selge audit:
@@ -431,6 +480,9 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     plate: session.vehicle_reg ?? plateRaw,
     start_time: session.start_time ?? startTime,
     end_time: session.end_time ?? endTime,
+    // Pre-formatted Estonia HH:MM displays - klient kuvab need ilma TZ parsing'uta.
+    start_time_local: startLocal,
+    end_time_local: endLocal,
     status: session.status ?? "active",
   });
 };
