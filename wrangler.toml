@@ -1,11 +1,16 @@
-name = "list"
+# Cloudflare Pages konfiguratsioon
+#
+# Projekti nimi (`list`) on seatud Cloudflare dashboardis - mitte siin failis,
+# muidu CF Workers Builds proovib `wrangler deploy` jooksutada Pages projektil.
+#
+# Salajased v6tmed (EUROPARK_API_KEY_5/_6) seadistame Cloudflare dashboardis
+# secrets'ina. Lokaalseks arenduseks on need `.dev.vars` failis (gitignored).
+
 compatibility_date = "2025-05-25"
 pages_build_output_dir = "."
 
-# Mittesalajased keskkonnamuutujad (production-i jaoks)
-# API v6tmed (EUROPARK_API_KEY_5, EUROPARK_API_KEY_6) seadistame Cloudflare dashboardis
-# secrets'ina, mitte siin failis (siin oleks need git'is loetavad).
-
+# Mitte-salajased keskkonnamuutujad - kehtivad nii production kui preview keskkonnas.
+# Preview keskkonnas saab need dashboardis ule kirjutada (nt EUROPARK_API_BASE -> prelive).
 [vars]
 EUROPARK_PARTNER_ID = "4994"
 EUROPARK_PRODUCT_ID_5 = "3324"
@@ -13,14 +18,4 @@ EUROPARK_PRODUCT_ID_6 = "3325"
 EUROPARK_API_BASE = "https://partner.europark.ee/admin/api/v2/public"
 EUROPARK_COMMENT_PREFIX_5 = "USRE kulaline"
 EUROPARK_COMMENT_PREFIX_6 = "6. korrus kulaline"
-PARKING_HOURS = "3"
-
-# Preview keskkond (kasutab Europark prelive serverit)
-[env.preview.vars]
-EUROPARK_PARTNER_ID = "4994"
-EUROPARK_PRODUCT_ID_5 = "3324"
-EUROPARK_PRODUCT_ID_6 = "3325"
-EUROPARK_API_BASE = "https://partner-prelive.europark.ee/admin/api/v2/public"
-EUROPARK_COMMENT_PREFIX_5 = "USRE kulaline (PREVIEW)"
-EUROPARK_COMMENT_PREFIX_6 = "6. korrus kulaline (PREVIEW)"
 PARKING_HOURS = "3"
