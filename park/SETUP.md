@@ -112,6 +112,26 @@ Kui mõni samm ei tööta, vaata logisid: **Cloudflare dashboard → list-ee →
 
 Saada Rotermanni äpi arendajatele see kiri (näidis allpool).
 
+### Sharry äpis nuppude seadistamine — audit log'i URL muutujatega
+
+Iga ettevõtte nupule "Guest parking" pane URL'i koos Sharry user-variable'tega.
+Süsteem loeb need ja salvestab audit log'i (kelle töötaja registreeris parkimise).
+
+**5. korrus — U.S. Real Estate:**
+
+```
+https://list.ee/park/usre-h3k9m2/?u={User ID}&e={User e-mail}&n={User name}&t={Tenant ID}&tn={Tenant name}
+```
+
+**6. korrus — U.S. Invest:**
+
+```
+https://list.ee/park/us-invest-p7n5q8/?u={User ID}&e={User e-mail}&n={User name}&t={Tenant ID}&tn={Tenant name}
+```
+
+> Sharry asendab `{User ID}`, `{User e-mail}` jms tegelike väärtustega kui kasutaja nupule vajutab. Vorm loeb need URL-ist ja saadab serverile, kus need salvestatakse `console.log` JSON-ina (Cloudflare Real-time logs).
+> Visible for company: vali õige (USRE või US Invest), mitte "All companies".
+
 ---
 
 ## Edaspidi: muudatuste tegemine

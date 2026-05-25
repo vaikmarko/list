@@ -29,9 +29,31 @@ type Floor = "5" | "6";
 interface ParkRequest {
   floor?: Floor;
   plate?: string;
+  // Sharry app passes user context as URL query parameters; the form
+  // collects them and forwards here for audit logging.
+  context?: Record<string, string>;
 }
 
 const PLATE_REGEX = /^[A-Z0-9]{2,10}$/;
+const MAX_CONTEXT_KEYS = 20;
+const MAX_CONTEXT_VALUE_LEN = 200;
+
+// Sanitize context: keep only string values, cap length, limit number of keys.
+function sanitizeContext(input: unknown): Record<string, string> {
+  if (!input || typeof input !== "object") return {};
+  const out: Record<string, string> = {};
+  let count = 0;
+  for (const [key, value] of Object.entries(input as Record<string, unknown>)) {
+    if (count >= MAX_CONTEXT_KEYS) break;
+    if (typeof key !== "string" || key.length > 60) continue;
+    if (value === null || value === undefined) continue;
+    const str = String(value).slice(0, MAX_CONTEXT_VALUE_LEN);
+    if (!str || str === "undefined" || str === "null") continue;
+    out[key] = str;
+    count++;
+  }
+  return out;
+}
 
 function jsonResponse(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), {
@@ -64,8 +86,17 @@ function selectCredentials(floor: Floor, env: Env): { productId: string; apiKey:
   };
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { request, env } = context;
+export const onRequestPost: PagesFunction<Env> = async (ctx) => {
+  const { request, env } = ctx;
+  const requestStart = Date.now();
+
+  // Capture network-level audit info from Cloudflare headers (always present).
+  const cfMeta = {
+    ip: request.headers.get("CF-Connecting-IP") || "",
+    country: request.headers.get("CF-IPCountry") || "",
+    ua: (request.headers.get("User-Agent") || "").slice(0, 200),
+    referer: (request.headers.get("Referer") || "").slice(0, 200),
+  };
 
   // 1) Parse and validate body
   let body: ParkRequest;
@@ -77,6 +108,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   const floor = body.floor;
   const plateRaw = (body.plate ?? "").toString().trim().toUpperCase();
+  const userContext = sanitizeContext(body.context);
 
   if (floor !== "5" && floor !== "6") {
     return jsonResponse(400, { ok: false, error: "invalid_floor", message: "Invalid floor." });
@@ -111,12 +143,32 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const endTime = toEuroparkTime(endDate);
 
   // 3) Kutsu Europark API
+  // Lisame kasutaja info comment'i, et Europark dashboardis oleks selge audit:
+  //   "U.S. Real Estate guest (by marko@usre.ee)"
+  // Eelistame email > name > id. Sharry võib saata erineva keele/case'iga.
+  function pickUserLabel(c: Record<string, string>): string | null {
+    const lower: Record<string, string> = {};
+    for (const k of Object.keys(c)) lower[k.toLowerCase()] = c[k];
+    const email =
+      lower["user e-mail"] || lower["user_email"] || lower["email"] || lower["e"] || lower["user-email"];
+    if (email) return email;
+    const name = lower["user name"] || lower["user_name"] || lower["name"] || lower["n"];
+    if (name) return name;
+    const id = lower["user id"] || lower["user_id"] || lower["userid"] || lower["u"];
+    if (id) return `user#${id}`;
+    return null;
+  }
+  const userLabel = pickUserLabel(userContext);
+  const fullComment = userLabel
+    ? `${comment} (by ${userLabel.slice(0, 80)})`
+    : comment;
+
   const url = `${env.EUROPARK_API_BASE.replace(/\/$/, "")}/partners/${env.EUROPARK_PARTNER_ID}/products/${productId}/sessions`;
   const payload = {
     vehicle_reg: plateRaw,
     start_time: startTime,
     end_time: endTime,
-    comment,
+    comment: fullComment,
   };
 
   let upstream: Response;
@@ -153,12 +205,16 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   if (!upstream.ok) {
-    console.error("park: upstream non-ok", {
+    console.error(JSON.stringify({
+      event: "park.upstream_error",
       status: upstream.status,
-      plate: plateRaw,
       floor,
-      body: upstreamBody,
-    });
+      plate: plateRaw,
+      cf: cfMeta,
+      user: userContext,
+      upstream: upstreamBody,
+      duration_ms: Date.now() - requestStart,
+    }));
     let message = "Parking failed.";
     if (upstream.status === 401 || upstream.status === 403) {
       message = "Server authorization error. Please notify the administrator.";
@@ -186,7 +242,21 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     };
   };
   const session = (upstreamBody as EuroparkSession)?.data ?? {};
-  console.log("park: ok", { id: session.id, plate: plateRaw, floor });
+
+  // AUDIT LOG: kogu info kes-millal-mida pargitud. Cloudflare Real-time logs +
+  // Logpush (kui setup'tud) salvestab need JSON-i abil hiljem otsimiseks.
+  console.log(JSON.stringify({
+    event: "park.ok",
+    session_id: session.id ?? null,
+    floor,
+    plate: plateRaw,
+    europark_status: session.status ?? null,
+    start_time: session.start_time ?? startTime,
+    end_time: session.end_time ?? endTime,
+    cf: cfMeta,
+    user: userContext,
+    duration_ms: Date.now() - requestStart,
+  }));
 
   return jsonResponse(200, {
     ok: true,

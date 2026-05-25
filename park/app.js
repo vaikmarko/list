@@ -22,6 +22,23 @@
 
   var floor = form.getAttribute('data-floor');
 
+  // Sharry äpp suunab URL-i kaudu kasutaja andmed query parameetritena.
+  // Kogume kõik saadud query paramid ja saadame Function'ile audit log'iks.
+  // Sharry võimalikud muutujad: User e-mail, User name, User ID, Tenant name,
+  //   Tenant ID, Primary site, Base location ID, Site ID
+  function collectContext() {
+    var ctx = {};
+    try {
+      var params = new URLSearchParams(window.location.search);
+      params.forEach(function (value, key) {
+        if (value && value !== 'undefined' && value !== 'null') {
+          ctx[key] = String(value).slice(0, 200);
+        }
+      });
+    } catch (e) {}
+    return ctx;
+  }
+
   // Numbri sisestus: automaatne uppercase + ainult A-Z, 0-9
   plateInput.addEventListener('input', function () {
     var cleaned = plateInput.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
@@ -48,7 +65,7 @@
     fetch('/api/park', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ floor: floor, plate: plate })
+      body: JSON.stringify({ floor: floor, plate: plate, context: collectContext() })
     })
       .then(function (res) {
         return res.json().then(function (data) {
