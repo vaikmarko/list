@@ -185,7 +185,7 @@ body {
   font-weight: 500;
   color: var(--text-muted);
   text-align: center;
-  margin-top: 12px;
+  margin: -10px 0 0 0;
   letter-spacing: 0;
 }
 
