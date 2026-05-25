@@ -100,10 +100,21 @@ body {
 .title-block {
   padding-top: 16px;
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--rotermann-red);
+  text-transform: uppercase;
 }
 
 .title {
-  font-size: 44px;
+  font-size: 38px;
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 0.95;
