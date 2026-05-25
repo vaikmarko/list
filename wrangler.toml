@@ -1,11 +1,9 @@
 # Cloudflare Pages konfiguratsioon
 #
-# Projekti nimi (`list`) on seatud Cloudflare dashboardis - mitte siin failis,
-# muidu CF Workers Builds proovib `wrangler deploy` jooksutada Pages projektil.
-#
 # Salajased v6tmed (EUROPARK_API_KEY_5/_6) seadistame Cloudflare dashboardis
 # secrets'ina. Lokaalseks arenduseks on need `.dev.vars` failis (gitignored).
 
+name = "list"
 compatibility_date = "2025-05-25"
 pages_build_output_dir = "."
 
