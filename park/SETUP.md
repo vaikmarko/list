@@ -134,6 +134,77 @@ https://list.ee/park/us-invest-p7n5q8/?u={User ID}&e={User e-mail}&n={User name}
 
 ---
 
+## Audit logide vaatamine
+
+Iga parkimissündmus (õnnestumine, valideerimisviga, Europark viga) salvestatakse Cloudflare D1 SQLite andmebaasi `list-parking-log` tabelisse `parking_events`. Püsivad **igavesti** (kuni D1 quota — vaikimisi 5 GB Free plan).
+
+Salvestatakse: timestamp, korrus, ettevõte, autonumber, Europark session ID, kasutaja e-mail/nimi/ID Sharry kontekstist, tenant info, IP, riik, User-Agent, raw kontekst JSON, vea kood/sõnum.
+
+### Variant A: brauseri / curl kaudu admin endpoint
+
+`GET https://list.ee/api/admin/logs` — vajab `Authorization: Bearer <CF_ADMIN_KEY>` header'it.
+
+`CF_ADMIN_KEY` on Cloudflare Pages secrets'is (production + preview). Vaata: Dashboard → Workers & Pages → list → Settings → Environment variables → Secret `CF_ADMIN_KEY`.
+
+Filtrid (query params):
+- `limit=100` (max 1000), `offset=0`
+- `floor=5` või `floor=6`
+- `plate=ABC` (osaline match, case-insensitive)
+- `email=marko` (osaline match user_email peal)
+- `event=park.ok` / `park.upstream_error` / `park.validation_error` / `park.misconfig`
+- `since=2026-05-25T00:00:00Z` (ts >= ISO timestamp)
+
+Näide:
+```bash
+curl -sS "https://list.ee/api/admin/logs?limit=20&floor=5" \
+  -H "Authorization: Bearer <CF_ADMIN_KEY>" | jq
+```
+
+### Variant B: wrangler d1 execute (lokaalsest terminalist)
+
+Repo juurkaustas:
+```bash
+# Viimased 20 parkimist
+npx wrangler d1 execute list-parking-log --remote \
+  --command "SELECT ts, floor, plate, user_email, europark_session_id FROM parking_events ORDER BY ts DESC LIMIT 20"
+
+# Konkreetse plate ajalugu
+npx wrangler d1 execute list-parking-log --remote \
+  --command "SELECT * FROM parking_events WHERE plate = 'ABC123' ORDER BY ts DESC"
+
+# Konkreetse kasutaja kõik parkimised
+npx wrangler d1 execute list-parking-log --remote \
+  --command "SELECT ts, plate, company FROM parking_events WHERE user_email = 'marko@usre.ee' ORDER BY ts DESC"
+
+# Päeva statistika ettevõtete kaupa
+npx wrangler d1 execute list-parking-log --remote \
+  --command "SELECT date(ts) AS day, company, COUNT(*) AS n FROM parking_events WHERE event='park.ok' GROUP BY day, company ORDER BY day DESC LIMIT 30"
+
+# Vead viimase 24h jooksul
+npx wrangler d1 execute list-parking-log --remote \
+  --command "SELECT ts, event, error_code, plate, user_email FROM parking_events WHERE event != 'park.ok' AND ts >= datetime('now','-1 day') ORDER BY ts DESC"
+```
+
+`--remote` = päringud production D1 andmebaasi peal. Ilma `--remote` läheb lokaalsesse koopiasse (mis on tühi).
+
+Vajab et oleksid Cloudflare'i sisse logitud `wrangler` CLI-ga (`npx wrangler login`) **või** et env vars `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` oleksid seatud.
+
+### Eksport CSV-iks
+
+```bash
+npx wrangler d1 execute list-parking-log --remote \
+  --command "SELECT * FROM parking_events ORDER BY ts DESC" \
+  --json | jq -r '.[0].results | (map(keys) | add | unique) as $cols | $cols, (map([.[ $cols[] ]]) | .[]) | @csv' > parking-events.csv
+```
+
+### D1 database info
+
+- **Database ID:** `bbc15fcd-6478-45b1-8322-f5df25be12d6`
+- **Region:** EEUR (East Europe — madal latency Tallinnale)
+- **Binding name Function'is:** `DB` (kasuta `env.DB.prepare(...)`)
+- **Schema (parking_events tabel):** `id, ts, event, floor, company, plate, europark_session_id, europark_status, start_time, end_time, user_email, user_name, user_id, tenant_id, tenant_name, ip, country, user_agent, referer, raw_context, error_code, error_message, duration_ms`
+- **Indexed columns:** ts (DESC), plate, user_email, floor
+
 ## Edaspidi: muudatuste tegemine
 
 1. Muuda kood lokaalselt.
