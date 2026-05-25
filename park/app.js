@@ -38,11 +38,11 @@
     event.preventDefault();
     var plate = plateInput.value.trim().toUpperCase();
     if (plate.length < 2 || plate.length > 10) {
-      showResult(false, plate, 'Sisesta autonumber (2-10 t2hem2rki).');
+      showResult(false, plate, 'Enter a license plate (2-10 characters).');
       return;
     }
     submitBtn.disabled = true;
-    submitLabel.textContent = 'Parkimine...';
+    submitLabel.textContent = 'Parking\u2026';
     submitSpinner.hidden = false;
 
     fetch('/api/park', {
@@ -59,15 +59,15 @@
         if (result.status >= 200 && result.status < 300 && result.data && result.data.ok) {
           showResult(true, plate, null, result.data);
         } else {
-          var msg = (result.data && (result.data.message || result.data.error)) || 'Parkimine eba6nnestus. Proovi uuesti.';
+          var msg = (result.data && (result.data.message || result.data.error)) || 'Parking failed. Please try again.';
           showResult(false, plate, msg);
         }
       })
       .catch(function () {
-        showResult(false, plate, 'V6rguviga. Kontrolli internetiuhendust ja proovi uuesti.');
+        showResult(false, plate, 'Network error. Check your connection and try again.');
       })
       .finally(function () {
-        submitLabel.textContent = 'Pargi 3 tundi tasuta';
+        submitLabel.textContent = 'Park 3 hours free';
         submitSpinner.hidden = true;
         submitBtn.disabled = false;
       });
@@ -80,13 +80,13 @@
     if (success) {
       resultIcon.className = 'result-icon success';
       resultIcon.textContent = '\u2713';
-      resultTitle.textContent = 'Pargitud';
+      resultTitle.textContent = 'Parked';
       resultPlate.textContent = plate;
       resultPlate.hidden = false;
       if (data && data.end_time) {
         var end = parseEuroparkTime(data.end_time);
         if (end) {
-          resultMeta.textContent = 'kuni ' + formatTime(end);
+          resultMeta.textContent = 'until ' + formatTime(end);
           resultMeta.hidden = false;
         } else {
           resultMeta.hidden = true;
@@ -94,14 +94,14 @@
       } else {
         resultMeta.hidden = true;
       }
-      resultActionBtn.textContent = 'Pargi uus auto';
+      resultActionBtn.textContent = 'Park another car';
     } else {
       resultIcon.className = 'result-icon error';
       resultIcon.textContent = '!';
-      resultTitle.textContent = errorMessage || 'Viga';
+      resultTitle.textContent = errorMessage || 'Error';
       resultPlate.hidden = true;
       resultMeta.hidden = true;
-      resultActionBtn.textContent = 'Proovi uuesti';
+      resultActionBtn.textContent = 'Try again';
     }
   }
 

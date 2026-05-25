@@ -54,42 +54,42 @@ function selectCredentials(floor: Floor, env: Env): { productId: string; apiKey:
     return {
       productId: env.EUROPARK_PRODUCT_ID_5,
       apiKey: env.EUROPARK_API_KEY_5,
-      comment: env.EUROPARK_COMMENT_PREFIX_5 || "USRE kulaline",
+      comment: env.EUROPARK_COMMENT_PREFIX_5 || "Floor 5 guest",
     };
   }
   return {
     productId: env.EUROPARK_PRODUCT_ID_6,
     apiKey: env.EUROPARK_API_KEY_6,
-    comment: env.EUROPARK_COMMENT_PREFIX_6 || "6. korrus kulaline",
+    comment: env.EUROPARK_COMMENT_PREFIX_6 || "Floor 6 guest",
   };
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const { request, env } = context;
 
-  // 1) Parsi ja valideeri body
+  // 1) Parse and validate body
   let body: ParkRequest;
   try {
     body = (await request.json()) as ParkRequest;
   } catch {
-    return jsonResponse(400, { ok: false, error: "invalid_json", message: "Vigane päring." });
+    return jsonResponse(400, { ok: false, error: "invalid_json", message: "Invalid request." });
   }
 
   const floor = body.floor;
   const plateRaw = (body.plate ?? "").toString().trim().toUpperCase();
 
   if (floor !== "5" && floor !== "6") {
-    return jsonResponse(400, { ok: false, error: "invalid_floor", message: "Vigane korruse parameeter." });
+    return jsonResponse(400, { ok: false, error: "invalid_floor", message: "Invalid floor." });
   }
   if (!PLATE_REGEX.test(plateRaw)) {
     return jsonResponse(400, {
       ok: false,
       error: "invalid_plate",
-      message: "Autonumber peab olema 2-10 t2hem2rki (A-Z, 0-9).",
+      message: "License plate must be 2-10 characters (A-Z, 0-9).",
     });
   }
 
-  // 2) Vali credentialsid + arvuta ajad
+  // 2) Pick credentials + compute times
   const { productId, apiKey, comment } = selectCredentials(floor, env);
 
   if (!apiKey || !productId || !env.EUROPARK_PARTNER_ID || !env.EUROPARK_API_BASE) {
@@ -99,7 +99,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       partnerId: env.EUROPARK_PARTNER_ID,
       base: env.EUROPARK_API_BASE,
     });
-    return jsonResponse(500, { ok: false, error: "server_misconfigured", message: "Serveri konfiguratsiooni viga." });
+    return jsonResponse(500, { ok: false, error: "server_misconfigured", message: "Server configuration error." });
   }
 
   const hours = Math.max(1, Math.min(24, parseInt(env.PARKING_HOURS || "3", 10) || 3));
@@ -135,7 +135,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return jsonResponse(502, {
       ok: false,
       error: "upstream_unreachable",
-      message: "Europark API ei vasta. Proovi mone hetke parast uuesti.",
+      message: "Europark service is not responding. Please try again in a moment.",
     });
   }
 
@@ -159,13 +159,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       floor,
       body: upstreamBody,
     });
-    let message = "Parkimine eba6nnestus.";
+    let message = "Parking failed.";
     if (upstream.status === 401 || upstream.status === 403) {
-      message = "Serveri autoriseerimise viga. Palun teavita administraatorit.";
+      message = "Server authorization error. Please notify the administrator.";
     } else if (upstream.status === 422) {
-      message = "Auto number ei sobi Europarki s2steemiga. Kontrolli ja proovi uuesti.";
+      message = "License plate not accepted. Please check and try again.";
     } else if (upstream.status === 404) {
-      message = "Parkimisteenust ei leitud. Palun teavita administraatorit.";
+      message = "Parking service not found. Please notify the administrator.";
     }
     return jsonResponse(upstream.status >= 500 ? 502 : 400, {
       ok: false,
@@ -198,13 +198,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   });
 };
 
-// K6ik teised meetodid - 405
+// Any other method -> 405
 export const onRequest: PagesFunction<Env> = async ({ request }) => {
   if (request.method === "POST") {
-    // Ei tohiks siia jouda, sest onRequestPost katab POST-i.
+    // Shouldn't reach here since onRequestPost covers POST.
     return jsonResponse(500, { ok: false, error: "routing", message: "Routing error" });
   }
-  return new Response(JSON.stringify({ ok: false, error: "method_not_allowed", message: "Kasuta POST." }), {
+  return new Response(JSON.stringify({ ok: false, error: "method_not_allowed", message: "Use POST." }), {
     status: 405,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
