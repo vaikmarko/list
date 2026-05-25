@@ -5,7 +5,7 @@
   "description": "list.ee — The List Services (staatiline sait + Rotermanni külaliste parkimine)",
   "scripts": {
     "dev": "wrangler pages dev . --compatibility-date=2025-05-25 --port 8788",
-    "deploy": "wrangler pages deploy . --project-name=list-ee"
+    "deploy": "wrangler pages deploy . --project-name=list"
   },
   "devDependencies": {
     "wrangler": "^4.20.0"
