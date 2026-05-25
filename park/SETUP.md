@@ -134,6 +134,28 @@ https://list.ee/park/us-invest-p7n5q8/?u={User ID}&e={User e-mail}&n={User name}
 
 ---
 
+## Ajav\u00f6\u00f6nd
+
+**Europark API quirk:** Europark ignoreerib ISO ajatempli `Z` (UTC) suffixit ja k\u00e4sitleb saadetud kella alati Estonian local time'ina. Sellep\u00e4rast saadame v\u00e4lja explicit `+03:00` (suvi EEST) v\u00f5i `+02:00` (talv EET) ajatempliga, DST-aware kasutades JS `Intl.DateTimeFormat("Europe/Tallinn")`. See toimib korrektselt nii suvi- kui talveajal.
+
+Kliendile (vorm) tagastab Function valmis `end_time_local` HH:MM stringi (nt `"18:32"`) - frontend ei tee \u00fchtegi TZ parsing'ut, lihtsalt kuvab.
+
+## Rate limit
+
+Et kaitsa brute-force ja kuritarvituse vastu, on Function'i alguses lihtne D1-baseeritud rate limit:
+
+- **Reegel:** max **20** p\u00e4ringut **5 minuti** jooksul sama IP-lt
+- **Skoop:** koik sundmused (ka validation errors) loendatakse, et brute force plate'idele blokeeruks samuti
+- **Allikas:** count *p\u00e4ringuid* `parking_events` tabelist viimase 5 min jooksul antud `ip` v\u00e4ljaga
+- **\u00dcle limiidi:** HTTP 429 `rate_limited`, sundmus logitakse D1-i (n\u00e4ed admin endpoint kaudu)
+- **Tuning:** muuda `RL_MAX` ja `RL_WINDOW_MIN` konstandid [functions/api/park.ts](../functions/api/park.ts) algusosas
+
+Marko saab rate-limited p\u00e4ringuid vaadata:
+```bash
+curl -sS "https://list.ee/api/admin/logs?event=park.validation_error" \
+  -H "Authorization: Bearer <CF_ADMIN_KEY>" | jq '.rows[] | select(.error_code == "rate_limited")'
+```
+
 ## Audit logide vaatamine
 
 Iga parkimissündmus (õnnestumine, valideerimisviga, Europark viga) salvestatakse Cloudflare D1 SQLite andmebaasi `list-parking-log` tabelisse `parking_events`. Püsivad **igavesti** (kuni D1 quota — vaikimisi 5 GB Free plan).

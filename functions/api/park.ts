@@ -103,6 +103,28 @@ function companyForFloor(floor: string | null): string | null {
   return null;
 }
 
+// Lihtne rate limit: max RL_MAX p\u00e4ringut RL_WINDOW_MIN minutis sama IP-lt.
+// Counts ALL events (sh validation errors) - et brute force katse plate'idele
+// ka loendub. Fail-open: kui D1 query eba6nnestub, lubame requesti.
+const RL_MAX = 20;
+const RL_WINDOW_MIN = 5;
+
+async function checkRateLimit(db: D1Database | undefined, ip: string): Promise<{ allowed: boolean; count: number }> {
+  if (!ip || !db) return { allowed: true, count: 0 };
+  const sinceIso = new Date(Date.now() - RL_WINDOW_MIN * 60 * 1000).toISOString();
+  try {
+    const res = await db
+      .prepare("SELECT COUNT(*) AS c FROM parking_events WHERE ip = ? AND ts >= ?")
+      .bind(ip, sinceIso)
+      .first<{ c: number }>();
+    const count = res?.c ?? 0;
+    return { allowed: count < RL_MAX, count };
+  } catch (err) {
+    console.error("rate_limit: query failed", err instanceof Error ? err.message : String(err));
+    return { allowed: true, count: 0 };
+  }
+}
+
 type Floor = "5" | "6";
 
 interface ParkRequest {
@@ -244,6 +266,28 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
       }),
     );
   };
+
+  // Rate limit kontroll (per IP, viimase 5 min jooksul).
+  const rl = await checkRateLimit(env.DB, cfMeta.ip);
+  if (!rl.allowed) {
+    logAudit({
+      event: "park.validation_error",
+      floor: floor ?? null,
+      company: companyForFloor(floor ?? null),
+      plate: plateRaw || null,
+      europark_session_id: null,
+      europark_status: null,
+      start_time: null,
+      end_time: null,
+      error_code: "rate_limited",
+      error_message: `${rl.count} requests in last ${RL_WINDOW_MIN} min from this IP (max ${RL_MAX})`,
+    });
+    return jsonResponse(429, {
+      ok: false,
+      error: "rate_limited",
+      message: "Too many requests. Please wait a few minutes and try again.",
+    });
+  }
 
   if (floor !== "5" && floor !== "6") {
     logAudit({
