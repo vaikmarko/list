@@ -1,5 +1,12 @@
 # Sharry Integration — Reference for the-list-services
 
+> ⚠️ **Being rewritten (2026-06-16).** The WebView-ingress model below is superseded: Sharry has a
+> native **Service Tickets** API, so residents report faults in-app and we run a two-way
+> **Sharry ⇄ Hausing** sync (poll Service Tickets → create Hausing ticket → push status/messages
+> back). New design:
+> [specs/2026-06-16-sharry-hausing-twoway-sync-design.md](../superpowers/specs/2026-06-16-sharry-hausing-twoway-sync-design.md).
+> This file's "Service Tickets" facts move into `SHARRY_API.md` during that build.
+
 How the Rotermann app (a white-label **Sharry** deployment) feeds the-list-services
 Cloudflare Pages Functions. Sharry is an external system; we never call it back over an API.
 Integration is one-directional ingress: Sharry opens a WebView at one of our URLs.

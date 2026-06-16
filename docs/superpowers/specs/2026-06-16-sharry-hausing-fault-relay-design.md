@@ -1,7 +1,11 @@
 # Sharry -> Hausing Fault Report Relay (Design Spec)
 
 **Date:** 2026-06-16
-**Status:** Approved design, pending live API keys for end-to-end testing.
+**Status:** ⛔ SUPERSEDED (2026-06-16). The WebView form approach below was replaced once we
+confirmed Sharry has a native **Service Tickets** API: residents already report faults inside the
+Sharry app, so the integration is a two-way **Sharry ⇄ Hausing** sync, not a custom form. See
+[2026-06-16-sharry-hausing-twoway-sync-design.md](2026-06-16-sharry-hausing-twoway-sync-design.md).
+The Hausing client, photo 3-step upload, status poller, D1 audit pattern, and all skills are reused.
 **Repo:** the-list-services (Cloudflare Pages Functions + D1)
 **References:** [HAUSING_API.md](../../integrations/HAUSING_API.md), [SHARRY_INTEGRATION.md](../../integrations/SHARRY_INTEGRATION.md), existing pattern `functions/api/park.ts`.
 

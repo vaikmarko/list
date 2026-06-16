@@ -1,5 +1,12 @@
 # Sharry -> Hausing Fault Report Relay — Implementation Plan
 
+> ⛔ **SUPERSEDED (2026-06-16)** — built and shipped, but the ingress (a custom WebView form ->
+> `/api/fault`) is replaced by polling Sharry's native **Service Tickets** API. The Hausing-side
+> code (client, photo upload, status poller, audit, admin) is reused. New plan:
+> [2026-06-16-sharry-hausing-twoway-sync.md](2026-06-16-sharry-hausing-twoway-sync.md). The
+> `teata-veast/` form and `/api/fault*` endpoints are scheduled for removal there.
+
+
 > **For agentic workers:** implement task-by-task. Steps use checkbox (`- [ ]`) syntax. Run the
 > `verify` skill before push and the `review` skill after the build is complete.
 
