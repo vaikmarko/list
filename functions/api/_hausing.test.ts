@@ -182,6 +182,42 @@ describe("file upload", () => {
     ]);
   });
 
+  it("uploadTicketPhoto short-circuits when upload-url fails (no PUT, no link)", async () => {
+    const calls: string[] = [];
+    vi.stubGlobal("fetch", vi.fn(async (url: string, init?: RequestInit) => {
+      calls.push(`${init?.method || "GET"} ${url}`);
+      if (url.endsWith("/v1/files/upload-url")) return jsonResponse(500, { id: "e", message: "down" });
+      return jsonResponse(201, { data: { id: "f1" } });
+    }));
+    const res = await uploadTicketPhoto(env, {
+      ticketId: 7,
+      bytes: new Uint8Array([1, 2, 3]),
+      contentType: "image/jpeg",
+      originalFileName: "foto.jpg",
+    });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.errorCode).toBe("upstream_500");
+    expect(calls).toEqual(["GET https://api.example.test/v1/files/upload-url"]);
+  });
+
+  it("uploadTicketPhoto surfaces a link failure after a successful PUT", async () => {
+    vi.stubGlobal("fetch", vi.fn(async (url: string) => {
+      if (url.endsWith("/v1/files/upload-url")) {
+        return jsonResponse(200, { data: { uploadUrl: "https://upload.test/put-here", fileName: "abc123" } });
+      }
+      if (url === "https://upload.test/put-here") return new Response(null, { status: 200 });
+      return jsonResponse(422, { id: "e", message: "bad entity" }); // link step fails
+    }));
+    const res = await uploadTicketPhoto(env, {
+      ticketId: 7,
+      bytes: new Uint8Array([1, 2, 3]),
+      contentType: "image/jpeg",
+      originalFileName: "foto.jpg",
+    });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.errorCode).toBe("upstream_422");
+  });
+
   it("uploadTicketPhoto returns file_put_failed when PUT fails (no link call)", async () => {
     const calls: string[] = [];
     vi.stubGlobal("fetch", vi.fn(async (url: string, init?: RequestInit) => {

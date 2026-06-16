@@ -63,6 +63,8 @@ const MAX_CONTEXT_KEYS = 20;
 const MAX_CONTEXT_VALUE_LEN = 200;
 // Foto: klient skaleerib pildi alla (~JPEG), aga hoiame serveris turvalimiidi.
 const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
+// Korpuse ulempiir (foto base64 + JSON overhead mahub; ~12MB).
+const MAX_BODY_BYTES = 12 * 1024 * 1024;
 const ALLOWED_PHOTO_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 
 interface DecodedPhoto {
@@ -72,7 +74,7 @@ interface DecodedPhoto {
 }
 
 // Dekodeeri base64 -> baidid (Workers atob). Tagastab null vigase/liiga suure korral.
-function decodePhoto(input: unknown): DecodedPhoto | null {
+export function decodePhoto(input: unknown): DecodedPhoto | null {
   if (!input || typeof input !== "object") return null;
   const p = input as Record<string, unknown>;
   const data = typeof p.data === "string" ? p.data : null;
@@ -300,6 +302,17 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     referer: (request.headers.get("Referer") || "").slice(0, 200),
   };
 
+  // Korpuse suuruse vearav ENNE parsimist (foto teeb korpuse suureks - vali DoS-i amp).
+  // Lubame fotole ruumi (base64 + JSON overhead), aga lukkame ilmselgelt liiga suured tagasi.
+  const contentLength = Number(request.headers.get("Content-Length") || 0);
+  if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+    return jsonResponse(413, {
+      ok: false,
+      error: "payload_too_large",
+      message: "Päring on liiga suur. Vähenda pildi suurust ja proovi uuesti.",
+    });
+  }
+
   let body: FaultRequest;
   try {
     body = (await request.json()) as FaultRequest;
@@ -313,6 +326,9 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   const buildingOverride = body.buildingId ? String(body.buildingId).slice(0, 64) : null;
   const userContext = sanitizeContext(body.context);
   const userEmail = extractUserEmail(userContext);
+  // `clientSentPhoto` = klient uritas pilti saata (ka siis kui see ei dekodeeru);
+  // `photo` = serveris edukalt dekodeeritud. Vahe valistab "vaikse foto kao".
+  const clientSentPhoto = !!(body.photo && typeof body.photo === "object" && body.photo.data);
   const photo = decodePhoto(body.photo);
 
   const logAudit = (ev: Omit<AuditEvent, "cf" | "user" | "duration_ms">) => {
@@ -577,8 +593,9 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     ticketNumber: ticket.number,
     status: ticket.status ?? "TO_DO",
     photoAttached: attachmentCount > 0,
-    // Kui kasutaja saatis pildi, aga see ei laetud (best-effort), anna kliendile teada.
-    photoFailed: !!photo && attachmentCount === 0,
+    // Kui klient saatis pildi (ka serveris tagasi lukatu), aga see ei jouanud
+    // ticketile, anna kasutajale teada - muidu kaob foto vaikselt.
+    photoFailed: clientSentPhoto && attachmentCount === 0,
   });
 };
 

@@ -178,7 +178,7 @@ export async function createGeneralTicket(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Failide (fotode) uleslaadimine - kaheastmeline (upload-url -> PUT -> link).
+// Failide (fotode) uleslaadimine - kolmeastmeline (upload-url -> PUT -> link).
 // Vt docs/integrations/HAUSING_API.md "Attachments".
 // ─────────────────────────────────────────────────────────────────────────────
 
