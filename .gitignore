@@ -6,6 +6,14 @@ the-list-*.html
 VESTLUSE-*.md
 OLD *.html
 
+# Lokaalne ärimaterjal ja arhiiv (mitte deploy'da, mitte commit'ida)
+business/
+_archive/
+
+# IDE / agent lokaalne olek (.cursor/skills on jälgitav, ülejäänu mitte)
+.claude/
+.cursor/worktrees.json
+
 # Django projekti failid
 rotermann-access-platform/
 rotermann-meeting-processor/

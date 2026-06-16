@@ -8,7 +8,6 @@
     <style>
         :root {
             --bg-dark: #0f0f0f;
-            --bg-darker: #080808;
             --accent: #d4a574;
             --accent-light: #e8c9a8;
             --success: #7dd3a8;
@@ -23,6 +22,7 @@
         html {
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
+            background: var(--bg-dark);
         }
         
         body {
@@ -35,15 +35,16 @@
         
         .slide {
             min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 60px 80px;
             position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow: hidden;
             scroll-snap-align: start;
             scroll-snap-stop: always;
+            background: var(--bg-dark);
         }
         
         /* Slide indicator */
@@ -78,7 +79,7 @@
             transform: scale(1.3);
         }
         
-        /* Scroll hint */
+        /* Scroll hint - only visible on first slide */
         .scroll-hint {
             position: fixed;
             bottom: 32px;
@@ -101,8 +102,8 @@
         }
         
         .scroll-hint-arrow {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-right: 2px solid var(--accent);
             border-bottom: 2px solid var(--accent);
             transform: rotate(45deg);
@@ -115,7 +116,7 @@
             60% { transform: rotate(45deg) translateY(3px); }
         }
         
-        /* Slide counter */
+        /* Slide counter - hidden when scroll hint is visible to avoid overlap */
         .slide-counter {
             position: fixed;
             bottom: 32px;
@@ -124,6 +125,11 @@
             color: var(--text-muted);
             font-variant-numeric: tabular-nums;
             z-index: 100;
+            transition: opacity 0.5s ease;
+        }
+        
+        .slide-counter.first-slide {
+            opacity: 0;
         }
         
         .slide-counter .current {
@@ -131,7 +137,7 @@
             font-weight: 600;
         }
         
-        /* Background patterns */
+        /* Subtle background glow per slide */
         .slide::before {
             content: '';
             position: absolute;
@@ -139,9 +145,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(212, 165, 116, 0.03) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(212, 165, 116, 0.02) 0%, transparent 40%);
+            background: radial-gradient(ellipse at 30% 40%, rgba(212, 165, 116, 0.025) 0%, transparent 60%);
             pointer-events: none;
         }
         
@@ -193,19 +197,17 @@
             font-weight: 400;
         }
         
-        /* Accent colors */
         .accent { color: var(--accent); }
         .success { color: var(--success); }
         
         /* Title slide */
         .slide-title {
             text-align: center;
-            background: linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+            background: var(--bg-dark);
         }
         
         .slide-title::before {
-            background: 
-                radial-gradient(circle at 50% 50%, rgba(212, 165, 116, 0.08) 0%, transparent 50%);
+            background: radial-gradient(circle at 50% 50%, rgba(212, 165, 116, 0.06) 0%, transparent 50%);
         }
         
         .slide-title h1 {
@@ -235,15 +237,15 @@
         /* Timeline */
         .timeline {
             display: grid;
-            gap: 16px;
-            margin-top: 32px;
+            gap: 12px;
+            margin-top: 24px;
         }
         
         .timeline-item {
             display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 24px;
-            padding: 20px 24px;
+            grid-template-columns: 100px 1fr;
+            gap: 20px;
+            padding: 16px 20px;
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -256,7 +258,7 @@
         }
         
         .timeline-month {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -264,16 +266,16 @@
         }
         
         .timeline-title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             color: var(--text);
         }
         
         .timeline-desc {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.6;
         }
         
         /* Cards grid */
@@ -387,13 +389,13 @@
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 16px;
+            margin-top: 12px;
             font-size: 13px;
         }
         
         .data-table th {
             text-align: left;
-            padding: 8px 10px;
+            padding: 6px 8px;
             font-size: 9px;
             font-weight: 600;
             text-transform: uppercase;
@@ -403,7 +405,7 @@
         }
         
         .data-table td {
-            padding: 7px 10px;
+            padding: 5px 8px;
             border-bottom: 1px solid var(--border);
         }
         
@@ -509,7 +511,7 @@
         /* Next steps */
         .next-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px;
             margin-top: 32px;
         }
@@ -562,12 +564,45 @@
             color: var(--text-muted);
         }
         
-        /* Responsive */
+        /* Large screens / projectors */
+        @media (min-width: 1800px) {
+            .slide-content { max-width: 1400px; }
+            .slide { padding: 80px 120px; }
+            h2 { font-size: clamp(48px, 5vw, 72px); }
+            .timeline-title { font-size: 24px; }
+            .timeline-desc { font-size: 17px; }
+            .card h4 { font-size: 22px; }
+            .card p { font-size: 18px; }
+            .data-table { font-size: 15px; }
+            .data-table th { font-size: 11px; }
+            .data-table th, .data-table td { padding: 8px 12px; }
+            .feature-list li { font-size: 20px; }
+            .step-card h4 { font-size: 20px; }
+            .step-card p { font-size: 17px; }
+        }
+
+        @media (min-width: 2400px) {
+            .slide-content { max-width: 1800px; }
+            .slide { padding: 100px 160px; }
+            .slide-nav { right: 48px; gap: 16px; }
+            .slide-nav-dot { width: 14px; height: 14px; }
+            .slide-counter { font-size: 18px; right: 48px; bottom: 48px; }
+            h1 { font-size: clamp(72px, 8vw, 140px); }
+            h2 { font-size: clamp(56px, 5vw, 96px); }
+            h3 { font-size: 18px; }
+            p { font-size: clamp(22px, 2vw, 30px); }
+            .lead { font-size: clamp(30px, 3vw, 44px); }
+            .data-table { font-size: 17px; }
+            .data-table th { font-size: 13px; }
+            .data-table th, .data-table td { padding: 10px 14px; }
+        }
+        
+        /* Responsive - smaller screens */
         @media (max-width: 1400px) {
             .slide { 
                 padding: 48px 60px;
                 min-height: 100vh;
-                height: auto;
+                height: 100vh;
             }
             h1 { font-size: clamp(40px, 6vw, 72px); }
             h2 { font-size: clamp(32px, 4vw, 52px); }
@@ -577,10 +612,11 @@
             .slide { 
                 padding: 40px 48px;
                 min-height: 100vh;
-                height: auto;
+                height: 100vh;
             }
             .comparison { gap: 24px; }
             .comparison-side { padding: 36px 28px; }
+            .next-steps { grid-template-columns: repeat(2, 1fr); }
         }
         
         @media (max-width: 900px) {
@@ -598,9 +634,9 @@
             .comparison-arrow { transform: rotate(90deg); font-size: 32px; padding: 8px 0; }
             .comparison-side { max-width: 100%; padding: 32px 24px; }
             .comparison-icon { font-size: 48px; margin-bottom: 16px; }
-            .timeline-item { grid-template-columns: 1fr; gap: 12px; padding: 24px; }
-            .timeline-title { font-size: 20px; }
-            .timeline-desc { font-size: 14px; }
+            .timeline-item { grid-template-columns: 1fr; gap: 8px; padding: 16px; }
+            .timeline-title { font-size: 18px; }
+            .timeline-desc { font-size: 13px; }
             .slide-nav { right: 12px; }
             .slide-nav-dot { width: 6px; height: 6px; gap: 8px; }
             .slide-counter { right: 12px; bottom: 12px; font-size: 12px; }
@@ -622,13 +658,13 @@
             .data-table { font-size: 11px; }
             .data-table th, .data-table td { padding: 8px 6px; }
             .data-table th { font-size: 9px; }
-            .next-steps { gap: 16px; }
+            .next-steps { grid-template-columns: 1fr; gap: 16px; }
             .step-card { padding: 24px 20px; }
             .step-card h4 { font-size: 15px; }
             .step-card p { font-size: 13px; }
             .step-number { width: 24px; height: 24px; font-size: 12px; top: -10px; left: 16px; }
             .feature-list li { font-size: 15px; padding: 12px 0; gap: 12px; }
-            .timeline { gap: 16px; margin-top: 32px; }
+            .timeline { gap: 12px; margin-top: 24px; }
         }
         
         /* Print */
@@ -636,8 +672,10 @@
             .slide { 
                 page-break-after: always;
                 min-height: auto;
+                height: auto;
                 padding: 40px;
             }
+            .slide-nav, .scroll-hint, .slide-counter { display: none; }
         }
     </style>
 </head>
@@ -747,7 +785,7 @@
         <h3>Pöördepunkt</h3>
         <h2>Miks see oli <span class="accent">õige otsus</span></h2>
         
-        <div class="grid-3" style="margin-top: 64px;">
+        <div class="grid-3" style="margin-top: 48px;">
             <div class="card">
                 <div class="card-icon">⏱️</div>
                 <h4>Kiirem tulemus</h4>
@@ -830,7 +868,7 @@
 <div class="slide">
     <div class="slide-content">
         <h3>Ülevaade</h3>
-        <h2>Hooned ja kasutajad</h2>
+        <h2 style="margin-bottom: 16px;">Hooned ja kasutajad</h2>
         
         <div style="overflow-x: auto; max-width: 100%;">
             <table class="data-table" style="min-width: 600px;">
@@ -850,7 +888,7 @@
                         <td class="num">12 606</td>
                         <td class="num">17</td>
                         <td class="num">1 069</td>
-                        <td class="num">1 925</td>
+                        <td class="num">1 601</td>
                         <td class="num" style="color: var(--accent);">5 238</td>
                     </tr>
                     <tr>
@@ -858,7 +896,7 @@
                         <td class="num">8 568</td>
                         <td class="num">10</td>
                         <td class="num">726</td>
-                        <td class="num">1 311</td>
+                        <td class="num">1 090</td>
                         <td class="num" style="color: var(--accent);">3 557</td>
                     </tr>
                     <tr>
@@ -866,7 +904,7 @@
                         <td class="num">5 304</td>
                         <td class="num">26</td>
                         <td class="num">450</td>
-                        <td class="num">812</td>
+                        <td class="num">675</td>
                         <td class="num" style="color: var(--accent);">2 205</td>
                     </tr>
                     <tr>
@@ -874,7 +912,7 @@
                         <td class="num">5 159</td>
                         <td class="num">10</td>
                         <td class="num">437</td>
-                        <td class="num">789</td>
+                        <td class="num">656</td>
                         <td class="num" style="color: var(--accent);">2 141</td>
                     </tr>
                     <tr>
@@ -882,7 +920,7 @@
                         <td class="num">4 870</td>
                         <td class="num">18</td>
                         <td class="num">413</td>
-                        <td class="num">745</td>
+                        <td class="num">620</td>
                         <td class="num" style="color: var(--accent);">2 024</td>
                     </tr>
                     <tr>
@@ -890,7 +928,7 @@
                         <td class="num">3 822</td>
                         <td class="num">21</td>
                         <td class="num">324</td>
-                        <td class="num">585</td>
+                        <td class="num">486</td>
                         <td class="num" style="color: var(--accent);">1 588</td>
                     </tr>
                     <tr>
@@ -898,7 +936,7 @@
                         <td class="num">2 141</td>
                         <td class="num">14</td>
                         <td class="num">181</td>
-                        <td class="num">328</td>
+                        <td class="num">273</td>
                         <td class="num" style="color: var(--accent);">887</td>
                     </tr>
                     <tr>
@@ -906,7 +944,7 @@
                         <td class="num">1 624</td>
                         <td class="num">16</td>
                         <td class="num">138</td>
-                        <td class="num">248</td>
+                        <td class="num">206</td>
                         <td class="num" style="color: var(--accent);">676</td>
                     </tr>
                     <tr>
@@ -914,7 +952,7 @@
                         <td class="num">1 556</td>
                         <td class="num">2</td>
                         <td class="num">132</td>
-                        <td class="num">238</td>
+                        <td class="num">198</td>
                         <td class="num" style="color: var(--accent);">647</td>
                     </tr>
                     <tr>
@@ -922,7 +960,7 @@
                         <td class="num">969</td>
                         <td class="num">2</td>
                         <td class="num">82</td>
-                        <td class="num">148</td>
+                        <td class="num">123</td>
                         <td class="num" style="color: var(--accent);">402</td>
                     </tr>
                     <tr>
@@ -930,7 +968,7 @@
                         <td class="num">568</td>
                         <td class="num">2</td>
                         <td class="num">48</td>
-                        <td class="num">87</td>
+                        <td class="num">72</td>
                         <td class="num" style="color: var(--accent);">235</td>
                     </tr>
                     <tr>
@@ -938,12 +976,12 @@
                         <td class="num"><strong>47 185</strong></td>
                         <td class="num"><strong>138</strong></td>
                         <td class="num"><strong>4 000</strong></td>
-                        <td class="num"><strong>7 216</strong></td>
+                        <td class="num"><strong>6 000</strong></td>
                         <td class="num" style="color: var(--accent);"><strong>19 600</strong></td>
                     </tr>
                 </tbody>
             </table>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 16px;">* Pot. tulu = töötajad × €4,90/kuu | Sharry kulu hinnanguline (Golden Gate pakkumise põhjal ~0,15 €/m²/kuu)</p>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 16px;">* Pot. tulu = töötajad × €4,90/kuu | Sharry kulu fikseeritud 6 000 €/kuu</p>
         </div>
     </div>
 </div>
@@ -954,7 +992,7 @@
         <h3>Õppetunnid</h3>
         <h2>Mida me <span class="accent">õppisime</span></h2>
         
-        <div class="grid-2" style="margin-top: 64px; text-align: left;">
+        <div class="grid-2" style="margin-top: 48px; text-align: left;">
             <div class="card">
                 <h4 style="color: var(--accent); margin-bottom: 16px;">✗ Mida mitte teha</h4>
                 <ul style="list-style: none; font-size: 16px; line-height: 2; color: var(--text-muted);">
@@ -975,7 +1013,7 @@
             </div>
         </div>
         
-        <p class="quote" style="margin-top: 80px;">
+        <p class="quote" style="margin-top: 56px;">
             "Parim kood on see, mida ei pea ise kirjutama"
         </p>
     </div>
@@ -1030,7 +1068,7 @@
         <h3>Kokkuvõte</h3>
         <h1 style="font-size: clamp(48px, 7vw, 84px);">Vähem ehitamist.<br><span class="accent">Rohkem väärtust.</span></h1>
         
-        <div class="grid-3" style="margin-top: 64px;">
+        <div class="grid-3" style="margin-top: 48px;">
             <div class="stat">
                 <div class="stat-value">7</div>
                 <div class="stat-label">Nädalat otsusest äpini</div>
@@ -1045,7 +1083,7 @@
             </div>
         </div>
         
-        <p style="font-size: 28px; margin-top: 64px; color: var(--text-muted); max-width: 700px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: 28px; margin-top: 48px; color: var(--text-muted); max-width: 700px; margin-left: auto; margin-right: auto;">
             Me ei ehitanud raketti. Me leidsime parema tee sihtkohta jõudmiseks.
         </p>
         
@@ -1063,7 +1101,7 @@
     <span>Kerige alla</span>
 </div>
 
-<div class="slide-counter">
+<div class="slide-counter first-slide">
     <span class="current" id="currentSlide">1</span> / <span id="totalSlides">9</span>
 </div>
 
@@ -1072,16 +1110,16 @@
     const slides = document.querySelectorAll('.slide');
     const nav = document.getElementById('slideNav');
     const scrollHint = document.getElementById('scrollHint');
+    const slideCounter = document.querySelector('.slide-counter');
     const currentSlideEl = document.getElementById('currentSlide');
     const totalSlidesEl = document.getElementById('totalSlides');
     
     totalSlidesEl.textContent = slides.length;
     
-    // Create navigation dots
     slides.forEach((slide, index) => {
         const dot = document.createElement('button');
         dot.className = 'slide-nav-dot' + (index === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `Slaid ${index + 1}`);
+        dot.setAttribute('aria-label', 'Slaid ' + (index + 1));
         dot.addEventListener('click', () => {
             slides[index].scrollIntoView({ behavior: 'smooth' });
         });
@@ -1089,26 +1127,26 @@
     });
     
     const dots = document.querySelectorAll('.slide-nav-dot');
+    let activeIndex = 0;
     
-    // Update active state on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const index = Array.from(slides).indexOf(entry.target);
+                activeIndex = index;
                 
-                // Update dots
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === index);
                 });
                 
-                // Update counter
                 currentSlideEl.textContent = index + 1;
                 
-                // Hide scroll hint after first slide
-                if (index > 0) {
-                    scrollHint.classList.add('hidden');
-                } else {
+                if (index === 0) {
                     scrollHint.classList.remove('hidden');
+                    slideCounter.classList.add('first-slide');
+                } else {
+                    scrollHint.classList.add('hidden');
+                    slideCounter.classList.remove('first-slide');
                 }
             }
         });
@@ -1116,21 +1154,24 @@
     
     slides.forEach(slide => observer.observe(slide));
     
-    // Keyboard navigation
+    function goToSlide(index) {
+        if (index < 0 || index >= slides.length || index === activeIndex) return;
+        slides[index].scrollIntoView({ behavior: 'smooth' });
+    }
+    
     let isScrolling = false;
     
     document.addEventListener('keydown', (e) => {
         if (isScrolling) return;
         
-        const currentIndex = parseInt(currentSlideEl.textContent) - 1;
-        let targetIndex = currentIndex;
+        let targetIndex = activeIndex;
         
-        if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
             e.preventDefault();
-            targetIndex = Math.min(currentIndex + 1, slides.length - 1);
-        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            targetIndex = Math.min(activeIndex + 1, slides.length - 1);
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
             e.preventDefault();
-            targetIndex = Math.max(currentIndex - 1, 0);
+            targetIndex = Math.max(activeIndex - 1, 0);
         } else if (e.key === 'Home') {
             e.preventDefault();
             targetIndex = 0;
@@ -1139,16 +1180,14 @@
             targetIndex = slides.length - 1;
         }
         
-        if (targetIndex !== currentIndex) {
+        if (targetIndex !== activeIndex) {
             isScrolling = true;
-            slides[targetIndex].scrollIntoView({ behavior: 'smooth' });
+            goToSlide(targetIndex);
             setTimeout(() => { isScrolling = false; }, 800);
         }
     });
     
-    // Touch swipe support
     let touchStartY = 0;
-    let touchEndY = 0;
     
     document.addEventListener('touchstart', (e) => {
         touchStartY = e.changedTouches[0].screenY;
@@ -1157,26 +1196,20 @@
     document.addEventListener('touchend', (e) => {
         if (isScrolling) return;
         
-        touchEndY = e.changedTouches[0].screenY;
-        const diff = touchStartY - touchEndY;
-        const currentIndex = parseInt(currentSlideEl.textContent) - 1;
+        const diff = touchStartY - e.changedTouches[0].screenY;
         
         if (Math.abs(diff) > 50) {
-            let targetIndex = currentIndex;
-            
+            isScrolling = true;
             if (diff > 0) {
-                targetIndex = Math.min(currentIndex + 1, slides.length - 1);
+                goToSlide(Math.min(activeIndex + 1, slides.length - 1));
             } else {
-                targetIndex = Math.max(currentIndex - 1, 0);
+                goToSlide(Math.max(activeIndex - 1, 0));
             }
-            
-            if (targetIndex !== currentIndex) {
-                isScrolling = true;
-                slides[targetIndex].scrollIntoView({ behavior: 'smooth' });
-                setTimeout(() => { isScrolling = false; }, 800);
-            }
+            setTimeout(() => { isScrolling = false; }, 800);
         }
     }, { passive: true });
+
+    slideCounter.classList.add('first-slide');
 })();
 </script>
 

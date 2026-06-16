@@ -7,3 +7,12 @@
 
 EUROPARK_API_KEY_5="paste_5th_floor_api_key_here"
 EUROPARK_API_KEY_6="paste_6th_floor_api_key_here"
+
+# Hausing Gateway API (Sharry -> Hausing veateadete relay).
+# Token + company id on serveri-poolsed secrets (mitte kunagi kliendis ega gitis).
+# Auth header on `Authentication: Bearer <token>` (mitte Authorization) + X-Hausing-Company.
+HAUSING_API_TOKEN="paste_hausing_jwt_or_api_token_here"
+HAUSING_COMPANY_ID="paste_hausing_company_id_here"
+# HAUSING_API_BASE on mitte-salajane ja seatud wrangler.toml [vars] all (prod default).
+# POLL_SECRET kaitseb /api/hausing-webhook poller endpointi (valise scheduleri Bearer).
+POLL_SECRET="generate_a_long_random_string_here"

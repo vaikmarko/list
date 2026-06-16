@@ -6,3 +6,4 @@
 # Blokeeri internal kataloogid - mitte serveerida avalikult
 /migrations/*       /404.html  404
 /.wrangler/*        /404.html  404
+/docs/*             /404.html  404

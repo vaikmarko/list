@@ -18,6 +18,11 @@ EUROPARK_COMMENT_PREFIX_5 = "U.S. Real Estate guest"
 EUROPARK_COMMENT_PREFIX_6 = "U.S. Invest guest"
 PARKING_HOURS = "3"
 
+# Hausing Gateway API base (mitte-salajane). Secrets (HAUSING_API_TOKEN,
+# HAUSING_COMPANY_ID, POLL_SECRET) seadistatakse Cloudflare dashboardis.
+# NB: Pages Functions ei toeta cron triggereid - polleri kaivitab valine scheduler.
+HAUSING_API_BASE = "https://gateway-api.prod.hausing.ee"
+
 # D1 SQLite audit log database (parkimissundmuste persistent salvestus).
 # Cloudflare Pages projektile on binding seatud ka REST API kaudu
 # (production + preview env) - see siin lubab lokaalset wrangler dev arendust.
