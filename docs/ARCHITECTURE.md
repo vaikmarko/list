@@ -70,7 +70,9 @@ flowchart TB
 ## Integratsioon 2 — Veateated (Hausing) [EHITATUD, ootab API-võtmeid]
 
 - Sissevõtt: `/teata-veast/` vorm (Sharry WebView), kasutaja `User e-mail` → Hausingu `watcherEmail`.
+  Vorm võtab ka **valikulise foto** (klient skaleerib alla + eemaldab EXIF, saadab base64).
 - Backend: `functions/api/fault.ts` → `POST /v1/general-tickets`. Klient: `functions/api/_hausing.ts`.
+  Foto seotakse ticketiga 3-sammulise failivooga (`uploadTicketPhoto`), best-effort.
 - Staatuse tagasivool: `functions/api/hausing-webhook.ts` poller (Hausing **ei paku webhooke**)
   + `functions/api/fault/status.ts` elaniku vaade. Audit/mapping: D1 `fault_reports`,
   `hausing_location_map`. Admin: `GET /api/admin/fault-logs`.

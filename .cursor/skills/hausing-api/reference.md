@@ -43,10 +43,14 @@ Participant keys: `watcherEmail`, `userId`, `crmCompanyId`, `crmCompanyContactId
 | GET | `/v1/buildings`, `/v1/buildings/{buildingId}/rooms` | resolve building/room ids |
 | GET | `/v1/general-tickets/tenant-satisfactions/{id}` ; POST `.../submit` | feedback (`ACCEPTED|REJECTED`, comment, answers) |
 
-## Attachments (two-step)
+## Attachments (three-step) — IMPLEMENTED in `_hausing.ts`
 
-1. `GET /v1/files/upload-url` -> `{ uploadUrl, fileName }`; PUT bytes to `uploadUrl`.
-2. `POST /v1/files` `FileCreateRequest`: `entity: "GENERAL_TICKET"`, `entityId`, `fileName`,
+Use `uploadTicketPhoto(env, {...})` (wraps the three steps). `fault.ts` calls it best-effort after
+the ticket is created.
+
+1. `GET /v1/files/upload-url` -> `{ uploadUrl, fileName }`.
+2. `PUT` raw bytes to `uploadUrl` (no auth header — pre-signed; send the image `Content-Type`).
+3. `POST /v1/files` `FileCreateRequest`: `entity: "GENERAL_TICKET"`, `entityId`, `fileName`,
    `originalFileName`, `visibilities: [ADMIN_MANAGER, MANAGER, TECHNICIAN, ROOM_OWNER, EXTERNAL]`,
    `creatorContext`, `creatorName`.
 

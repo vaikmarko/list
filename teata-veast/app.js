@@ -13,6 +13,8 @@
   var categoryInput = document.getElementById('category');
   var descInput = document.getElementById('description');
   var charNow = document.getElementById('char-now');
+  var photoInput = document.getElementById('photo');
+  var photoStatus = document.getElementById('photo-status');
   var submitBtn = document.getElementById('submit-btn');
   var submitLabel = document.getElementById('submit-label');
   var submitSpinner = document.getElementById('submit-spinner');
@@ -63,12 +65,65 @@
   // client_request_id pusib sama submit'i jooksul stabiilne (retry => sama ticket).
   var pendingRequestId = uuid();
   var lastReport = null; // { id, email }
+  var selectedPhoto = null; // { data, contentType, name }
 
   descInput.addEventListener('input', function () {
     charNow.textContent = String(descInput.value.length);
     submitBtn.disabled = descInput.value.trim().length < 3;
   });
   submitBtn.disabled = true;
+
+  // Skaleeri pilt alla (max 1600px, JPEG q0.8) ja kodeeri base64. Hoiab payloadi
+  // vaiksena ja eemaldab EXIF-i (sh asukoha) - canvas re-encode ei sailita metat.
+  function processPhoto(file, cb) {
+    if (!file || !/^image\//.test(file.type)) { cb(null); return; }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onload = function () {
+        var max = 1600;
+        var w = img.width, h = img.height;
+        if (w > max || h > max) {
+          if (w >= h) { h = Math.round(h * max / w); w = max; }
+          else { w = Math.round(w * max / h); h = max; }
+        }
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          var dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          var base64 = (dataUrl.split(',')[1]) || '';
+          var name = (file.name || 'foto.jpg').replace(/\.[^.]+$/, '') + '.jpg';
+          cb({ data: base64, contentType: 'image/jpeg', name: name, bytes: Math.round(base64.length * 3 / 4) });
+        } catch (err) { cb(null); }
+      };
+      img.onerror = function () { cb(null); };
+      img.src = e.target.result;
+    };
+    reader.onerror = function () { cb(null); };
+    reader.readAsDataURL(file);
+  }
+
+  function fmtSize(bytes) {
+    if (!bytes) return '';
+    if (bytes < 1024 * 1024) return Math.round(bytes / 1024) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  photoInput.addEventListener('change', function () {
+    var file = photoInput.files && photoInput.files[0];
+    if (!file) { selectedPhoto = null; photoStatus.hidden = true; return; }
+    photoStatus.hidden = false;
+    photoStatus.textContent = 'Töötlen pilti…';
+    processPhoto(file, function (p) {
+      selectedPhoto = p;
+      if (p) {
+        photoStatus.textContent = '✓ Foto lisatud (' + fmtSize(p.bytes) + ')';
+      } else {
+        photoStatus.textContent = 'Pilti ei õnnestunud lisada (proovi teist).';
+      }
+    });
+  });
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -91,7 +146,10 @@
         description: description,
         category: categoryInput.value || null,
         client_request_id: pendingRequestId,
-        context: ctx
+        context: ctx,
+        photo: selectedPhoto
+          ? { data: selectedPhoto.data, contentType: selectedPhoto.contentType, name: selectedPhoto.name }
+          : null
       })
     })
       .then(function (res) {
@@ -102,8 +160,10 @@
       .then(function (result) {
         if (result.status >= 200 && result.status < 300 && result.data && result.data.ok) {
           lastReport = { id: pendingRequestId, email: email };
-          // Uus submit => uus idempotentsuse võti.
+          // Uus submit => uus idempotentsuse võti + tühjenda foto.
           pendingRequestId = uuid();
+          selectedPhoto = null;
+          photoInput.value = '';
           showResult(true, null, result.data);
         } else {
           var msg = (result.data && (result.data.message || result.data.error)) || 'Saatmine ebaõnnestus. Palun proovi uuesti.';
@@ -135,6 +195,9 @@
         resultTicket.hidden = true;
       }
       resultMeta.textContent = 'Haldus võtab teate menetlusse. Staatust saad siit kontrollida.';
+      if (data && data.photoFailed) {
+        resultMeta.textContent += ' (Märkus: fotot ei õnnestunud lisada, kuid teade on saadetud.)';
+      }
       resultMeta.hidden = false;
       resultStatusBtn.hidden = !lastReport;
       resultActionBtn.textContent = 'Teata uuest veast';
@@ -179,6 +242,9 @@
     descInput.value = '';
     categoryInput.value = '';
     charNow.textContent = '0';
+    photoInput.value = '';
+    selectedPhoto = null;
+    photoStatus.hidden = true;
     submitBtn.disabled = true;
     resultView.hidden = true;
     formView.hidden = false;

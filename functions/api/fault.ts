@@ -7,8 +7,12 @@
  *     category?: string,             // valikuline (AI-kategoriseerimine vaikimisi)
  *     client_request_id: string,     // UUID, idempotentsuse votme
  *     buildingId?: string,           // valikuline override (pilot/test)
- *     context?: Record<string,string> // Sharry user-context (email/nimi/tenant/site)
+ *     context?: Record<string,string>, // Sharry user-context (email/nimi/tenant/site)
+ *     photo?: { data: base64, contentType: "image/jpeg"|..., name?: string } // valikuline foto
  *   }
+ *
+ * Foto: klient skaleerib pildi alla ja saadab base64. Ticket luuakse esmalt,
+ * seejarel laetakse foto best-effort'ina (uploadTicketPhoto) - foto viga ei kukuta veateadet.
  *
  * Loob Hausingus general ticketi, salvestab mapping + audit D1-i (fault_reports).
  * Vastus ei sisalda kunagi tooret Hausing vastust.
@@ -19,6 +23,7 @@
 
 import {
   createGeneralTicket,
+  uploadTicketPhoto,
   type HausingEnv,
   type GeneralTicket,
 } from "./_hausing";
@@ -45,6 +50,7 @@ interface AuditEvent {
   description: string | null;
   building_id: string | null;
   room_id: string | null;
+  attachment_count: number | null;
   cf: { ip: string; country: string; ua: string; referer: string };
   user: Record<string, string>;
   error_code: string | null;
@@ -55,6 +61,38 @@ interface AuditEvent {
 const DESCRIPTION_MAX = 2000;
 const MAX_CONTEXT_KEYS = 20;
 const MAX_CONTEXT_VALUE_LEN = 200;
+// Foto: klient skaleerib pildi alla (~JPEG), aga hoiame serveris turvalimiidi.
+const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
+const ALLOWED_PHOTO_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+
+interface DecodedPhoto {
+  bytes: Uint8Array;
+  contentType: string;
+  name: string;
+}
+
+// Dekodeeri base64 -> baidid (Workers atob). Tagastab null vigase/liiga suure korral.
+function decodePhoto(input: unknown): DecodedPhoto | null {
+  if (!input || typeof input !== "object") return null;
+  const p = input as Record<string, unknown>;
+  const data = typeof p.data === "string" ? p.data : null;
+  const contentType = typeof p.contentType === "string" ? p.contentType.toLowerCase() : "";
+  if (!data || !ALLOWED_PHOTO_TYPES.has(contentType)) return null;
+  // base64 pikkus -> ligikaudne baidiarv; lukka tagasi enne dekodeerimist kui liiga suur.
+  if (data.length > Math.ceil((MAX_PHOTO_BYTES * 4) / 3) + 4) return null;
+  let bin: string;
+  try {
+    bin = atob(data);
+  } catch {
+    return null;
+  }
+  if (bin.length === 0 || bin.length > MAX_PHOTO_BYTES) return null;
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  const rawName = typeof p.name === "string" ? p.name.slice(0, 120) : "foto.jpg";
+  const name = rawName.replace(/[^\w.\-]/g, "_") || "foto.jpg";
+  return { bytes, contentType, name };
+}
 
 // Rate limit 1: per IP - max 20 paringut 5 min jooksul (koik eventid).
 const RL_IP_MAX = 20;
@@ -132,8 +170,8 @@ async function writeAuditLog(db: D1Database | undefined, ev: AuditEvent): Promis
           category, title, description, building_id, room_id,
           watcher_email, user_name, user_id, tenant_id, tenant_name,
           ip, country, user_agent, referer, raw_context,
-          error_code, error_message, duration_ms, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          error_code, error_message, duration_ms, updated_at, attachment_count
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .bind(
         new Date().toISOString(),
@@ -162,6 +200,7 @@ async function writeAuditLog(db: D1Database | undefined, ev: AuditEvent): Promis
         ev.error_message,
         ev.duration_ms,
         new Date().toISOString(),
+        ev.attachment_count,
       )
       .run();
   } catch (err) {
@@ -247,6 +286,7 @@ interface FaultRequest {
   client_request_id?: string;
   buildingId?: string;
   context?: Record<string, string>;
+  photo?: { data?: string; contentType?: string; name?: string };
 }
 
 export const onRequestPost: PagesFunction<Env> = async (ctx) => {
@@ -273,6 +313,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   const buildingOverride = body.buildingId ? String(body.buildingId).slice(0, 64) : null;
   const userContext = sanitizeContext(body.context);
   const userEmail = extractUserEmail(userContext);
+  const photo = decodePhoto(body.photo);
 
   const logAudit = (ev: Omit<AuditEvent, "cf" | "user" | "duration_ms">) => {
     ctx.waitUntil(
@@ -295,6 +336,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     description: description || null,
     building_id: buildingOverride,
     room_id: null as string | null,
+    attachment_count: null as number | null,
   };
 
   // Rate limit 1: per IP.
@@ -393,15 +435,21 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
 
   const title = `Veateade: ${description.slice(0, 60)}${description.length > 60 ? "…" : ""}`;
 
+  // Elaniku valitud kategooria-silt ei ole Hausingu categoryId - et see infona
+  // ticketile jouaks (AI-kategoriseerimine voib erineda), lisame selle kirjeldusse.
+  const numericCategoryId = category && /^\d+$/.test(category) ? Number(category) : undefined;
+  const hausingDescription =
+    category && numericCategoryId === undefined ? `[${category}] ${description}` : description;
+
   // Kutsu Hausing API.
   const result = await createGeneralTicket(env, {
     title,
-    description,
-    censoredDescription: description,
+    description: hausingDescription,
+    censoredDescription: hausingDescription,
     watcherEmail: userEmail ?? undefined,
     buildingId,
     roomId,
-    categoryId: category && /^\d+$/.test(category) ? Number(category) : undefined,
+    categoryId: numericCategoryId,
     aiCategorized: true,
   });
 
@@ -438,6 +486,30 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
 
   const ticket: GeneralTicket = result.data;
 
+  // Foto (valikuline) - best-effort. Ticket on juba loodud, seega pildi
+  // uleslaadimise ebaonnestumine EI kukuta veateadet (logime ja laheme edasi).
+  let attachmentCount = 0;
+  if (photo) {
+    const up = await uploadTicketPhoto(env, {
+      ticketId: ticket.id,
+      bytes: photo.bytes,
+      contentType: photo.contentType,
+      originalFileName: photo.name,
+      tenantId: pick(userContext, ["tenant id", "tenant_id", "tenantid", "t"]) ?? undefined,
+      creatorName: pick(userContext, ["user name", "user_name", "name", "n"]) ?? undefined,
+    });
+    if (up.ok) {
+      attachmentCount = 1;
+    } else {
+      console.error(JSON.stringify({
+        event: "fault.photo_error",
+        ticket_id: ticket.id,
+        errorCode: up.errorCode,
+        raw: up.raw ? up.raw.slice(0, 300) : null,
+      }));
+    }
+  }
+
   // Salvesta mapping + audit. INSERT voib race'i korral UNIQUE'i vastu kukkuda ->
   // sel juhul tagasta olemasolev (writeAuditLog neelab vea, seega kontrolli eraldi).
   ctx.waitUntil(
@@ -450,8 +522,8 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
             category, title, description, building_id, room_id,
             watcher_email, user_name, user_id, tenant_id, tenant_name,
             ip, country, user_agent, referer, raw_context,
-            error_code, error_message, duration_ms, updated_at
-          ) VALUES (?, ?, 'fault.ok', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            error_code, error_message, duration_ms, updated_at, attachment_count
+          ) VALUES (?, ?, 'fault.ok', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         )
           .bind(
             new Date().toISOString(),
@@ -479,6 +551,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
             null,
             Date.now() - requestStart,
             new Date().toISOString(),
+            attachmentCount,
           )
           .run();
       } catch (err) {
@@ -493,6 +566,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     ticket_id: ticket.id,
     ticket_number: ticket.number,
     status: ticket.status,
+    attachment_count: attachmentCount,
     cf: cfMeta,
     user: userContext,
     duration_ms: Date.now() - requestStart,
@@ -502,6 +576,9 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     ok: true,
     ticketNumber: ticket.number,
     status: ticket.status ?? "TO_DO",
+    photoAttached: attachmentCount > 0,
+    // Kui kasutaja saatis pildi, aga see ei laetud (best-effort), anna kliendile teada.
+    photoFailed: !!photo && attachmentCount === 0,
   });
 };
 

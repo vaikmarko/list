@@ -177,6 +177,152 @@ export async function createGeneralTicket(
   return { ok: true, data: ticket };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Failide (fotode) uleslaadimine - kaheastmeline (upload-url -> PUT -> link).
+// Vt docs/integrations/HAUSING_API.md "Attachments".
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface FileUploadTarget {
+  /** Presigned URL, kuhu failibaidid PUT-itakse. */
+  uploadUrl: string;
+  /** Serveri-poolne failinimi, mis seotakse ticketiga. */
+  fileName: string;
+}
+
+/** Samm 1: kysi presigned upload URL. */
+export async function getFileUploadUrl(env: HausingEnv): Promise<HausingResult<FileUploadTarget>> {
+  let res: Response;
+  try {
+    res = await fetch(`${baseUrl(env)}/v1/files/upload-url`, {
+      method: "GET",
+      headers: authHeaders(env),
+    });
+  } catch (err) {
+    return { ok: false, status: 0, errorCode: "upstream_unreachable", raw: err instanceof Error ? err.message : String(err) };
+  }
+  const { json, text } = await readBody(res);
+  if (!res.ok) {
+    return { ok: false, status: res.status, errorCode: `upstream_${res.status}`, raw: text };
+  }
+  const data = unwrapData(json) as Record<string, unknown> | null;
+  const uploadUrl = data && typeof data.uploadUrl === "string" ? data.uploadUrl : null;
+  const fileName = data && typeof data.fileName === "string" ? data.fileName : null;
+  if (!uploadUrl || !fileName) {
+    return { ok: false, status: res.status, errorCode: "unparseable_response", raw: text };
+  }
+  return { ok: true, data: { uploadUrl, fileName } };
+}
+
+/** Samm 2: PUT failibaidid presigned URL-ile (auth puudub - URL on juba allkirjastatud). */
+export async function putFileBytes(
+  uploadUrl: string,
+  bytes: Uint8Array,
+  contentType: string,
+): Promise<{ ok: boolean; status: number; raw: string | null }> {
+  try {
+    const res = await fetch(uploadUrl, {
+      method: "PUT",
+      headers: { "Content-Type": contentType },
+      body: bytes,
+    });
+    if (!res.ok) {
+      const raw = await res.text().catch(() => null);
+      return { ok: false, status: res.status, raw };
+    }
+    return { ok: true, status: res.status, raw: null };
+  } catch (err) {
+    return { ok: false, status: 0, raw: err instanceof Error ? err.message : String(err) };
+  }
+}
+
+export interface LinkFileInput {
+  ticketId: number | string;
+  /** Serveri-poolne nimi getFileUploadUrl vastusest. */
+  fileName: string;
+  /** Kasutaja algne failinimi (kuvamiseks). */
+  originalFileName: string;
+  tenantId?: string;
+  creatorName?: string;
+}
+
+// Nahtavus: ka ROOM_OWNER (elanik) naeb faili.
+const FILE_VISIBILITIES = ["ADMIN_MANAGER", "MANAGER", "TECHNICIAN", "ROOM_OWNER", "EXTERNAL"];
+
+/** Samm 3: seo uleslaetud fail general ticketiga. */
+export async function linkFileToTicket(
+  env: HausingEnv,
+  input: LinkFileInput,
+): Promise<HausingResult<unknown>> {
+  const body: Record<string, unknown> = {
+    entity: "GENERAL_TICKET",
+    entityId: String(input.ticketId),
+    fileName: input.fileName,
+    originalFileName: input.originalFileName,
+    visibilities: FILE_VISIBILITIES,
+  };
+  if (input.tenantId) body.creatorContext = { tenantId: input.tenantId };
+  if (input.creatorName) body.creatorName = input.creatorName;
+
+  let res: Response;
+  try {
+    res = await fetch(`${baseUrl(env)}/v1/files`, {
+      method: "POST",
+      headers: authHeaders(env),
+      body: JSON.stringify(body),
+    });
+  } catch (err) {
+    return { ok: false, status: 0, errorCode: "upstream_unreachable", raw: err instanceof Error ? err.message : String(err) };
+  }
+  const { json, text } = await readBody(res);
+  if (!res.ok) {
+    return {
+      ok: false,
+      status: res.status,
+      errorCode: `upstream_${res.status}`,
+      raw: json != null ? JSON.stringify(json).slice(0, 1000) : text,
+    };
+  }
+  return { ok: true, data: unwrapData(json) };
+}
+
+export interface UploadPhotoInput {
+  ticketId: number | string;
+  bytes: Uint8Array;
+  contentType: string;
+  originalFileName: string;
+  tenantId?: string;
+  creatorName?: string;
+}
+
+/**
+ * Kogu pildi uleslaadimine + sidumine ticketiga (3 sammu).
+ * Best-effort: kutsuja otsustab, et viga siin ei kukuta kogu veateadet.
+ */
+export async function uploadTicketPhoto(
+  env: HausingEnv,
+  input: UploadPhotoInput,
+): Promise<HausingResult<{ fileName: string }>> {
+  const target = await getFileUploadUrl(env);
+  if (!target.ok) return target;
+
+  const put = await putFileBytes(target.data.uploadUrl, input.bytes, input.contentType);
+  if (!put.ok) {
+    return { ok: false, status: put.status, errorCode: "file_put_failed", raw: put.raw };
+  }
+
+  const link = await linkFileToTicket(env, {
+    ticketId: input.ticketId,
+    fileName: target.data.fileName,
+    originalFileName: input.originalFileName,
+    tenantId: input.tenantId,
+    creatorName: input.creatorName,
+  });
+  if (!link.ok) {
+    return { ok: false, status: link.status, errorCode: link.errorCode, raw: link.raw };
+  }
+  return { ok: true, data: { fileName: target.data.fileName } };
+}
+
 /** Loe uhe veateate hetkeseis (poller). */
 export async function getGeneralTicket(
   env: HausingEnv,

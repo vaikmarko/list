@@ -13,6 +13,7 @@ _archive/
 # IDE / agent lokaalne olek (.cursor/skills on jälgitav, ülejäänu mitte)
 .claude/
 .cursor/worktrees.json
+.cursor/state/
 
 # Django projekti failid
 rotermann-access-platform/

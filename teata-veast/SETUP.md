@@ -1,8 +1,15 @@
 # Teata veast — setup & Sharry handover
 
-Resident fault-report form (Rotermann / Sharry WebView) that relays to Hausing. Mirrors the
-`park/` setup. Code: `functions/api/fault.ts`, `_hausing.ts`, `fault/status.ts`,
-`hausing-webhook.ts`, `admin/fault-logs.ts`. Data: `migrations/0002_fault_reports.sql`.
+Resident fault-report form (Rotermann / Sharry WebView) that relays to Hausing, **including an
+optional photo**. Mirrors the `park/` setup. Code: `functions/api/fault.ts`, `_hausing.ts`,
+`fault/status.ts`, `hausing-webhook.ts`, `admin/fault-logs.ts`. Data:
+`migrations/0002_fault_reports.sql`, `migrations/0003_fault_attachment.sql`.
+
+The photo flow: the client downscales the image (max 1600px, JPEG q0.8 — also strips EXIF/GPS) and
+sends base64; `fault.ts` creates the ticket, then uploads the photo to Hausing (3 steps:
+`GET /v1/files/upload-url` -> `PUT` bytes -> `POST /v1/files` linking it to the ticket as a
+`GENERAL_TICKET` attachment). Photo upload is **best-effort**: if it fails the report still lands
+and the client is told the photo could not be attached.
 
 ## 1. Apply the migration
 

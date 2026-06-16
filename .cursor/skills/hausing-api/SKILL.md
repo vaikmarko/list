@@ -46,6 +46,14 @@ const res = await fetch(`${base}/v1/general-tickets/ai-categorized`, {
 const ticket = (await res.json())?.data; // { id, number, status }
 ```
 
+## Attaching a photo (optional)
+
+`uploadTicketPhoto(env, { ticketId, bytes, contentType, originalFileName, tenantId, creatorName })`
+in `_hausing.ts` runs the three-step file flow (`GET /v1/files/upload-url` -> `PUT` bytes ->
+`POST /v1/files`). Call it **after** the ticket is created, **best-effort** — a photo failure must
+not fail the report. The client (`teata-veast/app.js`) downscales the image first (also strips
+EXIF/GPS). See reference.md "Attachments".
+
 ## Reading status (polling)
 
 `GET /v1/general-tickets/{id}` -> `data.status` is one of

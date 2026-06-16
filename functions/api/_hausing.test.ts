@@ -2,6 +2,9 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import {
   createGeneralTicket,
   getGeneralTicket,
+  getFileUploadUrl,
+  linkFileToTicket,
+  uploadTicketPhoto,
   HAUSING_TERMINAL_STATUSES,
   type HausingEnv,
 } from "./_hausing";
@@ -107,6 +110,99 @@ describe("getGeneralTicket", () => {
       expect(res.data.status).toBe("DONE");
       expect(res.data.resolution).toBe("Tehtud");
     }
+  });
+});
+
+describe("file upload", () => {
+  it("getFileUploadUrl parses { data: { uploadUrl, fileName } }", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () =>
+      jsonResponse(200, { data: { uploadUrl: "https://upload.test/abc", fileName: "abc123" } }),
+    ));
+    const res = await getFileUploadUrl(env);
+    expect(res.ok).toBe(true);
+    if (res.ok) {
+      expect(res.data.uploadUrl).toBe("https://upload.test/abc");
+      expect(res.data.fileName).toBe("abc123");
+    }
+  });
+
+  it("getFileUploadUrl returns unparseable_response when fields missing", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => jsonResponse(200, { data: {} })));
+    const res = await getFileUploadUrl(env);
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.errorCode).toBe("unparseable_response");
+  });
+
+  it("linkFileToTicket posts GENERAL_TICKET entity with visibilities", async () => {
+    let sentBody: Record<string, unknown> = {};
+    let sentUrl = "";
+    vi.stubGlobal("fetch", vi.fn(async (url: string, init?: RequestInit) => {
+      sentUrl = url;
+      sentBody = JSON.parse(String(init?.body));
+      return jsonResponse(201, { data: { id: "f1" } });
+    }));
+    const res = await linkFileToTicket(env, {
+      ticketId: 7,
+      fileName: "abc123",
+      originalFileName: "foto.jpg",
+      tenantId: "t9",
+      creatorName: "Mari",
+    });
+    expect(res.ok).toBe(true);
+    expect(sentUrl).toBe("https://api.example.test/v1/files");
+    expect(sentBody.entity).toBe("GENERAL_TICKET");
+    expect(sentBody.entityId).toBe("7");
+    expect(sentBody.creatorContext).toEqual({ tenantId: "t9" });
+    expect(Array.isArray(sentBody.visibilities)).toBe(true);
+  });
+
+  it("uploadTicketPhoto runs all three steps in order", async () => {
+    const calls: string[] = [];
+    vi.stubGlobal("fetch", vi.fn(async (url: string, init?: RequestInit) => {
+      calls.push(`${init?.method || "GET"} ${url}`);
+      if (url.endsWith("/v1/files/upload-url")) {
+        return jsonResponse(200, { data: { uploadUrl: "https://upload.test/put-here", fileName: "abc123" } });
+      }
+      if (url === "https://upload.test/put-here") {
+        return new Response(null, { status: 200 });
+      }
+      return jsonResponse(201, { data: { id: "f1" } });
+    }));
+    const res = await uploadTicketPhoto(env, {
+      ticketId: 7,
+      bytes: new Uint8Array([1, 2, 3]),
+      contentType: "image/jpeg",
+      originalFileName: "foto.jpg",
+    });
+    expect(res.ok).toBe(true);
+    expect(calls).toEqual([
+      "GET https://api.example.test/v1/files/upload-url",
+      "PUT https://upload.test/put-here",
+      "POST https://api.example.test/v1/files",
+    ]);
+  });
+
+  it("uploadTicketPhoto returns file_put_failed when PUT fails (no link call)", async () => {
+    const calls: string[] = [];
+    vi.stubGlobal("fetch", vi.fn(async (url: string, init?: RequestInit) => {
+      calls.push(`${init?.method || "GET"} ${url}`);
+      if (url.endsWith("/v1/files/upload-url")) {
+        return jsonResponse(200, { data: { uploadUrl: "https://upload.test/put-here", fileName: "abc123" } });
+      }
+      if (url === "https://upload.test/put-here") {
+        return new Response("denied", { status: 403 });
+      }
+      return jsonResponse(201, { data: { id: "f1" } });
+    }));
+    const res = await uploadTicketPhoto(env, {
+      ticketId: 7,
+      bytes: new Uint8Array([1, 2, 3]),
+      contentType: "image/jpeg",
+      originalFileName: "foto.jpg",
+    });
+    expect(res.ok).toBe(false);
+    if (!res.ok) expect(res.errorCode).toBe("file_put_failed");
+    expect(calls).not.toContain("POST https://api.example.test/v1/files");
   });
 });
 

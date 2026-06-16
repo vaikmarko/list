@@ -128,13 +128,21 @@ management exchange messages on the ticket. We mirror new messages back into the
   `POST /v1/general-tickets/tenant-satisfactions/{id}/submit`
   (`TenantSatisfactionSubmitRequest`: `status` = `ACCEPTED | REJECTED`, `comment`, `answers[]`).
 
-### Attachments (photos of the fault) — two-step upload
+### Attachments (photos of the fault) — three-step upload [IMPLEMENTED]
 
-1. `GET /v1/files/upload-url` -> `UploadUrlResponse { uploadUrl, fileName }`. PUT the bytes to
-   `uploadUrl` (pre-signed).
-2. `POST /v1/files` with `FileCreateRequest`:
+Implemented in `functions/api/_hausing.ts` (`getFileUploadUrl`, `putFileBytes`,
+`linkFileToTicket`, and the `uploadTicketPhoto` convenience wrapper). Called by `fault.ts` after
+the ticket is created, best-effort.
+
+1. `GET /v1/files/upload-url` -> `UploadUrlResponse { uploadUrl, fileName }` (pre-signed).
+2. `PUT` the raw bytes to `uploadUrl` (no auth header — the URL is already signed; send the
+   image `Content-Type`).
+3. `POST /v1/files` with `FileCreateRequest`:
    `{ entity: "GENERAL_TICKET", entityId: <ticket id>, fileName, originalFileName,
    visibilities: [ADMIN_MANAGER, MANAGER, TECHNICIAN, ROOM_OWNER, EXTERNAL], creatorContext, creatorName }`.
+
+The exact PUT requirements (method/headers) are not in the spec — confirm against the live API
+once keys arrive; the client logs the raw response defensively.
 
 ## Notes / gotchas (defensive — confirm against live API)
 
