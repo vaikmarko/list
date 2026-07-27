@@ -69,6 +69,28 @@
     .mv.fee{border-color:rgba(187,85,72,.2);background:var(--redp)}.mv.fee b{color:var(--red)}
     .mv.gain{border-color:rgba(20,88,76,.2);background:var(--mintp)}.mv.gain b{color:var(--forest2)}
     .mv.none{border-style:dashed;background:var(--paper)}
+    .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .tier{position:relative;padding:28px;border:1px solid rgba(14,61,53,.12);border-radius:18px;background:var(--paper)}
+    .tier.mint{background:var(--mintp)}
+    .tier.black{background:linear-gradient(150deg,#101d1b,#1c2b28);border-color:rgba(217,173,91,.45);color:#fff}
+    .tier-tag{position:absolute;top:22px;right:22px;padding:4px 10px;border-radius:99px;background:var(--goldp);color:#75541e;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .tier.black .tier-tag{background:rgba(217,173,91,.18);color:var(--gold)}
+    .tier h3{margin:0;color:var(--forest2);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .tier.black h3{color:var(--gold)}
+    .tier .pct{margin:20px 0 2px;font:400 58px/1 Georgia;letter-spacing:-.04em}
+    .tier-sub{margin:0 0 20px;color:var(--muted);font-size:12px}
+    .tier.black .tier-sub{color:rgba(255,255,255,.6)}
+    .tier ul{margin:0;padding:0;list-style:none}
+    .tier li{padding:10px 0;border-top:1px solid var(--line);font-size:13px}
+    .tier.black li{border-color:rgba(255,255,255,.14)}
+    .phases{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+    .phases:before{content:"";position:absolute;top:7px;right:8px;left:8px;height:2px;background:var(--line)}
+    .phase{position:relative;padding-top:28px}
+    .phase-dot{position:absolute;top:0;left:0;width:16px;height:16px;border:2px solid var(--forest2);border-radius:50%;background:var(--cream)}
+    .phase.on .phase-dot{background:var(--forest2)}
+    .phase small{color:var(--forest2);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .phase h3{margin:8px 0 6px;font-size:18px}
+    .phase p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
     .purchase-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
     .purchase-sum>div{padding:20px;border:1px solid rgba(14,61,53,.11);border-radius:15px;background:var(--paper)}
     .purchase-sum span{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
@@ -100,7 +122,7 @@
     .cost-tag{display:inline-flex;margin-right:7px;padding:5px 8px;border-radius:99px;background:var(--mintp);color:var(--forest2);font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.cost-tag.apple{background:rgba(217,173,91,.3);color:#75541e}
     .cost-notes{padding:20px 30px;background:var(--cream);color:var(--muted);font-size:12px;line-height:1.6}.cost-notes strong{color:var(--ink)}
     footer{padding:30px 0;background:var(--forest);color:#fff}.foot{display:flex;align-items:center;justify-content:space-between}.foot p{margin:0;color:rgba(255,255,255,.5);font-size:11px}
-    @media(max-width:900px){.hero-grid,.heading,.year-grid,.cost-head,.funding-guide-head{grid-template-columns:1fr}.hero-grid{gap:36px}.be{max-width:410px}.metrics,.two,.provider-grid,.funding-steps{grid-template-columns:1fr 1fr}.step-card{grid-template-columns:1fr}.purchase-sum{grid-template-columns:1fr}}
+    @media(max-width:900px){.hero-grid,.heading,.year-grid,.cost-head,.funding-guide-head{grid-template-columns:1fr}.hero-grid{gap:36px}.be{max-width:410px}.metrics,.two,.provider-grid,.funding-steps{grid-template-columns:1fr 1fr}.step-card{grid-template-columns:1fr}.purchase-sum{grid-template-columns:1fr}.tiers,.phases{grid-template-columns:1fr}.phases{gap:26px}.phases:before{display:none}}
     @media(max-width:650px){.chip{display:none}.hero-grid{padding-top:52px}.model-card{padding:21px}.model-head{align-items:flex-start;flex-direction:column}.status{width:100%;text-align:left}.presets,.metrics,.two,.year-numbers,.provider-grid,.funding-steps{grid-template-columns:1fr}.presets{grid-template-columns:1fr 1fr}.section{padding:68px 0}.step{grid-template-columns:40px 1fr;gap:0 12px}.step-num{width:32px;height:32px;font-size:14px}.step-line{top:32px;left:15px}.funds{grid-template-columns:1fr;gap:10px}.plus{min-height:25px}.down,.hub{grid-column:auto}.split{grid-template-columns:1fr}.panel-head{align-items:flex-start;flex-direction:column;gap:12px}.funding-guide{padding:24px}.cost-head{padding:24px}.cost-table{min-width:760px}.cost-notes{padding:18px 24px}.foot{align-items:flex-start;flex-direction:column;gap:16px}}
   </style>
 </head>
@@ -254,6 +276,31 @@
         </tbody>
       </table></div>
       <div class="cost-notes"><strong>Apple Pay tasud on kuu- ja aastasummades sees eeldusel, et Apple Payd kasutab pool klientidest.</strong> Seotud pangakaardilt ostusumma võtmise kulu on samuti kuu- ja aastasummades sees, kuid selle teenuse osutaja ei ole Wallester. Arvutus ei sisalda rakenduse arendust, meeskonda, kliendituge, turundust, füüsilisi kaarte, valuutavahetust ega käibemaksu.</div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="heading"><div><p class="kicker">Peatükk 2 — STAATUS klubi</p><h2>Tasemed ja teekond</h2></div><p>Kuni 10% ei ole hind, vaid staatus, mida teenitakse. Lävendid lukustatakse piloodi päris andmetega.</p></div>
+    <div class="tiers">
+      <article class="tier"><span class="tier-tag">Faas 2</span><h3>Liige</h3><div class="pct">5%</div><p class="tier-sub">tagasi igalt ostult</p>
+        <ul><li>Liitumine ainult kutsega</li><li>Kuutasu ei ole</li><li>3 kutset sõpradele</li></ul>
+      </article>
+      <article class="tier mint"><span class="tier-tag">Faas 2</span><h3>Sisering</h3><div class="pct">10%</div><p class="tier-sub">tagasi igalt ostult</p>
+        <ul><li>Teenid, kui kulutad 200 € kuus</li><li>Progress näitab teekonda</li><li>Kuised üllatused ja eelisõigus</li></ul>
+      </article>
+      <article class="tier black"><span class="tier-tag">Faas 1</span><h3>Asutajaliige</h3><div class="pct">1 000</div><p class="tier-sub">esimest liiget — hiljem enam ei saa</p>
+        <ul><li>Must kaart</li><li>Staatus jääb igaveseks</li><li>10% kogu esimesel aastal</li></ul>
+      </article>
+    </div>
+    <div class="purchase-sum" style="margin-top:14px">
+      <div><span>Mida klient näeb</span><strong>5% kohe, 10% siht</strong><small>Iga ost kasvatab staatust. Äpp ütleb: „Kuluta veel 34 €, et tõusta Siseringi." Vahepeal üllatused.</small></div>
+      <div><span>Mida see programmi rahale teeb</span><strong class="green">−1 720 € → +2 030 €</strong><small>1 000 kasutaja kuine tulemus, kui keskmine väljamakse on 10% asemel ~7%. Kõigile 10% makstes oleks miinuses.</small></div>
+      <div><span>Mida saavad restoranid ja kvartal</span><strong class="green">+16% käivet</strong><small>Sisering premeerib sagedast käimist — raha jääb Rotermanni. Kaupmees näeb täpselt, mida programm juurde tõi.</small></div>
+    </div>
+    <div class="phases">
+      <article class="phase on"><span class="phase-dot"></span><small>8. september 2026</small><h3>Faas 1</h3><p>Kaart, 10% tagasi, 1 000 asutajaliiget ja kutsed.</p></article>
+      <article class="phase"><span class="phase-dot"></span><small>September – oktoober</small><h3>Piloot õpetab</h3><p>Tasemete lävendid lukustatakse päris ostudega.</p></article>
+      <article class="phase"><span class="phase-dot"></span><small>15. detsember 2026</small><h3>Faas 2</h3><p>Tasemed, progress, missioonid ja üllatused.</p></article>
     </div>
   </div></section>
 
