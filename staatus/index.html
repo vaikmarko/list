@@ -170,7 +170,7 @@
           <div class="step-main"><h3>Samal hetkel võetakse kliendi seotud pangakaardilt 25 € <span class="step-when">Reaalajas</span></h3><p>Makseteenus (tööeeldusena EveryPay) võtab kliendi seotud pangakaardilt automaatselt ostuga võrdse summa. Klient ei pea midagi tegema — pangakaart seoti ühe korra, konto avamisel. Kui seotud kaardilt raha võtta ei õnnestu, jääb ka ost kinnitamata.</p></div>
           <div class="step-side">
             <div class="mv"><span>Raha liikumine</span><b>Kliendi pangakaart → EveryPay: 25 €</b><small>Klient tasub ostu kohe oma tavalise pangakaardiga. STAATUSE kontole jõuab väljamakse 1–2 tööpäevaga.</small></div>
-            <div class="mv fee"><span>Tasu STAATUSELE</span><b>−0,28 € (1,1% summast)</b><small>EveryPay tööeeldus, hind on veel kinnitamata. Suurim kulu ühe ostu kohta.</small></div>
+            <div class="mv fee"><span>Tasu STAATUSELE</span><b>−0,43 € (1,7% summast)</b><small>EveryPay hind. Suurim kulu ühe ostu kohta.</small></div>
           </div>
         </div>
       </article>
@@ -195,9 +195,9 @@
       </article>
     </div>
     <div class="purchase-sum">
-      <div><span>Ühe 25 € ostu otsesed tasud</span><strong class="red">−0,41 €</strong><small>0,12 € makse kinnitamine + 0,28 € pangakaardilt võtmine + ~0,01 € Apple Pay</small></div>
+      <div><span>Ühe 25 € ostu otsesed tasud</span><strong class="red">−0,56 €</strong><small>0,12 € makse kinnitamine + 0,43 € pangakaardilt võtmine + ~0,01 € Apple Pay</small></div>
       <div><span>Tulu samalt ostult</span><strong class="green">+0,66 €</strong><small>3,00 € kaupmehelt − 2,50 € cashback + 0,16 € interchange</small></div>
-      <div><span>Jääb ühe ostu pealt</span><strong class="green">+0,25 €</strong><small>enne püsikulusid — Wallesteri kuutasu 2 495 € ja kaartide kuutasud</small></div>
+      <div><span>Jääb ühe ostu pealt</span><strong class="green">+0,11 €</strong><small>enne püsikulusid — Wallesteri kuutasu 2 495 € ja kaartide kuutasud</small></div>
     </div>
 
     <p class="kicker" style="margin:56px 0 0">Sama raha liikumine kuu peale kokku — <span data-cards>5 000</span> kasutajat</p>
@@ -225,7 +225,7 @@
       <div class="row"><span>Makse kinnitamise katsed</span><b id="auth-cost">3 450 €</b><small id="auth-note">28 750 katset × 0,12 € — tasu võetakse nii õnnestunud kui ka ebaõnnestunud katse eest</small></div>
       <div class="row"><span>Apple Payga tehtud ostude tasu</span><b id="apple-payment-cost">156 €</b><small id="apple-payment-note">50% ostude kogusummast × 0,05%</small></div>
       <div class="row"><span>Apple Payga seotud aktiivsed kaardid</span><b id="apple-card-cost">208 €</b><small id="apple-card-note">2 500 kaarti × 0,25 € kvartalis</small></div>
-      <div class="row"><span>Seotud pangakaardilt ostusumma võtmine</span><b id="funding-cost">6 875 €</b><small id="funding-cost-note">25 000 veebimakset × 25 € · EveryPay tööeeldus 1,1% summast ja kuutasu puudub</small></div>
+      <div class="row"><span>Seotud pangakaardilt ostusumma võtmine</span><b id="funding-cost">6 875 €</b><small id="funding-cost-note">25 000 veebimakset × 25 € · EveryPay 1,7% summast, kuutasu puudub</small></div>
         <div class="total cost"><span>Makselahenduse kulu kokku</span><b id="wall4">5 033 €</b><small>Jooksev kulu: Wallester, Apple Pay ja seotud pangakaardilt ostusumma võtmine. Ühekordsed käivituskulud 21 575 € ei sisaldu kuukulus.</small></div>
       </article>
     </div>
@@ -239,11 +239,11 @@
         <div class="funding-step"><span>4</span><b>Väljamakse STAATUSELE 1–2 tööpäevaga</b><small>Makseteenus maksab kliendilt võetud summad STAATUSE kontole koondina välja.</small></div>
       </div>
       <div class="provider-grid">
-        <article class="provider recommended"><h3>EveryPay + LHV</h3><strong>Tööeeldus 1,1%</strong><p>Arvutuses eeldame, et kuutasu ja fikseeritud tehingutasu puuduvad. Lõplik hind ja automaatse makse mudel tuleb EveryPayga kinnitada.</p><a href="https://support.every-pay.com/en/articles/11502706-card-tokenisation-simplifying-secure-and-seamless-payments" target="_blank" rel="noreferrer">Teenuse kirjeldus →</a></article>
+        <article class="provider recommended"><h3>EveryPay + LHV</h3><strong>1,7% makse summast</strong><p>Kuutasu ja fikseeritud tehingutasu arvutuses ei ole. Automaatse makse mudel tuleb EveryPayga lõplikult kinnitada.</p><a href="https://support.every-pay.com/en/articles/11502706-card-tokenisation-simplifying-secure-and-seamless-payments" target="_blank" rel="noreferrer">Teenuse kirjeldus →</a></article>
         <article class="provider"><h3>Montonio Core</h3><strong>0,52 € 25 € ostult</strong><p>Hind on 1,29% + 0,20 € tehingu kohta ning 14,99 € kuus. Enne valikut tuleb kinnitada, et automaatne ostusumma võtmine on võimalik.</p><a href="https://www.montonio.com/pricing" target="_blank" rel="noreferrer">Ametlik hinnakiri →</a></article>
         <article class="provider"><h3>Stripe</h3><strong>0,63 € 25 € ostult</strong><p>Hind on 1,50% + 0,25 € tehingu kohta ja kuutasu ei ole. Lahendus sobib rahvusvaheliseks laienemiseks, kuid on praeguses arvutuses kõige kallim.</p><a href="https://stripe.com/en-ee/pricing" target="_blank" rel="noreferrer">Ametlik hinnakiri →</a></article>
       </div>
-      <p class="funding-warning"><strong>Oluline eeldus:</strong> EveryPay 1,1% hind ja kuutasu puudumine ei ole veel kinnitatud pakkumine. Selle eeldusega maksab kliendi pangakaardilt 25 € võtmine 0,275 €. Kui EveryPay lisab kuutasu või fikseeritud tehingutasu, muutub ka kogu arvutus. Reaalajas töötlemise korral jääb ost kinnitamata, kui seotud kaardilt raha võtta ei õnnestu — selle täpne toimimine tuleb Wallesteri ja EveryPayga kinnitada.</p>
+      <p class="funding-warning"><strong>Oluline:</strong> EveryPay hind on 1,7% makse summast, seega kliendi pangakaardilt 25 € võtmine maksab 0,43 €. See on jooksva kulu suurim artikkel — mahupõhine erihind on suurim kokkuhoiukoht. Kui lisandub kuutasu või fikseeritud tehingutasu, muutub arvutus. Reaalajas töötlemise korral jääb ost kinnitamata, kui seotud kaardilt raha võtta ei õnnestu — selle täpne toimimine tuleb Wallesteri ja EveryPayga kinnitada.</p>
     </div>
 
   </div></section>
@@ -294,7 +294,7 @@
     </div>
     <div class="purchase-sum" style="margin-top:14px">
       <div><span>Mida klient näeb</span><strong>5% kohe, 10% siht</strong><small>Iga ost kasvatab staatust. Äpp ütleb: „Kuluta veel 34 €, et tõusta Siseringi." Vahepeal üllatused.</small></div>
-      <div><span>Mida see programmi rahale teeb</span><strong class="green">−1 720 € → +2 030 €</strong><small>1 000 kasutaja kuine tulemus, kui keskmine väljamakse on 10% asemel ~7%. Kõigile 10% makstes oleks miinuses.</small></div>
+      <div><span>Mida see programmi rahale teeb</span><strong class="green">−2 470 € → +1 280 €</strong><small>1 000 kasutaja kuine tulemus, kui keskmine väljamakse on 10% asemel ~7%. Kõigile 10% makstes jääb programm miinusesse.</small></div>
       <div><span>Mida saavad restoranid ja kvartal</span><strong class="green">+16% käivet</strong><small>Sisering premeerib sagedast käimist — raha jääb Rotermanni. Kaupmees näeb täpselt, mida programm juurde tõi.</small></div>
     </div>
     <div class="phases">
@@ -307,14 +307,14 @@
   <footer><div class="wrap foot"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><p>Rotermanni x Wallester · maksete ja kulude ülevaade · summad käibemaksuta</p></div></footer>
 
   <script>
-    const A={tx:5,avg:25,attempts:1.15,merchant:.12,cashback:.10,interchange:.013,share:.5,maintenance:2495,active:.4,auth:.12,issue:.1,setup:4000,contract:12,live:10,appleSetup:17575,appleShare:.5,applePos:.0005,appleQuarter:.25,cardRate:.011,cardFixed:0,cardMonthly:0};
+    const A={tx:5,avg:25,attempts:1.15,merchant:.12,cashback:.10,interchange:.013,share:.5,maintenance:2495,active:.4,auth:.12,issue:.1,setup:4000,contract:12,live:10,appleSetup:17575,appleShare:.5,applePos:.0005,appleQuarter:.25,cardRate:.017,cardFixed:0,cardMonthly:0};
     const money=n=>new Intl.NumberFormat("et-EE",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(n);
     const count=n=>new Intl.NumberFormat("et-EE",{maximumFractionDigits:0}).format(n);
     const all=(s)=>document.querySelectorAll(s);
     const one=(s)=>document.querySelector(s);
     function setText(id,text){one(id).textContent=text}
     function fundingFor(tx,gmv){
-      return {variable:gmv*A.cardRate+tx*A.cardFixed,monthly:A.cardMonthly,label:"EveryPay tööeeldus 1,1% summast ja kuutasu puudub"};
+      return {variable:gmv*A.cardRate+tx*A.cardFixed,monthly:A.cardMonthly,label:"EveryPay 1,7% summast, kuutasu puudub"};
     }
     function update(cards){
       const tx=cards*A.tx,gmv=tx*A.avg,merchant=gmv*A.merchant,cashback=gmv*A.cashback,spread=merchant-cashback;
