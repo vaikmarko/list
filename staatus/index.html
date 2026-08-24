@@ -109,6 +109,9 @@
     .panel-head{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid var(--line)}
     .panel-head h2{color:var(--forest2);font-size:39px}.row,.total{display:grid;grid-template-columns:1fr auto;gap:3px 18px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
     .row span,.total span{font-size:13px}.row b,.total b{font-size:15px}.row small,.total small{grid-column:1/-1;color:var(--muted);font-size:10px}
+    .row input.euro{width:118px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font:700 15px Inter,Arial,sans-serif;text-align:right}
+    .row input.euro:focus{border-color:var(--forest2);outline:none}
+    .row input.euro[readonly]{background:var(--cream);color:var(--muted)}
     .total{margin-top:5px;padding:16px;border:0;border-radius:11px;background:var(--mintp)}.total span,.total b{color:var(--forest2);font-weight:800}.total.cost{background:var(--redp)}.total.cost span,.total.cost b{color:var(--red)}
     .funding-guide{margin-top:22px;padding:30px;border:1px solid var(--line);border-radius:20px;background:var(--cream)}.funding-guide-head{display:grid;grid-template-columns:1fr 350px;gap:40px;align-items:end;margin-bottom:20px}.funding-guide-head h2{margin:0;font:400 clamp(28px,3.5vw,42px) Georgia;letter-spacing:-.035em}.funding-guide-head>p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
     .funding-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.funding-step{padding:18px;border:1px solid rgba(14,61,53,.1);border-radius:14px;background:var(--paper)}.funding-step span{display:grid;width:28px;height:28px;margin-bottom:12px;place-items:center;border-radius:50%;background:var(--forest);color:#fff;font-size:10px;font-weight:800}.funding-step b{display:block;font-size:13px}.funding-step small{display:block;margin-top:6px;color:var(--muted);font-size:10px;line-height:1.5}
@@ -130,9 +133,9 @@
 <body>
   <section class="hero">
     <div class="wrap">
-      <div class="nav"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><div class="chip">Wallesteri, Apple Pay ja seotud pangakaardi kulud</div></div>
+      <div class="nav"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><div class="chip">Wallester, Apple Pay, makseteenus 0,7%, tegevuskulu</div></div>
       <div class="hero-grid">
-        <div><p class="kicker">Rotermanni makselahenduse ülevaade</p><h1>Kuidas makse toimub ja kui palju selle töötlemine maksab?</h1><p class="lead">Arvutus avaneb 1 000 kaardiomanikuga. Mudel ei eelda, et iga kaardiomanik igal kuul ostab — valitav kasutusprofiil määrab, kui suur osa päriselt ostab ja kui palju. Poes maksab klient STAATUSE kaardiga; pärast ostu võtab makseteenus tema seotud pangakaardilt automaatselt sama summa. Apple Payd kasutab arvutuses pool klientidest. Hinnad on Wallesteri kinnitatud piloodiaasta erihinnad (august 2026): kuutasu 2 000 €, aktiivne kaart 0,20 €, makse kinnitamine 0,10 €. Seotud pangakaardilt raha võtmine on arvutuses 0,7% summast — pakutav erihind, mis vajab veel kirjalikku kinnitust.</p></div>
+        <div><p class="kicker">Rotermanni makselahenduse ülevaade</p><h1>Kuidas makse toimub ja kui palju kuu tulu ja kulu on?</h1><p class="lead">Arvutus avaneb 1 000 kaardiomanikuga ja tasemetega 5% / 7% / 10% (keskmine 7%). Makseteenus 0,7%. Wallester: kuutasu 2 000 €, kaart 0,20 €, kinnitus 0,10 €. Tegevuskulu 4 800 € kuus (tugi, raamatupidaja, jurist, kindlustus, üllatused). Lansseerimine 44 375 €, sh Wallester + Apple Pay 21 575 €.</p></div>
         <aside class="be"><small>Kasutusprofiil</small><strong>26–70%</strong><span>kaardiomanikest ostab igal kuul</span><hr><p>Kolm valitavat profiili: kutsutud püsikliendid (70% ostab, 5 ostu × 25 €), klubi keskmine (40%, 4 × 25 €) ja linna mass (26%, 2 × 30 € — Loyal Solutionsi ärijuhtumi eeldus).</p></aside>
       </div>
     </div>
@@ -148,8 +151,8 @@
     </div>
     <div class="range"><span>100</span><input id="volume" type="range" min="100" max="50000" step="1" value="1000" aria-label="Aktiivsete kasutajate arv"><span>50 000</span><input id="volume-free" type="number" min="100" max="60000" step="100" value="1000" aria-label="Kirjuta kasutajate arv ise" title="Kirjuta arv ise (kuni 60 000 — erihind kehtib selle piirini)"></div>
     <div class="presets" style="grid-template-columns:repeat(2,1fr);margin:18px 0 10px">
-      <button data-mode="flat" class="on"><span>Faas 1 · käivitus</span><strong>10% kõigile</strong></button>
-      <button data-mode="tiers"><span>Faas 2 · tasemed 5/7/10</span><strong>keskmine ~7%</strong></button>
+      <button data-mode="tiers" class="on"><span>Faas 2 · tasemed 5/7/10</span><strong>keskmine ~7%</strong></button>
+      <button data-mode="flat"><span>Faas 1 · käivitus</span><strong>10% kõigile</strong></button>
     </div>
     <p id="mode-note" style="margin:0;color:var(--muted);font-size:11px;line-height:1.5"></p>
     <div class="presets" style="grid-template-columns:repeat(3,1fr);margin:18px 0 10px">
@@ -159,12 +162,49 @@
     </div>
     <p id="profile-note" style="margin:0;color:var(--muted);font-size:11px;line-height:1.5"></p>
     <div class="metrics">
-      <div class="metric"><span>Ostude kogusumma kuus</span><strong id="gmv">625 000 €</strong><small id="tx">25 000 ostu × 25 €</small></div>
-      <div class="metric"><span>Programmi tulu enne maksekulusid</span><strong class="green" id="income">16 563 €</strong><small id="income-pct">2,65% ostude kogusummast</small></div>
-      <div class="metric"><span>Makselahenduse kulu kuus</span><strong class="red" id="wall">16 649 €</strong><small>Wallester, Apple Pay ja seotud pangakaardilt ostusumma võtmine</small></div>
-      <div class="metric"><span>Kuine tulemus</span><strong class="red" id="balance">−87 €</strong><small>Rakenduse loomist ja meeskonda ei arvestata</small></div>
+      <div class="metric"><span>Ostude kogusumma kuus</span><strong id="gmv">87 500 €</strong><small id="tx">700 ostjat × 5 × 25 €</small></div>
+      <div class="metric"><span>Tulu kuus</span><strong class="green" id="income">4 944 €</strong><small id="income-pct">restoran 12% − tagasi 7% + kaart 0,65%</small></div>
+      <div class="metric"><span>Kulu kuus</span><strong class="red" id="wall">8 079 €</strong><small id="cost-note">kaardid + tegevus 4 800 €</small></div>
+      <div class="metric"><span>Kuu tulemus</span><strong class="red" id="balance">−3 135 €</strong><small>tulu − kaardid − tegevuskulu</small></div>
     </div>
   </div></div></section>
+
+  <section class="section economy" style="padding-top:28px"><div class="wrap">
+    <div class="heading"><div><p class="kicker">Tegevus ja lansseerimine</p><h2>Need read on muudetavad</h2></div><p>Kirjuta oma number. Kuu tulemus üleval ja aasta all arvutavad kohe ümber. Wallester + Apple Pay 21 575 € on lukus.</p></div>
+    <div class="two">
+      <article class="panel"><div class="panel-head"><p class="kicker">Tegevuskulu kuus</p><h2 id="ops2">4 800 €</h2></div>
+      <div class="row"><span>Tugi, restoranid, juhtimine</span><input class="euro" data-ops="people" type="number" min="0" step="50" value="2500"><small>üks inimene UsInvestis, iga kuu</small></div>
+      <div class="row"><span>Raamatupidaja</span><input class="euro" data-ops="accountant" type="number" min="0" step="50" value="600"><small>maksed, arved, käibemaks</small></div>
+      <div class="row"><span>Jooksev jurist</span><input class="euro" data-ops="legal" type="number" min="0" step="50" value="400"><small>lepingud ja küsimused</small></div>
+      <div class="row"><span>Server ja tööriistad</span><input class="euro" data-ops="hosting" type="number" min="0" step="10" value="150"><small>leht, raamat, e-post</small></div>
+      <div class="row"><span>Kindlustus</span><input class="euro" data-ops="insurance" type="number" min="0" step="50" value="250"><small>küber ja vastutus</small></div>
+      <div class="row"><span>Üllatused / klubi</span><input class="euro" data-ops="surprise" type="number" min="0" step="50" value="800"><small>õhtud, boonused</small></div>
+      <div class="row"><span>Pank, side, muu</span><input class="euro" data-ops="other" type="number" min="0" step="10" value="100"><small>arveldus, telefon</small></div>
+      <div class="total cost"><span>Tegevuskulu kokku</span><b id="ops3">4 800 €</b><small>iga avatud kuu</small></div>
+      </article>
+      <article class="panel"><div class="panel-head"><p class="kicker">Lansseerimine, üks kord</p><h2 id="launch2">44 375 €</h2></div>
+      <div class="row"><span>Wallester + Apple Pay</span><input class="euro" value="21575" readonly tabindex="-1"><small>setup 4 000 € + Apple Pay 17 575 €</small></div>
+      <div class="row"><span>Jurist, lepingud, privaatsus</span><input class="euro" data-launch="legal" type="number" min="0" step="100" value="10000"><small>piiratud võrk, T&amp;C, kaupmehed</small></div>
+      <div class="row"><span>Veeb, raamat, Wallet</span><input class="euro" data-launch="build" type="number" min="0" step="100" value="8000"><small>ehitus ja sertid</small></div>
+      <div class="row"><span>Avamine, kutsed, trükk</span><input class="euro" data-launch="opening" type="number" min="0" step="100" value="4000"><small>asutajaliikmed, materjalid</small></div>
+      <div class="row"><span>Must kaardidisain</span><input class="euro" data-launch="card" type="number" min="0" step="50" value="400"><small>Wallester, teine kujundus</small></div>
+      <div class="total cost"><span>Lansseerimine kokku</span><b id="launch3">44 375 €</b><small>kuu 1, aastaarvutuses sees</small></div>
+      </article>
+    </div>
+    <div class="two" style="margin-top:22px">
+      <article class="panel"><div class="panel-head"><p class="kicker">Kuu tulemus</p><h2 id="net2">−3 135 €</h2></div>
+      <div class="row"><span>Tulu</span><b id="income4">4 944 €</b><small>restoran + kaarditasu − tagasi</small></div>
+      <div class="row"><span>Kaardikulu</span><b class="red" id="wall5">3 279 €</b><small>Wallester + Apple Pay + 0,7%</small></div>
+      <div class="row"><span>Tegevuskulu</span><b class="red" id="ops4">4 800 €</b><small>read vasakul, sinu numbrid</small></div>
+      <div class="total cost" id="net-total"><span>Tulu − kaardid − tegevus</span><b id="net3">−3 135 €</b><small>avatud kuu; lansseerimine on aasta sees</small></div>
+      </article>
+      <article class="panel"><div class="panel-head"><p class="kicker">Kuidas kasutada</p><h2 style="font-size:28px">Sama leht</h2></div>
+      <div class="row"><span>Kaardid, 5/7/10, kes ostab</span><b>üleval</b><small>liugur ja nupud</small></div>
+      <div class="row"><span>Tugi, jurist, üllatused</span><b>siin</b><small>kirjuta eurod, tulemus muutub</small></div>
+      <div class="row"><span>Wallester 21 575 €</span><b>lukus</b><small>piloodi setup + Apple Pay</small></div>
+      </article>
+    </div>
+  </div></section>
 
   <section class="section"><div class="wrap">
     <div class="heading"><div><p class="kicker">Ühe ostu teekond</p><h2>Mis juhtub, kui klient maksab?</h2></div><p>Näide ühe 25 € ostuga. Makse töödeldakse reaalajas: kui klient maksab STAATUSE kaardiga, võetakse sama summa samal hetkel automaatselt tema seotud pangakaardilt. Klient ise näeb ainult kahte asja: maksab 25 € ja saab hiljem 2,50 € cashbacki.</p></div>
@@ -179,10 +219,10 @@
       </article>
       <article class="step"><div class="step-line"></div><div class="step-num">2</div>
         <div class="step-card">
-          <div class="step-main"><h3>Samal hetkel võetakse kliendi seotud pangakaardilt 25 € <span class="step-when">Reaalajas</span></h3><p>Makseteenus (tööeeldusena EveryPay) võtab kliendi seotud pangakaardilt automaatselt ostuga võrdse summa. Klient ei pea midagi tegema — pangakaart seoti ühe korra, konto avamisel. Kui seotud kaardilt raha võtta ei õnnestu, jääb ka ost kinnitamata.</p></div>
+          <div class="step-main"><h3>Samal hetkel võetakse kliendi seotud pangakaardilt 25 € <span class="step-when">Reaalajas</span></h3><p>Makseteenus võtab kliendi seotud pangakaardilt automaatselt ostuga võrdse summa, 0,7%. Klient seob kaardi ühe korra konto avamisel. Kui võtmine ebaõnnestub, jääb ka ost kinnitamata.</p></div>
           <div class="step-side">
-            <div class="mv"><span>Raha liikumine</span><b>Kliendi pangakaart → EveryPay: 25 €</b><small>Klient tasub ostu kohe oma tavalise pangakaardiga. STAATUSE kontole jõuab väljamakse 1–2 tööpäevaga.</small></div>
-            <div class="mv fee"><span>Tasu STAATUSELE</span><b>−0,18 € (0,7% summast)</b><small>EveryPay pakutav erihind (kinnitamisel). Tavahind 1,7% oleks 0,43 €.</small></div>
+            <div class="mv"><span>Raha liikumine</span><b>Kliendi pangakaart → makseteenus: 25 €</b><small>Klient tasub ostu kohe oma tavalise pangakaardiga. STAATUSE kontole jõuab väljamakse 1–2 tööpäevaga.</small></div>
+            <div class="mv fee"><span>Tasu STAATUSELE</span><b>−0,18 € (0,7% summast)</b><small>Uus acquirer, 0,7% ostust. 25 € võtmine maksab 0,18 €.</small></div>
           </div>
         </div>
       </article>
@@ -237,11 +277,10 @@
       <div class="row"><span>Makse kinnitamise katsed</span><b id="auth-cost">3 450 €</b><small id="auth-note">28 750 katset × 0,12 € — tasu võetakse nii õnnestunud kui ka ebaõnnestunud katse eest</small></div>
       <div class="row"><span>Apple Payga tehtud ostude tasu</span><b id="apple-payment-cost">156 €</b><small id="apple-payment-note">50% ostude kogusummast × 0,05%</small></div>
       <div class="row"><span>Apple Payga seotud aktiivsed kaardid</span><b id="apple-card-cost">208 €</b><small id="apple-card-note">2 500 kaarti × 0,25 € kvartalis</small></div>
-      <div class="row"><span>Seotud pangakaardilt ostusumma võtmine</span><b id="funding-cost">6 875 €</b><small id="funding-cost-note">25 000 veebimakset × 25 € · EveryPay 0,7% summast (erihind, kinnitamisel), kuutasu puudub</small></div>
-        <div class="total cost"><span>Makselahenduse kulu kokku</span><b id="wall4">5 033 €</b><small>Jooksev kulu: Wallester, Apple Pay ja seotud pangakaardilt ostusumma võtmine. Ühekordsed käivituskulud 21 575 € ei sisaldu kuukulus.</small></div>
+      <div class="row"><span>Seotud pangakaardilt ostusumma võtmine</span><b id="funding-cost">613 €</b><small id="funding-cost-note">makseteenus 0,7% ostude kogusummast</small></div>
+        <div class="total cost"><span>Makselahenduse kulu kokku</span><b id="wall4">3 279 €</b><small>Wallester, Apple Pay ja makseteenus 0,7%. Setup 21 575 € on aastaarvutuses.</small></div>
       </article>
     </div>
-
     <div class="funding-guide">
       <div class="funding-guide-head"><div><p class="kicker">Kliendi seotud pangakaart</p><h2>Makse hetkel võetakse seotud kaardilt sama summa</h2></div><p>Kasutaja ei kanna programmi raha ette. Kliendi täielikud kaardiandmed STAATUSE süsteemi ei jõua. Makseteenus säilitab kaardiandmed turvaliselt ja võtab seotud pangakaardilt ostuga võrdse summa reaalajas, makse hetkel.</p></div>
       <div class="funding-steps">
@@ -251,21 +290,25 @@
         <div class="funding-step"><span>4</span><b>Väljamakse STAATUSELE 1–2 tööpäevaga</b><small>Makseteenus maksab kliendilt võetud summad STAATUSE kontole koondina välja.</small></div>
       </div>
       <div class="provider-grid">
-        <article class="provider recommended"><h3>EveryPay + LHV</h3><strong>0,7% makse summast</strong><p>Pakutav erihind (tavahind 1,7%), vajab kirjalikku kinnitust. Kuutasu ja fikseeritud tehingutasu arvutuses ei ole. Automaatse makse mudel tuleb EveryPayga lõplikult kinnitada.</p><a href="https://support.every-pay.com/en/articles/11502706-card-tokenisation-simplifying-secure-and-seamless-payments" target="_blank" rel="noreferrer">Teenuse kirjeldus →</a></article>
+        <article class="provider recommended"><h3>Makseteenus</h3><strong>0,7% makse summast</strong><p>Arvutuse hind. Kuutasu ja fikseeritud tehingutasu puuduvad. Automaatne võtmine ostu hetkel.</p></article>
         <article class="provider"><h3>Montonio Core</h3><strong>0,52 € 25 € ostult</strong><p>Hind on 1,29% + 0,20 € tehingu kohta ning 14,99 € kuus. Enne valikut tuleb kinnitada, et automaatne ostusumma võtmine on võimalik.</p><a href="https://www.montonio.com/pricing" target="_blank" rel="noreferrer">Ametlik hinnakiri →</a></article>
         <article class="provider"><h3>Stripe</h3><strong>0,63 € 25 € ostult</strong><p>Hind on 1,50% + 0,25 € tehingu kohta ja kuutasu ei ole. Lahendus sobib rahvusvaheliseks laienemiseks, kuid on praeguses arvutuses kõige kallim.</p><a href="https://stripe.com/en-ee/pricing" target="_blank" rel="noreferrer">Ametlik hinnakiri →</a></article>
       </div>
-      <p class="funding-warning"><strong>Oluline:</strong> arvutuses on EveryPay erihind 0,7% makse summast, seega kliendi pangakaardilt 25 € võtmine maksab 0,18 €. See hind on pakutud, kuid vajab veel kirjalikku kinnitust — tavahinnaga 1,7% oleks sama makse kulu 0,43 € ja kuutulemus tuntavalt kehvem. Kui lisandub kuutasu või fikseeritud tehingutasu, muutub arvutus. Reaalajas töötlemise korral jääb ost kinnitamata, kui seotud kaardilt raha võtta ei õnnestu — selle täpne toimimine tuleb Wallesteri ja EveryPayga kinnitada.</p>
+      <p class="funding-warning"><strong>Arvutus:</strong> makseteenus 0,7% ostust, 25 € võtmine = 0,18 €. Kui seotud kaardilt raha võtta ei õnnestu, jääb ost kinnitamata.</p>
     </div>
 
   </div></section>
 
   <section class="section year"><div class="wrap year-grid">
-    <div class="year-copy"><p class="kicker">Esimese aasta arvutus</p><h2>Teenuse eest maksame 12 kuud, oste tehakse 10 kuud</h2><p>Aasta kulud sisaldavad Apple Payd ja kliendi seotud pangakaardilt ostusumma võtmist. Rakenduse arenduse ja meeskonna kulusid siin ei arvestata.</p></div>
+    <div class="year-copy"><p class="kicker">Esimese aasta arvutus</p><h2>Teenuse eest maksame 12 kuud, oste tehakse 10 kuud</h2><p id="year-copy-p">Aasta sees: kaardid, tegevuskulu 4 800 € × 12 ja lansseerimine 44 375 € (sh Wallester 21 575 €). Tulu 10 kuul.</p></div>
     <div class="year-numbers">
-      <div><span>Makselahenduse kulu</span><strong id="year-wall">178 911 €</strong><small id="year-wall-note">sisaldab Wallesteri, Apple Pay ja seotud pangakaardi kulusid</small></div>
-      <div><span>Programmi tulu enne maksekulusid</span><strong id="year-income">165 625 €</strong><small>10 kuud, mil kasutajad oste teevad</small></div>
-      <div><span>Esimese aasta tulemus</span><strong class="red" id="year-net">−13 286 €</strong><small>rakenduse arenduse ja meeskonna kulusid ei arvestata</small></div>
+      <div><span>Kaardikulu</span><strong id="year-wall">58 460 €</strong><small id="year-wall-note">Wallester aasta + Apple Pay setup</small></div>
+      <div><span>Lansseerimine peale kaarte</span><strong id="year-launch">22 400 €</strong><small>jurist, veeb, avamine, must kaart</small></div>
+      <div><span>Tegevuskulu 12 kuud</span><strong id="year-ops">57 600 €</strong><small id="year-ops-note">4 800 € × 12</small></div>
+    </div>
+    <div class="year-numbers" style="margin-top:9px;grid-template-columns:1fr 1fr">
+      <div><span>Tulu 10 kuul</span><strong id="year-income">49 438 €</strong><small>10 kuud, mil inimesed ostavad</small></div>
+      <div><span>Esimese aasta tulemus</span><strong class="red" id="year-net">−89 022 €</strong><small>tulu − kaardid − lansseerimine − tegevus</small></div>
     </div>
   </div></section>
 
@@ -287,7 +330,7 @@
           <tr class="apple-row"><td>Aktiivne Apple Pay kaart</td><td>0,25 € kaardi kohta kvartalis</td><td><span class="cost-tag">Arvutuses</span>50% aktiivsetest kaartidest on Apple Pay kaardid</td></tr>
         </tbody>
       </table></div>
-      <div class="cost-notes"><strong>Piloodiaasta erihinnad (Wallesteri kiri, august 2026):</strong> kuutasu 2 000 € (tavahind 2 500 €), aktiivne kaart 0,20 € kuni 60 000 kaardini (tavahind 0,40 €), makse kinnitamine 0,10 € kõigil astmetel. Erihinnad kehtivad esimesel aastal alates go-live'ist; ülejäänud hinnaastmed ei muutu. Kinnitada tuleb, milline kuutasu kehtib implementatsiooniperioodil enne go-live'i. <strong>Apple Pay tasud on kuu- ja aastasummades sees eeldusel, et Apple Payd kasutab pool klientidest.</strong> Seotud pangakaardilt ostusumma võtmise kulu on samuti kuu- ja aastasummades sees, kuid selle teenuse osutaja ei ole Wallester. Arvutus ei sisalda rakenduse arendust, meeskonda, kliendituge, turundust, füüsilisi kaarte, valuutavahetust ega käibemaksu.</div>
+      <div class="cost-notes"><strong>Piloodiaasta erihinnad (Wallesteri kiri, august 2026):</strong> kuutasu 2 000 €, aktiivne kaart 0,20 €, kinnitus 0,10 €. Makseteenus 0,7%. Tegevuskulu 4 800 € kuus ja lansseerimine 44 375 € on kuu- ja aastatulemuses sees. Tegevuse read on hinnang (tugi, raamatupidaja, jurist, kindlustus, üllatused).</div>
     </div>
   </div></section>
 
@@ -309,7 +352,7 @@
     </div>
     <div class="purchase-sum" style="margin-top:14px">
       <div><span>Mida klient näeb</span><strong>5% kohe, 10% siht</strong><small>Iga ost kasvatab staatust. Äpp ütleb: „Kuluta veel 34 €, et tõusta järgmisele tasemele." Kui oste ei tee, saad 10% osta kuutasuga. Vahepeal üllatused.</small></div>
-      <div><span>Mida see programmi rahale teeb</span><strong class="green">−960 € → +1 665 €</strong><small>1 000 kaardiomaniku kuine tulemus (kutsutud püsikliendid, 70% ostab), kui keskmine väljamakse on 10% asemel ~7% (jaotus 5/7/10). Tasemetega on programm plussis juba ~550 kaardiomanikuga; tasane 10% jõuab plussi ~1 900 juures.</small></div>
+      <div><span>Mida see programmi rahale teeb</span><strong class="red">−3 135 € kuus</strong><small>1 000 kaarti, 70% ostab, tagasi 7%, tegevuskulu 4 800 €. 10% kõigile samadel eeldustel: −5 760 € kuus.</small></div>
       <div><span>Mida saavad restoranid ja kvartal</span><strong class="green">+16% käivet</strong><small>Tasemed premeerivad sagedast käimist — raha jääb Rotermanni. Kaupmees näeb täpselt, mida programm juurde tõi.</small></div>
     </div>
     <div class="phases">
@@ -319,19 +362,19 @@
     </div>
   </div></section>
 
-  <footer><div class="wrap foot"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><p>Rotermanni x Wallester · maksete ja kulude ülevaade · summad käibemaksuta · Wallesteri piloodiaasta erihinnad, august 2026 · EveryPay 0,7% erihind (kinnitamisel)</p></div></footer>
+  <footer><div class="wrap foot"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><p>Rotermanni × Wallester · kuine tulu ja kulu · käibemaksuta · makseteenus 0,7% · tegevuskulu 4 800 €/kuu · lansseerimine 44 375 €</p></div></footer>
 
   <script>
-    const A={tx:5,avg:25,attempts:1.15,merchant:.12,cashback:.10,interchange:.013,share:.5,maintenance:2000,active:.2,auth:.10,issue:.1,setup:4000,contract:12,live:10,appleSetup:17575,appleShare:.5,applePos:.0005,appleQuarter:.25,cardRate:.007,cardFixed:0,cardMonthly:0};
+    const A={tx:5,avg:25,attempts:1.15,merchant:.12,cashback:.10,interchange:.013,share:.5,maintenance:2000,active:.2,auth:.10,issue:.1,setup:4000,contract:12,live:10,appleSetup:17575,appleShare:.5,applePos:.0005,appleQuarter:.25,cardRate:.007,cardFixed:0,cardMonthly:0,ops:4800,launchExtra:22400};
     const money=n=>new Intl.NumberFormat("et-EE",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(n);
     const count=n=>new Intl.NumberFormat("et-EE",{maximumFractionDigits:0}).format(n);
     const all=(s)=>document.querySelectorAll(s);
     const one=(s)=>document.querySelector(s);
     function setText(id,text){one(id).textContent=text}
     function fundingFor(tx,gmv){
-      return {variable:gmv*A.cardRate+tx*A.cardFixed,monthly:A.cardMonthly,label:"EveryPay 0,7% summast (erihind, kinnitamisel), kuutasu puudub"};
+      return {variable:gmv*A.cardRate+tx*A.cardFixed,monthly:A.cardMonthly,label:"makseteenus 0,7% ostude kogusummast"};
     }
-    let mode="flat",profile="invited";
+    let mode="tiers",profile="invited";
     const MODES={
       flat:{rate:.10,note:"Faas 1: kõik kutsutud saavad 10% — kliendihanke faas, kehtib kutsetega alustades (esimesed 1 000)."},
       tiers:{rate:.07,note:"Faas 2: kaart on avatud kõigile Rotermanni külastajatele. Baastase on 5%, püsikülastaja 7%, staatus 10% — arvutuses keskmine 7%. Linna mahus on keskmine tõenäoliselt madalam (enamik külastajaid jääb 5% tasemele), seega tulemus on siin pigem konservatiivne."}
@@ -343,6 +386,17 @@
       mass:{share:.26,tx:2,avg:30,note:"Linna mass: 26% kaardiomanikest ostab igal kuul, 2 ostu × 30 € (60 € kuus) — Loyal Solutionsi ärijuhtumi (veebruar 2026) eeldused. Realistlik, kui kaart on avatud kõigile külastajatele."}
     };
     const pct=n=>(n*100).toLocaleString("et-EE",{minimumFractionDigits:2,maximumFractionDigits:2})+"%";
+    function readNum(sel,fallback){
+      const el=one(sel);
+      const v=Number(el&&el.value);
+      return Number.isFinite(v)?Math.max(0,v):fallback;
+    }
+    function opsNow(){
+      return ["people","accountant","legal","hosting","insurance","surprise","other"].reduce((s,k)=>s+readNum('[data-ops="'+k+'"]',0),0);
+    }
+    function launchExtraNow(){
+      return readNum('[data-launch="legal"]',10000)+readNum('[data-launch="build"]',8000)+readNum('[data-launch="opening"]',4000)+readNum('[data-launch="card"]',400);
+    }
     function update(cards){
       const cbRate=MODES[mode].rate,P=PROFILES[profile];
       const actives=Math.round(cards*P.share);
@@ -350,12 +404,20 @@
       const interchange=gmv*A.interchange*A.share,income=spread+interchange,cardCost=cards*A.active,auths=tx*A.attempts,authCost=auths*A.auth;
       const applePaymentCost=gmv*A.appleShare*A.applePos,appleCardCost=cards*A.appleShare*A.appleQuarter/3;
       const funding=fundingFor(tx,gmv),fundingCost=funding.variable+funding.monthly;
-      const wall=A.maintenance+cardCost+authCost+applePaymentCost+appleCardCost+fundingCost,net=income-wall,issue=cards*A.issue;
+      const wall=A.maintenance+cardCost+authCost+applePaymentCost+appleCardCost+fundingCost,ops=opsNow(),launchExtra=launchExtraNow(),launchTotal=A.setup+A.appleSetup+launchExtra,totalCost=wall+ops,net=income-totalCost,issue=cards*A.issue;
       const yearWall=A.maintenance*A.contract+(cardCost+authCost)*A.live+A.setup+issue+A.appleSetup+(applePaymentCost+appleCardCost)*A.live+funding.variable*A.live+funding.monthly*A.contract;
-      const yearIncome=income*A.live,yearNet=yearIncome-yearWall;
+      const yearOps=ops*A.contract,yearLaunch=launchExtra,yearIncome=income*A.live,yearNet=yearIncome-yearWall-yearOps-yearLaunch;
       all("[data-cards]").forEach(el=>el.textContent=count(cards));setText("#gmv",money(gmv));setText("#tx",count(actives)+" ostjat ("+Math.round(P.share*100)+"%) × "+P.tx+" ostu × "+P.avg+" € = "+count(tx)+" ostu");
-      ["#income","#income2","#income3"].forEach(id=>setText(id,money(income)));["#wall","#wall2","#wall3","#wall4"].forEach(id=>setText(id,(id==="#wall2"?"−":"")+money(wall)));
-      setText("#balance",(net>=0?"+":"−")+money(Math.abs(net)));setText("#net",(net>=0?"+":"−")+money(Math.abs(net)));setText("#net-caption",net>=0?"tulu ületab kulusid "+money(net)+" võrra":"kulud ületavad tulu "+money(Math.abs(net))+" võrra");
+      ["#income","#income2","#income3","#income4"].forEach(id=>{if(one(id))setText(id,money(income))});
+      ["#wall2"].forEach(id=>setText(id,"−"+money(wall)));
+      ["#wall3","#wall4","#wall5"].forEach(id=>{if(one(id))setText(id,money(wall))});
+      setText("#wall",money(totalCost));
+      if(one("#cost-note"))setText("#cost-note","kaardid "+money(wall)+" + tegevus "+money(ops));
+      const signed=(n)=>(n>=0?"+":"−")+money(Math.abs(n));
+      setText("#balance",signed(net));setText("#net",signed(net));setText("#net-caption",net>=0?"tulu ületab kulusid "+money(net)+" võrra":"kulud ületavad tulu "+money(Math.abs(net))+" võrra");
+      if(one("#net2"))setText("#net2",signed(net));
+      if(one("#net3"))setText("#net3",signed(net));
+      const netTotal=one("#net-total");if(netTotal)netTotal.classList.toggle("cost",net<0);
       const status=one("#status");status.classList.toggle("ok",net>=0);one("#balance").className=net>=0?"green":"red";
       ["#merchant","#merchant2"].forEach(id=>setText(id,money(merchant)));["#interchange","#interchange2"].forEach(id=>setText(id,money(interchange)));
       setText("#inflow",money(merchant+interchange));["#cashback","#cashback2"].forEach(id=>setText(id,"−"+money(cashback)));setText("#spread",money(spread));
@@ -371,7 +433,10 @@
       setText("#card-cost",money(cardCost));setText("#card-cost-note",count(cards)+" kaarti × 0,20 €");setText("#auth-cost",money(authCost));setText("#auth-note",count(auths)+" katset × 0,10 € — tasu võetakse nii õnnestunud kui ka ebaõnnestunud katse eest");
       setText("#apple-payment-cost",money(applePaymentCost));setText("#apple-payment-note","50% ostude kogusummast ehk "+money(gmv*A.appleShare)+" × 0,05%");setText("#apple-card-cost",money(appleCardCost));setText("#apple-card-note",count(cards*A.appleShare)+" kaarti × 0,25 € kvartalis");
       setText("#funding-cost",money(fundingCost));setText("#funding-cost-note",count(tx)+" veebimakset × "+money(P.avg)+" · "+funding.label);
-      setText("#year-wall",money(yearWall));setText("#year-wall-note","sisaldab Wallesteri, Apple Pay ja seotud pangakaardi kulusid");setText("#year-income",money(yearIncome));setText("#year-net",(yearNet>=0?"+":"−")+money(Math.abs(yearNet)));one("#year-net").className=yearNet>=0?"green":"red";
+      setText("#year-wall",money(yearWall));setText("#year-wall-note","Wallester aasta + Apple Pay setup");if(one("#year-ops"))setText("#year-ops",money(yearOps));if(one("#year-ops-note"))setText("#year-ops-note",money(ops)+" × 12");if(one("#year-launch"))setText("#year-launch",money(yearLaunch));setText("#year-income",money(yearIncome));setText("#year-net",(yearNet>=0?"+":"−")+money(Math.abs(yearNet)));one("#year-net").className=yearNet>=0?"green":"red";
+      if(one("#ops2"))setText("#ops2",money(ops));if(one("#ops3"))setText("#ops3",money(ops));if(one("#ops4"))setText("#ops4",money(ops));
+      if(one("#launch2"))setText("#launch2",money(launchTotal));if(one("#launch3"))setText("#launch3",money(launchTotal));
+      if(one("#year-copy-p"))setText("#year-copy-p","Aasta sees: kaardid, tegevuskulu "+money(ops)+" × 12 ja lansseerimine "+money(launchTotal)+" (sh Wallester "+money(A.setup+A.appleSetup)+"). Tulu 10 kuul.");
       all("[data-preset]").forEach(b=>b.classList.toggle("on",Number(b.dataset.preset)===cards));
     }
     const slider=one("#volume"),free=one("#volume-free");
@@ -383,6 +448,7 @@
     all("[data-preset]").forEach(b=>b.addEventListener("click",()=>{free.value=b.dataset.preset;setCards(Number(b.dataset.preset))}));
     all("[data-mode]").forEach(b=>b.addEventListener("click",()=>{mode=b.dataset.mode;update(cardsNow)}));
     all("[data-profile]").forEach(b=>b.addEventListener("click",()=>{profile=b.dataset.profile;update(cardsNow)}));
+    all("input.euro:not([readonly])").forEach(el=>el.addEventListener("input",()=>update(cardsNow)));
     update(1000);
   </script>
 </body>
