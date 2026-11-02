@@ -1863,17 +1863,44 @@
     .responsibility h3 { margin: 0 0 10px; font-size: 16px; }
     .plain-list { margin: 0; padding-left: 18px; color: #55534d; font-size: 13px; line-height: 1.65; }
 
+    .rental-rate {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 18px;
+      border: 1px solid #171717;
+      background: #171717;
+    }
+    .rental-rate div {
+      padding: 18px;
+      background: #fffdf7;
+    }
+    .rental-rate span,
+    .rental-rate strong {
+      display: block;
+    }
+    .rental-rate span {
+      margin-bottom: 6px;
+      color: #6a685f;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .rental-rate strong {
+      font-size: 19px;
+      line-height: 1.2;
+    }
     .threshold-simple {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
     .threshold-simple article {
-      padding: 22px;
+      padding: 24px;
       border: 1px solid #171717;
       background: #fffdf7;
     }
-    .threshold-simple article.no { background: #f3dfd8; }
     .threshold-simple small {
       display: block;
       margin-bottom: 8px;
@@ -1888,6 +1915,10 @@
       line-height: 1.15;
     }
     .threshold-simple p { margin: 0; color: #605e57; font-size: 12px; line-height: 1.5; }
+    .threshold-simple .payment-list {
+      margin-top: 16px;
+      border-top: 1px solid #c9c4b8;
+    }
 
     .simple-calculator { display: grid; gap: 18px; }
     .simple-controls {
@@ -1981,6 +2012,7 @@
       .payment-grid, .simple-grid, .responsibility-grid, .simple-checklist { grid-template-columns: 1fr; }
       .payment-card > p { min-height: 0; }
       .simple-timeline { grid-template-columns: 1fr; }
+      .rental-rate { grid-template-columns: 1fr 1fr; }
       .threshold-simple { grid-template-columns: 1fr; }
       .simple-controls, .simple-results { grid-template-columns: 1fr 1fr; }
       .simple-check:nth-child(odd) { border-right: 0; }
@@ -2217,30 +2249,36 @@
           </article>
         </div>
 
+        <div class="rental-rate" aria-label="Avaliku rendi hinnastus">
+          <div><span>Tunnihind</span><strong>60 € + km</strong></div>
+          <div><span>Minimaalne aeg</span><strong>5 tundi</strong></div>
+          <div><span>Miinimumhind</span><strong>300 € + km</strong></div>
+          <div><span>Koristus</span><strong>Lisandub eraldi</strong></div>
+        </div>
+
         <div class="threshold-simple" style="margin-top:18px">
           <article>
-            <small>6 viietunnist broneeringut kuus</small>
-            <strong>30 tundi · 1 800 €</strong>
-            <p>Pärast otseseid kulusid jääb 1 500 €. KÜ teenustasu on 6 145 € + km kuus; 70 m² korteri osa ligikaudu 58 € koos käibemaksuga.</p>
+            <small>30 renditundi kuus · 6 × 5 tundi</small>
+            <strong>1 800 € renditulu</strong>
+            <ul class="payment-list">
+              <li><span>Püsikulude katteks jääb</span><b>1 500 €</b></li>
+              <li><span>KÜ teenustasu kuus</span><b>6 145 € + km</b></li>
+              <li><span>70 m² korteri osa kuus</span><b>~58 € km-ga</b></li>
+            </ul>
           </article>
           <article>
-            <small>10 viietunnist broneeringut kuus</small>
-            <strong>50 tundi · 3 000 €</strong>
-            <p>Pärast otseseid kulusid jääb 2 500 €. KÜ teenustasu on 5 145 € + km kuus; 70 m² korteri osa ligikaudu 48 € koos käibemaksuga.</p>
-          </article>
-          <article class="no">
-            <small>Avalikku renti ei ole</small>
-            <strong>0 tundi · 0 €</strong>
-            <p>KÜ teenustasu on 7 645 € + km kuus; 70 m² korteri osa ligikaudu 72 € koos käibemaksuga.</p>
+            <small>50 renditundi kuus · 10 × 5 tundi</small>
+            <strong>3 000 € renditulu</strong>
+            <ul class="payment-list">
+              <li><span>Püsikulude katteks jääb</span><b>2 500 €</b></li>
+              <li><span>KÜ teenustasu kuus</span><b>5 145 € + km</b></li>
+              <li><span>70 m² korteri osa kuus</span><b>~48 € km-ga</b></li>
+            </ul>
           </article>
         </div>
 
         <div class="plain-note">
-          <strong>Avaliku rendi hind on arvestuses 60 € + käibemaks tunnis ja minimaalne broneering viis tundi ehk 300 € + käibemaks.</strong> Koristus lisandub eraldi. Pärast 50 € otseseid kulusid jääb viietunnisest broneeringust ruumi püsikulude katteks 250 €. Korteri näited sisaldavad 24% käibemaksu.
-        </div>
-
-        <div class="plain-note warning">
-          Arvutus ei eelda Talsinkilt üürisoodustust. Kui pärast 24. kuud lepitakse kokku madalam kuurent, väheneb samas ulatuses ka korteriühistu teenustasu.
+          Pärast 50 € otseseid kulusid jääb igast minimaalsest viietunnisest broneeringust ruumi püsikulude katteks 250 €. Korteri näited sisaldavad 24% käibemaksu. Arvutus ei eelda Talsinkilt üürisoodustust; madalam kuurent vähendaks samas ulatuses korteriühistu teenustasu.
         </div>
 
         <details class="simple-details">
