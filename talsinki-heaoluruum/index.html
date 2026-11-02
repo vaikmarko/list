@@ -1,0 +1,2329 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Talsinki heaoluruumi ettepanek: The List opereerib ruumi 24 kuud arendaja rahastusel ning jätkab korteriühistu otsusel.">
+  <meta name="theme-color" content="#f4f1e8">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Talsinki heaoluruum — ettepanek arendajale">
+  <meta property="og:description" content="24-kuuline teenusmudel, elanike kasutus, avalik rent ja jätkamise tingimused.">
+  <title>Talsinki heaoluruum — ettepanek arendajale | The List</title>
+  <style>
+    :root {
+      --ink: #090909;
+      --forest: #090909;
+      --forest2: #a66b56;
+      --mint: #f0f0e1;
+      --mintp: #eadbd3;
+      --cream: #f0f0e1;
+      --paper: #fffef4;
+      --gold: #a66b56;
+      --goldp: #e6d1c7;
+      --red: #c02b0a;
+      --redp: #f2d8cf;
+      --muted: #64645c;
+      --line: #b9b9ab;
+      --white: #ffffff;
+      --shadow: 0 28px 80px rgba(0,0,0,.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    ::selection { background: var(--mint); color: var(--forest); }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Avenir Next", Avenir, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    button, input { font: inherit; }
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    h1, h2, .serif {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-weight: 400;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--forest2);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 126px;
+      background:
+        radial-gradient(ellipse at 86% 30%, rgba(166,107,86,.42), transparent 26%),
+        linear-gradient(135deg, #050505 0%, #11100f 68%, #261a16 100%);
+      color: #fff;
+    }
+    .hero::before {
+      position: absolute;
+      right: -4vw;
+      top: -16vw;
+      color: rgba(240,240,225,.035);
+      content: "T";
+      font: italic 400 min(78vw, 960px)/1 "Iowan Old Style", Georgia, serif;
+      pointer-events: none;
+      transform: rotate(-7deg);
+    }
+    .hero::after {
+      position: absolute;
+      right: -12%;
+      bottom: -42%;
+      width: 66%;
+      height: 70%;
+      border: 1px solid rgba(240,240,225,.13);
+      border-radius: 50% 45% 0 0;
+      box-shadow: 0 0 0 58px rgba(240,240,225,.025), 0 0 0 116px rgba(166,107,86,.045);
+      content: "";
+      pointer-events: none;
+      transform: rotate(-8deg);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 88px;
+      border-bottom: 1px solid rgba(240,240,225,.22);
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(240,240,225,.8);
+      border-radius: 50%;
+      font: italic 17px Georgia, serif;
+      letter-spacing: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 8px 14px;
+      border: 1px solid rgba(240,240,225,.3);
+      border-radius: 99px;
+      background: rgba(240,240,225,.06);
+      color: rgba(240,240,225,.86);
+      font-size: 12px;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .chip:hover {
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 72px;
+      align-items: center;
+      padding-top: 64px;
+    }
+    .hero .kicker { color: #d49a83; }
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(48px, 6.2vw, 84px);
+      font-style: italic;
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+    .lead {
+      max-width: 700px;
+      margin: 24px 0 0;
+      color: rgba(240,240,225,.74);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    .room-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .spec-pill {
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(240,240,225,.06);
+      border: 1px solid rgba(240,240,225,.24);
+      font-size: 13px;
+      color: rgba(240,240,225,.86);
+    }
+    .spec-pill strong { color: #e0aa93; font-weight: 700; }
+
+    .be {
+      padding: 28px;
+      border: 0;
+      border-radius: 0;
+      background: var(--cream);
+      color: var(--ink);
+      box-shadow: 16px 16px 0 var(--gold);
+      transform: rotate(1deg);
+    }
+    .be small, .be span { display: block; }
+    .be small {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .be > strong {
+      display: block;
+      margin: 12px 0 4px;
+      color: var(--ink);
+      font: 400 54px/1 "Iowan Old Style", Georgia, serif;
+      letter-spacing: -.04em;
+    }
+    .be span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .be hr {
+      margin: 20px 0 16px;
+      border: 0;
+      border-top: 1px solid var(--line);
+    }
+    .be p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .be p strong {
+      display: inline;
+      margin: 0;
+      color: var(--ink);
+      font: 700 inherit;
+      letter-spacing: 0;
+    }
+
+    /* TOP KPI OVERLAP CARD */
+    .overview {
+      position: relative;
+      z-index: 2;
+      margin-top: -54px;
+    }
+    .overview-card {
+      padding: 32px;
+      border: 1px solid rgba(14,61,53,.09);
+      border-radius: 22px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--line);
+    }
+    .metric {
+      padding: 22px;
+      background: var(--paper);
+    }
+    .metric span, .metric small { display: block; }
+    .metric span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .metric strong {
+      display: block;
+      margin: 9px 0 6px;
+      font: 400 30px/1.1 Georgia, serif;
+      letter-spacing: -.03em;
+    }
+    .metric small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .green { color: var(--forest2); }
+    .red { color: var(--red); }
+    .gold-txt { color: #9a6e1f; }
+    .decision-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .decision {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--cream);
+    }
+    .decision.recommended {
+      border-color: rgba(20,88,76,.35);
+      background: var(--mintp);
+    }
+    .decision span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--forest2);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .decision strong { display: block; margin-bottom: 3px; font-size: 15px; }
+    .decision p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    /* SECTIONS */
+    .section { padding: 84px 0; }
+    .section.alt { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .section.gold-bg { background: var(--goldp); border-top: 1px solid rgba(217,173,91,.35); border-bottom: 1px solid rgba(217,173,91,.35); }
+    .heading {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+    .heading h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 46px);
+      letter-spacing: -.035em;
+      line-height: 1.08;
+    }
+    .heading > p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* TWO PANELS (CAPEX & OPEX) */
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .two > *, .models-grid > *, .metrics > *, .terms-grid > *,
+    .tiers > *, .checklist > * { min-width: 0; }
+    .panel {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--paper);
+    }
+    .section.alt .panel { background: var(--cream); }
+    .panel-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .panel-head h3 {
+      margin: 0;
+      font: 400 34px/1 Georgia, serif;
+      color: var(--forest2);
+      letter-spacing: -.03em;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3px 16px;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .row:last-of-type { border-bottom: 0; }
+    .row span { font-size: 14px; font-weight: 500; }
+    .row b { font-size: 15px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .row small {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .total {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px 16px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: var(--mintp);
+      color: var(--forest2);
+    }
+    .total span, .total b { font-weight: 800; font-size: 15px; }
+    .total small {
+      grid-column: 1 / -1;
+      color: var(--forest2);
+      opacity: .8;
+      font-size: 12px;
+    }
+    .total.cost {
+      background: var(--redp);
+      color: var(--red);
+    }
+    .total.cost small { color: var(--red); }
+
+    .note-box {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--forest2);
+      border-radius: 0 12px 12px 0;
+      background: var(--mintp);
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .note-box.gold {
+      border-left-color: var(--gold);
+      background: var(--goldp);
+    }
+    .note-box strong { color: var(--forest); }
+    .method-note {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    /* MODELS COMPARISON & INTERACTIVE CALCULATOR */
+    .models-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .model-box {
+      position: relative;
+      padding: 32px;
+      border: 2px solid var(--line);
+      border-radius: 22px;
+      background: var(--paper);
+      transition: all .2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .model-box.featured {
+      border-color: var(--forest2);
+      box-shadow: var(--shadow);
+    }
+    .model-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 99px;
+      background: var(--mintp);
+      color: var(--forest2);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .model-box.alt-model .model-badge {
+      background: var(--goldp);
+      color: #75541e;
+    }
+    .model-box h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .model-box > div > p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .big-price {
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .big-price small {
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+    .big-price strong {
+      display: block;
+      margin: 6px 0 4px;
+      font: 400 42px/1 Georgia, serif;
+      color: var(--forest);
+      letter-spacing: -.03em;
+    }
+    .big-price span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .calc-card {
+      margin-top: 26px;
+      padding: 28px 32px;
+      border: 1px solid rgba(14,61,53,.14);
+      border-radius: 20px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .calc-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .calc-head h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .presets {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .presets button {
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .presets button:hover { border-color: var(--forest2); }
+    .presets button.on {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: #fff;
+    }
+    .range-wrap {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+      margin: 16px 0 22px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--forest2);
+      cursor: pointer;
+    }
+
+    /* TIMELINE / PHASES */
+    .phases {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .phases::before {
+      content: "";
+      position: absolute;
+      top: 11px;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: var(--line);
+    }
+    .phase {
+      position: relative;
+      padding: 28px 18px 20px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .phase-dot {
+      position: absolute;
+      top: -19px;
+      left: 18px;
+      width: 18px;
+      height: 18px;
+      border: 3px solid var(--forest2);
+      border-radius: 50%;
+      background: var(--cream);
+    }
+    .phase.on .phase-dot { background: var(--forest2); }
+    .phase small {
+      display: block;
+      color: var(--forest2);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .phase h4 {
+      margin: 6px 0 8px;
+      font-size: 16px;
+    }
+    .phase p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    /* TERMS GRID */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .term-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--paper);
+    }
+    .term-card span {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--mintp);
+      color: var(--forest2);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+    }
+    .term-card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .term-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* TIERS / MEMBERSHIP */
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .tier {
+      position: relative;
+      padding: 26px 22px;
+      border: 1px solid rgba(14,61,53,.14);
+      border-radius: 18px;
+      background: var(--paper);
+    }
+    .tier.mint {
+      background: var(--mintp);
+      border-color: var(--forest2);
+    }
+    .tier.warn {
+      background: var(--redp);
+      border-color: rgba(187,85,72,.35);
+    }
+    .tier-tag {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      background: var(--goldp);
+      color: #75541e;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .tier.mint .tier-tag {
+      background: var(--forest);
+      color: #fff;
+    }
+    .tier.warn .tier-tag {
+      background: var(--red);
+      color: #fff;
+    }
+    .tier h3 {
+      margin: 0;
+      color: var(--forest2);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .tier.warn h3 { color: var(--red); }
+    .tier .pct {
+      margin: 16px 0 4px;
+      font: 400 46px/1 Georgia, serif;
+      letter-spacing: -.04em;
+    }
+    .tier-sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .tier ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .tier li {
+      padding: 10px 0;
+      border-top: 1px solid rgba(14,61,53,.1);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* MEMBERSHIP SENSITIVITY CALCULATOR */
+    .member-calc {
+      margin: 28px 0;
+      padding: 30px;
+      border: 1px solid rgba(14,61,53,.18);
+      border-radius: 20px;
+      background: var(--forest);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+    .member-calc-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .member-calc .kicker { color: var(--mint); }
+    .member-calc h3 {
+      margin: 0;
+      font: 400 30px/1.1 Georgia, serif;
+      letter-spacing: -.025em;
+    }
+    .member-calc-head p {
+      max-width: 430px;
+      margin: 0;
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .member-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .member-control {
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,.07);
+    }
+    .member-control label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,.75);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .member-control output { color: var(--mint); font-size: 18px; }
+    .member-control input { accent-color: var(--mint); }
+    .member-results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,.14);
+    }
+    .member-result { padding: 18px; background: rgba(7,36,31,.78); }
+    .member-result span, .member-result small { display: block; }
+    .member-result span {
+      color: rgba(255,255,255,.55);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .member-result strong {
+      display: block;
+      margin: 7px 0 4px;
+      font: 400 26px/1.1 Georgia, serif;
+    }
+    .member-result small { color: rgba(255,255,255,.55); font-size: 11px; line-height: 1.4; }
+    .member-result.go strong { color: var(--mint); }
+    .member-result.stop strong { color: #ffaaa0; }
+    .member-formula {
+      margin: 14px 0 0;
+      color: rgba(255,255,255,.55);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    /* ASSUMPTIONS */
+    .assumptions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .assumption {
+      padding: 18px;
+      border: 1px solid rgba(117,84,30,.18);
+      border-radius: 14px;
+      background: rgba(255,253,248,.7);
+    }
+    .assumption b { display: block; margin-bottom: 5px; font-size: 13px; }
+    .assumption p { margin: 0; color: #725f3c; font-size: 11.5px; line-height: 1.5; }
+
+    /* CHECKLIST */
+    .checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .check-item {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--paper);
+    }
+    .check-item.action {
+      border-color: var(--gold);
+      background: var(--goldp);
+    }
+    .check-num {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--forest);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .check-item.action .check-num {
+      background: #9a6e1f;
+    }
+    .check-item b {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .check-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+    .check-item.action span { color: #5b4213; }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 0;
+      background: var(--forest);
+      color: #fff;
+    }
+    .foot-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .foot-contact h3 {
+      margin: 0 0 6px;
+      font: 400 28px Georgia, serif;
+    }
+    .foot-contact p {
+      margin: 0;
+      color: rgba(255,255,255,.7);
+      font-size: 14px;
+    }
+    .foot-contact a {
+      color: var(--mint);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* TALSINKI EDITORIAL THEME */
+    .overview-card {
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      box-shadow: 12px 12px 0 var(--gold);
+    }
+    .metrics {
+      border-color: var(--ink);
+      border-radius: 0;
+      background: var(--ink);
+    }
+    .metric { background: var(--cream); }
+    .metric strong { font-family: "Iowan Old Style", Georgia, serif; }
+    .decision {
+      border-color: var(--ink);
+      border-radius: 0;
+      background: var(--paper);
+    }
+    .decision.recommended {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .decision.recommended span { color: #d49a83; }
+    .decision.recommended p { color: rgba(240,240,225,.66); }
+
+    .section.alt {
+      background: #f8f7eb;
+      border-color: var(--ink);
+    }
+    .section.gold-bg {
+      background: var(--goldp);
+      border-color: var(--ink);
+    }
+    .heading h2 { font-style: italic; }
+    .panel, .model-box, .calc-card, .phase, .term-card, .tier,
+    .check-item, .assumption {
+      border-color: var(--ink);
+      border-radius: 0;
+    }
+    .panel { background: var(--paper); }
+    .panel-head { border-color: var(--ink); }
+    .panel-head h3 {
+      color: var(--ink);
+      font-family: "Iowan Old Style", Georgia, serif;
+    }
+    .row { border-color: rgba(9,9,9,.2); }
+    .total {
+      border-radius: 0;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .total small { color: var(--cream); }
+    .total.cost { background: var(--red); color: #fff; }
+    .total.cost small { color: #fff; }
+    .note-box {
+      border: 1px solid var(--ink);
+      border-left: 6px solid var(--ink);
+      border-radius: 0;
+      background: var(--cream);
+    }
+    .note-box.gold {
+      border-left-color: var(--gold);
+      background: var(--goldp);
+    }
+
+    #mudelid {
+      background: var(--ink);
+      color: var(--cream);
+      border-color: var(--ink);
+    }
+    #mudelid .heading > p { color: rgba(240,240,225,.65); }
+    #mudelid .kicker { color: #d49a83; }
+    #mudelid .model-box, #mudelid .calc-card {
+      background: var(--cream);
+      color: var(--ink);
+    }
+    #mudelid .calc-card .kicker { color: var(--gold); }
+    .model-box {
+      border: 2px solid var(--ink);
+      background: var(--cream);
+    }
+    .model-box.featured {
+      border-color: var(--gold);
+      box-shadow: 12px 12px 0 var(--gold);
+    }
+    .model-badge {
+      border-radius: 0;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .model-box.alt-model .model-badge {
+      background: var(--gold);
+      color: #fff;
+    }
+    .big-price {
+      border-color: var(--ink);
+      border-radius: 0;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .big-price small, .big-price span { color: rgba(240,240,225,.62); }
+    .big-price strong { color: var(--cream); }
+    .calc-card {
+      border: 2px solid var(--ink);
+      background: var(--cream);
+      box-shadow: none;
+    }
+    .presets button {
+      border-color: var(--ink);
+      border-radius: 0;
+      background: transparent;
+    }
+    .presets button:hover { border-color: var(--gold); color: var(--gold); }
+    .presets button.on { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+    input[type=range] { accent-color: var(--gold); }
+
+    .phase, .term-card { background: var(--paper); }
+    .phase-dot { border-color: var(--gold); background: var(--cream); }
+    .phase.on .phase-dot { background: var(--gold); }
+    .term-card span {
+      border-radius: 0;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .member-calc {
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--ink);
+      box-shadow: 12px 12px 0 var(--gold);
+    }
+    .member-calc .kicker { color: #d49a83; }
+    .member-control { border-radius: 0; background: rgba(240,240,225,.07); }
+    .member-control output, .member-result.go strong { color: #e0aa93; }
+    .member-results { border-radius: 0; }
+    .member-result { background: #151413; }
+
+    .tier {
+      background: var(--paper);
+      border: 1px solid var(--ink);
+    }
+    .tier.mint {
+      border-color: var(--ink);
+      background: var(--paper);
+      box-shadow: 6px 6px 0 var(--gold);
+    }
+    .tier-tag, .tier.mint .tier-tag {
+      border-radius: 0;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .tier h3, .tier.mint h3 { color: var(--ink); }
+    .tier li { border-color: rgba(9,9,9,.18); }
+
+    .check-num { background: var(--ink); }
+    .check-item.action {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .check-item.action .check-num {
+      background: var(--gold);
+      color: #fff;
+    }
+    .check-item.action span { color: rgba(240,240,225,.68); }
+    .assumption {
+      border-color: var(--ink);
+      border-radius: 0;
+      background: rgba(255,254,244,.58);
+    }
+    .assumption p { color: #55443d; }
+    .gold-txt { color: var(--gold); }
+    footer { background: var(--ink); }
+
+    /* DECISION-PAGE INFORMATION ARCHITECTURE */
+    section[id] { scroll-margin-top: 76px; }
+    .nav-meta {
+      color: rgba(240,240,225,.58);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .button-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border: 1px solid rgba(240,240,225,.5);
+      color: var(--cream);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .button-link.primary {
+      border-color: var(--cream);
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .button-link.dark {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .be .button-link {
+      width: 100%;
+      margin-top: 18px;
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .be .button-link:hover { background: var(--ink); color: var(--cream); }
+
+    .jump-nav {
+      position: sticky;
+      z-index: 40;
+      top: 0;
+      border-bottom: 1px solid var(--ink);
+      background: rgba(240,240,225,.96);
+      backdrop-filter: blur(14px);
+    }
+    .jump-inner {
+      display: flex;
+      align-items: stretch;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-inner::-webkit-scrollbar { display: none; }
+    .jump-link {
+      display: flex;
+      min-width: max-content;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-right: 1px solid rgba(9,9,9,.18);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .15s, color .15s;
+    }
+    .jump-link:first-child { border-left: 1px solid rgba(9,9,9,.18); }
+    .jump-link span { color: var(--gold); }
+    .jump-link:hover, .jump-link.active { background: var(--ink); color: var(--cream); }
+
+    .section-intro {
+      max-width: 660px;
+      margin: -18px 0 34px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .choice-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+    }
+    .choice-card.recommended {
+      box-shadow: 12px 12px 0 var(--gold);
+    }
+    .choice-head { padding: 26px 28px 22px; }
+    .choice-tag {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 5px 9px;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .choice-card.recommended .choice-tag { background: var(--gold); }
+    .choice-head h3 {
+      margin: 0 0 8px;
+      font: italic 400 30px/1.05 "Iowan Old Style", Georgia, serif;
+    }
+    .choice-head p { margin: 0; color: var(--muted); font-size: 13px; }
+    .choice-price {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 22px 28px;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .choice-price strong {
+      font: 400 46px/1 "Iowan Old Style", Georgia, serif;
+      letter-spacing: -.04em;
+    }
+    .choice-price span { color: rgba(240,240,225,.65); font-size: 12px; }
+    .choice-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex: 1;
+      background: var(--ink);
+      gap: 1px;
+      border-top: 1px solid var(--ink);
+    }
+    .choice-stat {
+      padding: 18px 20px;
+      background: var(--paper);
+    }
+    .choice-stat span, .choice-stat strong { display: block; }
+    .choice-stat span {
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .choice-stat strong { font-size: 16px; }
+    .recommendation {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-top: 28px;
+      padding: 22px 24px;
+      border: 1px solid var(--ink);
+      background: var(--goldp);
+    }
+    .recommendation-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      background: var(--gold);
+      color: #fff;
+      font: italic 400 24px Georgia, serif;
+    }
+    .recommendation b, .recommendation small { display: block; }
+    .recommendation b { margin-bottom: 3px; font-size: 15px; }
+    .recommendation small { color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .recommendation strong {
+      color: var(--gold);
+      font: 400 30px/1 Georgia, serif;
+      white-space: nowrap;
+    }
+    .assumption-alert {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-left: 6px solid var(--red);
+      background: var(--redp);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .money-map {
+      display: grid;
+      gap: 20px;
+    }
+    .money-row {
+      padding: 22px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+    .money-row-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .money-row-head b { font-size: 15px; }
+    .money-row-head strong { font: 400 24px/1 Georgia, serif; }
+    .money-track {
+      display: flex;
+      width: 100%;
+      height: 30px;
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      background: var(--cream);
+    }
+    .money-segment { min-width: 5px; border-right: 1px solid var(--ink); }
+    .money-segment:last-child { border-right: 0; }
+    .seg-invest { background: var(--gold); }
+    .seg-finance { background: var(--red); }
+    .seg-opex { background: var(--ink); }
+    .seg-cover { background: var(--cream); }
+    .money-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-top: 13px;
+    }
+    .money-key {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .money-key i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--ink);
+    }
+    .money-key b { color: var(--ink); }
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 22px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+    }
+    .takeaway {
+      padding: 20px;
+      background: var(--cream);
+    }
+    .takeaway span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .takeaway b { display: block; margin-bottom: 5px; font-size: 15px; }
+    .takeaway p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .detail-stack { display: grid; gap: 12px; margin-top: 24px; }
+    .detail-panel {
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+    .detail-panel summary {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 22px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .detail-panel summary::-webkit-details-marker { display: none; }
+    .detail-panel summary::after {
+      content: "+";
+      color: var(--gold);
+      font: 400 28px/1 Georgia, serif;
+    }
+    .detail-panel[open] summary::after { content: "−"; }
+    .detail-panel summary small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .detail-body {
+      padding: 24px;
+      border-top: 1px solid var(--ink);
+    }
+    .detail-body .calc-card { margin-top: 0; }
+
+    .role-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+    }
+    .role-card {
+      position: relative;
+      padding: 24px;
+      background: var(--paper);
+      border-right: 1px solid var(--ink);
+    }
+    .role-card:last-child { border-right: 0; }
+    .role-card::after {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      right: -13px;
+      display: grid;
+      width: 26px;
+      height: 26px;
+      place-items: center;
+      border: 1px solid var(--ink);
+      background: var(--gold);
+      color: #fff;
+      content: "→";
+      font-size: 13px;
+      transform: translateY(-50%);
+    }
+    .role-card:last-child::after { display: none; }
+    .role-card span {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .role-card h3 { margin: 8px 0 7px; font-size: 18px; }
+    .role-card p { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.55; }
+
+    .threshold-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+    .threshold-card {
+      padding: 24px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+    .threshold-card.base { box-shadow: 7px 7px 0 var(--gold); }
+    .threshold-card.stop { background: var(--redp); }
+    .threshold-card span {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .threshold-card.stop span { color: var(--red); }
+    .threshold-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font: 400 32px/1.05 Georgia, serif;
+    }
+    .threshold-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .threshold-math {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      margin-bottom: 28px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      gap: 1px;
+    }
+    .math-step {
+      display: grid;
+      min-width: 150px;
+      flex: 1;
+      place-items: center;
+      padding: 20px 14px;
+      background: var(--cream);
+      text-align: center;
+    }
+    .math-step small, .math-step strong { display: block; }
+    .math-step small {
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .math-step strong { font: 400 25px/1.1 Georgia, serif; }
+    .math-op {
+      display: grid;
+      width: 35px;
+      place-items: center;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 18px;
+    }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .rule-card {
+      padding: 20px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+    .rule-card.go { border-left: 7px solid var(--gold); }
+    .rule-card.stop { border-left: 7px solid var(--red); }
+    .rule-card b { display: block; margin-bottom: 6px; font-size: 14px; }
+    .rule-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+
+    .compact-checklist { grid-template-columns: repeat(2, 1fr); }
+    .compact-checklist .check-item { min-height: 120px; }
+    .final-cta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      margin-top: 30px;
+      padding: 28px;
+      border: 2px solid var(--ink);
+      background: var(--cream);
+      box-shadow: 10px 10px 0 var(--gold);
+    }
+    .final-cta h3 {
+      margin: 0 0 6px;
+      font: italic 400 27px/1.1 Georgia, serif;
+    }
+    .final-cta p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 960px) {
+      .hero-grid, .heading, .two, .models-grid, .checklist { grid-template-columns: 1fr; }
+      .hero-grid { gap: 32px; }
+      .metrics, .tiers, .member-results, .assumptions { grid-template-columns: 1fr 1fr; }
+      .terms-grid { grid-template-columns: 1fr 1fr; }
+      .phases { grid-template-columns: 1fr; gap: 16px; }
+      .phases::before { display: none; }
+      .phase-dot { position: static; margin-bottom: 10px; }
+      .phase { padding-top: 20px; }
+      .choice-grid, .rule-grid { grid-template-columns: 1fr; }
+      .role-flow { grid-template-columns: 1fr; }
+      .role-card { border-right: 0; border-bottom: 1px solid var(--ink); }
+      .role-card:last-child { border-bottom: 0; }
+      .role-card::after {
+        top: auto;
+        right: 24px;
+        bottom: -13px;
+        transform: rotate(90deg);
+      }
+      .threshold-grid { grid-template-columns: 1fr 1fr; }
+      .threshold-card.stop { grid-column: 1 / -1; }
+      .compact-checklist { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .metrics, .tiers, .terms-grid, .decision-strip, .member-controls, .member-results, .assumptions { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .section { padding: 56px 0; }
+      .overview-card, .panel, .model-box, .calc-card { padding: 22px; }
+      .member-calc { padding: 22px; }
+      .member-calc-head { display: block; }
+      .member-calc-head p { margin-top: 12px; }
+      .row { grid-template-columns: 1fr; }
+      .row b { white-space: normal; }
+      .be { transform: none; }
+      .hero { padding-bottom: 72px; }
+      .nav-meta { display: none; }
+      .jump-inner { width: 100%; margin-left: auto; overflow-x: hidden; }
+      .jump-link {
+        min-width: 0;
+        flex: 1 1 20%;
+        gap: 0;
+        padding: 12px 3px;
+        font-size: 9px;
+        letter-spacing: .02em;
+      }
+      .jump-link span { display: none; }
+      .choice-head, .choice-price { padding-right: 20px; padding-left: 20px; }
+      .choice-price { display: block; }
+      .choice-price span { display: block; margin-top: 6px; }
+      .takeaway-grid, .threshold-grid, .compact-checklist { grid-template-columns: 1fr; }
+      .threshold-card.stop { grid-column: auto; }
+      .recommendation { grid-template-columns: auto 1fr; }
+      .recommendation strong { grid-column: 1 / -1; padding-left: 60px; }
+      .money-row-head { display: block; }
+      .money-row-head strong { display: block; margin-top: 5px; }
+      .money-track { height: 24px; }
+      .detail-panel summary { padding: 16px 18px; }
+      .detail-body { padding: 18px; }
+      .math-op { width: 100%; height: 30px; }
+      .math-step { flex-basis: 100%; }
+      .final-cta { grid-template-columns: 1fr; padding: 22px; }
+      .hero-actions .button-link { width: 100%; }
+    }
+
+    /* SIMPLE PROPOSAL */
+    .simple-page {
+      background: #f4f1e8;
+      color: #171717;
+      font-family: "Avenir Next", Avenir, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    .simple-page .wrap { width: min(1000px, calc(100% - 40px)); }
+    .simple-header {
+      padding: 0 0 54px;
+      border-bottom: 1px solid #171717;
+      background: #f4f1e8;
+    }
+    .simple-topbar {
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #c9c4b8;
+    }
+    .simple-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .simple-logo .mark {
+      width: 30px;
+      height: 30px;
+      border-color: #171717;
+      color: #171717;
+    }
+    .simple-date { color: #6a685f; font-size: 12px; }
+    .simple-title {
+      max-width: 720px;
+      margin: 54px 0 0;
+      font: 650 clamp(36px, 6vw, 58px)/1.06 "Avenir Next", Avenir, Inter, sans-serif;
+      letter-spacing: -.04em;
+    }
+    .simple-lead {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: #55534d;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    .simple-facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 38px;
+      border-top: 1px solid #171717;
+      border-bottom: 1px solid #171717;
+    }
+    .simple-fact {
+      min-width: 0;
+      padding: 18px 16px;
+      border-right: 1px solid #c9c4b8;
+    }
+    .simple-fact:first-child { padding-left: 0; }
+    .simple-fact:last-child { border-right: 0; }
+    .simple-fact span, .simple-fact strong { display: block; }
+    .simple-fact span {
+      margin-bottom: 4px;
+      color: #6a685f;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .simple-fact strong { font-size: 17px; }
+
+    .simple-page .jump-nav {
+      border-bottom: 1px solid #171717;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(10px);
+    }
+    .simple-page .jump-inner { width: min(1000px, calc(100% - 40px)); }
+    .simple-page .jump-link {
+      padding: 13px 10px;
+      border-right: 0;
+      color: #55534d;
+      font-size: 11px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .simple-page .jump-link:first-child { border-left: 0; }
+    .simple-page .jump-link span { display: none; }
+    .simple-page .jump-link:hover,
+    .simple-page .jump-link.active {
+      background: transparent;
+      color: #171717;
+      box-shadow: inset 0 -3px 0 #a66b56;
+    }
+
+    .simple-section { padding: 66px 0; }
+    .simple-section.alt {
+      border-top: 1px solid #d4cfc4;
+      border-bottom: 1px solid #d4cfc4;
+      background: #fffdf7;
+    }
+    .simple-heading { max-width: 720px; margin-bottom: 32px; }
+    .simple-eyebrow {
+      margin: 0 0 8px;
+      color: #9a5f4c;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .simple-heading h2 {
+      margin: 0;
+      font: 650 clamp(28px, 4vw, 38px)/1.16 "Avenir Next", Avenir, Inter, sans-serif;
+      letter-spacing: -.025em;
+    }
+    .simple-heading p {
+      margin: 12px 0 0;
+      color: #605e57;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .payment-card {
+      position: relative;
+      padding: 26px;
+      border: 1px solid #171717;
+      background: #fffdf7;
+    }
+    .payment-card.recommended {
+      border: 2px solid #a66b56;
+      background: #f8eee9;
+    }
+    .payment-label {
+      margin: 0 0 10px;
+      color: #6a685f;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .payment-card.recommended .payment-label { color: #8e5543; }
+    .payment-card h3 { margin: 0; font-size: 21px; }
+    .payment-card > p {
+      min-height: 48px;
+      margin: 10px 0 22px;
+      color: #605e57;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .payment-price {
+      margin-bottom: 18px;
+      padding: 18px 0;
+      border-top: 1px solid #c9c4b8;
+      border-bottom: 1px solid #c9c4b8;
+    }
+    .payment-price strong {
+      display: block;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -.03em;
+    }
+    .payment-price span { color: #6a685f; font-size: 12px; }
+    .payment-list { margin: 0; padding: 0; list-style: none; }
+    .payment-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #dedad0;
+      color: #55534d;
+      font-size: 13px;
+    }
+    .payment-list li:last-child { border-bottom: 0; }
+    .payment-list b { color: #171717; text-align: right; }
+    .plain-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 4px solid #a66b56;
+      background: #eee6de;
+      color: #413f3a;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .plain-note.warning { border-left-color: #b53d28; background: #f3dfd8; }
+
+    .simple-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .simple-card {
+      padding: 24px;
+      border: 1px solid #171717;
+      background: #fffdf7;
+    }
+    .simple-card h3 { margin: 0 0 14px; font-size: 18px; }
+    .simple-card p { margin: 0; color: #605e57; font-size: 13px; line-height: 1.55; }
+    .simple-table { border-top: 1px solid #171717; }
+    .simple-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 11px 0;
+      border-bottom: 1px solid #d8d4ca;
+      font-size: 13px;
+    }
+    .simple-row span { color: #55534d; }
+    .simple-row b { text-align: right; white-space: nowrap; }
+    .simple-row.total { margin: 0; background: transparent; color: #171717; border-radius: 0; }
+    .simple-row.total span, .simple-row.total b { font-size: 14px; }
+
+    .simple-details {
+      margin-top: 18px;
+      border: 1px solid #aaa69d;
+      background: #fffdf7;
+    }
+    .simple-details summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 18px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .simple-details summary::-webkit-details-marker { display: none; }
+    .simple-details summary::after { content: "+"; color: #8e5543; font-size: 20px; }
+    .simple-details[open] summary::after { content: "−"; }
+    .simple-details-body { padding: 20px; border-top: 1px solid #d4cfc4; }
+    .simple-page .presets button {
+      padding: 8px 12px;
+      border: 1px solid #aaa69d;
+      border-radius: 2px;
+      background: #fffdf7;
+      color: #171717;
+      font-size: 12px;
+    }
+    .simple-page .presets button.on {
+      border-color: #8e5543;
+      background: #8e5543;
+      color: #fff;
+    }
+    .simple-page input[type=range] { accent-color: #8e5543; }
+
+    .simple-timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid #171717;
+      background: #171717;
+      gap: 1px;
+    }
+    .simple-step { padding: 20px 16px; background: #fffdf7; }
+    .simple-step strong, .simple-step span { display: block; }
+    .simple-step strong { margin-bottom: 7px; color: #9a5f4c; font-size: 12px; }
+    .simple-step span { font-size: 13px; line-height: 1.45; }
+    .responsibility-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .responsibility {
+      padding: 22px;
+      border: 1px solid #aaa69d;
+      background: #fffdf7;
+    }
+    .responsibility h3 { margin: 0 0 10px; font-size: 16px; }
+    .plain-list { margin: 0; padding-left: 18px; color: #55534d; font-size: 13px; line-height: 1.65; }
+
+    .threshold-simple {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .threshold-simple article {
+      padding: 22px;
+      border: 1px solid #171717;
+      background: #fffdf7;
+    }
+    .threshold-simple article.no { background: #f3dfd8; }
+    .threshold-simple small {
+      display: block;
+      margin-bottom: 8px;
+      color: #8e5543;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .threshold-simple strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 24px;
+      line-height: 1.15;
+    }
+    .threshold-simple p { margin: 0; color: #605e57; font-size: 12px; line-height: 1.5; }
+
+    .simple-calculator { display: grid; gap: 18px; }
+    .simple-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .simple-control label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .simple-control output { color: #8e5543; }
+    .simple-results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid #aaa69d;
+      background: #aaa69d;
+      gap: 1px;
+    }
+    .simple-result { padding: 16px; background: #fffdf7; }
+    .simple-result span, .simple-result strong, .simple-result small { display: block; }
+    .simple-result span {
+      color: #6a685f;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .simple-result strong { margin: 5px 0 3px; font-size: 21px; }
+    .simple-result small { color: #6a685f; font-size: 10px; line-height: 1.35; }
+    .simple-result.stop strong { color: #b53d28; }
+
+    .simple-checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #171717;
+    }
+    .simple-check {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      padding: 18px 18px 18px 0;
+      border-bottom: 1px solid #c9c4b8;
+    }
+    .simple-check:nth-child(odd) { border-right: 1px solid #c9c4b8; }
+    .simple-check:nth-child(even) { padding-left: 18px; }
+    .simple-check i {
+      display: grid;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+      border: 1px solid #171717;
+      border-radius: 50%;
+      font-style: normal;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .simple-check b { display: block; margin-bottom: 3px; font-size: 14px; }
+    .simple-check span { display: block; color: #605e57; font-size: 12px; line-height: 1.5; }
+    .simple-contact {
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid #171717;
+      font-size: 14px;
+    }
+    .simple-contact a { color: #171717; font-weight: 800; }
+    .simple-footer {
+      padding: 32px 0;
+      border-top: 1px solid #171717;
+      background: #ebe7dd;
+      color: #55534d;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .simple-page .wrap { width: min(100% - 32px, 1000px); }
+      .simple-page .jump-inner { width: 100%; }
+      .simple-page .jump-link { min-width: 0; padding: 12px 3px; font-size: 10px; }
+      .simple-date { display: none; }
+      .simple-header { padding-bottom: 40px; }
+      .simple-title { margin-top: 40px; }
+      .simple-lead { font-size: 16px; }
+      .simple-facts { grid-template-columns: 1fr 1fr; }
+      .simple-fact:nth-child(2) { border-right: 0; }
+      .simple-fact:nth-child(-n+2) { border-bottom: 1px solid #c9c4b8; }
+      .simple-fact:nth-child(3) { padding-left: 0; }
+      .simple-section { padding: 50px 0; }
+      .payment-grid, .simple-grid, .responsibility-grid, .simple-checklist { grid-template-columns: 1fr; }
+      .payment-card > p { min-height: 0; }
+      .simple-timeline { grid-template-columns: 1fr; }
+      .threshold-simple { grid-template-columns: 1fr; }
+      .simple-controls, .simple-results { grid-template-columns: 1fr 1fr; }
+      .simple-check:nth-child(odd) { border-right: 0; }
+      .simple-check:nth-child(even) { padding-left: 0; }
+    }
+    @media (max-width: 430px) {
+      .simple-page .jump-link { font-size: 10px; }
+      .simple-controls, .simple-results { grid-template-columns: 1fr; }
+      .payment-list li, .simple-row { align-items: flex-start; }
+    }
+
+    @media print {
+      * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      html { scroll-behavior: auto; }
+      .nav-links, .jump-nav, .presets, input[type=range] { display: none !important; }
+      .hero, footer { break-inside: avoid; }
+      .section { padding: 40px 0; }
+      .panel, .model-box, .term-card, .tier, .check-item, .calc-card, .member-calc { break-inside: avoid; }
+      .overview { margin-top: -36px; }
+    }
+  </style>
+</head>
+<body class="simple-page">
+  <header class="simple-header">
+    <div class="wrap">
+      <div class="simple-topbar">
+        <div class="simple-logo"><span class="mark">L</span><span>THE LIST × TALSINKI</span></div>
+        <div class="simple-date">Ettepanek · november 2026</div>
+      </div>
+
+      <h1 class="simple-title">Talsinki heaoluruumi ettepanek</h1>
+      <p class="simple-lead">
+        Talsinki ehitab valmis eraldi äriruumi. The List rendib ja sisustab selle ning pakub elanikele 24 kuud heaoluruumi teenust. Seejärel otsustab korteriühistu, kas teenus jätkub.
+      </p>
+
+      <div class="simple-facts">
+        <div class="simple-fact"><span>Ruumi suurus</span><strong>~120 m²</strong></div>
+        <div class="simple-fact"><span>Arvestuse alus</span><strong>9 240 m² korteripinda</strong></div>
+        <div class="simple-fact"><span>Teenustasu</span><strong>1,38 €/m² kuus</strong></div>
+        <div class="simple-fact"><span>Esimene periood</span><strong>24 kuud</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="jump-nav" aria-label="Lehe sisukord">
+    <div class="wrap jump-inner">
+      <a class="jump-link active" href="#pohimote">Põhimõte</a>
+      <a class="jump-link" href="#periood">24 kuud</a>
+      <a class="jump-link" href="#kasutus">Kasutus</a>
+      <a class="jump-link" href="#parast">Pärast 24 kuud</a>
+      <a class="jump-link" href="#kokkulepped">Kokkulepped</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="simple-section" id="pohimote">
+      <div class="wrap">
+        <div class="simple-heading">
+          <p class="simple-eyebrow">Põhimõte</p>
+          <h2>Talsinki omab ruumi, The List pakub teenust</h2>
+          <p>Ruumi ei rendita edasi korteriühistule ega korteritele. Elanikud kasutavad The Listi teenust ning arendaja tasub selle eest esimesed 24 kuud.</p>
+        </div>
+
+        <div class="simple-grid">
+          <article class="simple-card">
+            <h3>Talsinki</h3>
+            <ul class="plain-list">
+              <li>ehitab valmis ligikaudu 120 m² äriruumi;</li>
+              <li>lisab kohe kohviku või restorani jaoks vajaliku tehnilise valmisoleku;</li>
+              <li>jääb ruumi omanikuks ja saab selle hiljem muuks kasutuseks anda.</li>
+            </ul>
+          </article>
+
+          <article class="simple-card">
+            <h3>The List</h3>
+            <ul class="plain-list">
+              <li>rendib ruumi hinnaga 25 €/m² ning tasub kommunaale 5 €/m²;</li>
+              <li>soetab 100 000 € eest mööbli, köögimööbli, heli, nõud ja muu sisustuse;</li>
+              <li>korraldab broneeringud, ligipääsu, koristuse ja klienditoe.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="plain-note">
+          <strong>Ruum peab jääma eraldi äriruumiks, mitte maja kaasomandiks.</strong> Nii saab seda vabadel aegadel avalikult välja rentida ning vajadusel hiljem kohviku, restorani või muu teenuse jaoks kasutada.
+        </div>
+      </div>
+    </section>
+
+    <section class="simple-section alt" id="periood">
+      <div class="wrap">
+        <div class="simple-heading">
+          <p class="simple-eyebrow">Esimesed 24 kuud</p>
+          <h2>Arendaja tasub teenuse eest kogu korteripinna põhjal</h2>
+          <p>Teenustasu arvestatakse kõigi 9 240 m² eest ka siis, kui osa kortereid on veel müümata. Arvestus algab valmis ruumi elanikele üleandmisest.</p>
+        </div>
+
+        <div class="simple-results">
+          <div class="simple-result">
+            <span>Teenustasu</span><strong>1,38 €/m²</strong>
+            <small>kuus + käibemaks</small>
+          </div>
+          <div class="simple-result">
+            <span>Arve kuus</span><strong>12 705 €</strong>
+            <small>9 240 m² eest + käibemaks</small>
+          </div>
+          <div class="simple-result">
+            <span>Keskmine 70 m² kodu</span><strong>~96 €</strong>
+            <small>arendaja tasu osa kuus + käibemaks</small>
+          </div>
+          <div class="simple-result">
+            <span>24 kuu summa</span><strong>304 920 €</strong>
+            <small>+ käibemaks</small>
+          </div>
+        </div>
+
+        <div class="simple-grid" style="margin-top:18px">
+          <article class="simple-card">
+            <h3>Kulud kuus</h3>
+            <div class="simple-table">
+              <div class="simple-row"><span>Üür (120 m² × 25 €/m²)</span><b>3 000 €</b></div>
+              <div class="simple-row"><span>Kommunaalid (120 m² × 5 €/m²)</span><b>600 €</b></div>
+              <div class="simple-row"><span>Koristus</span><b>900 €</b></div>
+              <div class="simple-row"><span>Haldus ja klienditugi</span><b>1 300 €</b></div>
+              <div class="simple-row"><span>Hooldus- ja remondireserv</span><b>500 €</b></div>
+              <div class="simple-row"><span>Süsteemid, tarvikud, kindlustus, internet ja heli</span><b>650 €</b></div>
+              <div class="simple-row"><span>Sisustuse liising (100 000 € põhiosa + intress)</span><b>4 477 €</b></div>
+              <div class="simple-row"><span>Intressi, tasude ja rahavoo puhver</span><b>123 €</b></div>
+              <div class="simple-row total"><span>Kokku</span><b>11 550 €</b></div>
+            </div>
+          </article>
+
+          <article class="simple-card">
+            <h3>Kuidas teenustasu tekib?</h3>
+            <div class="simple-table">
+              <div class="simple-row"><span>Igakuised kulud</span><b>11 550 €</b></div>
+              <div class="simple-row"><span>10% juurdehindlus</span><b>1 155 €</b></div>
+              <div class="simple-row total"><span>Kuuarve</span><b>12 705 €</b></div>
+              <div class="simple-row"><span>Hind 9 240 m² peale</span><b>1,375 €/m²</b></div>
+              <div class="simple-row"><span>24 kuu arved</span><b>304 920 €</b></div>
+              <div class="simple-row"><span>Talsinkile tagasi laekuv üür</span><b>−72 000 €</b></div>
+              <div class="simple-row total"><span>Teenuse netokulu Talsinkile</span><b>232 920 €</b></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="plain-note">
+          <strong>Ligikaudu 60 000 € ruumi väljaehituskulu on teenustasust eraldi Talsinki investeering.</strong> Kui arvestada ka see, on Talsinki esimese 24 kuu kogupanus ligikaudu 292 920 € enne avaliku rendi võimalikku tulu.
+        </div>
+
+        <details class="simple-details">
+          <summary>Sisustuse liisingu eeldus</summary>
+          <div class="simple-details-body">
+            <p style="margin:0;color:#55534d;font-size:13px;line-height:1.6">4 477 € kuumakse vastab ligikaudu 7% aastaintressile: 24 kuuga tasutakse kokku 107 448 €, millest 7 448 € on finantseerimiskulu. Eelarves on lisaks 123 € kuus ehk 2 952 € puhver intressimuutuse, lepingutasude ja lühiajalise rahavajaduse jaoks. Kokku on sisustuse rahastamise eelarve 110 400 €. Suur sissemakse või 24 000 € käibemaksu ajutine finantseerimine peab sisalduma liisingupakkumises või olema enne lepingu sõlmimist eraldi rahastatud.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="simple-section" id="kasutus">
+      <div class="wrap">
+        <div class="simple-heading">
+          <p class="simple-eyebrow">Ruumi kasutamine</p>
+          <h2>Elanikel on eelis, vabu aegu saab avalikult välja rentida</h2>
+          <p>Lounge on elanikele igapäevaselt avatud. Broneeringureeglid hoiavad nõutud nädalavahetused elanike jaoks ning lubavad vaiksematel aegadel teenida avaliku rendi tulu.</p>
+        </div>
+
+        <div class="simple-grid">
+          <article class="simple-card">
+            <h3>Elanikele</h3>
+            <ul class="plain-list">
+              <li>lounge’i igapäevane kasutamine on tasuta;</li>
+              <li>privaatürituse korral maksab broneerija koristuse ja enda tekitatud kahju eest;</li>
+              <li>iga korter saab teha ühe nädalavahetuse broneeringu kvartalis;</li>
+              <li>reede ja laupäeva õhtud jäävad elanike kasutusse.</li>
+            </ul>
+          </article>
+          <article class="simple-card">
+            <h3>Avalik rent</h3>
+            <ul class="plain-list">
+              <li>tööpäeviti päeval ja vaiksematel õhtutel;</li>
+              <li>töötoad, kokkamiskursused ja ettevõtete koosolekud;</li>
+              <li>esialgne hind 300 € + käibemaks kuni viieks tunniks, koristus eraldi;</li>
+              <li>pärast ligikaudu 50 € otseseid kulusid jääb ruumi kulude katteks umbes 250 € sündmuse kohta;</li>
+              <li>ainult ajal, mil see ei piira elanike kokkulepitud kasutust;</li>
+              <li>kasutus ja tulu mõõdetakse äpi ning ligipääsusüsteemi abil.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="plain-note">
+          Esimese 24 kuu teenustasu ei ole vähendatud prognoositava avaliku rendi võrra, sest nõudlus pole veel tõendatud. Avaliku rendi tulu ja otsesed kulud tuleb eraldi mõõta ning nende kasutamine lepingus kokku leppida. Elanike privaatürituse koristustasu katab järelkoristuse ega ole ruumi püsikulude tulu. Alates 25. kuust vähendab tõendatud avaliku rendi netotulu korteriühistu baasmakset.
+        </div>
+
+        <div class="simple-timeline" style="margin-top:18px">
+          <div class="simple-step"><strong>Avamine</strong><span>Ruum antakse elanikele kasutusse ja algab 24 kuu arvestus.</span></div>
+          <div class="simple-step"><strong>1.–17. kuu</strong><span>Kogutakse tegelikud kasutus-, broneeringu- ja rendiandmed.</span></div>
+          <div class="simple-step"><strong>18. kuu</strong><span>Korteriühistule tehakse pakkumine koos tegelike andmetega.</span></div>
+          <div class="simple-step"><strong>21. kuu</strong><span>Korteriühistu otsustab, kas teenus jätkub.</span></div>
+          <div class="simple-step"><strong>24. kuu</strong><span>Teenus jätkub uuel alusel või ruum antakse Talsinkile tagasi.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="simple-section alt" id="parast">
+      <div class="wrap">
+        <div class="simple-heading">
+          <p class="simple-eyebrow">Pärast 24. kuud</p>
+          <h2>Jätkamine eeldab väiksemat üüri ja korteriühistu otsust</h2>
+          <p>Sisustuse liising on selleks ajaks lõppenud. Edasised püsikulud kaetakse korteriühistu baasmakse ja avaliku rendi tuluga. Elaniku privaatürituse koristustasu katab ainult selle ürituse koristuse. Et baasmakse jääks vastuvõetavaks, langeb üür alates 25. kuust 10 €/m² peale.</p>
+        </div>
+
+        <div class="simple-grid">
+          <article class="simple-card">
+            <h3>Jooksvad kulud kuus</h3>
+            <div class="simple-table">
+              <div class="simple-row"><span>Üür (120 m² × 10 €/m²)</span><b>1 200 €</b></div>
+              <div class="simple-row"><span>Kommunaalid</span><b>600 €</b></div>
+              <div class="simple-row"><span>Koristus</span><b>900 €</b></div>
+              <div class="simple-row"><span>Haldus ja klienditugi</span><b>1 300 €</b></div>
+              <div class="simple-row"><span>Hooldus- ja remondireserv</span><b>500 €</b></div>
+              <div class="simple-row"><span>Süsteemid ja muud kulud</span><b>650 €</b></div>
+              <div class="simple-row total"><span>Kokku</span><b>5 150 €</b></div>
+            </div>
+          </article>
+          <article class="simple-card">
+            <h3>Kust püsikulude raha tuleb?</h3>
+            <ul class="plain-list">
+              <li><strong>korteriühistu baasmakse</strong> korteri ruutmeetrite põhjal;</li>
+              <li><strong>avaliku rendi netotulu</strong> tööpäevadelt ja vaiksematelt õhtutelt;</li>
+              <li><strong>elanike koristustasu</strong> katab ainult privaatürituse järelkoristuse ega vähenda baasmakset.</li>
+            </ul>
+            <p style="margin-top:14px">Koos 10% juurdehindlusega tuleb kuus katta 5 665 €. Avaliku rendi netotulu arvatakse sellest maha ja ülejäänu kaetakse baasmaksega.</p>
+          </article>
+        </div>
+
+        <div class="threshold-simple" style="margin-top:18px">
+          <article>
+            <small>6 avalikku sündmust kuus</small>
+            <strong>0,46 €/m² + km</strong>
+            <p>Rendimüük 1 800 € ja netotulu 1 500 €. 70 m² korteri kuumakse on ligikaudu 40 € koos käibemaksuga.</p>
+          </article>
+          <article>
+            <small>10 avalikku sündmust kuus</small>
+            <strong>0,35 €/m² + km</strong>
+            <p>Rendimüük 3 000 € ja netotulu 2 500 €. 70 m² korteri kuumakse on ligikaudu 30 € koos käibemaksuga.</p>
+          </article>
+          <article class="no">
+            <small>Avalikku renti ei ole</small>
+            <strong>0,62 €/m² + km</strong>
+            <p>Kogu vajalik tulu tuleb baasmaksetest. 70 m² korteri kuumakse on ligikaudu 54 € koos käibemaksuga.</p>
+          </article>
+        </div>
+
+        <div class="plain-note">
+          <strong>Avaliku rendi hind on arvestuses 300 € + käibemaks sündmuse kohta, koristus lisandub eraldi.</strong> Ühe sündmuse 250 € netotulu on tööarvutus pärast 50 € otseseid kulusid. Baasmakse on ümardatud üles järgmise täissendini ning 70 m² korteri näide sisaldab 24% käibemaksu.
+        </div>
+
+        <div class="plain-note warning">
+          Kui üür ei langeks ja jääks 25 €/m² peale, oleks 70 m² korteri kuumakse ka 6–10 avaliku sündmuse korral ligikaudu 48–58 €. Seetõttu on 10 €/m² üür alates 25. kuust jätkamise eeltingimus.
+        </div>
+
+        <details class="simple-details">
+          <summary>Mis juhtub, kui korteriühistu ei soovi jätkata?</summary>
+          <div class="simple-details-body">
+            <p style="margin:0;color:#55534d;font-size:13px;line-height:1.6">The List annab ruumi 24. kuu lõpus Talsinkile tagasi. Sisustuse liising on selleks ajaks lõppenud ja The List saab talle kuuluva teisaldatava vara järgmises objektis kasutada. Talsinki saab eraldi äriruumi välja rentida näiteks kohvikule, restoranile või muule teenusepakkujale.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="simple-section" id="kokkulepped">
+      <div class="wrap">
+        <div class="simple-heading">
+          <p class="simple-eyebrow">Enne lepingu sõlmimist</p>
+          <h2>Need tingimused tuleb kohe kokku leppida</h2>
+        </div>
+
+        <div class="simple-checklist">
+          <div class="simple-check"><i>1</i><div><b>Eraldi äriruum</b><span>Ruum ei muutu maja kaasomandiks ning seda võib avalikult välja rentida ja hiljem muul otstarbel kasutada.</span></div></div>
+          <div class="simple-check"><i>2</i><div><b>Müügilubadus</b><span>„Heaoluruum on 24 kuud arendaja kulul, edasi vastavalt korteriühistu otsusele.“</span></div></div>
+          <div class="simple-check"><i>3</i><div><b>Tehniline valmisolek</b><span>Väljatõmme katusele, rasvapüüdur, piisav elektrivõimsus ja eraldi sissepääs tänavalt.</span></div></div>
+          <div class="simple-check"><i>4</i><div><b>Üür</b><span>Esimesed 24 kuud 25 €/m² ja alates 25. kuust 10 €/m²; edasine indekseerimine lepingus.</span></div></div>
+          <div class="simple-check"><i>5</i><div><b>Arendaja garantii</b><span>Teenustasu tasutakse 24 kuud kõigi 9 240 m² eest. Periood algab üleandmisel ja arendajast tingitud viivituse kulud hüvitatakse.</span></div></div>
+          <div class="simple-check"><i>6</i><div><b>Avalik rent</b><span>Lubatud ajad, hinnastamine, otsesed kulud ja netotulu kasutamine tuleb lepingus määrata.</span></div></div>
+          <div class="simple-check"><i>7</i><div><b>Sisustus ja liising</b><span>Vara kuulub The Listile; rahastatavad esemed, sissemakse, tasud ja nulljääk vajavad kinnitamist.</span></div></div>
+          <div class="simple-check"><i>8</i><div><b>Väljumisõigus</b><span>The List saab lepingu lõpetada 24. kuul ja pärast seda kord aastas kokkulepitud etteteatamisega.</span></div></div>
+        </div>
+
+        <details class="simple-details">
+          <summary>Arvutuse peamised eeldused</summary>
+          <div class="simple-details-body">
+            <ul class="plain-list">
+              <li>Ruumi suurus on arvutuses 120 m² ja Talsinki väljaehituse esialgne hinnang 500 €/m² ehk 60 000 €.</li>
+              <li>100 000 € sisustuse liisingu 4 477 € kuumakse vastab ligikaudu 7% aastaintressile. Koos 123 € puhvriga on rahastamise kuueelarve 4 600 €.</li>
+              <li>Teenustasu aluseks on 11 550 € kuukulu, millele lisandub 10% juurdehindlus. See ei tähenda 10% puhaskasumimarginaali.</li>
+              <li>Kuuarve on 12 705 €; täpne hind on 1,375 €/m² ja esitluses näidatakse seda ümardatult 1,38 €/m².</li>
+              <li>Pärast 24. kuud eeldavad näited 6 või 10 avalikku sündmust kuus hinnaga 300 € + käibemaks. Netotulu sündmuse kohta on arvestuses 250 €.</li>
+              <li>Kohviku või restorani tehniline valmisolek ei taga veel kasutusluba. Kasutusotstarve, tuleohutus, müra, ventilatsioon ja muud load tuleb enne ehitamist üle kontrollida.</li>
+              <li>Müügilepingute ja müügimaterjalide heaoluruumi sõnastus vajab juriidilist kontrolli.</li>
+              <li>Arvutus eeldab, et The List saab ostudelt tasutud käibemaksu tagasi arvestada.</li>
+              <li>Avaliku rendi ja broneeringute tulu ei ole garanteeritud ning jätkamise pakkumine tehakse tegelike andmete põhjal.</li>
+              <li>Kõik ärikliendi summad on käibemaksuta; elanike hinnad on näidatud koos käibemaksuga.</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="simple-contact">
+          <strong>Marko Vaik</strong> · <a href="tel:+37256805509">+372 5680 5509</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="simple-footer">
+    <div class="wrap">Arutelu alus · ei ole siduv pakkumine · The List Services OÜ · list.ee</div>
+  </footer>
+
+  <script>
+    (function() {
+      const jumpLinks = Array.from(document.querySelectorAll('.jump-link'));
+      const jumpSections = jumpLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+      function setActiveSection(id) {
+        jumpLinks.forEach(link => {
+          const active = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+
+      const sectionObserver = new IntersectionObserver(entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveSection(visible.target.id);
+      }, { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.1, 0.4] });
+
+      jumpSections.forEach(section => sectionObserver.observe(section));
+    })();
+  </script>
+</body>
+</html>
