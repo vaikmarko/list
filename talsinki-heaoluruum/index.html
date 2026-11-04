@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Talsinki heaoluruumi ettepanek: The List opereerib ruumi 24 kuud arendaja rahastusel ning jätkab korteriühistu otsusel.">
+  <meta name="description" content="Talsinki Salongi ehk Residence Lounge’i ettepanek: The List loob ja opereerib elanike esinduslikku salongi.">
   <meta name="theme-color" content="#f4f1e8">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Talsinki heaoluruum — ettepanek arendajale">
+  <meta property="og:title" content="Talsinki Salong — Residence Lounge">
   <meta property="og:description" content="24-kuuline teenusmudel, elanike kasutus, avalik rent ja jätkamise tingimused.">
-  <title>Talsinki heaoluruum — ettepanek arendajale | The List</title>
+  <title>Talsinki Salong — Residence Lounge | The List</title>
   <style>
     :root {
       --ink: #090909;
@@ -1628,6 +1628,16 @@
       font: 650 clamp(36px, 6vw, 58px)/1.06 "Avenir Next", Avenir, Inter, sans-serif;
       letter-spacing: -.04em;
     }
+    .simple-title-sub {
+      display: block;
+      margin-top: 10px;
+      color: #8e5543;
+      font-size: clamp(15px, 2vw, 21px);
+      font-weight: 800;
+      letter-spacing: .12em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
     .simple-lead {
       max-width: 720px;
       margin: 20px 0 0;
@@ -1659,6 +1669,40 @@
       text-transform: uppercase;
     }
     .simple-fact strong { font-size: 17px; }
+    .simple-hero-visual {
+      position: relative;
+      margin: 34px 0 0;
+      overflow: hidden;
+      border: 1px solid #171717;
+      background: #d9d0c3;
+    }
+    .simple-hero-visual img {
+      display: block;
+      width: 100%;
+      height: clamp(300px, 42vw, 520px);
+      object-fit: cover;
+      object-position: center;
+    }
+    .simple-hero-visual figcaption {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      max-width: 420px;
+      padding: 12px 15px;
+      border: 1px solid rgba(255,255,255,.5);
+      background: rgba(17,17,15,.76);
+      color: #fff;
+      font-size: 11px;
+      line-height: 1.45;
+      backdrop-filter: blur(8px);
+    }
+    .simple-hero-visual figcaption strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 12px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
 
     .simple-page .jump-nav {
       border-bottom: 1px solid #171717;
@@ -2008,6 +2052,9 @@
       .simple-fact:nth-child(2) { border-right: 0; }
       .simple-fact:nth-child(-n+2) { border-bottom: 1px solid #c9c4b8; }
       .simple-fact:nth-child(3) { padding-left: 0; }
+      .simple-hero-visual { margin-top: 24px; }
+      .simple-hero-visual img { height: 280px; }
+      .simple-hero-visual figcaption { right: 12px; bottom: 12px; left: 12px; max-width: none; }
       .simple-section { padding: 50px 0; }
       .payment-grid, .simple-grid, .responsibility-grid, .simple-checklist { grid-template-columns: 1fr; }
       .payment-card > p { min-height: 0; }
@@ -2043,17 +2090,25 @@
         <div class="simple-date">Ettepanek · november 2026</div>
       </div>
 
-      <h1 class="simple-title">Talsinki heaoluruumi ettepanek</h1>
+      <h1 class="simple-title">Talsinki Salong<span class="simple-title-sub">Residence Lounge</span></h1>
       <p class="simple-lead">
-        Talsinki ehitab valmis eraldi äriruumi. The List rendib ja sisustab selle ning pakub elanikele 24 kuud heaoluruumi teenust. Seejärel otsustab korteriühistu, kas teenus jätkub.
+        Talsinki ehitab valmis eraldi äriruumi. The List loob sinna esindusliku elanike salongi, finantseerib sisustuse ja opereerib seda 24 kuud. Seejärel otsustab korteriühistu, kas teenus jätkub.
       </p>
 
       <div class="simple-facts">
-        <div class="simple-fact"><span>Ruumi suurus</span><strong>~120 m²</strong></div>
+        <div class="simple-fact"><span>Käivitustasu</span><strong>20 000 € + km</strong></div>
+        <div class="simple-fact"><span>Kuutasu</span><strong>12 705 € + km</strong></div>
         <div class="simple-fact"><span>Teenuse periood</span><strong>24 kuud</strong></div>
-        <div class="simple-fact"><span>24 kuu hind</span><strong>304 920 € + km</strong></div>
-        <div class="simple-fact"><span>Makse kuus</span><strong>12 705 € + km</strong></div>
+        <div class="simple-fact"><span>Lepingu kogumaht</span><strong>324 920 € + km</strong></div>
       </div>
+
+      <figure class="simple-hero-visual">
+        <img src="./assets/talsinki-salong-concept.jpg" width="1280" height="720" alt="Talsinki Salongi kontseptsioonivisuaal merevaate, avatud köögi, söögilaua ja lounge-alaga">
+        <figcaption>
+          <strong>Talsinki Salong · kontseptsioonivisuaal</strong>
+          Admiraliteedi basseini, mereäärse elu ja Talsinki põhjamaise materjalikäsitluse inspiratsioon.
+        </figcaption>
+      </figure>
     </div>
   </header>
 
@@ -2106,26 +2161,26 @@
       <div class="wrap">
         <div class="simple-heading">
           <p class="simple-eyebrow">Esimesed 24 kuud</p>
-          <h2>Üks fikseeritud hind kogu 24 kuu teenuse eest</h2>
-          <p>Teenuse koguhind on 304 920 € + käibemaks. Arendaja tasub selle 24 võrdses kuumakses, igaüks 12 705 € + käibemaks, sõltumata korterite müügist. Periood algab valmis ruumi elanikele üleandmisest. Hinna arvutamise alus on 9 240 m² korteripinda, kuid pakkumine on üks terviklik 24 kuu teenus.</p>
+          <h2>Käivitustasu ja fikseeritud hind 24 kuu teenuse eest</h2>
+          <p>Lepingu kogumaht on 324 920 € + käibemaks. Sellest 20 000 € on ühekordne kontseptsiooni- ja käivitustasu ning 304 920 € on 24 kuu teenuse hind. Arendaja tasub teenuse eest 24 võrdses kuumakses, igaüks 12 705 € + käibemaks, sõltumata korterite müügist. Teenuse periood algab valmis salongi elanikele üleandmisest.</p>
         </div>
 
         <div class="simple-results">
           <div class="simple-result">
-            <span>24 kuu teenuse hind</span><strong>304 920 €</strong>
-            <small>+ käibemaks</small>
+            <span>Kontseptsioon ja käivitus</span><strong>20 000 €</strong>
+            <small>ühekordselt + käibemaks</small>
           </div>
           <div class="simple-result">
             <span>Makse kuus</span><strong>12 705 €</strong>
             <small>24 kuud + käibemaks</small>
           </div>
           <div class="simple-result">
-            <span>Talsinkile laekuv ruumirent</span><strong>72 000 €</strong>
-            <small>24 kuu jooksul</small>
+            <span>24 kuu teenuse hind</span><strong>304 920 €</strong>
+            <small>+ käibemaks</small>
           </div>
           <div class="simple-result">
-            <span>Teenuse netokulu Talsinkile</span><strong>232 920 €</strong>
-            <small>pärast ruumirendi mahaarvamist</small>
+            <span>Lepingu kogumaht</span><strong>324 920 €</strong>
+            <small>+ käibemaks</small>
           </div>
         </div>
 
@@ -2152,16 +2207,33 @@
               <div class="simple-row"><span>10% juurdehindlus</span><b>1 155 €</b></div>
               <div class="simple-row total"><span>Kuuarve</span><b>12 705 €</b></div>
               <div class="simple-row"><span>Kalkulatsiooni alus 9 240 m² peale</span><b>1,375 €/m² kuus</b></div>
-              <div class="simple-row"><span>24 kuu arved</span><b>304 920 €</b></div>
+              <div class="simple-row"><span>24 kuu teenus</span><b>304 920 €</b></div>
+              <div class="simple-row"><span>Kontseptsiooni- ja käivitustasu</span><b>20 000 €</b></div>
+              <div class="simple-row total"><span>Lepingu kogumaht</span><b>324 920 €</b></div>
               <div class="simple-row"><span>Talsinkile tagasi laekuv üür</span><b>−72 000 €</b></div>
-              <div class="simple-row total"><span>Teenuse netokulu Talsinkile</span><b>232 920 €</b></div>
+              <div class="simple-row total"><span>Lepingu netokulu Talsinkile</span><b>252 920 €</b></div>
             </div>
           </article>
         </div>
 
         <div class="plain-note">
-          <strong>Ligikaudu 60 000 € ruumi väljaehituskulu on teenustasust eraldi Talsinki investeering.</strong> Kui arvestada ka see, on Talsinki esimese 24 kuu kogupanus ligikaudu 292 920 € enne avaliku rendi võimalikku tulu.
+          <strong>Ligikaudu 60 000 € ruumi väljaehituskulu on lepingutasust eraldi Talsinki investeering.</strong> Kui arvestada ka see, on Talsinki esimese 24 kuu kogupanus ligikaudu 312 920 € enne avaliku rendi võimalikku tulu.
         </div>
+
+        <details class="simple-details">
+          <summary>Mida sisaldab kontseptsiooni- ja käivitustasu?</summary>
+          <div class="simple-details-body">
+            <ul class="plain-list">
+              <li>Talsinki Salongi kontseptsioon, teenusemudel ja nimeidentiteet;</li>
+              <li>ruumi funktsionaalne lähteülesanne ning sisekujunduse koordineerimine;</li>
+              <li>mööbli, köögi, tehnika, heli, nõude ja muu sisustuse hankimise juhtimine;</li>
+              <li>broneerimis- ja ligipääsulahenduse seadistamine ning kasutusreeglid;</li>
+              <li>koristuse, klienditoe ja avaliku rendi tööprotsesside loomine;</li>
+              <li>avamise projektijuhtimine ja salongi kasutusse andmine.</li>
+            </ul>
+            <p style="margin:14px 0 0;color:#55534d;font-size:13px;line-height:1.6">Tasu ei sisalda arhitektuuri- ja eriosade projekte, lubasid ega Talsinki tellitavaid ehitustöid. Käivitustasu ei sõltu avaliku rendi mahust.</p>
+          </div>
+        </details>
 
         <details class="simple-details">
           <summary>Sisustuse liisingu eeldus</summary>
@@ -2299,10 +2371,10 @@
 
         <div class="simple-checklist">
           <div class="simple-check"><i>1</i><div><b>Eraldi äriruum</b><span>Ruum ei muutu maja kaasomandiks ning seda võib avalikult välja rentida ja hiljem muul otstarbel kasutada.</span></div></div>
-          <div class="simple-check"><i>2</i><div><b>Müügilubadus</b><span>„Heaoluruum on 24 kuud arendaja kulul, edasi vastavalt korteriühistu otsusele.“</span></div></div>
+          <div class="simple-check"><i>2</i><div><b>Müügilubadus</b><span>„Talsinki Salong ehk Residence Lounge on 24 kuud arendaja kulul, edasi vastavalt korteriühistu otsusele.“</span></div></div>
           <div class="simple-check"><i>3</i><div><b>Tehniline valmisolek</b><span>Väljatõmme katusele, rasvapüüdur, piisav elektrivõimsus ja eraldi sissepääs tänavalt.</span></div></div>
           <div class="simple-check"><i>4</i><div><b>Ruumirent</b><span>Arvestus lähtub 3 000 € kuurendist ka pärast 24. kuud. Võimalik madalam üür vajab Talsinkiga eraldi kokkulepet.</span></div></div>
-          <div class="simple-check"><i>5</i><div><b>Arendaja garantii</b><span>304 920 € koguhind tasutakse 24 võrdses 12 705 € kuumakses sõltumata korterite müügist. Periood algab üleandmisel ja arendajast tingitud viivituse kulud hüvitatakse.</span></div></div>
+          <div class="simple-check"><i>5</i><div><b>Arendaja garantii</b><span>20 000 € käivitustasu makstakse lepingu sõlmimisel ning 304 920 € teenusehind 24 võrdses 12 705 € kuumakses sõltumata korterite müügist. Periood algab üleandmisel ja arendajast tingitud viivituse kulud hüvitatakse.</span></div></div>
           <div class="simple-check"><i>6</i><div><b>Avalik rent</b><span>Lubatud ajad, hinnastamine, otsesed kulud ja netotulu kasutamine tuleb lepingus määrata.</span></div></div>
           <div class="simple-check"><i>7</i><div><b>Sisustus ja liising</b><span>Vara kuulub The Listile; rahastatavad esemed, sissemakse, tasud ja nulljääk vajavad kinnitamist.</span></div></div>
           <div class="simple-check"><i>8</i><div><b>Väljumisõigus</b><span>The List saab lepingu lõpetada 24. kuul ja pärast seda kord aastas kokkulepitud etteteatamisega.</span></div></div>
@@ -2315,10 +2387,11 @@
               <li>Ruumi suurus on arvutuses 120 m² ja Talsinki väljaehituse esialgne hinnang 500 €/m² ehk 60 000 €.</li>
               <li>100 000 € sisustuse liisingu 4 477 € kuumakse vastab ligikaudu 7% aastaintressile. Koos 123 € puhvriga on rahastamise kuueelarve 4 600 €.</li>
               <li>Teenustasu aluseks on 11 550 € kuukulu, millele lisandub 10% juurdehindlus. See ei tähenda 10% puhaskasumimarginaali.</li>
-              <li>24 kuu teenuse koguhind on 304 920 € + käibemaks ning see tasutakse 24 võrdses 12 705 € kuumakses. Kalkulatsiooni alus on 1,375 €/m² kuus.</li>
+              <li>20 000 € kontseptsiooni- ja käivitustasu tasutakse lepingu sõlmimisel. Koos 304 920 € teenusehinnaga on lepingu kogumaht 324 920 € + käibemaks.</li>
+              <li>24 kuu teenusehind tasutakse 24 võrdses 12 705 € kuumakses. Kalkulatsiooni alus on 1,375 €/m² kuus.</li>
               <li>Pärast 24. kuud eeldavad näited 30 või 50 avalikult välja renditud tundi kuus. Hind on 100 € + käibemaks tunnis ja minimaalne broneering kolm tundi. Näidetes on keskmine broneering viis tundi ning selle arvestuslik netotulu 450 €.</li>
               <li>Kohviku või restorani tehniline valmisolek ei taga veel kasutusluba. Kasutusotstarve, tuleohutus, müra, ventilatsioon ja muud load tuleb enne ehitamist üle kontrollida.</li>
-              <li>Müügilepingute ja müügimaterjalide heaoluruumi sõnastus vajab juriidilist kontrolli.</li>
+              <li>Müügilepingute ja müügimaterjalide Talsinki Salongi sõnastus vajab juriidilist kontrolli.</li>
               <li>Arvutus eeldab, et The List saab ostudelt tasutud käibemaksu tagasi arvestada.</li>
               <li>Avaliku rendi ja broneeringute tulu ei ole garanteeritud ning jätkamise pakkumine tehakse tegelike andmete põhjal.</li>
               <li>Kõik ärikliendi summad on käibemaksuta; elanike hinnad on näidatud koos käibemaksuga.</li>
