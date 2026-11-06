@@ -42,9 +42,14 @@
     .status.ok span,.status.ok small,.status.ok strong{color:var(--forest2)}
     .status strong{display:block;margin:3px 0;color:var(--red);font-size:24px}
     .presets{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:26px 0 18px}
-    .presets button{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border:1px solid var(--line);border-radius:11px;background:transparent;cursor:pointer}
+    .presets button{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border:1px solid var(--line);border-radius:11px;background:transparent;cursor:pointer;text-align:left}
     .presets button.on{border-color:var(--forest);background:var(--forest);color:#fff}
     .presets span{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase}.presets button.on span{color:rgba(255,255,255,.68)}
+    .presets.scenarios{grid-template-columns:repeat(5,1fr)}
+    .presets.scenarios button{flex-direction:column;align-items:flex-start;gap:4px;padding:14px}
+    .presets.scenarios strong{font-size:15px}
+    .presets.scenarios small{color:var(--forest2);font-size:11px;font-weight:700}
+    .presets.scenarios button.on small{color:var(--mint)}
     .range{display:grid;grid-template-columns:40px 1fr 48px auto;gap:12px;align-items:center;color:var(--muted);font-size:10px}
     .range input[type=range]{width:100%;accent-color:var(--forest2)}
     .range input[type=number]{width:150px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--paper);color:var(--ink);font-size:14px;font-weight:700}
@@ -146,18 +151,19 @@
   </section>
 
   <section class="model"><div class="wrap"><div class="model-card">
-    <div class="model-head"><div><p class="kicker">1. Vali kaardiomanike arv ja etapp</p><h2><span data-cards>1 000</span> kaardiomanikku</h2></div><div class="status" id="status"><span>Kuine tulemus</span><strong id="net">−3 279 €</strong><small id="net-caption">kulud ületavad tulu 3 279 € võrra</small></div></div>
-    <div class="presets">
-      <button data-preset="300"><span>Piloot</span><strong>300</strong></button>
-      <button class="on" data-preset="1000"><span>Kutsetega algus</span><strong>1 000</strong></button>
-      <button data-preset="5000"><span>Kasv</span><strong>5 000</strong></button>
-      <button data-preset="50000"><span>Linn liitub</span><strong>50 000</strong></button>
+    <div class="model-head"><div><p class="kicker">Kliki teekonna sammul: käivitus → nullpunkt → kasum</p><h2><span data-cards>1 000</span> kaardiomanikku</h2></div><div class="status" id="status"><span>Kuine tulemus</span><strong id="net">−3 279 €</strong><small id="net-caption">kulud ületavad tulu 3 279 € võrra</small></div></div>
+    <div class="presets scenarios">
+      <button data-scenario="start-free"><span>1. Käivitus · kuni 31.01</span><strong>1 000 kaarti · 0 €</strong><small id="sc-free-res">−7 110 € / kuu</small></button>
+      <button class="on" data-scenario="start-paid"><span>2. Veebruar · 4,75 €/kuu</span><strong>1 000 kaarti · resto 0%</strong><small id="sc-paid-res">−3 279 € / kuu</small></button>
+      <button data-scenario="be-0"><span>3. Nullis · ainult kuutasu</span><strong id="sc-be0-cards">2 051 kaarti · 4,75 €</strong><small id="sc-be0-res">0 € / kuu (nullpunkt)</small></button>
+      <button data-scenario="be-2"><span>4. Nullis · +2% resto tasu</span><strong id="sc-be2-cards">1 314 kaarti · +2%</strong><small id="sc-be2-res">0 € / kuu (−737 kaarti)</small></button>
+      <button data-scenario="growth-5k"><span>5. Kasv · +2% resto tasu</span><strong>5 000 kaarti · +2%</strong><small id="sc-5k-res">+17 954 € / kuu</small></button>
     </div>
     <div class="range"><span>100</span><input id="volume" type="range" min="100" max="50000" step="1" value="1000" aria-label="Aktiivsete kasutajate arv"><span>50 000</span><input id="volume-free" type="number" min="100" max="60000" step="100" value="1000" aria-label="Kirjuta kasutajate arv ise" title="Kirjuta arv ise (kuni 60 000 — erihind kehtib selle piirini)"></div>
     <div class="presets" style="grid-template-columns:repeat(3,1fr);margin:18px 0 10px">
-      <button data-mode="campaign"><span>1. Tasuta algus · kuni 31.01</span><strong>0 €/kuu · resto 0%</strong></button>
-      <button data-mode="membership" class="on"><span>2. Kuutasu · alates 01.02</span><strong>4,75 €/kuu · resto 0%</strong></button>
-      <button data-mode="partner2"><span>3. Kuutasu + resto tasu</span><strong>4,75 €/kuu · resto +2%</strong></button>
+      <button data-mode="campaign"><span>1. Tasuta algus · kuni 31.01</span><strong id="btn-mode-campaign">0 €/kuu · resto 0%</strong></button>
+      <button data-mode="membership" class="on"><span>2. Kuutasu · alates 01.02</span><strong id="btn-mode-membership">4,75 €/kuu · resto 0%</strong></button>
+      <button data-mode="partner2"><span>3. Kuutasu + resto 2%</span><strong id="btn-mode-partner2">4,75 €/kuu · +1 750 €/kuu</strong></button>
     </div>
     <p id="mode-note" style="margin:0;color:var(--muted);font-size:11px;line-height:1.5"></p>
     <div class="presets" style="grid-template-columns:repeat(3,1fr);margin:18px 0 10px">
@@ -202,8 +208,9 @@
       </article>
       <article class="panel"><div class="panel-head"><p class="kicker">3 etapi võrdlus samal mahul</p><h2 style="font-size:28px"><span data-cards>1 000</span> kaarti</h2></div>
       <div class="row"><span>1. Tasuta algus (0 €/kuu · resto 0%)</span><b id="cmp-campaign" class="red">−7 110 €</b><small id="cmp-campaign-note">kuni 31.01 · prooviperiood, kus meile tuleb ainult 0,65% kaarditulu</small></div>
-      <div class="row"><span>2. Kuutasu 4,75 € (resto 0%)</span><b id="cmp-membership" class="red">−3 279 €</b><small id="cmp-membership-note">alates 01.02 · nullpunkt ~2 050 liiget (3,83 € kaardi kohta pärast KM-i)</small></div>
-      <div class="row"><span>3. Kuutasu 4,75 € + resto 2%</span><b id="cmp-partner2" class="red">−1 529 €</b><small id="cmp-partner2-note">järgmine samm · nullpunkt ~1 310 liiget (restolt 10% kliendile + 2% meile)</small></div>
+      <div class="row"><span>2. Kuutasu 4,75 € (resto 0%)</span><b id="cmp-membership" class="red">−3 279 €</b><small id="cmp-membership-note">alates 01.02 · nullis 2 051 kaardiga (meile 3,83 € kaardi kohta)</small></div>
+      <div class="row"><span>3. Kuutasu 4,75 € + resto 2%</span><b id="cmp-partner2" class="red">−1 529 €</b><small id="cmp-partner2-note">nullis juba 1 314 kaardiga (737 kaarti vähem)</small></div>
+      <div class="total"><span>Mis +2% resto tasu meile juurde annab</span><b id="cmp-extra">+1 750 € / kuu</b><small id="cmp-extra-note">+21 000 € aastas samal mahul · 5 000 kaardiga +8 750 €/kuu (+105 000 €/a)</small></div>
       </article>
     </div>
     <article class="panel build-scope">
@@ -367,25 +374,25 @@
   </div></section>
 
   <section class="section"><div class="wrap">
-    <div class="heading"><div><p class="kicker">Peatükk 2 — 3 sammu plaan</p><h2>Kuidas me kaardi käivitame ja kasumisse viime?</h2></div><p>Mudel on meelega lihtne: klient saab alati 10% tagasi ja restoran katab selle 10%. Me ei alusta keeruliste tasemetega, vaid liigume kolmes selges etapis: tasuta prooviperiood, 4,75 € kuutasu ja seejärel +2% restorani teenustasu.</p></div>
+    <div class="heading"><div><p class="kicker">Peatükk 2 — käivitusest kasumini</p><h2>Kui palju me igas etapis kulutame ja teenime?</h2></div><p>Mudel on lihtne: klient saab alati 10% tagasi ja restoran katab selle 10%. Siin on kogu rahaline teekond alates 1 000 kaardiga käivitusest kuni 5 000 ja 10 000 kaardiga kasumini.</p></div>
     <div class="tiers">
       <article class="tier"><span class="tier-tag">Alati</span><h3>Kliendi võit</h3><div class="pct">10%</div><p class="tier-sub">igalt ostult tagasi</p>
-        <ul><li>Üks selge reegel, tasemeid ei ole</li><li>Restoran rahastab 10% cashback'i</li><li>Raha laekub STAATUSE kaardile</li></ul>
+        <ul><li>Üks selge reegel, tasemeid ei ole</li><li>Restoran katab 10% cashback'i</li><li>Keskmine ostja saab 12,50 €/kuu tagasi</li></ul>
       </article>
-      <article class="tier"><span class="tier-tag">1. etapp · kuni 31.01</span><h3>Tasuta algus</h3><div class="pct">0 €</div><p class="tier-sub">kuutasu prooviperioodil</p>
+      <article class="tier"><span class="tier-tag">1. etapp · kuni 31.01</span><h3>Tasuta algus</h3><div class="pct">0 €</div><p class="tier-sub">1 000 kaarti = −7 110 €/kuu</p>
         <ul><li>Kutsutud kliendid proovivad tasuta</li><li>Restorani teenustasu on 0%</li><li>Eesmärk: harjumus ja käibe tõestus</li></ul>
       </article>
-      <article class="tier mint"><span class="tier-tag">2. etapp · alates 01.02</span><h3>Kuutasu</h3><div class="pct">4,75 €</div><p class="tier-sub">kuus koos KM-ga (meile 3,83 €)</p>
-        <ul><li>10% tagasi kehtib kaardiomanikule</li><li>Hind on liitumisel kohe teada</li><li>Katab kaardi- ja maksekulud</li></ul>
+      <article class="tier mint"><span class="tier-tag">2. etapp · alates 01.02</span><h3>Kuutasu</h3><div class="pct">4,75 €</div><p class="tier-sub">nullis 2 051 kaardiga (0 €/kuu)</p>
+        <ul><li>Meile jääb 3,83 €/kuu kaardi kohta</li><li>1 000 kaardiga on kulu −3 279 €/kuu</li><li>5 000 kaardiga kasum +9 204 €/kuu</li></ul>
       </article>
-      <article class="tier black"><span class="tier-tag">3. etapp · kasv</span><h3>Resto tasu</h3><div class="pct">+2%</div><p class="tier-sub">teenustasu restoranilt</p>
-        <ul><li>Restoran maksab kokku 12%</li><li>10% läheb kliendile, 2% jääb meile</li><li>Nullpunkt langeb ~1 315 liikmeni</li></ul>
+      <article class="tier black"><span class="tier-tag">3. etapp · lisatulu</span><h3>Resto tasu</h3><div class="pct">+2%</div><p class="tier-sub">+1 750 €/kuu iga 1 000 kaardi kohta</p>
+        <ul><li>Resto maksab 12% (10% kliendile + 2% meile)</li><li>Nullpunkt langeb 2 051 → 1 314 kaardini</li><li>5 000 kaardiga: +8 750 €/kuu (+105 000 €/a) lisaks</li></ul>
       </article>
     </div>
     <div class="purchase-sum" style="margin-top:14px">
-      <div><span>1. Tasuta algus (kuni 31.01)</span><strong class="red">−7 110 € / kuu</strong><small>1 000 kaarti, 0 € kuutasu, resto 0%. Teadlik kliendihanke kulu prooviperioodil.</small></div>
-      <div><span>2. Kuutasu 4,75 € (resto 0%)</span><strong class="red">−3 279 € / kuu</strong><small>1 000 kaarti. Nullpunkt on ~2 050 liiget; 5 000 liikmega on tulemus +9 204 € kuus.</small></div>
-      <div><span>3. Kuutasu 4,75 € + resto 2%</span><strong class="green">~1 315 liiget nullini</strong><small>1 000 kaardiga on kuu tulemus −1 529 €; 5 000 liikmega juba +17 954 € kuus.</small></div>
+      <div><span>1. Käivitus (1 000 kaarti)</span><strong class="red">−7 110 € → −3 279 €</strong><small>Tasuta alguses (kuni 31.01) on kulu −7 110 €/kuu. Veebruarist (4,75 €/kuu) langeb miinus −3 279 € peale ja koos +2% resto tasuga −1 529 € peale.</small></div>
+      <div><span>2. Nullpunkt (millal oleme 0 € peal)</span><strong class="green">2 051 → 1 314 kaarti</strong><small>Ainult 4,75 € kuutasuga jõuame nulli 2 051 kaardiga. Koos +2% resto tasuga juba 1 314 kaardiga (ja 2 051 kaardi juures teenime siis +3 591 €/kuu).</small></div>
+      <div><span>3. Kasum 5 000 ja 10 000 kaardiga</span><strong class="green">+17 954 € → +42 309 € / kuu</strong><small>5 000 kaardiga teenime 4,75 € kuutasuga +9 204 €/kuu ja koos +2% resto tasuga +17 954 €/kuu (+215 450 €/a). 10 000 kaardiga +42 309 €/kuu (+507 700 €/a).</small></div>
     </div>
     <div class="phases">
       <article class="phase on"><span class="phase-dot"></span><small>15. detsember 2026 – 31. jaanuar 2027</small><h3>1. Tasuta prooviperiood</h3><p>Kutsutud liikmed saavad 10% cashback'i ilma kuutasuta. Restoranilt küsime ainult kliendile mineva 10%.</p></article>
@@ -431,14 +438,17 @@
     function launchExtraNow(){
       return readNum('[data-launch="build"]',40000)+readNum('[data-launch="opening"]',4000);
     }
+    function netAtCards(c,P,ops,memberGross,feeRate){
+      const actives=Math.round(c*P.share),tx=actives*P.tx,gmv=tx*P.avg;
+      const income=gmv*feeRate+gmv*A.interchange*A.share+c*(memberGross/(1+A.vat));
+      const wall=A.maintenance+c*A.active+tx*A.attempts*A.auth+gmv*A.appleShare*A.applePos+c*A.appleShare*A.appleQuarter/3+gmv*A.cardRate+tx*A.cardFixed+A.cardMonthly;
+      return income-(wall+ops);
+    }
     function breakEvenCards(P,ops,memberGross,feeRate){
-      const gmvPerCard=P.share*P.tx*P.avg;
-      const txPerCard=P.share*P.tx;
-      const varCost=A.active+txPerCard*A.attempts*A.auth+gmvPerCard*A.appleShare*A.applePos+A.appleShare*A.appleQuarter/3+gmvPerCard*A.cardRate+txPerCard*A.cardFixed;
-      const varRev=memberGross/(1+A.vat)+gmvPerCard*(feeRate+A.interchange*A.share);
-      const margin=varRev-varCost;
-      if(margin<=0)return null;
-      return Math.ceil((A.maintenance+ops+A.cardMonthly)/margin/10)*10;
+      for(let c=100;c<=60000;c++){
+        if(netAtCards(c,P,ops,memberGross,feeRate)>=0)return c;
+      }
+      return null;
     }
     function update(cards){
       const M=MODES[mode],cbRate=M.cashback,merchantRate=M.merchant,feeRate=merchantRate-cbRate,P=PROFILES[profile];
@@ -452,6 +462,7 @@
       const netCampaign=interchange-totalCost;
       const netMembership=cards*paidFeeNet+interchange-totalCost;
       const netPartner2=cards*paidFeeNet+gmv*.02+interchange-totalCost;
+      const extra2=gmv*.02;
       const beMembership=breakEvenCards(P,ops,4.75,0);
       const bePartner2=breakEvenCards(P,ops,4.75,.02);
       const yearWall=A.maintenance*A.contract+(cardCost+authCost)*A.live+A.setup+issue+A.appleSetup+(applePaymentCost+appleCardCost)*A.live+funding.variable*A.live+funding.monthly*A.contract;
@@ -464,18 +475,38 @@
       setText("#wall",money(totalCost));
       setText("#cost-note","kaardid "+money(wall)+" + tegevus "+money(ops));
       const signed=(n)=>(n>=0?"+":"−")+money(Math.abs(n));
-      setText("#balance",signed(net));setText("#net",signed(net));setText("#net-caption",net>=0?"tulu ületab kulusid "+money(net)+" võrra":"kulud ületavad tulu "+money(Math.abs(net))+" võrra");
+      const isBreakEven=Math.abs(net)<5&&M.memberGross>0;
+      setText("#balance",isBreakEven?"0 €":signed(net));
+      setText("#net",isBreakEven?"0 €":signed(net));
+      setText("#net-caption",isBreakEven?"tulud ja kulud on nullis":net>=0?"igakuine kasum ("+money(net*12)+" aastas)":"kulud ületavad tulu "+money(Math.abs(net))+" võrra");
       const beNow=breakEvenCards(P,ops,M.memberGross,feeRate);
-      setText("#balance-note",beNow?"nullpunkt ~"+count(beNow)+" liiget":"prooviperiood (0 € kuutasu)");
-      setText("#net2",signed(net));
-      setText("#net3",signed(net));
+      setText("#balance-note",isBreakEven?"täpne nullpunkt valitud etapil":beNow?(net>=0?"üle nullpunkti ("+count(beNow)+" kaarti)":"nullpunktini veel "+count(Math.max(0,beNow-cards))+" kaarti (kokku "+count(beNow)+")"):"prooviperiood (0 € kuutasu)");
+      setText("#net2",isBreakEven?"0 €":signed(net));
+      setText("#net3",isBreakEven?"0 €":signed(net));
       const netTotal=one("#net-total");if(netTotal)netTotal.classList.toggle("cost",net<0);
       const status=one("#status");status.classList.toggle("ok",net>=0);one("#balance").className=net>=0?"green":"red";
       [["#cmp-campaign",netCampaign],["#cmp-membership",netMembership],["#cmp-partner2",netPartner2]].forEach(([id,val])=>{
-        const el=one(id);if(el){el.textContent=signed(val);el.className=val>=0?"green":"red"}
+        const el=one(id);if(el){el.textContent=Math.abs(val)<5&&id!=="#cmp-campaign"?"0 €":signed(val);el.className=val>=0?"green":"red"}
       });
-      setText("#cmp-membership-note","alates 01.02 · nullpunkt ~"+count(beMembership)+" liiget (meile "+cents(paidFeeNet)+" kaardi kohta)");
-      setText("#cmp-partner2-note","koos 2% resto tasuga · nullpunkt ~"+count(bePartner2)+" liiget (restolt 10% + 2%)");
+      setText("#cmp-membership-note","alates 01.02 · nullis "+count(beMembership)+" kaardiga (meile "+cents(paidFeeNet)+" kaardi kohta)");
+      setText("#cmp-partner2-note","nullis juba "+count(bePartner2)+" kaardiga ("+count(beMembership-bePartner2)+" kaarti vähem)");
+      setText("#cmp-extra","+"+money(extra2)+" / kuu");
+      setText("#cmp-extra-note","+"+money(extra2*12)+" aastas samal mahul ("+count(cards)+" kaarti) · 5 000 kaardiga +"+money(netAtCards(5000,P,ops,4.75,.02)-netAtCards(5000,P,ops,4.75,0))+"/kuu");
+      setText("#btn-mode-partner2","4,75 €/kuu · resto +2% (+"+money(extra2)+"/kuu)");
+      setText("#sc-free-res",signed(netAtCards(1000,P,ops,0,0))+" / kuu");
+      setText("#sc-paid-res",signed(netAtCards(1000,P,ops,4.75,0))+" / kuu");
+      setText("#sc-be0-cards",count(beMembership)+" kaarti · 4,75 €");
+      setText("#sc-be0-res","0 € / kuu (nullis)");
+      setText("#sc-be2-cards",count(bePartner2)+" kaarti · +2%");
+      setText("#sc-be2-res","0 € / kuu (−"+count(beMembership-bePartner2)+" kaarti)");
+      setText("#sc-5k-res",signed(netAtCards(5000,P,ops,4.75,.02))+" / kuu");
+      const activeScenario=
+        mode==="campaign"&&cards===1000?"start-free":
+        mode==="membership"&&cards===1000?"start-paid":
+        mode==="membership"&&cards===beMembership?"be-0":
+        mode==="partner2"&&cards===bePartner2?"be-2":
+        mode==="partner2"&&cards===5000?"growth-5k":"";
+      all("[data-scenario]").forEach(b=>b.classList.toggle("on",b.dataset.scenario===activeScenario));
       ["#merchant","#merchant2"].forEach(id=>setText(id,money(merchant)));["#interchange","#interchange2"].forEach(id=>setText(id,money(interchange)));
       ["#member-fees","#member-fees2"].forEach(id=>setText(id,money(memberFees)));
       setText("#member-fee-label",M.memberGross?"4,75 €/kuu koos KM-ga = "+cents(memberFeeNet)+" netos":"1. etapis kuutasu ei ole (0 €)");
@@ -511,15 +542,21 @@
       if(one("#ops2"))setText("#ops2",money(ops));if(one("#ops3"))setText("#ops3",money(ops));if(one("#ops4"))setText("#ops4",money(ops));
       if(one("#launch2"))setText("#launch2",money(launchTotal));if(one("#launch3"))setText("#launch3",money(launchTotal));
       if(one("#year-copy-p"))setText("#year-copy-p","Aasta sees: kaardid ja tegevuskulu "+money(ops)+" × 12, lansseerimine "+money(launchTotal)+" ning ostud "+A.live+" kuul. Esimesed "+A.freeLive+" kuud on tasuta kampaania ja järgmised "+A.paidLive+" kuud "+(mode==="partner2"?"4,75 € kuutasu + 2% restorani teenustasu.":"4,75 € kuutasu (resto tasu 0%)."));
-      all("[data-preset]").forEach(b=>b.classList.toggle("on",Number(b.dataset.preset)===cards));
     }
     const slider=one("#volume"),free=one("#volume-free");
     let cardsNow=1000;
-    function setCards(cards){cardsNow=Math.max(100,Math.min(60000,Math.round(cards)));slider.value=Math.min(cardsNow,50000);update(cardsNow)}
-    slider.addEventListener("input",e=>{free.value=e.target.value;setCards(Number(e.target.value))});
-    free.addEventListener("input",e=>{const v=Number(e.target.value);if(v>=100)setCards(v)});
-    free.addEventListener("change",e=>{const v=Math.max(100,Math.min(60000,Number(e.target.value)||100));free.value=v;setCards(v)});
-    all("[data-preset]").forEach(b=>b.addEventListener("click",()=>{free.value=b.dataset.preset;setCards(Number(b.dataset.preset))}));
+    function setCards(cards){cardsNow=Math.max(100,Math.min(60000,Math.round(cards)));slider.value=Math.min(cardsNow,50000);free.value=cardsNow;update(cardsNow)}
+    slider.addEventListener("input",e=>setCards(Number(e.target.value)));
+    free.addEventListener("input",e=>{const v=Number(e.target.value);if(v>=100){cardsNow=Math.max(100,Math.min(60000,Math.round(v)));slider.value=Math.min(cardsNow,50000);update(cardsNow)}});
+    free.addEventListener("change",e=>setCards(Number(e.target.value)||100));
+    all("[data-scenario]").forEach(b=>b.addEventListener("click",()=>{
+      const P=PROFILES[profile],ops=opsNow(),s=b.dataset.scenario;
+      if(s==="start-free"){mode="campaign";setCards(1000)}
+      else if(s==="start-paid"){mode="membership";setCards(1000)}
+      else if(s==="be-0"){mode="membership";setCards(breakEvenCards(P,ops,4.75,0)||2051)}
+      else if(s==="be-2"){mode="partner2";setCards(breakEvenCards(P,ops,4.75,.02)||1314)}
+      else if(s==="growth-5k"){mode="partner2";setCards(5000)}
+    }));
     all("[data-mode]").forEach(b=>b.addEventListener("click",()=>{mode=b.dataset.mode;update(cardsNow)}));
     all("[data-profile]").forEach(b=>b.addEventListener("click",()=>{profile=b.dataset.profile;update(cardsNow)}));
     all("input.euro:not([readonly])").forEach(el=>el.addEventListener("input",()=>update(cardsNow)));
