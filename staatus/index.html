@@ -41,22 +41,18 @@
     .status span,.status small{display:block;color:#87574f;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
     .status.ok span,.status.ok small,.status.ok strong{color:var(--forest2)}
     .status strong{display:block;margin:3px 0;color:var(--red);font-size:24px}
-    .presets{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:26px 0 18px}
-    .presets button{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border:1px solid var(--line);border-radius:11px;background:transparent;cursor:pointer;text-align:left}
+    .presets{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:18px 0 12px}
+    .presets button{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border:1px solid var(--line);border-radius:11px;background:transparent;cursor:pointer;text-align:left}
     .presets button.on{border-color:var(--forest);background:var(--forest);color:#fff}
     .presets span{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase}.presets button.on span{color:rgba(255,255,255,.68)}
-    .presets.scenarios{grid-template-columns:repeat(5,1fr)}
-    .presets.scenarios button{flex-direction:column;align-items:flex-start;gap:4px;padding:14px}
-    .presets.scenarios strong{font-size:15px}
-    .presets.scenarios small{color:var(--forest2);font-size:11px;font-weight:700}
-    .presets.scenarios button.on small{color:var(--mint)}
+    .presets strong{font-size:14px;white-space:nowrap}
     .range{display:grid;grid-template-columns:40px 1fr 48px auto;gap:12px;align-items:center;color:var(--muted);font-size:10px}
     .range input[type=range]{width:100%;accent-color:var(--forest2)}
-    .range input[type=number]{width:150px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--paper);color:var(--ink);font-size:14px;font-weight:700}
+    .range input[type=number]{width:130px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--paper);color:var(--ink);font-size:14px;font-weight:700}
     .range input[type=number]:focus{border-color:var(--forest2);outline:none}
-    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:24px;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--line)}
-    .metric{padding:20px;background:var(--paper)}.metric span,.metric small{display:block}.metric span{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase}
-    .metric strong{display:block;margin:8px 0 5px;font:400 29px Georgia;letter-spacing:-.035em}.metric small{min-height:30px;color:#829092;font-size:11px;line-height:1.4}
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:20px;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--line)}
+    .metric{padding:18px 20px;background:var(--paper)}.metric span,.metric small{display:block}.metric span{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase}
+    .metric strong{display:block;margin:6px 0 4px;font:400 28px Georgia;letter-spacing:-.035em}.metric small{color:#829092;font-size:11px;line-height:1.35}
     .green{color:var(--forest2)}.red{color:var(--red)}
     .section{padding:92px 0}.heading{display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:end;margin-bottom:38px}.heading>p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
     .steps{display:grid;gap:14px}
@@ -75,19 +71,19 @@
     .mv.fee{border-color:rgba(187,85,72,.2);background:var(--redp)}.mv.fee b{color:var(--red)}
     .mv.gain{border-color:rgba(20,88,76,.2);background:var(--mintp)}.mv.gain b{color:var(--forest2)}
     .mv.none{border-style:dashed;background:var(--paper)}
-    .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    .tier{position:relative;padding:28px;border:1px solid rgba(14,61,53,.12);border-radius:18px;background:var(--paper)}
+    .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+    .tier{padding:24px;border:1px solid rgba(14,61,53,.12);border-radius:18px;background:var(--paper)}
     .tier.mint{background:var(--mintp)}
     .tier.black{background:linear-gradient(150deg,#101d1b,#1c2b28);border-color:rgba(217,173,91,.45);color:#fff}
-    .tier-tag{position:absolute;top:22px;right:22px;padding:4px 10px;border-radius:99px;background:var(--goldp);color:#75541e;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .tier-tag{display:inline-block;margin-bottom:10px;padding:4px 10px;border-radius:99px;background:var(--goldp);color:#75541e;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
     .tier.black .tier-tag{background:rgba(217,173,91,.18);color:var(--gold)}
-    .tier h3{margin:0;color:var(--forest2);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .tier h3{margin:0;color:var(--forest2);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
     .tier.black h3{color:var(--gold)}
-    .tier .pct{margin:20px 0 2px;font:400 58px/1 Georgia;letter-spacing:-.04em}
-    .tier-sub{margin:0 0 20px;color:var(--muted);font-size:12px}
-    .tier.black .tier-sub{color:rgba(255,255,255,.6)}
+    .tier .pct{margin:14px 0 4px;font:400 52px/1 Georgia;letter-spacing:-.04em}
+    .tier-sub{margin:0 0 16px;color:var(--muted);font-size:12px}
+    .tier.black .tier-sub{color:rgba(255,255,255,.65)}
     .tier ul{margin:0;padding:0;list-style:none}
-    .tier li{padding:10px 0;border-top:1px solid var(--line);font-size:13px}
+    .tier li{padding:9px 0;border-top:1px solid var(--line);font-size:13px}
     .tier.black li{border-color:rgba(255,255,255,.14)}
     .phases{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
     .phases:before{content:"";position:absolute;top:7px;right:8px;left:8px;height:2px;background:var(--line)}
@@ -145,40 +141,46 @@
     <div class="wrap">
       <div class="nav"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div></div>
       <div class="hero-grid">
-        <div><p class="kicker">Rotermanni 10% kaart</p><h1>10% kliendile tagasi. 4,75 € kuus.</h1><p class="lead">Klient saab Rotermannis igalt ostult 10% tagasi ja selle 10% maksab restoran. Jaanuari lõpuni on kaart kliendile tasuta, veebruarist 4,75 € kuus (meile 3,83 € + KM) ning järgmise sammuna saame lisada restoranile 2% teenustasu.</p></div>
+        <div><p class="kicker">Rotermanni kaart</p><h1>10% kliendile tagasi. 4,75 € kuus.</h1><p class="lead">Restoran katab kliendi 10% cashback'i. Jaanuari lõpuni tasuta, veebruarist 4,75 € kuus.</p></div>
       </div>
     </div>
   </section>
 
   <section class="model"><div class="wrap"><div class="model-card">
-    <div class="model-head"><div><p class="kicker">Kliki teekonna sammul: käivitus → nullpunkt → kasum</p><h2><span data-cards>1 000</span> kaardiomanikku</h2></div><div class="status" id="status"><span>Kuine tulemus</span><strong id="net">−3 279 €</strong><small id="net-caption">kulud ületavad tulu 3 279 € võrra</small></div></div>
-    <div class="presets scenarios">
-      <button data-scenario="start-free"><span>1. Käivitus · kuni 31.01</span><strong>1 000 kaarti · kuutasu 0 €</strong><small id="sc-free-res">Tulemus: −7 110 € / kuu</small></button>
-      <button class="on" data-scenario="start-paid"><span>2. Veebruar · kuutasu 4,75 €</span><strong>1 000 kaarti · 4,75 € · resto 0%</strong><small id="sc-paid-res">Tulemus: −3 279 € / kuu</small></button>
-      <button data-scenario="be-0"><span>3. Nullpunkt · ainult 4,75 €</span><strong id="sc-be0-cards">2 051 kaarti · 4,75 € · resto 0%</strong><small id="sc-be0-res">Tulemus: 0 € (oleme nullis)</small></button>
-      <button data-scenario="be-2"><span>4. Nullpunkt · 4,75 € + 2% resto</span><strong id="sc-be2-cards">1 314 kaarti · 4,75 € + 2% resto</strong><small id="sc-be2-res">Tulemus: 0 € (737 kaarti vähem)</small></button>
-      <button data-scenario="growth-5k"><span>5. Kasv · 4,75 € + 2% resto</span><strong>5 000 kaarti · 4,75 € + 2% resto</strong><small id="sc-5k-res">Tulemus: +17 954 € / kuu</small></button>
+    <div class="model-head"><div><p class="kicker">Vali etapp või kaartide arv</p><h2><span data-cards>1 000</span> kaardiomanikku</h2></div><div class="status" id="status"><span>Kuine tulemus</span><strong id="net">−3 279 €</strong><small id="net-caption">nullpunktini veel 1 051 kaarti</small></div></div>
+    <div class="presets" style="grid-template-columns:repeat(3,1fr)">
+      <button data-mode="campaign"><span>1. Kuni 31.01</span><strong id="btn-mode-campaign">0 €/kuu · resto 0%</strong></button>
+      <button data-mode="membership" class="on"><span>2. Alates 01.02</span><strong id="btn-mode-membership">4,75 €/kuu · resto 0%</strong></button>
+      <button data-mode="partner2"><span>3. Koos resto tasuga</span><strong id="btn-mode-partner2">4,75 €/kuu + 2% resto</strong></button>
     </div>
-    <div class="range"><span>100</span><input id="volume" type="range" min="100" max="50000" step="1" value="1000" aria-label="Aktiivsete kasutajate arv"><span>50 000</span><input id="volume-free" type="number" min="100" max="60000" step="100" value="1000" aria-label="Kirjuta kasutajate arv ise" title="Kirjuta arv ise (kuni 60 000 — erihind kehtib selle piirini)"></div>
-    <div class="presets" style="grid-template-columns:repeat(3,1fr);margin:18px 0 10px">
-      <button data-mode="campaign"><span>1. Tasuta algus · kuni 31.01</span><strong id="btn-mode-campaign">0 €/kuu · resto 0%</strong></button>
-      <button data-mode="membership" class="on"><span>2. Kuutasu · alates 01.02</span><strong id="btn-mode-membership">4,75 €/kuu · resto 0%</strong></button>
-      <button data-mode="partner2"><span>3. Kuutasu + resto 2%</span><strong id="btn-mode-partner2">4,75 €/kuu · +1 750 €/kuu</strong></button>
+    <div class="presets">
+      <button class="on" data-scenario="start-paid"><span>Käivitus</span><strong>1 000 kaarti</strong></button>
+      <button data-scenario="be-2"><span>Nullis (4,75 € + 2%)</span><strong id="sc-be2-cards">1 314 kaarti</strong></button>
+      <button data-scenario="be-0"><span>Nullis (ainult 4,75 €)</span><strong id="sc-be0-cards">2 051 kaarti</strong></button>
+      <button data-scenario="growth-5k"><span>Kasv (+2% resto)</span><strong>5 000 kaarti</strong></button>
     </div>
-    <p id="mode-note" style="margin:0;color:var(--muted);font-size:11px;line-height:1.5"></p>
-    <div class="presets" style="grid-template-columns:repeat(3,1fr);margin:18px 0 10px">
-      <button data-profile="invited" class="on"><span>Kutsutud püsikliendid</span><strong>70% ostab · 5 × 25 €</strong></button>
-      <button data-profile="club"><span>Klubi keskmine</span><strong>40% ostab · 4 × 25 €</strong></button>
-      <button data-profile="mass"><span>Linna mass · LS ärijuhtum</span><strong>26% ostab · 2 × 30 €</strong></button>
-    </div>
-    <p id="profile-note" style="margin:0;color:var(--muted);font-size:11px;line-height:1.5"></p>
+    <div class="range"><span>100</span><input id="volume" type="range" min="100" max="50000" step="1" value="1000" aria-label="Aktiivsete kasutajate arv"><span>50 000</span><input id="volume-free" type="number" min="100" max="60000" step="100" value="1000" aria-label="Kirjuta kasutajate arv ise"></div>
     <div class="metrics">
-      <div class="metric"><span>Ostude kogusumma kuus</span><strong id="gmv">87 500 €</strong><small id="tx">700 ostjat × 5 × 25 €</small></div>
-      <div class="metric"><span>Tulu meile kuus</span><strong class="green" id="income">4 399 €</strong><small id="income-pct">liikmetasu 3 831 € + resto tasu 0 € + kaarditulu 569 €</small></div>
+      <div class="metric"><span>Ostude maht kuus</span><strong id="gmv">87 500 €</strong><small id="tx">700 ostjat × 125 € kuus</small></div>
+      <div class="metric"><span>Tulu meile kuus</span><strong class="green" id="income">4 399 €</strong><small id="income-pct">liikmetasu 3 831 € + kaart 569 €</small></div>
       <div class="metric"><span>Kulu meile kuus</span><strong class="red" id="wall">7 679 €</strong><small id="cost-note">kaardid 3 279 € + tegevus 4 400 €</small></div>
-      <div class="metric"><span>Kuu tulemus</span><strong class="red" id="balance">−3 279 €</strong><small id="balance-note">nullpunkt ~2 050 liiget</small></div>
     </div>
-  </div></div></section>
+  </div>
+  <div class="tiers">
+    <article class="tier"><span class="tier-tag">Põhireegel</span><h3>Kliendile</h3><div class="pct">10%</div><p class="tier-sub">igalt ostult tagasi</p>
+      <ul><li>Restoran katab 10%</li><li>Tasemeid ei ole</li></ul>
+    </article>
+    <article class="tier"><span class="tier-tag">1. Kuni 31.01</span><h3>Tasuta proov</h3><div class="pct">0 €</div><p class="tier-sub">1 000 kaarti = −7 110 €/kuu</p>
+      <ul><li>Kuutasu 0 €, resto 0%</li><li>Kliendihanke periood</li></ul>
+    </article>
+    <article class="tier mint"><span class="tier-tag">2. Alates 01.02</span><h3>Kuutasu</h3><div class="pct">4,75 €</div><p class="tier-sub">nullis 2 051 kaardiga</p>
+      <ul><li>1 000 kaarti = −3 279 €/kuu</li><li>5 000 kaarti = +9 204 €/kuu</li></ul>
+    </article>
+    <article class="tier black"><span class="tier-tag">3. Lisatulu</span><h3>4,75 € + 2% resto</h3><div class="pct">+2%</div><p class="tier-sub">nullis 1 314 kaardiga</p>
+      <ul><li>+1 750 €/kuu iga 1 000 kaardi kohta</li><li>5 000 kaarti = +17 954 €/kuu</li></ul>
+    </article>
+  </div>
+  </div></section>
 
   <section class="section economy" style="padding-top:28px"><div class="wrap">
     <div class="heading"><div><p class="kicker">Tegevus ja lansseerimine</p><h2>Need read on muudetavad</h2></div><p>Kirjuta oma number. Kuu tulemus üleval ja aasta all arvutavad kohe ümber. Wallester + Apple Pay 21 575 € on lukus.</p></div>
@@ -200,142 +202,84 @@
       </article>
     </div>
     <div class="two" style="margin-top:22px">
-      <article class="panel"><div class="panel-head"><p class="kicker">Valitud etapi kuu tulemus</p><h2 id="net2">−3 279 €</h2></div>
-      <div class="row"><span>Tulu meile</span><b id="income4">4 399 €</b><small id="income4-note">liikmetasu + restorani teenustasu + kaarditulu</small></div>
-      <div class="row"><span>Kaardi- ja maksekulu</span><b class="red" id="wall5">3 279 €</b><small>Wallester + Apple Pay + 0,7% makseteenus</small></div>
-      <div class="row"><span>Tegevuskulu</span><b class="red" id="ops4">4 400 €</b><small>read üleval vasakul, sinu numbrid</small></div>
-      <div class="total cost" id="net-total"><span>Tulu − kaardid − tegevus</span><b id="net3">−3 279 €</b><small>ühe kuu tulemus valitud etapil</small></div>
+      <article class="panel"><div class="panel-head"><p class="kicker">3 etapi võrdlus</p><h2 style="font-size:32px"><span data-cards>1 000</span> kaarti</h2></div>
+      <div class="row"><span>1. Tasuta proov (0 €/kuu · resto 0%)</span><b id="cmp-campaign" class="red">−7 110 €</b><small>kuni 31.01</small></div>
+      <div class="row"><span>2. Kuutasu 4,75 € (resto 0%)</span><b id="cmp-membership" class="red">−3 279 €</b><small id="cmp-membership-note">nullis 2 051 kaardiga</small></div>
+      <div class="row"><span>3. Kuutasu 4,75 € + 2% resto</span><b id="cmp-partner2" class="red">−1 529 €</b><small id="cmp-partner2-note">nullis 1 314 kaardiga</small></div>
+      <div class="total"><span>+2% resto tasu annab juurde</span><b id="cmp-extra">+1 750 € / kuu</b><small id="cmp-extra-note">+21 000 € aastas · 5 000 kaardiga +8 750 €/kuu</small></div>
       </article>
-      <article class="panel"><div class="panel-head"><p class="kicker">3 etapi võrdlus samal mahul</p><h2 style="font-size:28px"><span data-cards>1 000</span> kaarti</h2></div>
-      <div class="row"><span>1. Tasuta algus (0 €/kuu · resto 0%)</span><b id="cmp-campaign" class="red">−7 110 €</b><small id="cmp-campaign-note">kuni 31.01 · prooviperiood, kus meile tuleb ainult 0,65% kaarditulu</small></div>
-      <div class="row"><span>2. Kuutasu 4,75 € (resto 0%)</span><b id="cmp-membership" class="red">−3 279 €</b><small id="cmp-membership-note">alates 01.02 · nullis 2 051 kaardiga (meile 3,83 € kaardi kohta)</small></div>
-      <div class="row"><span>3. Kuutasu 4,75 € + resto 2%</span><b id="cmp-partner2" class="red">−1 529 €</b><small id="cmp-partner2-note">nullis juba 1 314 kaardiga (737 kaarti vähem)</small></div>
-      <div class="total"><span>Mis +2% resto tasu meile juurde annab</span><b id="cmp-extra">+1 750 € / kuu</b><small id="cmp-extra-note">+21 000 € aastas samal mahul · 5 000 kaardiga +8 750 €/kuu (+105 000 €/a)</small></div>
+      <article class="panel"><div class="panel-head"><p class="kicker">Staatuse ehitus</p><h2 style="font-size:32px">40 000 €</h2></div>
+      <div class="row"><span>Liitumine ja kutsete süsteem</span><b>Valmis äpp/veeb</b><small>konto loomine ja sõbra kutsumine</small></div>
+      <div class="row"><span>Apple Pay ja Google Pay kaart</span><b>Wallester</b><small>viipemakse Rotermanni kohtades</small></div>
+      <div class="row"><span>Pangakaardi sidumine</span><b>Automaatne</b><small>ostu summa võetakse reaalajas</small></div>
+      <div class="row"><span>10% cashback'i arvestus</span><b>Reaalajas</b><small>kliendi vaade + restorani kuuarvestus</small></div>
       </article>
     </div>
-    <article class="panel build-scope">
-      <div class="panel-head"><p class="kicker">Mis 40 000 € eest valmis saab</p><h2 style="font-size:32px">Kogu klubi, mida inimene kasutab</h2></div>
-      <p class="lead-in">Üleval on Wallesteri arve, <strong>21 575 €</strong>. Nemad on kaardifirma: teevad kaardi ja Apple Pay. <strong>See 40 000 €</strong> on midagi muud — kogu Staatuse valmis tegemine. Ilma selleta on kaart olemas, aga keegi ei saa liituda, raha tagasi näha ega oma panga külge siduda. Kaks inimest teevad seda <strong>2–3 kuud</strong>. Tunnihind umbes <strong>70 €</strong>.</p>
-      <div class="two">
-        <div>
-          <h3>Mida liige saab</h3>
-          <ol>
-            <li>Saab kutse ja teeb konto.</li>
-            <li>Paneb kaardi telefoni ja maksab Rotermannis nagu tavalise kaardiga.</li>
-            <li>Seob üks kord oma pangakaardi — sealt tuleb ostu raha.</li>
-            <li>Näeb, kui palju on tagasi tulnud, ja saab sõpru kutsuda.</li>
-            <li>Näeb oma oste.</li>
-            <li>Leiab abi, kui miski ei lähe.</li>
-          </ol>
-        </div>
-        <div>
-          <h3>Mida klubi teeb taustal</h3>
-          <ul>
-            <li>Iga ost restoranis läheb kirja.</li>
-            <li>Inimene saab igalt ostult 10% tagasi.</li>
-            <li>Ostuga sama summa võetakse tema pangakaardilt.</li>
-            <li>Restoran katab kliendi 10% cashback'i; hiljem saame lisada +2% teenustasu.</li>
-            <li>Tugi näeb, mis juhtus, kui keegi helistab.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
   </div></section>
 
   <section class="section"><div class="wrap">
-    <div class="heading"><div><p class="kicker">Ühe ostu teekond</p><h2>Mis juhtub, kui klient maksab 25 €?</h2></div><p>Makse töödeldakse reaalajas: kui klient maksab STAATUSE kaardiga, võetakse sama 25 € samal hetkel automaatselt tema seotud pangakaardilt. Klient näeb ainult kahte asja: maksab 25 € ja saab 2,50 € (10%) kaardile tagasi.</p></div>
+    <div class="heading"><div><p class="kicker">Ühe ostu näide</p><h2>Mis juhtub 25 € ostul?</h2></div><p>Klient maksab 25 € ja saab 2,50 € (10%) kaardile tagasi.</p></div>
     <div class="steps">
       <article class="step"><div class="step-line"></div><div class="step-num">1</div>
         <div class="step-card">
-          <div class="step-main"><h3>Klient maksab poes 25 € <span class="step-when">Hetk 0</span></h3><p>Klient maksab terminalis STAATUSE virtuaalkaardi või Apple Payga täpselt nagu tavalise pangakaardiga.</p></div>
+          <div class="step-main"><h3>Klient maksab terminalis 25 € <span class="step-when">Hetk 0</span></h3><p>Viipab STAATUSE kaardiga (Apple Pay / Google Pay).</p></div>
           <div class="step-side">
-            <div class="mv none"><span>Raha liikumine</span><b>Makseinfo liigub Wallesterile</b><small>Terminal saadab ostu summa ja kaardi andmed kinnitamiseks.</small></div>
+            <div class="mv none"><span>Raha liikumine</span><b>Terminal → Wallester: 25 €</b></div>
           </div>
         </div>
       </article>
       <article class="step"><div class="step-line"></div><div class="step-num">2</div>
         <div class="step-card">
-          <div class="step-main"><h3>Samal hetkel võetakse kliendi seotud pangakaardilt 25 € <span class="step-when">Reaalajas</span></h3><p>Makseteenus võtab kliendi seotud pangakaardilt automaatselt ostuga võrdse summa (kulu 0,7%). Klient seob kaardi ühe korra konto avamisel. Kui võtmine ebaõnnestub, jääb ka ost kinnitamata.</p></div>
+          <div class="step-main"><h3>Seotud pangakaardilt võetakse 25 € <span class="step-when">Reaalajas</span></h3><p>Makseteenus võtab sama summa automaatselt kliendi pangakaardilt.</p></div>
           <div class="step-side">
-            <div class="mv"><span>Raha liikumine</span><b>Kliendi pangakaart → makseteenus: 25 €</b><small>Klient tasub ostu kohe oma tavalise pangakaardiga. STAATUSE kontole jõuab väljamakse 1–2 tööpäevaga.</small></div>
-            <div class="mv fee"><span>Tasu STAATUSELE</span><b>−0,18 € (0,7% summast)</b><small>Makseteenuse kulu 25 € võtmisel.</small></div>
+            <div class="mv fee"><span>Meie kulu</span><b>−0,18 € (0,7%)</b></div>
           </div>
         </div>
       </article>
       <article class="step"><div class="step-line"></div><div class="step-num">3</div>
         <div class="step-card">
-          <div class="step-main"><h3>Wallester kinnitab makse ja kaupmees saab raha <span class="step-when">Sekundid</span></h3><p>Wallester kinnitab ostu ja klient saab kauba kohe kätte. Kaupmehe pangakontole jõuab ostusumma tema enda pangalepingu kaudu — täpselt nagu iga teise kaardimakse puhul.</p></div>
+          <div class="step-main"><h3>Wallester kinnitab ostu <span class="step-when">Sekundid</span></h3><p>Restoran saab 25 € oma tavapärase pangalepingu kaudu.</p></div>
           <div class="step-side">
-            <div class="mv"><span>Raha liikumine</span><b>Kaardimakse → kaupmees: 25 €</b><small>Kaupmees saab kogu ostusumma nagu tavalise kaardimakse puhul.</small></div>
-            <div class="mv fee"><span>Tasu STAATUSELE</span><b>−0,10 € makse kinnitamine</b><small>Võetakse ka ebaõnnestunud katse eest. Apple Pay lisab ~0,01 €.</small></div>
+            <div class="mv fee"><span>Meie kulu</span><b>−0,11 € (kinnitus + Apple Pay)</b></div>
           </div>
         </div>
       </article>
       <article class="step"><div class="step-num">4</div>
         <div class="step-card">
-          <div class="step-main"><h3>Restorani panus, 10% cashback ja kaarditulu <span class="step-when">Kuu lõpus</span></h3><p id="step4-copy">Restoran maksab 10% (2,50 €), mis läheb täies ulatuses kliendile cashback'ina tagasi. Kui lisame hiljem restoranile +2% teenustasu, maksab restoran 12% (3,00 €), millest 0,50 € jääb STAATUSELE. Lisaks maksab Wallester meile 0,16 € kaarditulu (0,65%).</p></div>
+          <div class="step-main"><h3>10% cashback ja kaarditulu <span class="step-when">Kuu lõpus</span></h3><p id="step4-copy">Restorani 10% (2,50 €) läheb kliendile. +2% resto tasuga jääb 0,50 € meile.</p></div>
           <div class="step-side">
-            <div class="mv gain"><span>Sisse restoranilt</span><b id="step4-merchant">Restoran → STAATUS: +2,50 €</b><small id="step4-merchant-note">10% sellest 25 € ostust (3. etapis 12% ehk +3,00 €).</small></div>
-            <div class="mv fee"><span>Välja kliendile</span><b>STAATUS → kliendi kaart: −2,50 €</b><small>10% cashback kliendile.</small></div>
-            <div class="mv gain"><span>Sisse kaarditulust</span><b>Wallester → STAATUS: +0,16 €</b><small>Interchange'i 50% osa ehk 0,65% ostust.</small></div>
+            <div class="mv gain"><span>Sisse</span><b id="step4-merchant">Restoranilt +2,50 € · kaarditulu +0,16 €</b></div>
+            <div class="mv fee"><span>Välja</span><b>Kliendile −2,50 € (10% cashback)</b></div>
           </div>
         </div>
       </article>
     </div>
     <div class="purchase-sum">
-      <div><span>Ühe 25 € ostu maksekulud</span><strong class="red">−0,29 €</strong><small>0,10 € makse kinnitamine + 0,18 € pangakaardilt võtmine + ~0,01 € Apple Pay</small></div>
-      <div><span>Tulu meile samalt ostult</span><strong class="green" id="step-income">+0,16 €</strong><small id="step-income-note">0,00 € restorani teenustasu + 0,16 € kaarditulu (3. etapis +0,66 €)</small></div>
-      <div><span>Ühe 25 € ostu tulemus enne kuutasu</span><strong class="red" id="step-net">−0,13 €</strong><small id="step-net-note">0% resto tasuga katab selle 4,75 € kuutasu; +2% resto tasuga jääb igalt ostult +0,37 €</small></div>
-    </div>
-
-    <p class="kicker" style="margin:56px 0 0">Kuu raharing kokku — <span data-cards>1 000</span> kaardiomanikku</p>
-    <div class="funds">
-      <article class="source"><span>1. Restoranidelt laekub</span><strong id="merchant">8 750 €</strong><b id="merchant-pct">10,00% ostude kogusummast</b><small id="merchant-note">Kogu 10% läheb klientidele cashback'iks.</small></article>
-      <div class="plus">+</div>
-      <article class="source gold"><span>2. Kaardikasutuse tulu meile</span><strong id="interchange">569 €</strong><b>0,65% ostude kogusummast</b><small>Wallester maksab poole kaardikasutuse interchange-tulust.</small></article>
-      <div class="plus">+</div>
-      <article class="source member"><span>3. Liikmetasu meile (ilma KM-ta)</span><strong id="member-fees">3 831 €</strong><b id="member-fee-label">4,75 €/kuu koos KM-ga = 3,83 € netos</b><small id="member-fee-note">1 000 liiget × 3,83 € pärast 24% käibemaksu.</small></article>
-      <div class="down">↓</div>
-      <article class="hub"><span>Kokku laekub kuus</span><strong id="inflow">13 149 €</strong><small id="inflow-note">Sellest 8 750 € läheb otse klientidele 10% cashback'iks ja 4 399 € jääb STAATUSE tuluks.</small><div class="split"><div><span>Klientidele 10% cashback</span><b id="cashback">−8 750 €</b><small id="cashback-pct">10,00% ostude kogusummast</small></div><div><span>Meie kuukulud (kaardid + tiim)</span><b id="wall2">−7 679 €</b><small id="wall2-note">kaardid ja maksed 3 279 € + tegevuskulu 4 400 €</small></div></div></article>
+      <div><span>Maksekulu 25 € ostult</span><strong class="red">−0,29 €</strong><small>0,18 € pangalingi makse + 0,11 € kaart</small></div>
+      <div><span>Tulu meile 25 € ostult</span><strong class="green" id="step-income">+0,16 €</strong><small id="step-income-note">0,16 € kaarditulu (+2% restoga +0,66 €)</small></div>
+      <div><span>Ühe ostu saldo enne kuutasu</span><strong class="red" id="step-net">−0,13 €</strong><small id="step-net-note">4,75 € kuutasu katab vahe; +2% restoga +0,37 €</small></div>
     </div>
   </div></section>
 
   <section class="section economy"><div class="wrap">
     <div class="two">
-      <article class="panel"><div class="panel-head"><p class="kicker">Meie tulu kuus (enne kulusid)</p><h2 id="income2">4 399 €</h2></div>
-      <div class="row"><span>Restoranide panus kokku</span><b id="merchant2">8 750 €</b><small id="merchant2-pct">10,00% ostude kogusummast</small></div>
-      <div class="row"><span>Klientidele 10% cashback</span><b class="red" id="cashback2">−8 750 €</b><small id="cashback2-pct">10,00% ostude kogusummast</small></div>
-      <div class="row"><span>Restorani teenustasu meile</span><b id="spread">0 €</b><small id="spread-pct">0,00% ostude kogusummast · alguses 0%</small></div>
-      <div class="row"><span>Liikmetasu meile (ilma KM-ta)</span><b id="member-fees2">3 831 €</b><small id="member-fee-note2">4,75 € koos KM-ga = 3,83 € liikme kohta pärast 24% käibemaksu.</small></div>
-      <div class="row"><span>Kaardikasutuse tulu (0,65%)</span><b id="interchange2">569 €</b><small>Wallesteri interchange-tulu osa meile</small></div>
-      <div class="total"><span>STAATUSE tulu kokku</span><b id="income3">4 399 €</b><small id="income3-pct">liikmetasu 3 831 € + resto tasu 0 € + kaarditulu 569 €</small></div>
+      <article class="panel"><div class="panel-head"><p class="kicker">Meie tulu kuus</p><h2 id="income2">4 399 €</h2></div>
+      <div class="row"><span>Restoranidelt (10% cashback)</span><b id="merchant2">8 750 €</b><small id="merchant2-pct">10,00% ostudest</small></div>
+      <div class="row"><span>Klientidele 10% cashback</span><b class="red" id="cashback2">−8 750 €</b><small id="cashback2-pct">10,00% ostudest</small></div>
+      <div class="row"><span>Restorani teenustasu meile</span><b id="spread">0 €</b><small id="spread-pct">0% (3. etapis +2%)</small></div>
+      <div class="row"><span>Liikmetasu meile (ilma KM-ta)</span><b id="member-fees2">3 831 €</b><small id="member-fee-note2">3,83 € kaardi kohta (4,75 € koos KM-ga)</small></div>
+      <div class="row"><span>Kaardikasutuse tulu (0,65%)</span><b id="interchange2">569 €</b><small>Wallesteri interchange</small></div>
+      <div class="total"><span>STAATUSE tulu kokku</span><b id="income3">4 399 €</b><small id="income3-pct">liikmetasu 3 831 € + kaart 569 €</small></div>
       </article>
       <article class="panel"><div class="panel-head"><p class="kicker">Kaardi- ja maksekulu kuus</p><h2 id="wall3">3 279 €</h2></div>
-      <div class="row"><span>Wallesteri kuutasu</span><b>2 000 €</b><small>piloodiaasta erihind · tavahind 2 500 €</small></div>
-      <div class="row"><span>Virtuaalkaartide kuutasu</span><b id="card-cost">200 €</b><small id="card-cost-note">1 000 kaarti × 0,20 €</small></div>
-      <div class="row"><span>Makse kinnitamise katsed</span><b id="auth-cost">403 €</b><small id="auth-note">4 025 katset × 0,10 € — tasu võetakse nii õnnestunud kui ka ebaõnnestunud katse eest</small></div>
-      <div class="row"><span>Apple Payga tehtud ostude tasu</span><b id="apple-payment-cost">22 €</b><small id="apple-payment-note">50% ostude kogusummast × 0,05%</small></div>
-      <div class="row"><span>Apple Payga seotud aktiivsed kaardid</span><b id="apple-card-cost">42 €</b><small id="apple-card-note">500 kaarti × 0,25 € kvartalis</small></div>
-      <div class="row"><span>Seotud pangakaardilt ostusumma võtmine</span><b id="funding-cost">613 €</b><small id="funding-cost-note">makseteenus 0,7% ostude kogusummast</small></div>
-        <div class="total cost"><span>Kaardi- ja maksekulu kokku</span><b id="wall4">3 279 €</b><small>Wallester, Apple Pay ja makseteenus 0,7%. Setup 21 575 € on aastaarvutuses.</small></div>
+      <div class="row"><span>Wallesteri kuutasu</span><b>2 000 €</b><small>piloodiaasta erihind</small></div>
+      <div class="row"><span>Virtuaalkaardid</span><b id="card-cost">200 €</b><small id="card-cost-note">1 000 kaarti × 0,20 €</small></div>
+      <div class="row"><span>Makse kinnitamised</span><b id="auth-cost">403 €</b><small id="auth-note">4 025 katset × 0,10 €</small></div>
+      <div class="row"><span>Apple Pay tasud</span><b id="apple-payment-cost">64 €</b><small id="apple-payment-note">0,05% tehingutelt + 0,25 € kvartalis</small></div>
+      <div class="row"><span>Pangakaardilt võtmine (0,7%)</span><b id="funding-cost">613 €</b><small id="funding-cost-note">3 500 makset × 25 €</small></div>
+      <div class="total cost"><span>Kaardi- ja maksekulu kokku</span><b id="wall4">3 279 €</b><small>lisandub tegevuskulu 4 400 €</small></div>
       </article>
     </div>
-    <div class="funding-guide">
-      <div class="funding-guide-head"><div><p class="kicker">Kliendi seotud pangakaart</p><h2>Makse hetkel võetakse seotud kaardilt sama summa</h2></div><p>Kasutaja ei kanna programmi raha ette. Kliendi täielikud kaardiandmed STAATUSE süsteemi ei jõua. Makseteenus säilitab kaardiandmed turvaliselt ja võtab seotud pangakaardilt ostuga võrdse summa reaalajas, makse hetkel.</p></div>
-      <div class="funding-steps">
-        <div class="funding-step"><span>1</span><b>Klient seob oma pangakaardi</b><small>Ühekordne tegevus konto avamisel; klient kinnitab sidumise oma pangas.</small></div>
-        <div class="funding-step"><span>2</span><b>Klient maksab STAATUSE kaardiga</b><small>Näites on ostu summa 25 €.</small></div>
-        <div class="funding-step"><span>3</span><b>Seotud kaardilt võetakse 25 € samal hetkel</b><small>Makseteenus võtab summa automaatselt ja reaalajas, klient ei tee midagi.</small></div>
-        <div class="funding-step"><span>4</span><b>Väljamakse STAATUSELE 1–2 tööpäevaga</b><small>Makseteenus maksab kliendilt võetud summad STAATUSE kontole koondina välja.</small></div>
-      </div>
-      <div class="provider-grid">
-        <article class="provider recommended"><h3>Makseteenus</h3><strong>0,7% makse summast</strong><p>Arvutuse hind. Kuutasu ja fikseeritud tehingutasu puuduvad. Automaatne võtmine ostu hetkel.</p></article>
-        <article class="provider"><h3>Montonio Core</h3><strong>0,52 € 25 € ostult</strong><p>Hind on 1,29% + 0,20 € tehingu kohta ning 14,99 € kuus. Enne valikut tuleb kinnitada, et automaatne ostusumma võtmine on võimalik.</p><a href="https://www.montonio.com/pricing" target="_blank" rel="noreferrer">Ametlik hinnakiri →</a></article>
-        <article class="provider"><h3>Stripe</h3><strong>0,63 € 25 € ostult</strong><p>Hind on 1,50% + 0,25 € tehingu kohta ja kuutasu ei ole. Lahendus sobib rahvusvaheliseks laienemiseks, kuid on praeguses arvutuses kõige kallim.</p><a href="https://stripe.com/en-ee/pricing" target="_blank" rel="noreferrer">Ametlik hinnakiri →</a></article>
-      </div>
-      <p class="funding-warning"><strong>Arvutus:</strong> makseteenus 0,7% ostust, 25 € võtmine = 0,18 €. Kui seotud kaardilt raha võtta ei õnnestu, jääb ost kinnitamata.</p>
-    </div>
-
   </div></section>
 
   <section class="section year"><div class="wrap year-grid">
@@ -373,35 +317,7 @@
     </div>
   </div></section>
 
-  <section class="section"><div class="wrap">
-    <div class="heading"><div><p class="kicker">Peatükk 2 — käivitusest kasumini</p><h2>Kui palju me igas etapis kulutame ja teenime?</h2></div><p>Mudel on lihtne: klient saab alati 10% tagasi ja restoran katab selle 10%. Siin on kogu rahaline teekond alates 1 000 kaardiga käivitusest kuni 5 000 ja 10 000 kaardiga kasumini.</p></div>
-    <div class="tiers">
-      <article class="tier"><span class="tier-tag">Alati</span><h3>Kliendi võit</h3><div class="pct">10%</div><p class="tier-sub">igalt ostult tagasi</p>
-        <ul><li>Üks selge reegel, tasemeid ei ole</li><li>Restoran katab 10% cashback'i</li><li>Keskmine ostja saab 12,50 €/kuu tagasi</li></ul>
-      </article>
-      <article class="tier"><span class="tier-tag">1. etapp · kuni 31.01</span><h3>Tasuta algus</h3><div class="pct">0 €</div><p class="tier-sub">1 000 kaarti = −7 110 €/kuu</p>
-        <ul><li>Kutsutud kliendid proovivad tasuta</li><li>Restorani teenustasu on 0%</li><li>Eesmärk: harjumus ja käibe tõestus</li></ul>
-      </article>
-      <article class="tier mint"><span class="tier-tag">2. etapp · alates 01.02</span><h3>Kuutasu</h3><div class="pct">4,75 €</div><p class="tier-sub">nullis 2 051 kaardiga (0 €/kuu)</p>
-        <ul><li>Meile jääb 3,83 €/kuu kaardi kohta</li><li>1 000 kaardiga on kulu −3 279 €/kuu</li><li>5 000 kaardiga kasum +9 204 €/kuu</li></ul>
-      </article>
-      <article class="tier black"><span class="tier-tag">3. etapp · 4,75 € + resto</span><h3>4,75 € + 2% resto</h3><div class="pct">+2%</div><p class="tier-sub">4,75 € kuutasule lisandub 2% restolt</p>
-        <ul><li>Kaart on 4,75 €/kuu + resto maksab 2% meile</li><li>Nullpunkt langeb 2 051 → 1 314 kaardini</li><li>Annab +1 750 €/kuu iga 1 000 kaardi kohta (+8 750 €/kuu 5 000 kaardiga)</li></ul>
-      </article>
-    </div>
-    <div class="purchase-sum" style="margin-top:14px">
-      <div><span>1. Käivitus (1 000 kaarti)</span><strong class="red">−7 110 € → −3 279 €</strong><small>Tasuta alguses (kuni 31.01) on kulu −7 110 €/kuu. Veebruarist (4,75 €/kuu) langeb miinus −3 279 € peale ja koos +2% resto tasuga −1 529 € peale.</small></div>
-      <div><span>2. Nullpunkt (millal oleme 0 € peal)</span><strong class="green">2 051 → 1 314 kaarti</strong><small>Ainult 4,75 € kuutasuga jõuame nulli 2 051 kaardiga. Koos +2% resto tasuga juba 1 314 kaardiga (ja 2 051 kaardi juures teenime siis +3 591 €/kuu).</small></div>
-      <div><span>3. Kasum 5 000 ja 10 000 kaardiga</span><strong class="green">+17 954 € → +42 309 € / kuu</strong><small>5 000 kaardiga teenime 4,75 € kuutasuga +9 204 €/kuu ja koos +2% resto tasuga +17 954 €/kuu (+215 450 €/a). 10 000 kaardiga +42 309 €/kuu (+507 700 €/a).</small></div>
-    </div>
-    <div class="phases">
-      <article class="phase on"><span class="phase-dot"></span><small>15. detsember 2026 – 31. jaanuar 2027</small><h3>1. Tasuta prooviperiood</h3><p>Kutsutud liikmed saavad 10% cashback'i ilma kuutasuta. Restoranilt küsime ainult kliendile mineva 10%.</p></article>
-      <article class="phase"><span class="phase-dot"></span><small>1. veebruar 2027</small><h3>2. Kuutasu 4,75 € kuus</h3><p>10% cashback jätkub 4,75 € kuutasuga (meile 3,83 € + KM). Tasuta perioodi lõpp ja hind on algusest peale selged.</p></article>
-      <article class="phase"><span class="phase-dot"></span><small>Järgmine samm pärast pilooti</small><h3>3. Restorani teenustasu +2%</h3><p>Kui toodud lisakäive on numbritega tõestatud, lisandub restoranile 2% teenustasu (10% kliendile + 2% STAATUSELE).</p></article>
-    </div>
-  </div></section>
-
-  <footer><div class="wrap foot"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><p>10% kliendile tagasi · kuni 31.01 tasuta · 01.02 alates 4,75 €/kuu (3,83 € + KM) · 3. etapis +2% restorani teenustasu</p></div></footer>
+  <footer><div class="wrap foot"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><p>Rotermann · 2026</p></div></footer>
 
   <script>
     const A={tx:5,avg:25,attempts:1.15,interchange:.013,share:.5,maintenance:2000,active:.2,auth:.10,issue:.1,setup:4000,contract:12,live:10,freeLive:2,paidLive:8,appleSetup:17575,appleShare:.5,applePos:.0005,appleQuarter:.25,cardRate:.007,cardFixed:0,cardMonthly:0,ops:4400,launchExtra:44000,vat:.24};
@@ -467,81 +383,72 @@
       const bePartner2=breakEvenCards(P,ops,4.75,.02);
       const yearWall=A.maintenance*A.contract+(cardCost+authCost)*A.live+A.setup+issue+A.appleSetup+(applePaymentCost+appleCardCost)*A.live+funding.variable*A.live+funding.monthly*A.contract;
       const yearOps=ops*A.contract,yearLaunch=launchExtra,yearMemberFees=cards*paidFeeNet*A.paidLive,yearSpread=mode==="partner2"?gmv*.02*A.paidLive:0,yearIncome=interchange*A.live+yearMemberFees+yearSpread,yearNet=yearIncome-yearWall-yearOps-yearLaunch;
-      all("[data-cards]").forEach(el=>el.textContent=count(cards));setText("#gmv",money(gmv));setText("#tx",count(actives)+" ostjat ("+Math.round(P.share*100)+"%) × "+P.tx+" ostu × "+P.avg+" € = "+count(tx)+" ostu");
+      all("[data-cards]").forEach(el=>el.textContent=count(cards));
+      setText("#gmv",money(gmv));
+      setText("#tx",count(actives)+" ostjat × "+(P.tx*P.avg)+" € kuus");
       ["#income","#income2","#income3","#income4"].forEach(id=>setText(id,money(income)));
-      setText("#wall2","−"+money(totalCost));
-      setText("#wall2-note","kaardid ja maksed "+money(wall)+" + tegevuskulu "+money(ops));
       ["#wall3","#wall4","#wall5"].forEach(id=>setText(id,money(wall)));
       setText("#wall",money(totalCost));
       setText("#cost-note","kaardid "+money(wall)+" + tegevus "+money(ops));
       const signed=(n)=>(n>=0?"+":"−")+money(Math.abs(n));
       const isBreakEven=Math.abs(net)<5&&M.memberGross>0;
-      setText("#balance",isBreakEven?"0 €":signed(net));
-      setText("#net",isBreakEven?"0 €":signed(net));
-      setText("#net-caption",isBreakEven?"tulud ja kulud on nullis":net>=0?"igakuine kasum ("+money(net*12)+" aastas)":"kulud ületavad tulu "+money(Math.abs(net))+" võrra");
       const beNow=breakEvenCards(P,ops,M.memberGross,feeRate);
-      setText("#balance-note",isBreakEven?"täpne nullpunkt valitud etapil":beNow?(net>=0?"üle nullpunkti ("+count(beNow)+" kaarti)":"nullpunktini veel "+count(Math.max(0,beNow-cards))+" kaarti (kokku "+count(beNow)+")"):"prooviperiood (0 € kuutasu)");
-      setText("#net2",isBreakEven?"0 €":signed(net));
-      setText("#net3",isBreakEven?"0 €":signed(net));
-      const netTotal=one("#net-total");if(netTotal)netTotal.classList.toggle("cost",net<0);
-      const status=one("#status");status.classList.toggle("ok",net>=0);one("#balance").className=net>=0?"green":"red";
+      setText("#net",isBreakEven?"0 €":signed(net));
+      setText("#net-caption",isBreakEven?"oleme nullis":net>=0?"kasum "+money(net*12)+" aastas":beNow?"nullpunktini veel "+count(Math.max(0,beNow-cards))+" kaarti":"prooviperiood kuni 31.01");
+      const status=one("#status");if(status)status.classList.toggle("ok",net>=0);
       [["#cmp-campaign",netCampaign],["#cmp-membership",netMembership],["#cmp-partner2",netPartner2]].forEach(([id,val])=>{
         const el=one(id);if(el){el.textContent=Math.abs(val)<5&&id!=="#cmp-campaign"?"0 €":signed(val);el.className=val>=0?"green":"red"}
       });
-      setText("#cmp-membership-note","alates 01.02 · nullis "+count(beMembership)+" kaardiga (meile "+cents(paidFeeNet)+" kaardi kohta)");
-      setText("#cmp-partner2-note","nullis juba "+count(bePartner2)+" kaardiga ("+count(beMembership-bePartner2)+" kaarti vähem)");
+      setText("#cmp-membership-note","nullis "+count(beMembership)+" kaardiga");
+      setText("#cmp-partner2-note","nullis "+count(bePartner2)+" kaardiga ("+count(beMembership-bePartner2)+" vähem)");
       setText("#cmp-extra","+"+money(extra2)+" / kuu");
-      setText("#cmp-extra-note","+"+money(extra2*12)+" aastas samal mahul ("+count(cards)+" kaarti) · 5 000 kaardiga +"+money(netAtCards(5000,P,ops,4.75,.02)-netAtCards(5000,P,ops,4.75,0))+"/kuu");
-      setText("#btn-mode-partner2","4,75 €/kuu · resto +2% (+"+money(extra2)+"/kuu)");
-      setText("#sc-free-res","Tulemus: "+signed(netAtCards(1000,P,ops,0,0))+" / kuu");
-      setText("#sc-paid-res","Tulemus: "+signed(netAtCards(1000,P,ops,4.75,0))+" / kuu");
-      setText("#sc-be0-cards",count(beMembership)+" kaarti · 4,75 € · resto 0%");
-      setText("#sc-be0-res","Tulemus: 0 € (oleme nullis)");
-      setText("#sc-be2-cards",count(bePartner2)+" kaarti · 4,75 € + 2% resto");
-      setText("#sc-be2-res","Tulemus: 0 € ("+count(beMembership-bePartner2)+" kaarti vähem)");
-      setText("#sc-5k-res","Tulemus: "+signed(netAtCards(5000,P,ops,4.75,.02))+" / kuu");
+      setText("#cmp-extra-note","+"+money(extra2*12)+" aastas · 5 000 kaardiga +"+money(netAtCards(5000,P,ops,4.75,.02)-netAtCards(5000,P,ops,4.75,0))+"/kuu");
+      setText("#sc-be0-cards",count(beMembership)+" kaarti");
+      setText("#sc-be2-cards",count(bePartner2)+" kaarti");
       const activeScenario=
-        mode==="campaign"&&cards===1000?"start-free":
-        mode==="membership"&&cards===1000?"start-paid":
+        cards===1000?"start-paid":
         mode==="membership"&&cards===beMembership?"be-0":
         mode==="partner2"&&cards===bePartner2?"be-2":
         mode==="partner2"&&cards===5000?"growth-5k":"";
       all("[data-scenario]").forEach(b=>b.classList.toggle("on",b.dataset.scenario===activeScenario));
-      ["#merchant","#merchant2"].forEach(id=>setText(id,money(merchant)));["#interchange","#interchange2"].forEach(id=>setText(id,money(interchange)));
+      ["#merchant","#merchant2"].forEach(id=>setText(id,money(merchant)));
+      ["#interchange","#interchange2"].forEach(id=>setText(id,money(interchange)));
       ["#member-fees","#member-fees2"].forEach(id=>setText(id,money(memberFees)));
-      setText("#member-fee-label",M.memberGross?"4,75 €/kuu koos KM-ga = "+cents(memberFeeNet)+" netos":"1. etapis kuutasu ei ole (0 €)");
-      setText("#member-fee-note",M.memberGross?count(cards)+" liiget × "+cents(memberFeeNet)+" pärast 24% käibemaksu.":"4,75 € kuutasu (meile "+cents(paidFeeNet)+") algab 1. veebruarist 2027.");
-      setText("#member-fee-note2",M.memberGross?"4,75 € koos KM-ga = "+cents(memberFeeNet)+" liikme kohta pärast 24% käibemaksu.":"1. etapis 0 €; alates 01.02 on kliendihind 4,75 € koos KM-ga ("+cents(paidFeeNet)+" netos).");
-      setText("#inflow",money(merchant+interchange+memberFees));
-      setText("#inflow-note","Sellest "+money(cashback)+" läheb otse klientidele 10% cashback'iks ja "+money(income)+" jääb STAATUSE tuluks.");
-      ["#cashback","#cashback2"].forEach(id=>setText(id,"−"+money(cashback)));setText("#spread",money(spread));
-      const feePart=feeRate>0?"resto "+Math.round(feeRate*100)+"% ("+money(spread)+")":"resto tasu 0 €";
-      setText("#income-pct","liikmetasu "+money(memberFees)+" + "+feePart+" + kaarditulu "+money(interchange));
-      setText("#income3-pct","liikmetasu "+money(memberFees)+" + "+feePart+" + kaarditulu "+money(interchange));
-      setText("#income4-note","liikmetasu "+money(memberFees)+" + "+feePart+" + kaarditulu "+money(interchange));
-      setText("#cashback-pct",pct(cbRate)+" ostude kogusummast");setText("#cashback2-pct",pct(cbRate)+" ostude kogusummast");
-      setText("#merchant-pct",pct(merchantRate)+" ostude kogusummast");setText("#merchant2-pct",pct(merchantRate)+" ostude kogusummast");
-      setText("#spread-pct",feeRate>0?pct(feeRate)+" ostude kogusummast · 3. etapi teenustasu":"0,00% ostude kogusummast · 1. ja 2. etapis teenustasu ei ole");
-      setText("#merchant-note",feeRate>0?"10% läheb klientidele cashback'iks ja 2% ("+money(spread)+") jääb STAATUSELE.":"Kogu 10% läheb klientidele cashback'iks; restorani teenustasu on 0%.");
+      setText("#member-fee-note2",M.memberGross?cents(memberFeeNet)+" kaardi kohta (4,75 € koos KM-ga)":"0 € kuni 31.01 (veebruarist 4,75 €)");
+      ["#cashback","#cashback2"].forEach(id=>setText(id,"−"+money(cashback)));
+      setText("#spread",money(spread));
+      const feePart=feeRate>0?"resto "+money(spread)+" + ":"";
+      setText("#income-pct","liikmetasu "+money(memberFees)+" + "+feePart+"kaart "+money(interchange));
+      setText("#income3-pct","liikmetasu "+money(memberFees)+" + "+feePart+"kaart "+money(interchange));
+      setText("#merchant2-pct",pct(merchantRate)+" ostudest");
+      setText("#cashback2-pct",pct(cbRate)+" ostudest");
+      setText("#spread-pct",feeRate>0?"2% ostudest":"0% (3. etapis +2%)");
       const sampleMerchant=25*merchantRate,sampleSpread=25*feeRate,sampleIncome=sampleSpread+25*A.interchange*A.share,sampleNet=sampleIncome-.29;
-      setText("#step4-merchant","Restoran → STAATUS: +"+cents(sampleMerchant));
-      setText("#step4-merchant-note",feeRate>0?"12% sellest 25 € ostust (2,50 € kliendile + 0,50 € meile).":"10% sellest 25 € ostust (3. etapis 12% ehk +3,00 €).");
+      setText("#step4-merchant","Restoranilt +"+cents(sampleMerchant)+" · kaarditulu +0,16 €");
       setText("#step-income","+"+cents(sampleIncome));
-      setText("#step-income-note",cents(sampleSpread)+" restorani teenustasu + 0,16 € kaarditulu");
+      setText("#step-income-note",feeRate>0?"0,50 € resto tasu + 0,16 € kaart":"0,16 € kaarditulu (+2% restoga +0,66 €)");
       setText("#step-net",(sampleNet>=0?"+":"−")+cents(Math.abs(sampleNet)));
-      one("#step-net").className=sampleNet>=0?"green":"red";
-      setText("#step-net-note",sampleNet>=0?"2% restorani teenustasuga on iga 25 € ost juba enne kuutasu plussis":"0% resto tasuga katab selle 4,75 € kuutasu; +2% resto tasuga jääks +0,37 €");
-      setText("#mode-note",MODES[mode].note);
+      const stepNetEl=one("#step-net");if(stepNetEl)stepNetEl.className=sampleNet>=0?"green":"red";
+      setText("#step-net-note",sampleNet>=0?"iga 25 € ost on juba enne kuutasu plussis":"4,75 € kuutasu katab vahe; +2% restoga +0,37 €");
       all("[data-mode]").forEach(b=>b.classList.toggle("on",b.dataset.mode===mode));
-      setText("#profile-note",PROFILES[profile].note+PROFILE_COMMON);
-      all("[data-profile]").forEach(b=>b.classList.toggle("on",b.dataset.profile===profile));
-      setText("#card-cost",money(cardCost));setText("#card-cost-note",count(cards)+" kaarti × 0,20 €");setText("#auth-cost",money(authCost));setText("#auth-note",count(auths)+" katset × 0,10 € — tasu võetakse nii õnnestunud kui ka ebaõnnestunud katse eest");
-      setText("#apple-payment-cost",money(applePaymentCost));setText("#apple-payment-note","50% ostude kogusummast ehk "+money(gmv*A.appleShare)+" × 0,05%");setText("#apple-card-cost",money(appleCardCost));setText("#apple-card-note",count(cards*A.appleShare)+" kaarti × 0,25 € kvartalis");
-      setText("#funding-cost",money(fundingCost));setText("#funding-cost-note",count(tx)+" veebimakset × "+money(P.avg)+" · "+funding.label);
-      setText("#year-wall",money(yearWall));setText("#year-wall-note","Wallester aasta + Apple Pay setup");if(one("#year-ops"))setText("#year-ops",money(yearOps));if(one("#year-ops-note"))setText("#year-ops-note",money(ops)+" × 12");if(one("#year-launch"))setText("#year-launch",money(yearLaunch));setText("#year-income",money(yearIncome));if(one("#year-income-note"))setText("#year-income-note",mode==="partner2"?"2 kuud tasuta + 8 kuud (4,75 € + resto 2%)":"2 kuud tasuta + 8 kuud 4,75 € kuutasuga");setText("#year-net",(yearNet>=0?"+":"−")+money(Math.abs(yearNet)));one("#year-net").className=yearNet>=0?"green":"red";
-      if(one("#ops2"))setText("#ops2",money(ops));if(one("#ops3"))setText("#ops3",money(ops));if(one("#ops4"))setText("#ops4",money(ops));
-      if(one("#launch2"))setText("#launch2",money(launchTotal));if(one("#launch3"))setText("#launch3",money(launchTotal));
-      if(one("#year-copy-p"))setText("#year-copy-p","Aasta sees: kaardid ja tegevuskulu "+money(ops)+" × 12, lansseerimine "+money(launchTotal)+" ning ostud "+A.live+" kuul. Esimesed "+A.freeLive+" kuud on tasuta kampaania ja järgmised "+A.paidLive+" kuud "+(mode==="partner2"?"4,75 € kuutasu + 2% restorani teenustasu.":"4,75 € kuutasu (resto tasu 0%)."));
+      setText("#card-cost",money(cardCost));
+      setText("#card-cost-note",count(cards)+" kaarti × 0,20 €");
+      setText("#auth-cost",money(authCost));
+      setText("#auth-note",count(auths)+" katset × 0,10 €");
+      setText("#apple-payment-cost",money(applePaymentCost+appleCardCost));
+      setText("#funding-cost",money(fundingCost));
+      setText("#funding-cost-note",count(tx)+" makset × "+money(P.avg));
+      setText("#year-wall",money(yearWall));
+      setText("#year-ops",money(yearOps));
+      setText("#year-ops-note",money(ops)+" × 12");
+      setText("#year-launch",money(yearLaunch));
+      setText("#year-income",money(yearIncome));
+      setText("#year-income-note",mode==="partner2"?"2 kuud tasuta + 8 kuud (4,75 € + 2% resto)":"2 kuud tasuta + 8 kuud 4,75 € kuutasuga");
+      setText("#year-net",(yearNet>=0?"+":"−")+money(Math.abs(yearNet)));
+      const yearNetEl=one("#year-net");if(yearNetEl)yearNetEl.className=yearNet>=0?"green":"red";
+      ["#ops2","#ops3","#ops4"].forEach(id=>setText(id,money(ops)));
+      ["#launch2","#launch3"].forEach(id=>setText(id,money(launchTotal)));
+      setText("#year-copy-p","Kaardid ja tegevuskulu "+money(ops)+" × 12, lansseerimine "+money(launchTotal)+", ostud 10 kuul.");
     }
     const slider=one("#volume"),free=one("#volume-free");
     let cardsNow=1000;
