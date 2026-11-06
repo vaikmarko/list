@@ -153,11 +153,11 @@
   <section class="model"><div class="wrap"><div class="model-card">
     <div class="model-head"><div><p class="kicker">Kliki teekonna sammul: käivitus → nullpunkt → kasum</p><h2><span data-cards>1 000</span> kaardiomanikku</h2></div><div class="status" id="status"><span>Kuine tulemus</span><strong id="net">−3 279 €</strong><small id="net-caption">kulud ületavad tulu 3 279 € võrra</small></div></div>
     <div class="presets scenarios">
-      <button data-scenario="start-free"><span>1. Käivitus · kuni 31.01</span><strong>1 000 kaarti · 0 €</strong><small id="sc-free-res">−7 110 € / kuu</small></button>
-      <button class="on" data-scenario="start-paid"><span>2. Veebruar · 4,75 €/kuu</span><strong>1 000 kaarti · resto 0%</strong><small id="sc-paid-res">−3 279 € / kuu</small></button>
-      <button data-scenario="be-0"><span>3. Nullis · ainult kuutasu</span><strong id="sc-be0-cards">2 051 kaarti · 4,75 €</strong><small id="sc-be0-res">0 € / kuu (nullpunkt)</small></button>
-      <button data-scenario="be-2"><span>4. Nullis · +2% resto tasu</span><strong id="sc-be2-cards">1 314 kaarti · +2%</strong><small id="sc-be2-res">0 € / kuu (−737 kaarti)</small></button>
-      <button data-scenario="growth-5k"><span>5. Kasv · +2% resto tasu</span><strong>5 000 kaarti · +2%</strong><small id="sc-5k-res">+17 954 € / kuu</small></button>
+      <button data-scenario="start-free"><span>1. Käivitus · kuni 31.01</span><strong>1 000 kaarti · kuutasu 0 €</strong><small id="sc-free-res">Tulemus: −7 110 € / kuu</small></button>
+      <button class="on" data-scenario="start-paid"><span>2. Veebruar · kuutasu 4,75 €</span><strong>1 000 kaarti · 4,75 € · resto 0%</strong><small id="sc-paid-res">Tulemus: −3 279 € / kuu</small></button>
+      <button data-scenario="be-0"><span>3. Nullpunkt · ainult 4,75 €</span><strong id="sc-be0-cards">2 051 kaarti · 4,75 € · resto 0%</strong><small id="sc-be0-res">Tulemus: 0 € (oleme nullis)</small></button>
+      <button data-scenario="be-2"><span>4. Nullpunkt · 4,75 € + 2% resto</span><strong id="sc-be2-cards">1 314 kaarti · 4,75 € + 2% resto</strong><small id="sc-be2-res">Tulemus: 0 € (737 kaarti vähem)</small></button>
+      <button data-scenario="growth-5k"><span>5. Kasv · 4,75 € + 2% resto</span><strong>5 000 kaarti · 4,75 € + 2% resto</strong><small id="sc-5k-res">Tulemus: +17 954 € / kuu</small></button>
     </div>
     <div class="range"><span>100</span><input id="volume" type="range" min="100" max="50000" step="1" value="1000" aria-label="Aktiivsete kasutajate arv"><span>50 000</span><input id="volume-free" type="number" min="100" max="60000" step="100" value="1000" aria-label="Kirjuta kasutajate arv ise" title="Kirjuta arv ise (kuni 60 000 — erihind kehtib selle piirini)"></div>
     <div class="presets" style="grid-template-columns:repeat(3,1fr);margin:18px 0 10px">
@@ -385,8 +385,8 @@
       <article class="tier mint"><span class="tier-tag">2. etapp · alates 01.02</span><h3>Kuutasu</h3><div class="pct">4,75 €</div><p class="tier-sub">nullis 2 051 kaardiga (0 €/kuu)</p>
         <ul><li>Meile jääb 3,83 €/kuu kaardi kohta</li><li>1 000 kaardiga on kulu −3 279 €/kuu</li><li>5 000 kaardiga kasum +9 204 €/kuu</li></ul>
       </article>
-      <article class="tier black"><span class="tier-tag">3. etapp · lisatulu</span><h3>Resto tasu</h3><div class="pct">+2%</div><p class="tier-sub">+1 750 €/kuu iga 1 000 kaardi kohta</p>
-        <ul><li>Resto maksab 12% (10% kliendile + 2% meile)</li><li>Nullpunkt langeb 2 051 → 1 314 kaardini</li><li>5 000 kaardiga: +8 750 €/kuu (+105 000 €/a) lisaks</li></ul>
+      <article class="tier black"><span class="tier-tag">3. etapp · 4,75 € + resto</span><h3>4,75 € + 2% resto</h3><div class="pct">+2%</div><p class="tier-sub">4,75 € kuutasule lisandub 2% restolt</p>
+        <ul><li>Kaart on 4,75 €/kuu + resto maksab 2% meile</li><li>Nullpunkt langeb 2 051 → 1 314 kaardini</li><li>Annab +1 750 €/kuu iga 1 000 kaardi kohta (+8 750 €/kuu 5 000 kaardiga)</li></ul>
       </article>
     </div>
     <div class="purchase-sum" style="margin-top:14px">
@@ -493,13 +493,13 @@
       setText("#cmp-extra","+"+money(extra2)+" / kuu");
       setText("#cmp-extra-note","+"+money(extra2*12)+" aastas samal mahul ("+count(cards)+" kaarti) · 5 000 kaardiga +"+money(netAtCards(5000,P,ops,4.75,.02)-netAtCards(5000,P,ops,4.75,0))+"/kuu");
       setText("#btn-mode-partner2","4,75 €/kuu · resto +2% (+"+money(extra2)+"/kuu)");
-      setText("#sc-free-res",signed(netAtCards(1000,P,ops,0,0))+" / kuu");
-      setText("#sc-paid-res",signed(netAtCards(1000,P,ops,4.75,0))+" / kuu");
-      setText("#sc-be0-cards",count(beMembership)+" kaarti · 4,75 €");
-      setText("#sc-be0-res","0 € / kuu (nullis)");
-      setText("#sc-be2-cards",count(bePartner2)+" kaarti · +2%");
-      setText("#sc-be2-res","0 € / kuu (−"+count(beMembership-bePartner2)+" kaarti)");
-      setText("#sc-5k-res",signed(netAtCards(5000,P,ops,4.75,.02))+" / kuu");
+      setText("#sc-free-res","Tulemus: "+signed(netAtCards(1000,P,ops,0,0))+" / kuu");
+      setText("#sc-paid-res","Tulemus: "+signed(netAtCards(1000,P,ops,4.75,0))+" / kuu");
+      setText("#sc-be0-cards",count(beMembership)+" kaarti · 4,75 € · resto 0%");
+      setText("#sc-be0-res","Tulemus: 0 € (oleme nullis)");
+      setText("#sc-be2-cards",count(bePartner2)+" kaarti · 4,75 € + 2% resto");
+      setText("#sc-be2-res","Tulemus: 0 € ("+count(beMembership-bePartner2)+" kaarti vähem)");
+      setText("#sc-5k-res","Tulemus: "+signed(netAtCards(5000,P,ops,4.75,.02))+" / kuu");
       const activeScenario=
         mode==="campaign"&&cards===1000?"start-free":
         mode==="membership"&&cards===1000?"start-paid":
