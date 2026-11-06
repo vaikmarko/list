@@ -21,7 +21,7 @@
     .brand{display:flex;gap:12px;align-items:center;font-size:14px;font-weight:800;letter-spacing:.17em}
     .mark{display:grid;width:34px;height:34px;place-items:center;border:1px solid rgba(255,255,255,.55);border-radius:50%;font:italic 17px Georgia;letter-spacing:0}
     .chip{padding:9px 14px;border:1px solid rgba(255,255,255,.18);border-radius:99px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);font-size:12px}
-    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 300px;gap:70px;align-items:center;padding-top:72px}
+    .hero-grid{position:relative;z-index:1;max-width:780px;padding-top:64px}
     .kicker{margin:0 0 12px;color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
     h1,h2,.number{font-family:Georgia,"Times New Roman",serif;font-weight:400}
     h1{max-width:760px;margin:0;font-size:clamp(48px,6vw,76px);letter-spacing:-.05em;line-height:1}
@@ -138,10 +138,9 @@
 <body>
   <section class="hero">
     <div class="wrap">
-      <div class="nav"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><div class="chip">10% kliendile tagasi · kuni 31.01 tasuta · 01.02 alates 4,75 €/kuu</div></div>
+      <div class="nav"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div></div>
       <div class="hero-grid">
-        <div><p class="kicker">Rotermanni 10% kaart · tiimi aruteluleht</p><h1>10% kliendile tagasi. 4,75 € kuus.</h1><p class="lead">Klient saab Rotermannis igalt ostult 10% tagasi ja selle 10% katab restoran. Jaanuari lõpuni saab kaarti tasuta proovida. Veebruarist maksab kaart kliendile 4,75 € kuus (meile 3,83 € + KM) ning järgmise sammuna saame lisada restoranile 2% teenustasu.</p></div>
-        <aside class="be"><small>Kasutusprofiil</small><strong>26–70%</strong><span>kaardiomanikest ostab igal kuul</span><hr><p>All saad ühe klikiga võrrelda kolme etappi: tasuta algus (0 €), veebruarist 4,75 € kuutasu ning +2% restorani teenustasu.</p></aside>
+        <div><p class="kicker">Rotermanni 10% kaart</p><h1>10% kliendile tagasi. 4,75 € kuus.</h1><p class="lead">Klient saab Rotermannis igalt ostult 10% tagasi ja selle 10% maksab restoran. Jaanuari lõpuni on kaart kliendile tasuta, veebruarist 4,75 € kuus (meile 3,83 € + KM) ning järgmise sammuna saame lisada restoranile 2% teenustasu.</p></div>
       </div>
     </div>
   </section>
@@ -414,11 +413,11 @@
       membership:{cashback:.10,merchant:.10,memberGross:4.75,note:"2. etapp (alates 01.02): klient maksab 4,75 € kuus koos KM-ga (meile jääb 3,83 €) ja saab 10% tagasi. Restoran maksab endiselt ainult kliendi 10%."},
       partner2:{cashback:.10,merchant:.12,memberGross:4.75,note:"3. etapp (koos restorani 2% teenustasuga): klient maksab 4,75 € kuus ja saab 10% tagasi. Restoran maksab 12% (10% kliendile + 2% STAATUSE teenustasu)."}
     };
-    const PROFILE_COMMON=" Mitteaktiivne kaart maksab siiski 0,20 € kuus — 90 päeva magav kaart passiveerub automaatselt ja kulu lõpeb; mudel seda kokkuhoidu ei arvesta.";
+    const PROFILE_COMMON="";
     const PROFILES={
-      invited:{share:.70,tx:5,avg:25,note:"Kutsutud püsikliendid: 70% kaardiomanikest ostab igal kuul, aktiivne ostja teeb 5 ostu × 25 € (125 € kuus). Realistlik kutsetega klubile, kuhu liituvad senise allahindluse kasutajad."},
-      club:{share:.40,tx:4,avg:25,note:"Klubi keskmine: 40% kaardiomanikest ostab igal kuul, 4 ostu × 25 € (100 € kuus). Realistlik pärast avalikku liitumist, kui nimekirjas on ka passiivsemaid kaarte."},
-      mass:{share:.26,tx:2,avg:30,note:"Linna mass: 26% kaardiomanikest ostab igal kuul, 2 ostu × 30 € (60 € kuus) — Loyal Solutionsi ärijuhtumi (veebruar 2026) eeldused. Realistlik, kui kaart on avatud kõigile külastajatele."}
+      invited:{share:.70,tx:5,avg:25,note:"Kutsutud püsikliendid (senise soodustuse kasutajad): aktiivne ostja kulutab keskmiselt 125 € kuus."},
+      club:{share:.40,tx:4,avg:25,note:"Klubi keskmine pärast avalikku liitumist: aktiivne ostja kulutab keskmiselt 100 € kuus."},
+      mass:{share:.26,tx:2,avg:30,note:"Linna mass (Loyal Solutionsi ärijuhtumi eeldus): aktiivne ostja kulutab keskmiselt 60 € kuus."}
     };
     const pct=n=>(n*100).toLocaleString("et-EE",{minimumFractionDigits:2,maximumFractionDigits:2})+"%";
     function readNum(sel,fallback){
