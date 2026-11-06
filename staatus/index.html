@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>STAATUS — Rotermanni makselahenduse kulud</title>
+  <title>STAATUS — lansseerimisstrateegia ja kulud</title>
   <style>
     :root{
       --ink:#122b2e;--forest:#0e3d35;--forest2:#14584c;--mint:#83d9bd;
@@ -97,8 +97,8 @@
     .purchase-sum span{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
     .purchase-sum strong{display:block;margin:10px 0 6px;font:400 27px Georgia;letter-spacing:-.03em}
     .purchase-sum small{display:block;color:var(--muted);font-size:11px;line-height:1.5}
-    .funds{display:grid;grid-template-columns:1fr 60px 1fr;margin-top:22px}.source{padding:22px;border:1px solid rgba(14,61,53,.11);border-radius:15px;background:var(--mintp)}
-    .source.gold{background:var(--goldp)}.source span,.source b,.source small{display:block}.source span{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .funds{display:grid;grid-template-columns:1fr 42px 1fr 42px 1fr;margin-top:22px}.source{padding:22px;border:1px solid rgba(14,61,53,.11);border-radius:15px;background:var(--mintp)}
+    .source.gold{background:var(--goldp)}.source.member{background:var(--paper)}.source span,.source b,.source small{display:block}.source span{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
     .source strong{display:block;margin:7px 0 3px;font:400 33px Georgia}.source b{font-size:12px}.source small{margin-top:8px;color:var(--muted)}
     .plus{display:grid;place-items:center;color:var(--forest2);font-size:25px}.down{grid-column:1/-1;display:grid;height:60px;place-items:center;color:var(--forest2);font-size:25px}
     .hub{grid-column:1/-1;padding:28px;border-radius:18px;background:var(--forest);color:#fff}.hub>span{color:var(--mint);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
@@ -131,23 +131,23 @@
     .cost-tag{display:inline-flex;margin-right:7px;padding:5px 8px;border-radius:99px;background:var(--mintp);color:var(--forest2);font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.cost-tag.apple{background:rgba(217,173,91,.3);color:#75541e}
     .cost-notes{padding:20px 30px;background:var(--cream);color:var(--muted);font-size:12px;line-height:1.6}.cost-notes strong{color:var(--ink)}
     footer{padding:30px 0;background:var(--forest);color:#fff}.foot{display:flex;align-items:center;justify-content:space-between}.foot p{margin:0;color:rgba(255,255,255,.5);font-size:11px}
-    @media(max-width:900px){.hero-grid,.heading,.year-grid,.cost-head,.funding-guide-head{grid-template-columns:1fr}.hero-grid{gap:36px}.be{max-width:410px}.metrics,.two,.provider-grid,.funding-steps{grid-template-columns:1fr 1fr}.step-card{grid-template-columns:1fr}.purchase-sum{grid-template-columns:1fr}.tiers{grid-template-columns:1fr 1fr}.phases{grid-template-columns:1fr}.phases{gap:26px}.phases:before{display:none}}
-    @media(max-width:650px){.chip{display:none}.tiers{grid-template-columns:1fr}.range{grid-template-columns:40px 1fr 48px}.range input[type=number]{grid-column:1/-1;width:100%}.hero-grid{padding-top:52px}.model-card{padding:21px}.model-head{align-items:flex-start;flex-direction:column}.status{width:100%;text-align:left}.presets,.metrics,.two,.year-numbers,.provider-grid,.funding-steps{grid-template-columns:1fr}.presets{grid-template-columns:1fr 1fr}.section{padding:68px 0}.step{grid-template-columns:40px 1fr;gap:0 12px}.step-num{width:32px;height:32px;font-size:14px}.step-line{top:32px;left:15px}.funds{grid-template-columns:1fr;gap:10px}.plus{min-height:25px}.down,.hub{grid-column:auto}.split{grid-template-columns:1fr}.panel-head{align-items:flex-start;flex-direction:column;gap:12px}.funding-guide{padding:24px}.cost-head{padding:24px}.cost-table{min-width:760px}.cost-notes{padding:18px 24px}.foot{align-items:flex-start;flex-direction:column;gap:16px}}
+    @media(max-width:900px){.hero-grid,.heading,.year-grid,.cost-head,.funding-guide-head{grid-template-columns:1fr}.hero-grid{gap:36px}.be{max-width:410px}.metrics,.two,.provider-grid,.funding-steps{grid-template-columns:1fr 1fr}.step-card{grid-template-columns:1fr}.purchase-sum{grid-template-columns:1fr}.tiers{grid-template-columns:1fr 1fr}.phases{grid-template-columns:1fr}.phases{gap:26px}.phases:before{display:none}.funds{grid-template-columns:1fr;gap:10px}.funds .plus{min-height:25px}.down,.hub{grid-column:auto}}
+    @media(max-width:650px){.chip{display:none}.tiers{grid-template-columns:1fr}.range{grid-template-columns:40px 1fr 48px}.range input[type=number]{grid-column:1/-1;width:100%}.hero-grid{padding-top:52px}.model-card{padding:21px}.model-head{align-items:flex-start;flex-direction:column}.status{width:100%;text-align:left}.presets,.metrics,.two,.year-numbers,.provider-grid,.funding-steps{grid-template-columns:1fr}.presets{grid-template-columns:1fr!important}.section{padding:68px 0}.step{grid-template-columns:40px 1fr;gap:0 12px}.step-num{width:32px;height:32px;font-size:14px}.step-line{top:32px;left:15px}.split{grid-template-columns:1fr}.panel-head{align-items:flex-start;flex-direction:column;gap:12px}.funding-guide{padding:24px}.cost-head{padding:24px}.cost-table{min-width:760px}.cost-notes{padding:18px 24px}.foot{align-items:flex-start;flex-direction:column;gap:16px}}
   </style>
 </head>
 <body>
   <section class="hero">
     <div class="wrap">
-      <div class="nav"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><div class="chip">Wallester, Apple Pay, makseteenus 0,7%, tegevuskulu</div></div>
+      <div class="nav"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><div class="chip">10% tagasi · tasuta kuni 31.01 · siis 4,75 €/kuu</div></div>
       <div class="hero-grid">
-        <div><p class="kicker">Rotermanni makselahenduse ülevaade</p><h1>Kuidas makse toimub ja kui palju kuu tulu ja kulu on?</h1><p class="lead">Arvutus avaneb 1 000 kaardiomanikuga ja tasemetega 5% / 7% / 10% (keskmine 7%). Makseteenus 0,7%. Wallester: kuutasu 2 000 €, kaart 0,20 €, kinnitus 0,10 €. Tegevuskulu 4 400 € kuus (tugi, raamatupidaja, kindlustus, üllatused). Lansseerimine 65 575 €, sh Wallesteri kaardifirma 21 575 € ja Staatuse ehitus 40 000 €.</p></div>
+        <div><p class="kicker">Rotermanni lansseerimisstrateegia</p><h1>Proovi tasuta. Jätka veebruarist 4,75 € eest kuus.</h1><p class="lead">Lansseerimisel saab klient 10% cashback'i kuutasuta. Restoran rahastab sama 10% ning eraldi teenustasu alguses ei maksa. Planeeritud 1. veebruarist 2027 maksab liikmelisus 4,75 € kuus koos käibemaksuga. Restorani teenustasu kujundatakse hiljem päris lisakäibe põhjal.</p></div>
         <aside class="be"><small>Kasutusprofiil</small><strong>26–70%</strong><span>kaardiomanikest ostab igal kuul</span><hr><p>Kolm valitavat profiili: kutsutud püsikliendid (70% ostab, 5 ostu × 25 €), klubi keskmine (40%, 4 × 25 €) ja linna mass (26%, 2 × 30 € — Loyal Solutionsi ärijuhtumi eeldus).</p></aside>
       </div>
     </div>
   </section>
 
   <section class="model"><div class="wrap"><div class="model-card">
-    <div class="model-head"><div><p class="kicker">Vali kaardiomanike arv</p><h2><span data-cards>5 000</span> kaardiomanikku</h2></div><div class="status" id="status"><span>Kuine tulemus</span><strong id="net">−87 €</strong><small id="net-caption">kulud ületavad tulu 87 € võrra</small></div></div>
+    <div class="model-head"><div><p class="kicker">Vali kaardiomanike arv</p><h2><span data-cards>1 000</span> kaardiomanikku</h2></div><div class="status" id="status"><span>Kuine tulemus</span><strong id="net">−7 110 €</strong><small id="net-caption">kulud ületavad tulu 7 110 € võrra</small></div></div>
     <div class="presets">
       <button data-preset="300"><span>Piloot</span><strong>300</strong></button>
       <button class="on" data-preset="1000"><span>Kutsetega algus</span><strong>1 000</strong></button>
@@ -156,8 +156,8 @@
     </div>
     <div class="range"><span>100</span><input id="volume" type="range" min="100" max="50000" step="1" value="1000" aria-label="Aktiivsete kasutajate arv"><span>50 000</span><input id="volume-free" type="number" min="100" max="60000" step="100" value="1000" aria-label="Kirjuta kasutajate arv ise" title="Kirjuta arv ise (kuni 60 000 — erihind kehtib selle piirini)"></div>
     <div class="presets" style="grid-template-columns:repeat(2,1fr);margin:18px 0 10px">
-      <button data-mode="tiers" class="on"><span>Faas 2 · tasemed 5/7/10</span><strong>keskmine ~7%</strong></button>
-      <button data-mode="flat"><span>Faas 1 · käivitus</span><strong>10% kõigile</strong></button>
+      <button data-mode="campaign" class="on"><span>Lansseerimiskampaania · kuni 31.01</span><strong>0 €/kuu · 10% tagasi</strong></button>
+      <button data-mode="membership"><span>Planeeritud · alates 01.02</span><strong>4,75 €/kuu · 10% tagasi</strong></button>
     </div>
     <p id="mode-note" style="margin:0;color:var(--muted);font-size:11px;line-height:1.5"></p>
     <div class="presets" style="grid-template-columns:repeat(3,1fr);margin:18px 0 10px">
@@ -168,9 +168,9 @@
     <p id="profile-note" style="margin:0;color:var(--muted);font-size:11px;line-height:1.5"></p>
     <div class="metrics">
       <div class="metric"><span>Ostude kogusumma kuus</span><strong id="gmv">87 500 €</strong><small id="tx">700 ostjat × 5 × 25 €</small></div>
-      <div class="metric"><span>Tulu kuus</span><strong class="green" id="income">4 944 €</strong><small id="income-pct">restoran 12% − tagasi 7% + kaart 0,65%</small></div>
-      <div class="metric"><span>Kulu kuus</span><strong class="red" id="wall">8 079 €</strong><small id="cost-note">kaardid + tegevus 4 400 €</small></div>
-      <div class="metric"><span>Kuu tulemus</span><strong class="red" id="balance">−3 135 €</strong><small>tulu − kaardid − tegevuskulu</small></div>
+      <div class="metric"><span>Tulu kuus</span><strong class="green" id="income">569 €</strong><small id="income-pct">restoran 10% − tagasi 10% + liikmetasu 0 € + kaart 0,65%</small></div>
+      <div class="metric"><span>Kulu kuus</span><strong class="red" id="wall">7 679 €</strong><small id="cost-note">kaardid 3 279 € + tegevus 4 400 €</small></div>
+      <div class="metric"><span>Kuu tulemus</span><strong class="red" id="balance">−7 110 €</strong><small>tulu − kaardid − tegevuskulu</small></div>
     </div>
   </div></div></section>
 
@@ -194,14 +194,14 @@
       </article>
     </div>
     <div class="two" style="margin-top:22px">
-      <article class="panel"><div class="panel-head"><p class="kicker">Kuu tulemus</p><h2 id="net2">−2 735 €</h2></div>
-      <div class="row"><span>Tulu</span><b id="income4">4 944 €</b><small>restoran + kaarditasu − tagasi</small></div>
+      <article class="panel"><div class="panel-head"><p class="kicker">Kuu tulemus</p><h2 id="net2">−7 110 €</h2></div>
+      <div class="row"><span>Tulu</span><b id="income4">569 €</b><small>restorani panus − cashback + liikmetasu + kaarditulu</small></div>
       <div class="row"><span>Kaardikulu</span><b class="red" id="wall5">3 279 €</b><small>Wallester + Apple Pay + 0,7%</small></div>
       <div class="row"><span>Tegevuskulu</span><b class="red" id="ops4">4 400 €</b><small>read vasakul, sinu numbrid</small></div>
-      <div class="total cost" id="net-total"><span>Tulu − kaardid − tegevus</span><b id="net3">−2 735 €</b><small>avatud kuu; lansseerimine on aasta sees</small></div>
+      <div class="total cost" id="net-total"><span>Tulu − kaardid − tegevus</span><b id="net3">−7 110 €</b><small>avatud kuu; lansseerimine on aasta sees</small></div>
       </article>
       <article class="panel"><div class="panel-head"><p class="kicker">Kuidas kasutada</p><h2 style="font-size:28px">Sama leht</h2></div>
-      <div class="row"><span>Kaardid, 5/7/10, kes ostab</span><b>üleval</b><small>liugur ja nupud</small></div>
+      <div class="row"><span>Kampaania, veebruari kuutasu, kes ostab</span><b>üleval</b><small>liugur ja nupud</small></div>
       <div class="row"><span>Tugi, üllatused, arendus</span><b>siin</b><small>kirjuta eurod, tulemus muutub</small></div>
       <div class="row"><span>Wallester 21 575 €</span><b>lukus</b><small>piloodi setup + Apple Pay</small></div>
       </article>
@@ -227,7 +227,7 @@
             <li>Iga ost restoranis läheb kirja.</li>
             <li>Inimene saab kokkulepitud protsendi tagasi (algul 10%).</li>
             <li>Ostuga sama summa võetakse tema pangakaardilt.</li>
-            <li>Restoran maksab klubile 12% nendest ostudest.</li>
+            <li>Restoran maksab 10%, mis läheb täies ulatuses kliendi cashback'iks.</li>
             <li>Tugi näeb, mis juhtus, kui keegi helistab.</li>
           </ul>
         </div>
@@ -266,9 +266,9 @@
       </article>
       <article class="step"><div class="step-num">4</div>
         <div class="step-card">
-          <div class="step-main"><h3>Kaupmehe panus, cashback ja kaarditulu <span class="step-when">Kuu lõpus</span></h3><p>Kaupmees maksab programmi 12% oma STAATUSE-ostude summast. Sellest saab klient 10% cashbackina STAATUSE kaardile tagasi. Lisaks maksab Wallester meile poole kaardikasutuse tulust (interchange).</p></div>
+          <div class="step-main"><h3>Kaupmehe panus, cashback ja kaarditulu <span class="step-when">Kuu lõpus</span></h3><p>Kaupmees maksab programmi 10% oma STAATUSE-ostude summast ja kogu see raha läheb kliendile cashback'ina tagasi. Eraldi teenustasu piloodis ei ole. Lisaks maksab Wallester meile poole kaardikasutuse tulust (interchange).</p></div>
           <div class="step-side">
-            <div class="mv gain"><span>Sisse</span><b>Kaupmees → STAATUS: +3,00 €</b><small>12% sellest 25 € ostust.</small></div>
+            <div class="mv gain"><span>Sisse</span><b>Kaupmees → STAATUS: +2,50 €</b><small>10% sellest 25 € ostust.</small></div>
             <div class="mv fee"><span>Välja</span><b>STAATUS → kliendi kaart: −2,50 €</b><small>10% cashback kliendile.</small></div>
             <div class="mv gain"><span>Sisse</span><b>Wallester → STAATUS: +0,16 €</b><small>Interchange'i 50% osa ehk 0,65% ostust.</small></div>
           </div>
@@ -277,28 +277,31 @@
     </div>
     <div class="purchase-sum">
       <div><span>Ühe 25 € ostu otsesed tasud</span><strong class="red">−0,29 €</strong><small>0,10 € makse kinnitamine + 0,18 € pangakaardilt võtmine + ~0,01 € Apple Pay</small></div>
-      <div><span>Tulu samalt ostult</span><strong class="green">+0,66 €</strong><small>3,00 € kaupmehelt − 2,50 € cashback + 0,16 € interchange</small></div>
-      <div><span>Jääb ühe ostu pealt</span><strong class="green">+0,37 €</strong><small>enne püsikulusid — Wallesteri kuutasu 2 000 € ja kaartide kuutasud</small></div>
+      <div><span>Tulu samalt ostult</span><strong class="green">+0,16 €</strong><small>2,50 € kaupmehelt − 2,50 € cashback + 0,16 € interchange</small></div>
+      <div><span>Jääb ühe ostu pealt</span><strong class="red">−0,13 €</strong><small>enne liikmetasu ja püsikulusid — kampaania ajal on see kliendihanke kulu</small></div>
     </div>
 
-    <p class="kicker" style="margin:56px 0 0">Sama raha liikumine kuu peale kokku — <span data-cards>5 000</span> kaardiomanikku</p>
+    <p class="kicker" style="margin:56px 0 0">Sama raha liikumine kuu peale kokku — <span data-cards>1 000</span> kaardiomanikku</p>
     <div class="funds">
-      <article class="source"><span>Kaupmehe panus programmi</span><strong id="merchant">75 000 €</strong><b>12% ostude kogusummast</b><small id="merchant-note">Sellest tagastab programm klientidele 10%.</small></article>
+      <article class="source"><span>Kaupmehe panus programmi</span><strong id="merchant">8 750 €</strong><b id="merchant-pct">10% ostude kogusummast</b><small id="merchant-note">Kogu summa tagastatakse klientidele.</small></article>
       <div class="plus">+</div>
-      <article class="source gold"><span>Kaardikasutusest saadav tulu</span><strong id="interchange">4 063 €</strong><b>Arvutuses 0,65% ostude kogusummast</b><small>Wallester maksab programmile kokkulepitud osa kaardikasutusest saadavast tulust.</small></article>
+      <article class="source gold"><span>Kaardikasutusest saadav tulu</span><strong id="interchange">569 €</strong><b>Arvutuses 0,65% ostude kogusummast</b><small>Wallester maksab programmile kokkulepitud osa kaardikasutusest saadavast tulust.</small></article>
+      <div class="plus">+</div>
+      <article class="source member"><span>Liikmetasu, käibemaksuta</span><strong id="member-fees">0 €</strong><b id="member-fee-label">Kampaania ajal kuutasu ei ole</b><small id="member-fee-note">4,75 € kuutasu rakendub planeeritult 1. veebruarist 2027.</small></article>
       <div class="down">↓</div>
-      <article class="hub"><span>Programmile laekub kuus</span><strong id="inflow">79 063 €</strong><small>Kaupmeeste panus ja kaardikasutusest saadav tulu kokku.</small><div class="split"><div><span>Klientidele tagastatav raha</span><b id="cashback">−62 500 €</b><small id="cashback-pct">10% ostude kogusummast</small></div><div><span>Makselahenduse kulu</span><b id="wall2">−16 649 €</b><small>Wallester, Apple Pay ja seotud pangakaardilt ostusumma võtmine</small></div></div></article>
+      <article class="hub"><span>Programmile laekub kuus</span><strong id="inflow">9 319 €</strong><small>Kaupmehe panus, liikmetasu ja kaardikasutusest saadav tulu kokku.</small><div class="split"><div><span>Klientidele tagastatav raha</span><b id="cashback">−8 750 €</b><small id="cashback-pct">10% ostude kogusummast</small></div><div><span>Makselahenduse kulu</span><b id="wall2">−3 279 €</b><small>Wallester, Apple Pay ja seotud pangakaardilt ostusumma võtmine</small></div></div></article>
     </div>
   </div></section>
 
   <section class="section economy"><div class="wrap">
     <div class="two">
-      <article class="panel"><div class="panel-head"><p class="kicker">Programmi tulu enne maksekulusid</p><h2 id="income2">16 563 €</h2></div>
-      <div class="row"><span>Kaupmehe panus</span><b id="merchant2">75 000 €</b><small>12,00% ostude kogusummast</small></div>
-      <div class="row"><span>Klientidele tagastatav raha</span><b class="red" id="cashback2">−62 500 €</b><small id="cashback2-pct">10,00% ostude kogusummast</small></div>
-      <div class="row"><span>Kaupmehe panusest jääb programmile</span><b id="spread">12 500 €</b><small id="spread-pct">2,00% ostude kogusummast</small></div>
-      <div class="row"><span>Kaardikasutusest saadav tulu</span><b id="interchange2">4 063 €</b><small>arvutuses 0,65% ostude kogusummast</small></div>
-      <div class="total"><span>Programmi tulu enne makselahenduse kulu</span><b id="income3">16 563 €</b><small id="income3-pct">2,65% ostude kogusummast</small></div>
+      <article class="panel"><div class="panel-head"><p class="kicker">Programmi tulu enne maksekulusid</p><h2 id="income2">569 €</h2></div>
+      <div class="row"><span>Kaupmehe panus</span><b id="merchant2">8 750 €</b><small id="merchant2-pct">10,00% ostude kogusummast</small></div>
+      <div class="row"><span>Klientidele tagastatav raha</span><b class="red" id="cashback2">−8 750 €</b><small id="cashback2-pct">10,00% ostude kogusummast</small></div>
+      <div class="row"><span>Kaupmehe panusest jääb programmile</span><b id="spread">0 €</b><small id="spread-pct">0,00% ostude kogusummast · teenustasu piloodis 0%</small></div>
+      <div class="row"><span>Liikmetasu, käibemaksuta</span><b id="member-fees2">0 €</b><small id="member-fee-note2">Kampaania ajal 0 €; veebruarist kliendihind 4,75 € koos käibemaksuga.</small></div>
+      <div class="row"><span>Kaardikasutusest saadav tulu</span><b id="interchange2">569 €</b><small>arvutuses 0,65% ostude kogusummast</small></div>
+      <div class="total"><span>Programmi tulu enne makselahenduse kulu</span><b id="income3">569 €</b><small id="income3-pct">ostumarginaal 0,65% + liikmetasu 0 €</small></div>
       </article>
       <article class="panel"><div class="panel-head"><p class="kicker">Makselahenduse kulu kuus</p><h2 id="wall3">16 649 €</h2></div>
       <div class="row"><span>Wallesteri kuutasu</span><b>2 000 €</b><small>piloodiaasta erihind · tavahind 2 500 €</small></div>
@@ -329,15 +332,15 @@
   </div></section>
 
   <section class="section year"><div class="wrap year-grid">
-    <div class="year-copy"><p class="kicker">Esimese aasta arvutus</p><h2>Teenuse eest maksame 12 kuud, oste tehakse 10 kuud</h2><p id="year-copy-p">Aasta sees: kaardid, tegevuskulu 4 400 € × 12 ja lansseerimine 65 575 € (sh Wallester 21 575 €). Tulu 10 kuul.</p></div>
+    <div class="year-copy"><p class="kicker">Esimese aasta arvutus</p><h2>Kaks kampaaniakuud tasuta, seejärel kaheksa tasulist kuud</h2><p id="year-copy-p">Aasta sees: kaardid ja tegevuskulu 12 kuud, ostud 10 kuud. Liikmetasu on esimesel kahel aktiivsel kuul 0 € ning järgmisel kaheksal kuul 4,75 € koos käibemaksuga.</p></div>
     <div class="year-numbers">
       <div><span>Kaardikulu</span><strong id="year-wall">58 460 €</strong><small id="year-wall-note">Wallester aasta + Apple Pay setup</small></div>
       <div><span>Lansseerimine peale kaarte</span><strong id="year-launch">44 000 €</strong><small>Staatuse ehitus ja avamine</small></div>
       <div><span>Tegevuskulu 12 kuud</span><strong id="year-ops">52 800 €</strong><small id="year-ops-note">4 400 € × 12</small></div>
     </div>
     <div class="year-numbers" style="margin-top:9px;grid-template-columns:1fr 1fr">
-      <div><span>Tulu 10 kuul</span><strong id="year-income">49 438 €</strong><small>10 kuud, mil inimesed ostavad</small></div>
-      <div><span>Esimese aasta tulemus</span><strong class="red" id="year-net">−89 022 €</strong><small>tulu − kaardid − lansseerimine − tegevus</small></div>
+      <div><span>Tulu 10 kuul</span><strong id="year-income">36 333 €</strong><small id="year-income-note">10 ostukuud, neist 8 kuutasuga</small></div>
+      <div><span>Esimese aasta tulemus</span><strong class="red" id="year-net">−118 928 €</strong><small>tulu − kaardid − lansseerimine − tegevus</small></div>
     </div>
   </div></section>
 
@@ -364,37 +367,37 @@
   </div></section>
 
   <section class="section"><div class="wrap">
-    <div class="heading"><div><p class="kicker">Peatükk 2 — STAATUS klubi</p><h2>Kuni 10% tagasi — algul kõigile kutsutuile, hiljem tasemena</h2></div><p>Käivitusel saab iga kutsutu 10% ja senine Rotermanni allahindlus muutub digitaalseks. Faas 2-s tulevad tasemed: 5% kõigile kaardiomanikele, 7% püsikülastajale ja 10% on staatus, mida teenid ostudega — või tellid kuutasuga. Kelleltki ei võeta midagi ära: asutajaliikmed hoiavad oma 10%.</p></div>
+    <div class="heading"><div><p class="kicker">Peatükk 2 — lansseerimisstrateegia</p><h2>Kõigepealt tasuta kogemus, siis selge kuutasu</h2></div><p>Klient saab enne maksmist teenust päriselt proovida. Restoran kannab alguses ainult kliendile tagastatava 10% ning eraldi teenustasu on 0%. Veebruarist jätkub 10% cashback 4,75 € kuutasuga; restorani teenustasu otsustatakse hiljem päris tulemuste põhjal.</p></div>
     <div class="tiers">
-      <article class="tier"><span class="tier-tag">Faas 2</span><h3>Liige</h3><div class="pct">5%</div><p class="tier-sub">kõigile, kes kaardi teevad</p>
-        <ul><li>Liitumine ainult kutsega</li><li>Kuutasu ei ole</li><li>3 kutset sõpradele</li></ul>
+      <article class="tier"><span class="tier-tag">15.12–31.01</span><h3>Lansseerimiskampaania</h3><div class="pct">0 €</div><p class="tier-sub">tasuta prooviperiood</p>
+        <ul><li>10% cashback kõigile kutsutuile</li><li>Kuutasu kampaania ajal ei ole</li><li>Klient kogeb väärtust enne otsust</li></ul>
       </article>
-      <article class="tier"><span class="tier-tag">Faas 2</span><h3>Sisering</h3><div class="pct">7%</div><p class="tier-sub">püsikülastajale</p>
-        <ul><li>Teenid, kui kulutad ~100 € kuus</li><li>Progress näitab teekonda</li><li>Lävend lukustatakse piloodiga</li></ul>
+      <article class="tier"><span class="tier-tag">Piloot</span><h3>Restoran</h3><div class="pct">10%</div><p class="tier-sub">cashback'i panus</p>
+        <ul><li>Kogu 10% jõuab kliendini</li><li>Eraldi teenustasu alguses 0%</li><li>Restoran maksab ainult päris käibelt</li></ul>
       </article>
-      <article class="tier mint"><span class="tier-tag">Faas 2</span><h3>Staatus</h3><div class="pct">10%</div><p class="tier-sub">teenid või tellid</p>
-        <ul><li>Teenid: ~200 € või X ostu kuus</li><li>Või tellid: ~4,99 € kuus</li><li>Kuised üllatused ja eelisõigus</li></ul>
+      <article class="tier mint"><span class="tier-tag">Alates 01.02</span><h3>STAATUS</h3><div class="pct">4,75 €</div><p class="tier-sub">kuus · hind koos käibemaksuga</p>
+        <ul><li>Liikmele jätkuvalt 10% tagasi</li><li>Hind on liitumisel ette teada</li><li>Meeldetuletus enne esimest tasu</li></ul>
       </article>
-      <article class="tier black"><span class="tier-tag">Faas 1</span><h3>Asutajaliige</h3><div class="pct">1 000</div><p class="tier-sub">esimest liiget — hiljem enam ei saa</p>
-        <ul><li>Must kaart</li><li>Staatus jääb igaveseks</li><li>10% kogu esimesel aastal</li></ul>
+      <article class="tier black"><span class="tier-tag">Järgmine samm</span><h3>Partnerhinnastus</h3><div class="pct">Andmed</div><p class="tier-sub">enne teenustasu otsust</p>
+        <ul><li>Mõõdame lisakäivet ja kordusoste</li><li>Teenustasu kujuneb järk-järgult</li><li>Uus hind lepitakse partneriga kokku</li></ul>
       </article>
     </div>
     <div class="purchase-sum" style="margin-top:14px">
-      <div><span>Mida klient näeb</span><strong>5% kohe, 10% siht</strong><small>Iga ost kasvatab staatust. Äpp ütleb: „Kuluta veel 34 €, et tõusta järgmisele tasemele." Kui oste ei tee, saad 10% osta kuutasuga. Vahepeal üllatused.</small></div>
-      <div><span>Mida see programmi rahale teeb</span><strong class="red">−2 735 € kuus</strong><small>1 000 kaarti, 70% ostab, tagasi 7%, tegevuskulu 4 400 €. 10% kõigile samadel eeldustel: −5 360 € kuus.</small></div>
-      <div><span>Mida saavad restoranid ja kvartal</span><strong class="green">+16% käivet</strong><small>Tasemed premeerivad sagedast käimist — raha jääb Rotermanni. Kaupmees näeb täpselt, mida programm juurde tõi.</small></div>
+      <div><span>Mida klient näeb</span><strong>0 € → 4,75 €</strong><small>10% cashback on tasuta kuni 31. jaanuarini. Planeeritult 1. veebruarist jätkub sama kasu 4,75 € kuutasuga.</small></div>
+      <div><span>Mida see programmi rahale teeb</span><strong class="red">−7 110 € → −3 280 €</strong><small>1 000 kaarti ja 87 500 € ostumahtu kuus. Teine number arvestab 4,75 € kliendihinda koos 24% käibemaksuga.</small></div>
+      <div><span>Millal mudel kannab ennast</span><strong class="green">~2 050 liiget</strong><small>Samadel kasutuseeldustel jõuab kuutulemus nulli. 5 000 maksva liikmega on tulemus ligikaudu +9 200 € kuus.</small></div>
     </div>
     <div class="phases">
-      <article class="phase on"><span class="phase-dot"></span><small>8. september 2026</small><h3>Faas 1</h3><p>Kaart ja 10% kõigile kutsutuile — senine allahindlus läheb digitaalseks. 1 000 asutajaliiget.</p></article>
-      <article class="phase"><span class="phase-dot"></span><small>September – oktoober</small><h3>Piloot õpetab</h3><p>Tasemete lävendid (summa või ostude arv) lukustatakse päris ostudega.</p></article>
-      <article class="phase"><span class="phase-dot"></span><small>15. detsember 2026</small><h3>Faas 2</h3><p>Tasemed 5/7/10, progress, teeni-või-telli staatus ja üllatused. QR-koodid ja reklaam toovad linnarahva.</p></article>
+      <article class="phase on"><span class="phase-dot"></span><small>15. detsember 2026</small><h3>Tasuta lansseerimine</h3><p>Kutsutud liikmed saavad 10% cashback'i ilma kuutasuta. Restoranilt küsitakse ainult sama 10% cashback'i panust.</p></article>
+      <article class="phase"><span class="phase-dot"></span><small>Planeeritud 1. veebruar 2027</small><h3>Tasuline liikmelisus</h3><p>10% cashback jätkub 4,75 € kuutasuga. Tasuta perioodi lõpp ja hind on kliendile algusest peale selged.</p></article>
+      <article class="phase"><span class="phase-dot"></span><small>Kevad 2027</small><h3>Partnerhinnastuse järgmine aste</h3><p>Päris lisakäibe, kordusostude ja kasutusandmete põhjal lepitakse restoranidega kokku järkjärguline teenustasu.</p></article>
     </div>
   </div></section>
 
-  <footer><div class="wrap foot"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><p>Rotermanni × Wallester · kuine tulu ja kulu · käibemaksuta · makseteenus 0,7% · tegevuskulu 4 400 €/kuu · lansseerimine 65 575 €</p></div></footer>
+  <footer><div class="wrap foot"><div class="brand"><span class="mark">S</span><span>STAATUS</span></div><p>10% restoranilt = 10% kliendile · tasuta kuni 31.01 · siis 4,75 €/kuu koos käibemaksuga · restorani teenustasu piloodis 0%</p></div></footer>
 
   <script>
-    const A={tx:5,avg:25,attempts:1.15,merchant:.12,cashback:.10,interchange:.013,share:.5,maintenance:2000,active:.2,auth:.10,issue:.1,setup:4000,contract:12,live:10,appleSetup:17575,appleShare:.5,applePos:.0005,appleQuarter:.25,cardRate:.007,cardFixed:0,cardMonthly:0,ops:4400,launchExtra:44000};
+    const A={tx:5,avg:25,attempts:1.15,interchange:.013,share:.5,maintenance:2000,active:.2,auth:.10,issue:.1,setup:4000,contract:12,live:10,freeLive:2,paidLive:8,appleSetup:17575,appleShare:.5,applePos:.0005,appleQuarter:.25,cardRate:.007,cardFixed:0,cardMonthly:0,ops:4400,launchExtra:44000,vat:.24};
     const money=n=>new Intl.NumberFormat("et-EE",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(n);
     const count=n=>new Intl.NumberFormat("et-EE",{maximumFractionDigits:0}).format(n);
     const all=(s)=>document.querySelectorAll(s);
@@ -403,10 +406,10 @@
     function fundingFor(tx,gmv){
       return {variable:gmv*A.cardRate+tx*A.cardFixed,monthly:A.cardMonthly,label:"makseteenus 0,7% ostude kogusummast"};
     }
-    let mode="tiers",profile="invited";
+    let mode="campaign",profile="invited";
     const MODES={
-      flat:{rate:.10,note:"Faas 1: kõik kutsutud saavad 10% — kliendihanke faas, kehtib kutsetega alustades (esimesed 1 000)."},
-      tiers:{rate:.07,note:"Faas 2: kaart on avatud kõigile Rotermanni külastajatele. Baastase on 5%, püsikülastaja 7%, staatus 10% — arvutuses keskmine 7%. Linna mahus on keskmine tõenäoliselt madalam (enamik külastajaid jääb 5% tasemele), seega tulemus on siin pigem konservatiivne."}
+      campaign:{cashback:.10,merchant:.10,memberGross:0,note:"Lansseerimiskampaania: 10% cashback on kliendile tasuta kuni 31. jaanuarini 2027. Restoran rahastab sama 10% ning eraldi teenustasu piloodis ei ole."},
+      membership:{cashback:.10,merchant:.10,memberGross:4.75,note:"Planeeritud alates 1. veebruarist 2027: liige maksab 4,75 € kuus koos 24% käibemaksuga ja saab jätkuvalt 10% cashback'i. Restorani eraldi teenustasu on selles arvutuses endiselt 0%. Arvutus eeldab, et kõik kuvatud kaardiomanikud jätkavad maksva liikmena."}
     };
     const PROFILE_COMMON=" Mitteaktiivne kaart maksab siiski 0,20 € kuus — 90 päeva magav kaart passiveerub automaatselt ja kulu lõpeb; mudel seda kokkuhoidu ei arvesta.";
     const PROFILES={
@@ -427,15 +430,15 @@
       return readNum('[data-launch="build"]',40000)+readNum('[data-launch="opening"]',4000);
     }
     function update(cards){
-      const cbRate=MODES[mode].rate,P=PROFILES[profile];
+      const M=MODES[mode],cbRate=M.cashback,merchantRate=M.merchant,P=PROFILES[profile];
       const actives=Math.round(cards*P.share);
-      const tx=actives*P.tx,gmv=tx*P.avg,merchant=gmv*A.merchant,cashback=gmv*cbRate,spread=merchant-cashback;
-      const interchange=gmv*A.interchange*A.share,income=spread+interchange,cardCost=cards*A.active,auths=tx*A.attempts,authCost=auths*A.auth;
+      const tx=actives*P.tx,gmv=tx*P.avg,merchant=gmv*merchantRate,cashback=gmv*cbRate,spread=merchant-cashback;
+      const interchange=gmv*A.interchange*A.share,memberFeeNet=M.memberGross/(1+A.vat),memberFees=cards*memberFeeNet,income=spread+interchange+memberFees,cardCost=cards*A.active,auths=tx*A.attempts,authCost=auths*A.auth;
       const applePaymentCost=gmv*A.appleShare*A.applePos,appleCardCost=cards*A.appleShare*A.appleQuarter/3;
       const funding=fundingFor(tx,gmv),fundingCost=funding.variable+funding.monthly;
       const wall=A.maintenance+cardCost+authCost+applePaymentCost+appleCardCost+fundingCost,ops=opsNow(),launchExtra=launchExtraNow(),launchTotal=A.setup+A.appleSetup+launchExtra,totalCost=wall+ops,net=income-totalCost,issue=cards*A.issue;
       const yearWall=A.maintenance*A.contract+(cardCost+authCost)*A.live+A.setup+issue+A.appleSetup+(applePaymentCost+appleCardCost)*A.live+funding.variable*A.live+funding.monthly*A.contract;
-      const yearOps=ops*A.contract,yearLaunch=launchExtra,yearIncome=income*A.live,yearNet=yearIncome-yearWall-yearOps-yearLaunch;
+      const yearOps=ops*A.contract,yearLaunch=launchExtra,yearMemberFees=cards*(4.75/(1+A.vat))*A.paidLive,yearIncome=(spread+interchange)*A.live+yearMemberFees,yearNet=yearIncome-yearWall-yearOps-yearLaunch;
       all("[data-cards]").forEach(el=>el.textContent=count(cards));setText("#gmv",money(gmv));setText("#tx",count(actives)+" ostjat ("+Math.round(P.share*100)+"%) × "+P.tx+" ostu × "+P.avg+" € = "+count(tx)+" ostu");
       ["#income","#income2","#income3","#income4"].forEach(id=>{if(one(id))setText(id,money(income))});
       ["#wall2"].forEach(id=>setText(id,"−"+money(wall)));
@@ -449,12 +452,17 @@
       const netTotal=one("#net-total");if(netTotal)netTotal.classList.toggle("cost",net<0);
       const status=one("#status");status.classList.toggle("ok",net>=0);one("#balance").className=net>=0?"green":"red";
       ["#merchant","#merchant2"].forEach(id=>setText(id,money(merchant)));["#interchange","#interchange2"].forEach(id=>setText(id,money(interchange)));
-      setText("#inflow",money(merchant+interchange));["#cashback","#cashback2"].forEach(id=>setText(id,"−"+money(cashback)));setText("#spread",money(spread));
-      const incomePctText=pct((A.merchant-cbRate)+A.interchange*A.share)+" ostude kogusummast";
-      setText("#income-pct",incomePctText);setText("#income3-pct",incomePctText);
+      ["#member-fees","#member-fees2"].forEach(id=>setText(id,money(memberFees)));
+      setText("#member-fee-label",M.memberGross?"4,75 €/kuu koos käibemaksuga":"Kampaania ajal kuutasu ei ole");
+      setText("#member-fee-note",M.memberGross?"Programmi tuluks jääb "+money(memberFeeNet)+" liikme kohta pärast käibemaksu.":"4,75 € kuutasu rakendub planeeritult 1. veebruarist 2027.");
+      setText("#member-fee-note2",M.memberGross?"Kliendihind 4,75 € koos käibemaksuga; programmi tulu "+money(memberFeeNet)+" liikme kohta.":"Kampaania ajal 0 €; veebruarist kliendihind 4,75 € koos käibemaksuga.");
+      setText("#inflow",money(merchant+interchange+memberFees));["#cashback","#cashback2"].forEach(id=>setText(id,"−"+money(cashback)));setText("#spread",money(spread));
+      setText("#income-pct","restoran "+Math.round(merchantRate*100)+"% − tagasi "+Math.round(cbRate*100)+"% + liikmetasu "+money(memberFees)+" + kaart 0,65%");
+      setText("#income3-pct","ostumarginaal "+pct(merchantRate-cbRate+A.interchange*A.share)+" + liikmetasu "+money(memberFees));
       setText("#cashback-pct",pct(cbRate)+" ostude kogusummast");setText("#cashback2-pct",pct(cbRate)+" ostude kogusummast");
-      setText("#spread-pct",pct(A.merchant-cbRate)+" ostude kogusummast");
-      setText("#merchant-note",mode==="flat"?"Sellest tagastab programm klientidele 10%.":"Sellest tagastab programm klientidele tasemete järgi keskmiselt ~7%.");
+      setText("#merchant-pct",pct(merchantRate)+" ostude kogusummast");setText("#merchant2-pct",pct(merchantRate)+" ostude kogusummast");
+      setText("#spread-pct",pct(merchantRate-cbRate)+" ostude kogusummast · teenustasu piloodis 0%");
+      setText("#merchant-note","Kogu "+pct(merchantRate)+" tagastatakse klientidele; restorani eraldi teenustasu on piloodis 0%.");
       setText("#mode-note",MODES[mode].note);
       all("[data-mode]").forEach(b=>b.classList.toggle("on",b.dataset.mode===mode));
       setText("#profile-note",PROFILES[profile].note+PROFILE_COMMON);
@@ -462,10 +470,10 @@
       setText("#card-cost",money(cardCost));setText("#card-cost-note",count(cards)+" kaarti × 0,20 €");setText("#auth-cost",money(authCost));setText("#auth-note",count(auths)+" katset × 0,10 € — tasu võetakse nii õnnestunud kui ka ebaõnnestunud katse eest");
       setText("#apple-payment-cost",money(applePaymentCost));setText("#apple-payment-note","50% ostude kogusummast ehk "+money(gmv*A.appleShare)+" × 0,05%");setText("#apple-card-cost",money(appleCardCost));setText("#apple-card-note",count(cards*A.appleShare)+" kaarti × 0,25 € kvartalis");
       setText("#funding-cost",money(fundingCost));setText("#funding-cost-note",count(tx)+" veebimakset × "+money(P.avg)+" · "+funding.label);
-      setText("#year-wall",money(yearWall));setText("#year-wall-note","Wallester aasta + Apple Pay setup");if(one("#year-ops"))setText("#year-ops",money(yearOps));if(one("#year-ops-note"))setText("#year-ops-note",money(ops)+" × 12");if(one("#year-launch"))setText("#year-launch",money(yearLaunch));setText("#year-income",money(yearIncome));setText("#year-net",(yearNet>=0?"+":"−")+money(Math.abs(yearNet)));one("#year-net").className=yearNet>=0?"green":"red";
+      setText("#year-wall",money(yearWall));setText("#year-wall-note","Wallester aasta + Apple Pay setup");if(one("#year-ops"))setText("#year-ops",money(yearOps));if(one("#year-ops-note"))setText("#year-ops-note",money(ops)+" × 12");if(one("#year-launch"))setText("#year-launch",money(yearLaunch));setText("#year-income",money(yearIncome));if(one("#year-income-note"))setText("#year-income-note",A.live+" ostukuud, neist "+A.paidLive+" kuutasuga");setText("#year-net",(yearNet>=0?"+":"−")+money(Math.abs(yearNet)));one("#year-net").className=yearNet>=0?"green":"red";
       if(one("#ops2"))setText("#ops2",money(ops));if(one("#ops3"))setText("#ops3",money(ops));if(one("#ops4"))setText("#ops4",money(ops));
       if(one("#launch2"))setText("#launch2",money(launchTotal));if(one("#launch3"))setText("#launch3",money(launchTotal));
-      if(one("#year-copy-p"))setText("#year-copy-p","Aasta sees: kaardid, tegevuskulu "+money(ops)+" × 12 ja lansseerimine "+money(launchTotal)+" (sh Wallester "+money(A.setup+A.appleSetup)+"). Tulu 10 kuul.");
+      if(one("#year-copy-p"))setText("#year-copy-p","Aasta sees: kaardid ja tegevuskulu "+money(ops)+" × 12, lansseerimine "+money(launchTotal)+" ning ostud "+A.live+" kuul. Liikmetasu on "+A.freeLive+" aktiivsel kuul 0 € ja "+A.paidLive+" kuul 4,75 € koos käibemaksuga; arvutus eeldab 100% tasuliseks jätkamist.");
       all("[data-preset]").forEach(b=>b.classList.toggle("on",Number(b.dataset.preset)===cards));
     }
     const slider=one("#volume"),free=one("#volume-free");
