@@ -31,29 +31,28 @@ STAATUS käivitub võimalikult lihtsa pakkumisega:
 - Liitumisel näidatakse kohe tasuta perioodi lõppkuupäeva ja veebruarist kehtivat hinda.
 - Enne esimest tasu saadetakse meeldetuletus; jätkamine ja lõpetamine peavad olema kliendile selged.
 
-## 3. Restoranide hinnastus
+## 3. Restoranide hinnastus (+2% järgmise sammuna)
 
 Piloodis küsitakse restoranilt ainult kliendile tagastatav 10%. See teeb alustamise lihtsaks: restoran ei maksa enne, kui STAATUS talle reaalselt käivet toob.
 
-Eraldi teenustasu ei lubata püsivalt nullina. Pärast pilooti lepitakse mudel partneritega kokku järk-järgult, kasutades alusena:
+Kui piloot tõestab lisakäivet ja kordusoste, on järgmine samm **+2% restorani teenustasu** (restoran maksab kokku 12%, millest 10% läheb kliendi cashback'iks ja 2% jääb STAATUSELE).
 
-- STAATUSE kaudu tulnud käivet;
-- kordusostude ja külastussageduse muutust;
-- uute klientide arvu;
-- kampaaniate ja restoranile antava analüütika väärtust.
+## Majanduslik mõju (3 etapi võrdlus)
 
-Võimalik järgmine aste on protsendipõhine teenustasu või fikseeritud kuutasu, kuid suurust ei lukustata enne piloodiandmeid.
+Arvutus 1 000 kaardiomaniku, 70% kuukasutuse (700 ostjat × 5 × 25 € = 87 500 €) ja 4 400 € tegevuskulu juures:
 
-## Majanduslik mõju
+1. **1. etapp — tasuta algus (0 €/kuu · resto 0%)**
+   - Kuutulemus: **−7 110 €**
+2. **2. etapp — 4,75 €/kuu (meile 3,83 € + KM · resto 0%)**
+   - Kuutulemus 1 000 liikmega: **−3 279 €**
+   - Nullpunkt: **~2 050 maksvat liiget**
+   - 5 000 maksva liikmega: **+9 204 € / kuu**
+3. **3. etapp — 4,75 €/kuu + restorani 2% teenustasu**
+   - Kuutulemus 1 000 liikmega: **−1 529 €**
+   - Nullpunkt langeb: **~1 315 maksva liikmeni**
+   - 5 000 maksva liikmega: **+17 954 € / kuu**
 
-Arvutus 1 000 kaardiomaniku, 70% kuukasutuse ja 87 500 € ostumahu juures:
-
-- tasuta kampaania ajal on kuutulemus ligikaudu **−7 110 €**;
-- 4,75 € kuutasuga on kuutulemus ligikaudu **−3 280 €**;
-- ilma restorani teenustasuta jõuab mudel samadel eeldustel nulli ligikaudu **2 050 maksva liikme** juures;
-- 5 000 maksva liikmega on kuutulemus ligikaudu **+9 200 €**.
-
-Arvutus käsitleb 4,75 € kliendihinda koos 24% käibemaksuga ning sisaldab lehel kirjeldatud 4 400 € tegevuskulu. Ühekordsed lansseerimiskulud on eraldi.
+Arvutus käsitleb 4,75 € kliendihinda koos 24% käibemaksuga (3,83 € netos) ning sisaldab 4 400 € igakuist tegevuskulu. Ühekordsed lansseerimiskulud (65 575 €) on aastaarvutuses eraldi.
 
 Tasulise faasi arvutus eeldab, et kõik kuvatud liikmed maksavad kuutasu. Tegelikku plaani tuleb juhtida tasuliseks jätkajate arvu, mitte tasuta proovijate arvu järgi: näiteks 50% konversiooni korral on 2 050 maksva liikme saamiseks vaja ligikaudu 4 100 proovijat.
 
