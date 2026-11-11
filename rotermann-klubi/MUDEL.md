@@ -17,7 +17,7 @@ Kui aga otsus on teha programm esmalt **ainult Rotermanni kvartali jaoks**, näi
 - Killustunud süsteemid (`ERPLY`, `Shopify POS`, `Directo`, `Salon Infra`, `Excel`, käsikassa) asuvad valdavalt butiikides ja salongides, kus ostusagedus on harv ja kuhu kassaliidest ehitada ei ole vaja.
 - Samal ajal töötab **Rotermanni äpp (`Sharry`)** juba täies mahus esimeses majas (**Golden Gate**). Ülejäänud kvartali majade digivõtmed lisanduvad 2027. aastal vastavalt hoone ligipääsu-infra valmimisele (~3 400 töötajat kokku), kuid **äpi koos klubisoodustusega saame ka teiste majade töötajatele kätte anda juba varem** — ilma et peaks ootama uksevõtmete infra valmimist.
 
-**Järeldus:** Kui me ei ehita kohe globaalset skaleerimist, kulutab Wallesteri + Apple Pay (17 575 €) + EveryPay (0,7%) kaardirööbas 1 000 liikme juures esimesel aastal **58 460 €** püsikulu, mida üks kvartal üksi ei vaja. Apple/Google Walleti kliendikaart + CompuCashi liides annab Rotermannis sama tulemuse **0 € ostupõhise maksekuluga** ja **ilma e-raha / makseasutuse tegevusloa riskita**.
+**Järeldus:** Kui me ei ehita kohe globaalset skaleerimist, kulutab Wallesteri + Apple Pay (17 575 €) + EveryPay (0,7%) pangakaardi lahendus 1 000 liikme juures esimesel aastal **58 460 €** püsikulu, mida üks kvartal üksi ei vaja. Apple/Google Walleti kliendikaart + CompuCashi liides annab Rotermannis sama tulemuse **0 € ostupõhise maksekuluga** ja **ilma e-raha / makseasutuse tegevusloa riskita**.
 
 ---
 
