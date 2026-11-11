@@ -5,17 +5,19 @@ Seotud lehed: live ülevaade ja simulaator **`https://list.ee/rotermann-klubi/`*
 
 ---
 
-## 1. Miks see mudel sündis (61 koha POS-kaardistuse järeldus)
+## 1. Strateegiline valik: globaalne platvorm vs ainult Rotermanni klubi
 
-Rotermanni 61 ettevõtte kassasüsteemide kaardistus näitas, et kvartali igapäevane korduvkäive ei ole killustunud:
+Kaardilahendus (`Wallester` / `Mastercard card-linking`) on õige arhitektuur siis, kui ehitame **rahvusvaheliselt skaleeritavat platvormi mitmesse linna**, kus igas riigis on erinevad kassasüsteemid ja kassasid ükshaaval ei liidestata.
+
+Kui aga otsus on teha programm esmalt **ainult Rotermanni kvartali jaoks**, näitab kõigi 61 Rotermanni ettevõtte kassasüsteemide kaardistus, et saame kogu lahenduse ehitada otse kassade ja olemasoleva äpi peale:
 
 - **32 söögi- ja joogikohast 25 (78%) kasutavad CompuCashi** — sh R14, Platz, PULL, Bruxx, FLAMM, Levier, Chicago 1933, Taqueria, Orangerie, Pühaste Taproom, Gallery Cafe, Stalker, Siesta, Bali, Jenk BBQ, Mnemonic Bar, Viru Burger, Captain Roosters, Time to Wine, Nomade, Fume, Gobi, La Bocca ja St Patrick.
 - Koos PoCo muuseumi, Millenia Pesupoe, Hairline'i ja SunLabiga on kvartalis **29 CompuCashi kassat**.
 - Veel **3 igapäevast söögikohta** kasutavad avatud REST API-ga pilvekassasid: **Sanga** ja **Whippet** (`Spindl OS`) ning **Röst** (`Square`).
 - Killustunud süsteemid (`ERPLY`, `Shopify POS`, `Directo`, `Salon Infra`, `Excel`, käsikassa) asuvad valdavalt butiikides ja salongides, kus ostusagedus on harv ja kuhu kassaliidest ehitada ei ole vaja.
-- Samal ajal on kvartalis juba olemas **Sharry-põhine Rotermanni äpp** (~3 400 töötajat digivõtme ja parkimisega) ning `list.ee` Cloudflare Pages + D1 taristu.
+- Samal ajal töötab **Rotermanni äpp (`Sharry`)** juba täies mahus esimeses majas (**Golden Gate**). Ülejäänud kvartali majade digivõtmed lisanduvad 2027. aastal vastavalt hoone ligipääsu-infra valmimisele (~3 400 töötajat kokku), kuid **äpi koos klubisoodustusega saame ka teiste majade töötajatele kätte anda juba varem** — ilma et peaks ootama uksevõtmete infra valmimist.
 
-**Järeldus:** Wallesteri pangakaardi + Apple Pay (17 575 €) + EveryPay (0,7%) lahendus kulutab 1 000 liikme juures esimesel aastal **58 460 €** ainuüksi kaardirööpale, mille ainus ülesanne on tuvastada kassas liige ja liigutada kliendi raha topelt. Apple/Google Walleti kliendikaart + CompuCashi liides teeb sama töö ära **0 € ostupõhise maksekuluga** ja **ilma e-raha / makseasutuse tegevusloa riskita**.
+**Järeldus:** Kui me ei ehita kohe globaalset skaleerimist, kulutab Wallesteri + Apple Pay (17 575 €) + EveryPay (0,7%) kaardirööbas 1 000 liikme juures esimesel aastal **58 460 €** püsikulu, mida üks kvartal üksi ei vaja. Apple/Google Walleti kliendikaart + CompuCashi liides annab Rotermannis sama tulemuse **0 € ostupõhise maksekuluga** ja **ilma e-raha / makseasutuse tegevusloa riskita**.
 
 ---
 
