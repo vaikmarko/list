@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Rotermanni Klubi — Wallet + CompuCash mudel | The List</title>
+  <meta name="description" content="Kuidas lahendada Rotermanni 10% klubiline cashback olemasoleva äpi, Apple/Google Walleti ja CompuCashiga — ilma 58 000 € aastase kaardikuluta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f0e8;--surface:#ffffff;--surface2:#ebe5d8;--obsidian:#0f1214;--obsidian2:#181d20;
+      --ink:#14181a;--muted:#5c6468;--copper:#c8553d;--copper-soft:#fbeae6;
+      --gold:#c9963b;--gold-soft:#f9f0dc;--green:#166e52;--green-soft:#e4f4ee;
+      --line:rgba(20,24,26,.11);--line-dark:rgba(255,255,255,.13);--radius:20px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,.serif{font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.025em}
+    button,input,select{font:inherit}
+    .wrap{width:min(1200px,calc(100% - 40px));margin:0 auto}
+
+    /* Nav */
+    .topbar{position:sticky;top:0;z-index:90;background:rgba(15,18,20,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-dark);color:#fff}
+    .topbar-in{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+    .brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+    .brand-dot{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;font:italic 15px Georgia,serif;color:var(--gold);letter-spacing:0}
+    .navlinks{display:flex;gap:22px}
+    .navlinks a{color:rgba(255,255,255,.72);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s}
+    .navlinks a:hover{color:#fff}
+    .save-pill{padding:7px 13px;border-radius:99px;background:rgba(22,110,82,.35);border:1px solid rgba(122,224,188,.35);color:#8ef0cc;font-size:12px;font-weight:700;white-space:nowrap}
+
+    /* Hero */
+    .hero{position:relative;background:var(--obsidian);color:#fff;padding:76px 0 88px;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url("assets/ohtu.jpg") center/cover no-repeat;opacity:.28;filter:saturate(.9)}
+    .hero-veil{position:absolute;inset:0;background:linear-gradient(115deg,rgba(12,15,17,.95) 15%,rgba(12,15,17,.78) 60%,rgba(12,15,17,.92) 100%)}
+    .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+    .kicker{display:inline-flex;align-items:center;gap:8px;color:#f0b95b;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
+    .kicker::before{content:"";width:24px;height:2px;background:#f0b95b}
+    .hero h1{font-size:clamp(36px,4.7vw,62px);line-height:1.03;margin-bottom:20px}
+    .hero h1 em{font-style:italic;color:#f0b95b}
+    .hero-lead{font-size:17px;color:rgba(255,255,255,.78);max-width:62ch;margin-bottom:30px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .hstat{padding:18px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid var(--line-dark);backdrop-filter:blur(8px)}
+    .hstat strong{display:block;font-family:"Fraunces",serif;font-size:32px;line-height:1.05;color:#fff}
+    .hstat strong.mint{color:#7ee2be}.hstat strong.amber{color:#f0b95b}
+    .hstat span{display:block;margin-top:6px;font-size:12px;color:rgba(255,255,255,.68);line-height:1.35}
+
+    /* Hero Wallet Card */
+    .hero-card-wrap{background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:26px;padding:24px;backdrop-filter:blur(12px)}
+    .wallet-pass{background:linear-gradient(155deg,#132a24,#0b1916);border:1px solid rgba(201,150,59,.45);border-radius:20px;padding:22px;color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+    .wp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .wp-brand{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em}
+    .wp-badge{padding:4px 9px;border-radius:99px;background:rgba(201,150,59,.2);color:#f0c36d;font-size:10px;font-weight:800;text-transform:uppercase}
+    .wp-bal-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6)}
+    .wp-bal{font-family:"Fraunces",serif;font-size:44px;line-height:1.05;margin:4px 0 14px;color:#fff;font-variant-numeric:tabular-nums}
+    .wp-meta{display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);font-size:12px}
+    .wp-meta small{display:block;color:rgba(255,255,255,.5);font-size:10px;text-transform:uppercase}
+    .wp-qr{margin:16px auto 4px;background:#fff;border-radius:12px;padding:12px;width:138px;text-align:center;color:#111}
+    .wp-qr svg{width:100px;height:100px;display:block;margin:0 auto 4px}
+    .wp-qr span{font:700 11px ui-monospace,monospace;letter-spacing:.06em}
+    .hero-card-caption{margin-top:14px;font-size:12px;color:rgba(255,255,255,.68);text-align:center}
+
+    /* Sections */
+    section.sec{padding:84px 0;border-bottom:1px solid var(--line)}
+    section.sec.alt{background:var(--surface)}
+    section.sec.dark{background:var(--obsidian);color:#fff;border-bottom-color:var(--line-dark)}
+    .sec-head{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:end;margin-bottom:40px}
+    .sec-head h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
+    .sec-head p{color:var(--muted);font-size:15px}
+    .sec.dark .sec-head p{color:rgba(255,255,255,.68)}
+
+    /* Discovery & POS bar */
+    .pos-bar-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;margin-bottom:24px}
+    .pos-bar-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+    .seg-bar{display:flex;height:22px;border-radius:99px;overflow:hidden;gap:3px;background:var(--surface2)}
+    .seg-cc{background:var(--green);width:78.1%}.seg-api{background:var(--gold);width:9.4%}.seg-qr{background:var(--copper);width:12.5%}
+    .seg-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .seg-item{padding:14px 16px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+    .seg-item strong{display:block;font-size:22px;font-family:"Fraunces",serif}
+    .seg-item span{font-size:13px;color:var(--muted)}
+
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .wcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+    .wcard .tag{display:inline-block;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+    .tag.red{background:var(--copper-soft);color:var(--copper)}
+    .tag.green{background:var(--green-soft);color:var(--green)}
+    .tag.gold{background:var(--gold-soft);color:#8a6116}
+    .wcard h3{font-size:23px;margin-bottom:8px;line-height:1.18}
+    .wcard p{font-size:14px;color:var(--muted)}
+
+    /* Simulator (4 moments) */
+    .sim-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+    .sim-tab{text-align:left;padding:15px 16px;border-radius:15px;border:1px solid var(--line-dark);background:rgba(255,255,255,.04);color:rgba(255,255,255,.72);cursor:pointer;transition:all .2s}
+    .sim-tab:hover{background:rgba(255,255,255,.08)}
+    .sim-tab.on{background:#f0b95b;border-color:#f0b95b;color:#111}
+    .sim-tab small{display:block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;opacity:.75}
+    .sim-tab strong{display:block;font-size:15px;margin-top:3px}
+
+    .sim-stage{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
+    .sim-panel{background:var(--obsidian2);border:1px solid var(--line-dark);border-radius:22px;padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+    .sim-panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;font-size:12px;color:rgba(255,255,255,.65)}
+    .sim-pill{padding:4px 10px;border-radius:99px;background:rgba(126,226,190,.16);color:#7ee2be;font-size:11px;font-weight:700}
+    .toast-box{margin-top:16px;padding:13px 15px;border-radius:14px;background:rgba(22,110,82,.28);border:1px solid rgba(126,226,190,.3);display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .toast-box strong{display:block;font-size:14px;color:#fff}
+    .toast-box span{font-size:12px;color:rgba(255,255,255,.72)}
+
+    .receipt{background:#faf8f3;color:var(--ink);border-radius:16px;padding:22px;font-variant-numeric:tabular-nums}
+    .rc-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px dashed rgba(0,0,0,.18);margin-bottom:12px}
+    .rc-head strong{font-size:17px}
+    .rc-head span{font-size:12px;color:var(--muted)}
+    .rc-row{display:flex;justify-content:space-between;padding:5px 0;font-size:14px}
+    .rc-row.deduct{color:var(--green);font-weight:700}
+    .rc-total{display:flex;justify-content:space-between;margin-top:10px;padding:12px 14px;border-radius:10px;background:var(--obsidian);color:#fff;font-weight:700;font-size:16px}
+    .sim-steps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+    .sbox{padding:14px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line-dark)}
+    .sbox small{display:block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#f0b95b;margin-bottom:4px}
+    .sbox p{font-size:13px;color:rgba(255,255,255,.86);line-height:1.45}
+    .sim-backstage{margin-top:16px;padding:15px 18px;border-radius:14px;background:rgba(240,185,91,.1);border:1px solid rgba(240,185,91,.3);font-size:13.5px;color:rgba(255,255,255,.9)}
+
+    /* Clearing & Photo Strip */
+    .photo-duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+    .pcard{position:relative;height:240px;border-radius:var(--radius);overflow:hidden;color:#fff;display:flex;align-items:flex-end;padding:24px}
+    .pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(10,12,14,.86) 100%)}
+    .pcard div{position:relative;z-index:1}
+    .pcard h3{font-size:24px;margin-bottom:4px}
+    .pcard p{font-size:13.5px;color:rgba(255,255,255,.82)}
+
+    .clearing-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:center}
+    .cl-box{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:22px}
+    .cl-box.hub{background:var(--obsidian);color:#fff;border-color:var(--obsidian)}
+    .cl-box small{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+    .cl-box.hub small{color:#f0b95b}
+    .cl-box h3{font-size:22px;margin-bottom:8px}
+    .cl-num{font-family:"Fraunces",serif;font-size:30px;font-weight:600;margin:8px 0 4px}
+    .cl-arrow{font-size:24px;color:var(--copper);font-weight:800;text-align:center}
+
+    /* Calculator */
+    .calc-shell{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:30px}
+    .calc-controls{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .preset-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+    .pbtn{padding:9px 14px;border-radius:99px;border:1px solid var(--line);background:var(--bg);font-size:13px;font-weight:600;cursor:pointer}
+    .pbtn.on{background:var(--obsidian);color:#fff;border-color:var(--obsidian)}
+    input[type=range]{width:100%;accent-color:var(--green)}
+    .sel-stack{display:grid;gap:10px}
+    .sel-stack label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:4px}
+    .sel-stack select{width:100%;padding:10px 12px;border-radius:11px;border:1px solid var(--line);background:var(--bg);font-weight:600;font-size:13.5px}
+
+    .cmp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+    .mcard{border:1px solid var(--line);border-radius:18px;padding:24px;background:var(--bg);position:relative}
+    .mcard.winner{background:var(--green-soft);border:2px solid var(--green)}
+    .mcard .mtag{display:inline-block;padding:4px 10px;border-radius:99px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;background:rgba(0,0,0,.06)}
+    .mcard.winner .mtag{background:var(--green);color:#fff}
+    .mcard h3{font-size:21px;margin-bottom:14px}
+    .mrow{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px;font-variant-numeric:tabular-nums}
+    .mnet{margin-top:12px;padding:14px;border-radius:12px;background:var(--surface);display:flex;justify-content:space-between;align-items:baseline}
+    .mnet strong{font-family:"Fraunces",serif;font-size:28px}
+    .pos-val{color:var(--green)}.neg-val{color:var(--copper)}
+
+    /* 61 Venues directory */
+    .filter-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .fpills{display:flex;flex-wrap:wrap;gap:8px}
+    .search-in{padding:9px 14px;border-radius:99px;border:1px solid var(--line);background:var(--surface);min-width:240px;font-size:13.5px}
+    .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:10px}
+    .vitem{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .vitem strong{display:block;font-size:14px}
+    .vitem small{font-size:12px;color:var(--muted)}
+    .vpos{padding:4px 9px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap}
+    .vpos.cc{background:var(--green-soft);color:var(--green)}
+    .vpos.api{background:var(--gold-soft);color:#8a6116}
+    .vpos.oth{background:var(--surface2);color:var(--ink)}
+
+    /* Next steps */
+    .steps-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .step3{background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:18px;padding:26px}
+    .step3 .num{width:34px;height:34px;border-radius:50%;background:#f0b95b;color:#111;font-weight:800;display:grid;place-items:center;margin-bottom:14px}
+    .step3 h3{font-size:22px;margin-bottom:8px}
+    .step3 p{font-size:14px;color:rgba(255,255,255,.74)}
+
+    footer{background:#090b0c;color:rgba(255,255,255,.55);padding:28px 0;font-size:13px}
+    .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    footer a{color:#f0b95b;text-decoration:none}
+
+    @media(max-width:960px){
+      .hero-grid,.sec-head,.sim-stage,.calc-controls,.cmp-cards,.why-grid,.steps-3,.photo-duo,.clearing-grid,.seg-legend{grid-template-columns:1fr}
+      .sim-tabs{grid-template-columns:1fr 1fr}
+      .navlinks{display:none}
+      .cl-arrow{transform:rotate(90deg)}
+    }
+    @media(max-width:560px){
+      .hero-stats,.sim-tabs,.sim-steps{grid-template-columns:1fr}
+      .wrap{width:calc(100% - 28px)}
+      section.sec{padding:60px 0}
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a href="#" class="brand"><span class="brand-dot">R</span><span>Rotermanni Klubi · Uus mudel</span></a>
+    <nav class="navlinks">
+      <a href="#avastus">61 koha leid</a>
+      <a href="#teekond">Kliendi & kassa teekond</a>
+      <a href="#restoran">Restorani arveldus</a>
+      <a href="#kalkulaator">Kulumudel</a>
+      <a href="#kassad">Kõik kohad</a>
+    </nav>
+    <span class="save-pill">1. aasta võit +71 745 €</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-veil"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Alternatiiv pangakaardile · The List Services</span>
+      <h1>Sama 10% klubiraha.<br><em>Ilma 58 000 €</em> kaardikuluta.</h1>
+      <p class="hero-lead">Kaardistasime kõik 61 Rotermanni äri kassasüsteemid. Selgus lihtne tõsiasi: peaaegu kogu kvartali söögi- ja õhtukäive jookseb juba ühe kassasüsteemi (CompuCash) peal ja 3 400 töötajal on Rotermanni äpp niikuinii telefonis.</p>
+      <div class="hero-stats">
+        <div class="hstat"><strong class="mint">25 / 32</strong><span>restorani ja kohvikut kasutab CompuCashi (kokku kvartalis 29 kassat)</span></div>
+        <div class="hstat"><strong class="amber">0,00 €</strong><span>maksevahendustasu ostult — klient maksab oma tavalise pangakaardiga</span></div>
+        <div class="hstat"><strong>22 000 €</strong><span>kogu käivitus ja ehitus (vs 65 575 € Wallester + Apple Pay või 161k € MC)</span></div>
+      </div>
+    </div>
+
+    <div class="hero-card-wrap">
+      <div class="wallet-pass">
+        <div class="wp-top">
+          <div class="wp-brand"><span class="brand-dot" style="width:22px;height:22px;font-size:12px">R</span>ROTERMANN KLUBI</div>
+          <span class="wp-badge">10% tagasi</span>
+        </div>
+        <div class="wp-bal-lbl">Sinu Rotermanni raha</div>
+        <div class="wp-bal">18,50 €</div>
+        <div class="wp-qr">
+          <svg viewBox="0 0 120 120" aria-label="Walleti QR-kood"><rect width="120" height="120" fill="#fff"/><path fill="#111" d="M14 14h28v28H14zM20 20v16h16V20zM24 24h8v8h-8zM78 14h28v28H78zM84 20v16h16V20zM88 24h8v8h-8zM14 78h28v28H14zM20 84v16h16V84zM24 88h8v8h-8zM50 14h8v8h-8zM62 18h8v12h-8zM48 30h12v8H48zM14 50h12v8H14zM32 48h8v12h-8zM48 48h24v24H48zM54 54v12h12V54zM80 48h12v8H80zM98 50h8v16h-8zM78 64h16v8H78zM50 80h10v12H50zM66 78h8v16h-8zM80 80h16v16H80zM98 88h8v18h-8z"/></svg>
+          <span>KOOD · 842-19</span>
+        </div>
+        <div class="wp-meta">
+          <div><small>Liige</small><strong>Kati Tamm</strong></div>
+          <div style="text-align:right"><small>Apple & Google Wallet</small><strong>Töötab ka offline</strong></div>
+        </div>
+      </div>
+      <p class="hero-card-caption">Sama topeltklõps telefoni küljenupul nagu pangakaardil — aga Apple'i 17 575 € sertifitseerimistasu asemel maksab Walleti kliendikaart 99 $ aastas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="avastus">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker" style="color:var(--copper)">1 · Mida kassade kaardistus paljastas</span>
+        <h2>Pangakaarti oli vaja ainult siis, kui arvasime, et kassad on killustunud.</h2>
+      </div>
+      <p>Tegelik pilt kohapeal on vastupidine: kogu igapäevane lõuna-, kohvi- ja õhtusöögikäive jookseb ühe Eesti tarkvara (Ektaco CompuCash) peal, kus Apple/Google Walleti kliendikaart ja boonussaldo on juba standardis sees.</p>
+    </div>
+
+    <div class="pos-bar-card">
+      <div class="pos-bar-top">
+        <strong>Rotermanni 32 söögi- ja joogikohta kassasüsteemi järgi</strong>
+        <span style="font-size:13px;color:var(--muted)">88% toidukohtadest on kaetav CompuCashi + Spindl/Square API-ga</span>
+      </div>
+      <div class="seg-bar" role="img" aria-label="78% CompuCash, 9% Spindl ja Square, 13% muud">
+        <div class="seg-cc"></div><div class="seg-api"></div><div class="seg-qr"></div>
+      </div>
+      <div class="seg-legend">
+        <div class="seg-item"><strong style="color:var(--green)">25 kohta (78%) · CompuCash</strong><span>Platz, R14, PULL, Bruxx, FLAMM, Levier, Chicago 1933, Taqueria, Orangerie, Pühaste, Nomade, Fume, La Bocca jt (+4 poodi/muuseumi).</span></div>
+        <div class="seg-item"><strong style="color:#8a6116">3 kohta (9%) · Spindl & Square</strong><span>Sanga, Whippet (Spindl OS) ja Röst (Square) — kõigil kolmel on moodne avatud REST API.</span></div>
+        <div class="seg-item"><strong style="color:var(--copper)">4 kohta (13%) · QR kassas</strong><span>Kalve Coffee, Puree, Vapiano, R-kiosk + harva külastatavad butiigid — lahendatavad sama Walleti QR-iga ilma kassaliideseta.</span></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <article class="wcard">
+        <span class="tag red">Miks kaart poob</span>
+        <h3>58 460 € aastas ainult „piiksu” eest</h3>
+        <p>Wallesteri kuutasud (24 000 €/a), Apple Pay setup (17 575 €) ja kliendi pangakaardilt raha tõmbamine (0,7%–1,7%) ei loo soodustust — need ainult tuvastavad liikme ja liigutavad sama raha topelt.</p>
+      </article>
+      <article class="wcard">
+        <span class="tag green">Kasutamata trumbid</span>
+        <h3>3 400 töötajat juba Rotermanni äpis</h3>
+        <p>USRE digivõtme ja parkimise kaudu on tuhandetel kvartali inimestel Sharry äpp telefonis. Ühe nupuga lisavad nad sealt Rotermanni Klubi kaardi oma Apple või Google Walletisse.</p>
+      </article>
+      <article class="wcard">
+        <span class="tag gold">Null litsentsiriski</span>
+        <h3>Raha liigub otse restorani panka</h3>
+        <p>Klient maksab oma tavalise LHV või Swedbanki kaardiga restorani terminali. The List ei hoia tarbija e-raha — ei ole vaja Finantsinspektsiooni luba ega krediidiriski puhvrit.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="teekond">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker">2 · Kuidas see päriselt saalis töötab</span>
+        <h2>Kliki läbi Kati 4 käiku Rotermannis — letis, lauas ja õhtusöögil.</h2>
+      </div>
+      <p>Kõige tähtsam küsimus restoranis: kuidas teha nii, et kelner ei peaks tipptunnil tšekke ümber trükkima ega kliendi telefoniga leti taha jooksma?</p>
+    </div>
+
+    <div class="sim-tabs" role="tablist">
+      <button class="sim-tab on" data-step="0"><small>1. Hommik letis</small><strong>Levier · +1,20 €</strong></button>
+      <button class="sim-tab" data-step="1"><small>2. Lõuna lauas</small><strong>Platz · +4,80 €</strong></button>
+      <button class="sim-tab" data-step="2"><small>3. Muu kassa (Square)</small><strong>Röst · +0,80 €</strong></button>
+      <button class="sim-tab" data-step="3"><small>4. Kulutab saldot</small><strong>R14 · −20,80 €</strong></button>
+    </div>
+
+    <div class="sim-stage">
+      <div class="sim-panel">
+        <div>
+          <div class="sim-panel-head">
+            <span id="s-phone-ctx">Kati iPhone · Apple Wallet</span>
+            <span class="sim-pill" id="s-phone-pill">Topeltklõps küljenupul</span>
+          </div>
+          <div class="wallet-pass">
+            <div class="wp-top">
+              <div class="wp-brand"><span class="brand-dot" style="width:22px;height:22px;font-size:12px">R</span>ROTERMANN KLUBI</div>
+              <span class="wp-badge" id="s-delta">+1,20 € see ost</span>
+            </div>
+            <div class="wp-bal-lbl">Rotermanni raha saldo</div>
+            <div class="wp-bal" id="s-bal">15,20 €</div>
+            <div class="wp-meta">
+              <div><small>Asukoht</small><strong id="s-venue">Levier Rotermann</strong></div>
+              <div style="text-align:right"><small>Liikmekood</small><strong id="s-code">842-19 (QR)</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="toast-box">
+          <div>
+            <strong id="s-toast-t">Push-teavitus 2 sekundiga: +1,20 € Levierist!</strong>
+            <span id="s-toast-s">Eelnev saldo 14,00 € → uus saldo 15,20 € · Maksevahendustasu 0 €</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sim-panel">
+        <div>
+          <div class="sim-panel-head">
+            <strong style="color:#fff;font-size:14px" id="s-pos-title">CompuCash 5 · Letikassa + 2D skanner</strong>
+            <span class="sim-pill" id="s-pos-badge">0 lisaklikki teenindajale</span>
+          </div>
+          <div class="receipt">
+            <div class="rc-head"><strong id="s-rc-venue">LEVIER</strong><span id="s-rc-mode">Letiteenindus</span></div>
+            <div class="rc-row"><span id="s-i1">Cappuccino + mandlicroissant</span><strong id="s-p1">8,50 €</strong></div>
+            <div class="rc-row"><span id="s-i2">Värske apelsinimahl</span><strong id="s-p2">3,50 €</strong></div>
+            <div class="rc-row" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,.1)"><span>Arve kokku</span><strong id="s-tot">12,00 €</strong></div>
+            <div class="rc-row deduct" id="s-deduct-row" style="display:none"><span>Rotermanni Klubi saldo</span><span id="s-deduct">−20,80 €</span></div>
+            <div class="rc-total"><span>Terminali viipemakse (oma pangakaart)</span><span id="s-pay">12,00 €</span></div>
+          </div>
+          <div class="sim-steps">
+            <div class="sbox"><small>Teenindaja teeb</small><p id="s-waiter">Lööb kauba sisse. Letiskanner loeb Kati QR-koodi ja seob arve automaatselt kliendiga.</p></div>
+            <div class="sbox"><small>Klient teeb</small><p id="s-client">Näitab Walleti QR-koodi ja viipab kohe sealsamas oma tavalise pangakaardiga 12,00 €.</p></div>
+          </div>
+        </div>
+        <div class="sim-backstage" id="s-back"><strong>Mis toimub taustal:</strong> Levier saab 12,00 € otse oma panka. CompuCash saadab arve info API kaudu list.ee arvestusraamatusse, mis lisab Kati Walletisse +1,20 €.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="restoran">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker" style="color:var(--green)">3 · Restorani vaade ja rahade liikumine</span>
+        <h2>Kuidas Platzis kogutud eurod saab reede õhtul R14-s ära kulutada?</h2>
+      </div>
+      <p>Kuu jooksul ei puutu The List ühtegi kaardimakset. Kuu lõpus teeb <strong>list.ee</strong> CompuCashi API andmete põhjal ühe automaatse tasaarvelduse.</p>
+    </div>
+
+    <div class="photo-duo">
+      <article class="pcard">
+        <img src="assets/hommik.jpg" alt="Hommikukohv Rotermannis" loading="lazy">
+        <div>
+          <h3>Argipäeva hommikud ja lõunad koguvad</h3>
+          <p>Klient maksab täishinna. Raha ei kao ühekordse peidetud -10% tšekisoodustusena, vaid toob inimese kvartalisse tagasi.</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <img src="assets/viibe.jpg" alt="Viipemakse õhtusöögil" loading="lazy">
+        <div>
+          <h3>Õhtusöögid ja poed toovad suurema ostukorvi</h3>
+          <p>Kui kliendil on Walletis 20 € „Rotermanni raha”, tuleb ta reede õhtul R14-sse või PULL-i ja tellib 65 € eest, mitte ei lähe Telliskivisse.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="clearing-grid">
+      <div class="cl-box">
+        <small>Näide A · Lõunakoht (Platz)</small>
+        <h3>Väljastas rohkem kui lunastati</h3>
+        <p style="font-size:13px;color:var(--muted)">Liikmed teenisid Platzis 1 200 € boonust, kohapeal maksid boonusega 750 €.</p>
+        <div class="cl-num" style="color:var(--copper)">Maksab 450 €</div>
+        <span style="font-size:12px;color:var(--muted)">Üks koondarve kuu lõpus (+ evt 2% platvormitasu)</span>
+      </div>
+      <div class="cl-arrow">→</div>
+      <div class="cl-box hub">
+        <small>list.ee kliiringumootor</small>
+        <h3>Alati rahaliselt plussis</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,.72)">Ükski liige ei saa kulutada rohkem, kui kvartalis välja on teenitud. ~15% aegub 12 kuuga (breakage).</p>
+        <div class="cl-num" style="color:#7ee2be">0 € krediidiriski</div>
+        <span style="font-size:12px;color:rgba(255,255,255,.6)">Täpne analüütika: uued vs korduvkliendid</span>
+      </div>
+      <div class="cl-arrow">→</div>
+      <div class="cl-box">
+        <small>Näide B · Õhturesto (R14)</small>
+        <h3>Lunastati rohkem kui väljastas</h3>
+        <p style="font-size:13px;color:var(--muted)">Liikmed teenisid R14-s 900 € boonust, aga kasutasid seal ära 1 350 € kvartali raha.</p>
+        <div class="cl-num" style="color:var(--green)">Saab +450 € tagasi</div>
+        <span style="font-size:12px;color:var(--muted)">The List kompenseerib vahe euro-euro vastu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="kalkulaator">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker" style="color:var(--copper)">4 · Numbrid kõrvuti</span>
+        <h2>Mängi ise läbi: kui palju raha jääb alles ilma kaardirööpata?</h2>
+      </div>
+      <p>Täpselt samad valemid, mis senises kaardimudelis ja Loyal Solutionsi arvestuses — võrdleme kolme tehnoloogiat samadel eeldustel.</p>
+    </div>
+
+    <div class="calc-shell">
+      <div class="calc-controls">
+        <div>
+          <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Liikmete arv: <strong id="c-members-lbl" style="color:var(--ink);font-size:16px">1 000 liiget</strong> (<span id="c-gmv-lbl">87 500 €</span> ostumahtu kuus)</span>
+          <div class="preset-row">
+            <button class="pbtn" data-m="500">500</button>
+            <button class="pbtn on" data-m="1000">1 000 (Staatuse baas)</button>
+            <button class="pbtn" data-m="2050">2 050</button>
+            <button class="pbtn" data-m="3400">3 400 (Rotermanni töötajad)</button>
+            <button class="pbtn" data-m="5000">5 000</button>
+          </div>
+          <input type="range" id="c-range" min="300" max="10000" step="50" value="1000" aria-label="Liikmete arv">
+        </div>
+        <div class="sel-stack">
+          <div>
+            <label for="c-mode">Hinnastusmudel</label>
+            <select id="c-mode">
+              <option value="m475" selected>4,75 €/kuu liikmetasu · resto teenustasu 0%</option>
+              <option value="m475_2">4,75 €/kuu liikmetasu + 2% resto teenustasu</option>
+              <option value="free_2">0 €/kuu liikmele (tasuta) + 2% resto teenustasu</option>
+              <option value="free_0">Kampaania algus: 0 €/kuu · resto 0%</option>
+            </select>
+          </div>
+          <div>
+            <label for="c-ops">Tiim ja igakuine haldus</label>
+            <select id="c-ops">
+              <option value="1500" selected>Olemasoleva Rotermanni äpi tiimi peal (1 500 €/kuu lisakulu)</option>
+              <option value="4400">Eraldi Staatuse tiim ja üllatused (4 400 €/kuu, nagu list.ee/staatus)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmp-cards">
+        <article class="mcard winner">
+          <span class="mtag">Soovitatav · Ilma pangakaardita</span>
+          <h3>A. Wallet + CompuCash + Äpp</h3>
+          <div class="mrow"><span>Käivitus ja ehitus</span><strong>22 000 €</strong></div>
+          <div class="mrow"><span>Tehnoloogiakulu kuus</span><strong id="a-tech">381 €</strong></div>
+          <div class="mrow"><span>1. aasta rahavoog kokku</span><strong id="a-y1">−12 383 €</strong></div>
+          <div class="mrow"><span>Nullpunkt</span><strong id="a-be">494 liiget</strong></div>
+          <div class="mnet"><span>Kuu tulemus</span><strong id="a-net" class="pos-val">+1 949 €</strong></div>
+        </article>
+
+        <article class="mcard">
+          <span class="mtag">Senine plaan · list.ee/staatus</span>
+          <h3>B. Wallester + Apple Pay</h3>
+          <div class="mrow"><span>Käivitus ja ehitus</span><strong>65 575 €</strong></div>
+          <div class="mrow"><span>Kaardi- ja maksekulu kuus</span><strong id="b-tech">3 279 €</strong></div>
+          <div class="mrow"><span>1. aasta rahavoog kokku</span><strong id="b-y1">−84 128 €</strong></div>
+          <div class="mrow"><span>Nullpunkt</span><strong id="b-be">1 195 liiget</strong></div>
+          <div class="mnet"><span>Kuu tulemus</span><strong id="b-net" class="neg-val">−379 €</strong></div>
+        </article>
+
+        <article class="mcard">
+          <span class="mtag">Kevadine variant · Card-linking</span>
+          <h3>C. Loyal Solutions + MC</h3>
+          <div class="mrow"><span>Käivitus ja ehitus</span><strong>153 000 €</strong></div>
+          <div class="mrow"><span>Platvorm + MC kuus</span><strong id="c-tech">12 176 €</strong></div>
+          <div class="mrow"><span>1. aasta rahavoog kokku</span><strong id="c-y1">−290 360 €</strong></div>
+          <div class="mrow"><span>Nullpunkt</span><strong id="c-be">3 680 liiget</strong></div>
+          <div class="mnet"><span>Kuu tulemus</span><strong id="c-net" class="neg-val">−9 846 €</strong></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="kassad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker" style="color:var(--green)">5 · Välitööde andmed</span>
+        <h2>Kõik 61 kaardistatud Rotermanni kohta ja nende liidestusviis.</h2>
+      </div>
+      <p>Ühtegi poodi ega salongi ei jäeta klubist välja — ehitame automaatse liidese sinna, kus on igapäevane maht, ja hoiame harvad ostud lihtsa QR-kontrolli peal.</p>
+    </div>
+
+    <div class="filter-bar">
+      <div class="fpills">
+        <button class="pbtn on" data-cat="all">Kõik (61)</button>
+        <button class="pbtn" data-cat="fb">Toit ja jook (32)</button>
+        <button class="pbtn" data-cat="retail">Poed ja mood (17)</button>
+        <button class="pbtn" data-cat="beauty">Ilu, tervis, sport (9)</button>
+        <button class="pbtn" data-cat="other">Muuseum ja teenused (3)</button>
+      </div>
+      <input type="search" id="v-search" class="search-in" placeholder="Otsi restorani, poodi või kassat...">
+    </div>
+
+    <div class="vgrid" id="v-grid"></div>
+  </div>
+</section>
+
+<section class="sec dark">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker">Otsusekoht</span>
+        <h2>Kolm sammu, et see kiiresti ja odavalt käima panna.</h2>
+      </div>
+      <p>Kui me ei oota pangasertifikaate ega Apple Pay 17 575 € kinnitamist, saab piloodi käivitada kordades kiiremini ja väiksema riskiga.</p>
+    </div>
+
+    <div class="steps-3">
+      <div class="step3">
+        <div class="num">1</div>
+        <h3>Üks kõne Ektacole</h3>
+        <p>Kinnitame CompuCash 5 API tiimiga 29 Rotermanni kassa boonussaldo sünkroonimise hinna ja ühekordse arve-QR-i lisamise lauatšekkidele.</p>
+      </div>
+      <div class="step3">
+        <div class="num">2</div>
+        <h3>Walleti kaart Sharry äppi</h3>
+        <p>Lisame <strong>list.ee</strong> peale Apple ja Google Walleti kaardi genereerimise. Rotermanni 3 400 töötajat saavad kutse otse olemasolevas kvartali äpis.</p>
+      </div>
+      <div class="step3">
+        <div class="num">3</div>
+        <h3>Piloot 5 ankurrestoraniga</h3>
+        <p>Käivitame esmalt nt Platz, R14, Levier, PULL ja Röst peal. Mõõdame 30 päevaga päris skannimismäära — ilma 65k € lukku panemata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>The List Services OÜ · Rotermanni Klubi arhitektuur ja tasuvusanalüüs (november 2026)</span>
+    <span>Võrdlus: <a href="/staatus/">vaata senist Wallesteri kaardimudelit →</a></span>
+  </div>
+</footer>
+
+<script>
+  const STEPS=[
+    {ctx:"Kati iPhone · Apple Wallet",pill:"Topeltklõps küljenupul",delta:"+1,20 € see ost",bal:"15,20 €",venue:"Levier Rotermann",code:"842-19 (QR)",tt:"Push-teavitus 2 sekundiga: +1,20 € Levierist!",ts:"Eelnev saldo 14,00 € → uus saldo 15,20 € · Maksevahendustasu 0 €",pt:"CompuCash 5 · Letikassa + 2D skanner",pb:"0 lisaklikki teenindajale",rv:"LEVIER",rm:"Letiteenindus",i1:"Cappuccino + mandlicroissant",p1:"8,50 €",i2:"Värske apelsinimahl",p2:"3,50 €",tot:"12,00 €",ded:"",pay:"12,00 €",w:"Lööb kauba sisse. Letiskanner loeb Kati QR-koodi ja CompuCash seob arve automaatselt kliendiga.",c:"Näitab Walleti QR-koodi ja viipab kohe sealsamas oma tavalise pangakaardiga 12,00 €.",b:"<strong>Mis toimub taustal:</strong> Levier saab 12,00 € otse oma panka. CompuCash saadab arve info API kaudu list.ee arvestusraamatusse, mis lisab Kati Walletisse +1,20 €."},
+    {ctx:"Kati iPhone · Lauas tšekki skannides",pill:"Kelner ei jookse leti taha",delta:"+4,80 € see ost",bal:"20,00 €",venue:"Restoran Platz",code:"Tšeki ühekordne QR",tt:"Push-teavitus: +4,80 € Platzist lisatud!",ts:"Eelnev saldo 15,20 € → uus saldo 20,00 € · Tšeki QR lukustatud",pt:"CompuCash 5 · Lauateeninduse eel-tšekk",pb:"Arvet ei trükita ümber",rv:"PLATZ",rm:"Lauateenindus",i1:"2 × Päevapraad ja käsitöölimonaad",p1:"36,00 €",i2:"2 × Espresso ja kook",p2:"12,00 €",tot:"48,00 €",ded:"",pay:"48,00 €",w:"Toob tavalise 48,00 € tšeki ja terminali lauda. Kuna arve summa ei muutu, teeb kelner 0 lisaliigutust.",c:"Viipab oma pangakaardiga 48,00 € ja skannib kaameraga tšeki allservas oleva ühekordse QR-koodi.",b:"<strong>Miks see lauas geniaalne on:</strong> Kelner ei pea küsima kliendikaarti enne tšeki printimist. Ühekordne tšeki-QR aktiveerub kohe, kui arve on CompuCashis makstud."},
+    {ctx:"Kati iPhone · Apple Wallet",pill:"Sama kaart igal pool",delta:"+0,80 € see ost",bal:"20,80 €",venue:"Röst Pagarikoda",code:"842-19 (QR)",tt:"Push-teavitus: +0,80 € Röstist!",ts:"Eelnev saldo 20,00 € → uus saldo 20,80 €",pt:"Square POS + list.ee partnerivaade",pb:"Ilma POS-arenduseta",rv:"RÖST",rm:"Square kassa",i1:"Hapuignasai kaasa",p1:"4,50 €",i2:"Flat white",p2:"3,50 €",tot:"8,00 €",ded:"",pay:"8,00 €",w:"Skannib Rösti iPadiga Kati QR-koodi ja kinnitab summa 8 € (või ühendatakse Square webhook otse list.ee-ga).",c:"Näitab sama Walleti kaarti ja maksab 8,00 € oma pangakaardiga Square terminali.",b:"<strong>Kuidas lahendame mitte-CompuCashi kohad:</strong> Kliendi jaoks töötab täpselt sama kaart. Poodides ja salongides piisab 2-sekundilisest QR-kontrollist tahvlis või telefonis."},
+    {ctx:"Kati iPhone · Reede õhtu",pill:"Lunastab kogutud saldo",delta:"−20,80 € kasutatud",bal:"0,00 €",venue:"Veinirestoran R14",code:"842-19 (saldo 20,80 €)",tt:"R14: kasutasid 20,80 € Rotermanni raha!",ts:"65,00 € õhtusöögist maksid pangakaardiga vaid 44,20 €",pt:"CompuCash 5 · Boonussaldo lunastamine",pb:"Automaatne saldo sünk",rv:"R14",rm:"Õhtusöök lauas",i1:"Õhtusöök kahele",p1:"47,00 €",i2:"2 × pokaal veini",p2:"18,00 €",tot:"65,00 €",ded:"−20,80 €",pay:"44,20 €",w:"Sisestab/skannib arvet tehes Kati koodi 842-19 ja vajutab CompuCashis „Boonusmakse 20,80 €”.",c:"Ütleb arvet küsides „Kasutan oma Rotermanni raha” ja viipab pangakaardiga jäägi 44,20 €.",b:"<strong>Kuu lõpu arveldus:</strong> Kuna list.ee hoiab CompuCashi saldosid sünkroonis, kompenseerib The List kuu lõpus R14-le selle 20,80 €, mille Kati teenis Levieris, Platzis ja Röstis."}
+  ];
+
+  const $=s=>document.querySelector(s);
+  document.querySelectorAll(".sim-tab").forEach(btn=>btn.addEventListener("click",()=>{
+    document.querySelectorAll(".sim-tab").forEach(b=>b.classList.remove("on"));
+    btn.classList.add("on");
+    const s=STEPS[Number(btn.dataset.step)];
+    $("#s-phone-ctx").textContent=s.ctx;$("#s-phone-pill").textContent=s.pill;$("#s-delta").textContent=s.delta;
+    $("#s-bal").textContent=s.bal;$("#s-venue").textContent=s.venue;$("#s-code").textContent=s.code;
+    $("#s-toast-t").textContent=s.tt;$("#s-toast-s").textContent=s.ts;$("#s-pos-title").textContent=s.pt;
+    $("#s-pos-badge").textContent=s.pb;$("#s-rc-venue").textContent=s.rv;$("#s-rc-mode").textContent=s.rm;
+    $("#s-i1").textContent=s.i1;$("#s-p1").textContent=s.p1;$("#s-i2").textContent=s.i2;$("#s-p2").textContent=s.p2;
+    $("#s-tot").textContent=s.tot;$("#s-pay").textContent=s.pay;$("#s-waiter").textContent=s.w;$("#s-client").textContent=s.c;
+    $("#s-back").innerHTML=s.b;
+    const dr=$("#s-deduct-row");
+    if(s.ded){dr.style.display="flex";$("#s-deduct").textContent=s.ded;}else{dr.style.display="none";}
+  }));
+
+  // Calculator
+  const fmt=n=>Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")+" €";
+  const sfmt=n=>(Math.round(n)>=0?"+":"−")+Math.abs(Math.round(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")+" €";
+  function calcAt(m,mode,ops){
+    const actives=Math.round(m*0.7),tx=actives*5,gmv=tx*25;
+    const mGross=(mode==="m475"||mode==="m475_2")?4.75:0;
+    const fee=(mode==="m475_2"||mode==="free_2")?0.02:0;
+    const mRev=m*(mGross/1.24),sRev=gmv*fee;
+    const aTech=310+(mGross>0?m*mGross*0.015:0);
+    const aNet=(mRev+sRev)-aTech-ops;
+    const aY1=(mGross>0?mRev*8+sRev*8:sRev*10)-(22000+aTech*10+620)-ops*12;
+
+    const ic=gmv*0.013*0.5;
+    const bTech=2000+m*0.2+tx*1.15*0.1+gmv*0.5*0.0005+(m*0.5*0.25)/3+gmv*0.007;
+    const bNet=(mRev+sRev+ic)-bTech-ops;
+    const bY1=(ic*10+(mGross>0?mRev*8:0)+sRev*(mGross>0?8:10))-(2000*12+(bTech-2000)*10+21575+m*0.1+44000)-ops*12;
+
+    const cTech=12018+gmv*0.12*0.015;
+    const cNet=(mRev+sRev)-cTech-ops;
+    const cY1=(mGross>0?mRev*8+sRev*8:sRev*10)-(153000+cTech*10+24036)-ops*12;
+    return {gmv,aTech,aNet,aY1,bTech,bNet,bY1,cTech,cNet,cY1};
+  }
+  function findBE(which,mode,ops){
+    for(let m=100;m<=50000;m+=20){
+      const r=calcAt(m,mode,ops);
+      const v=which==="a"?r.aNet:which==="b"?r.bNet:r.cNet;
+      if(v>=0)return m.toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")+" liiget";
+    }
+    return "Ei tasu ära";
+  }
+  function updateCalc(){
+    const m=Number($("#c-range").value),mode=$("#c-mode").value,ops=Number($("#c-ops").value);
+    const r=calcAt(m,mode,ops);
+    $("#c-members-lbl").textContent=m.toString().replace(/\B(?=(\d{3})+(?!\d))/g," ")+" liiget";
+    $("#c-gmv-lbl").textContent=fmt(r.gmv);
+    $("#a-tech").textContent=fmt(r.aTech);$("#a-y1").textContent=sfmt(r.aY1);$("#a-be").textContent=findBE("a",mode,ops);
+    $("#b-tech").textContent=fmt(r.bTech);$("#b-y1").textContent=sfmt(r.bY1);$("#b-be").textContent=findBE("b",mode,ops);
+    $("#c-tech").textContent=fmt(r.cTech);$("#c-y1").textContent=sfmt(r.cY1);$("#c-be").textContent=findBE("c",mode,ops);
+    [["#a-net",r.aNet],["#b-net",r.bNet],["#c-net",r.cNet]].forEach(([id,v])=>{
+      const el=$(id);el.textContent=sfmt(v);el.className=v>=0?"pos-val":"neg-val";
+    });
+    document.querySelectorAll("[data-m]").forEach(b=>b.classList.toggle("on",Number(b.dataset.m)===m));
+  }
+  $("#c-range").addEventListener("input",updateCalc);
+  $("#c-mode").addEventListener("change",updateCalc);
+  $("#c-ops").addEventListener("change",updateCalc);
+  document.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",()=>{$("#c-range").value=b.dataset.m;updateCalc();}));
+  updateCalc();
+
+  // 61 Venues
+  const VENUES=[
+    ["Platz","CompuCash","fb","cc","CompuCash API + tšeki QR"],["R14","CompuCash","fb","cc","CompuCash API + tšeki QR"],
+    ["Restoran PULL","CompuCash","fb","cc","CompuCash API + tšeki QR"],["Bruxx – New Belgian","CompuCash","fb","cc","CompuCash API + tšeki QR"],
+    ["FLAMM","CompuCash","fb","cc","CompuCash API + tšeki QR"],["Levier","CompuCash","fb","cc","CompuCash letiskanner"],
+    ["Chicago 1933","CompuCash","fb","cc","CompuCash API + tšeki QR"],["Taqueria","CompuCash","fb","cc","CompuCash API + tšeki QR"],
+    ["Om.house","CompuCash","fb","cc","CompuCash API + tšeki QR"],["Pühaste Taproom","CompuCash","fb","cc","CompuCash letiskanner"],
+    ["Gallery Cafe","CompuCash","fb","cc","CompuCash letiskanner"],["Orangerie","CompuCash","fb","cc","CompuCash API + tšeki QR"],
+    ["Stalker","CompuCash","fb","cc","CompuCash API"],["Siesta","CompuCash","fb","cc","CompuCash API"],
+    ["Bali","CompuCash","fb","cc","CompuCash API"],["Jenk BBQ","CompuCash","fb","cc","CompuCash API"],
+    ["Mnemonic Bar","CompuCash","fb","cc","CompuCash API"],["Viru Burger","CompuCash","fb","cc","CompuCash letiskanner"],
+    ["Captain Roosters","CompuCash","fb","cc","CompuCash letiskanner"],["Time to Wine","CompuCash","fb","cc","CompuCash API"],
+    ["Nomade","CompuCash","fb","cc","CompuCash API"],["Fume","CompuCash","fb","cc","CompuCash API"],
+    ["Gobi","CompuCash","fb","cc","CompuCash API"],["La Bocca","CompuCash","fb","cc","CompuCash API + tšeki QR"],
+    ["St Patrick","CompuCash","fb","cc","CompuCash API"],["Röst","Square","fb","api","Square API või Walleti QR"],
+    ["Sanga","Spindl OS","fb","api","Spindl REST API / QR"],["Whippet","Spindl OS","fb","api","Spindl REST API / QR"],
+    ["Kalve Coffee","Flax / ERPLY","fb","oth","Walleti QR letis"],["Puree","Casio","fb","oth","Walleti QR letis"],
+    ["VAPIANO","Markus","fb","oth","Walleti QR letis"],["R-kiosk","Reitan grupp","fb","oth","Eraldi kokkulepe / väljas"],
+    ["Millenia Pesupood","CompuCash","retail","cc","CompuCash API"],["Maison Beast","Shopify POS","retail","api","Shopify / Walleti QR"],
+    ["Ashley Joy","Shopify POS","retail","api","Shopify / Walleti QR"],["Healthy Skin","ERPLY","retail","oth","Walleti QR kassas"],
+    ["Boutique Chic","ERPLY","retail","oth","Walleti QR kassas"],["OUI","ERPLY","retail","oth","Walleti QR kassas"],
+    ["Wine Craft","ERPLY","retail","oth","Walleti QR kassas"],["Springfield","Boom","retail","oth","Walleti QR kassas"],
+    ["Tallinn Design House","Directo","retail","oth","Walleti QR kassas"],["Replay","Astro Baltics","retail","oth","Walleti QR kassas"],
+    ["Lonas","Data Logic","retail","oth","Walleti QR / Home vautšer"],["E-Jewels","Excel","retail","oth","Walleti QR"],
+    ["AEGAON","Käsitsi + Shopify","retail","oth","Walleti QR"],["A.G.A.N","Käsitsi","retail","oth","Walleti QR"],
+    ["Elinete Lilled","Vanakooli kassa","retail","oth","Walleti näitamine (-10%)"],["FleuRRoyale","Makseterminal","retail","oth","Walleti näitamine (-10%)"],
+    ["Pro Kosmeetika","Täpsustamisel","retail","oth","Walleti näitamine"],["Hairline","CompuCash","beauty","cc","CompuCash API"],
+    ["SunLab","CompuCash","beauty","cc","CompuCash API"],["Ilusalong Maribell","Salon Infra","beauty","oth","Walleti QR"],
+    ["Golden Club","Mobi","beauty","oth","Rotermanni äpi eripakkumine"],["Sabai Sabai Massaaž","Täpsustamisel","beauty","oth","Walleti QR"],
+    ["VHair","Täpsustamisel","beauty","oth","Walleti QR"],["La Vie Clinic","Täpsustamisel","beauty","oth","Walleti QR"],
+    ["Neo Dental Hambakliinik","Täpsustamisel","beauty","oth","Walleti QR"],["Reach Fitness","Täpsustamisel","beauty","oth","Äpi kood"],
+    ["PoCo Popkunstimuuseum","CompuCash","other","cc","CompuCash piletikassa"],["Studio Malm","Ülekandega","other","oth","Arvepõhine soodustus"],
+    ["Autopesula","Täpsustamisel","other","oth","Sharry äpi broneering"]
+  ];
+  let curCat="all";
+  function renderVenues(){
+    const q=$("#v-search").value.trim().toLowerCase();
+    const list=VENUES.filter(v=>(curCat==="all"||v[2]===curCat)&&(!q||v[0].toLowerCase().includes(q)||v[1].toLowerCase().includes(q)));
+    $("#v-grid").innerHTML=list.map(v=>`<div class="vitem"><div><strong>${v[0]}</strong><small>${v[4]}</small></div><span class="vpos ${v[3]}">${v[1]}</span></div>`).join("");
+  }
+  document.querySelectorAll("[data-cat]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-cat]").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");curCat=b.dataset.cat;renderVenues();
+  }));
+  $("#v-search").addEventListener("input",renderVenues);
+  renderVenues();
+</script>
+</body>
+</html>
