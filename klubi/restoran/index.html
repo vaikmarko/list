@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Rotermanni Klubi — Restorani vaade | The List</title>
+  <meta name="description" content="Kuidas Rotermanni Klubi restorani jaoks töötab: CompuCash kassas, null lisatööd saalis, kuu lõpu tasaarveldus ja kokkuleppe põhipunktid.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    /* Saali- ja kassasüsteemi simulaator */
+    .pos-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .pos-tab {
+      text-align: left;
+      padding: 11px 12px;
+      border-radius: 13px;
+      border: 1.5px solid var(--line);
+      background: var(--bg);
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .pos-tab:hover {
+      border-color: var(--accent);
+    }
+
+    .pos-tab.on {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .pos-tab small {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .pos-tab.on small {
+      color: var(--accent-ink);
+    }
+
+    .pos-tab strong {
+      display: block;
+      font-size: 13px;
+      color: var(--ink);
+      margin-top: 2px;
+    }
+
+    .pos-stage {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .ticket-card {
+      background: #fcfbf7;
+      border: 1px solid #e5e0d3;
+      border-radius: 16px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 0 #fff;
+    }
+
+    .tk-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #cbd5e1;
+      margin-bottom: 10px;
+    }
+
+    .tk-head strong {
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .tk-head span {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .tk-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 4px 0;
+      color: var(--ink-soft);
+    }
+
+    .tk-line.bonus {
+      color: var(--positive);
+      font-weight: 700;
+    }
+
+    .tk-bank {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--ink);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .tk-qr-hint {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 9px;
+      background: var(--accent-soft);
+      border: 1px dashed var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-ink);
+      text-align: center;
+    }
+
+    .flow-boxes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .effort-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--positive-soft);
+      border: 1px solid var(--positive-border);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0f766e;
+    }
+
+    .fbox {
+      padding: 12px 14px;
+      border-radius: 13px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+    }
+
+    .fbox small {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .fbox p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.42;
+    }
+
+    /* Tasaarvelduse kalkulaator */
+    .preset-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .ppill {
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .ppill:hover {
+      border-color: var(--accent);
+    }
+
+    .ppill.on {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .sliders-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .slider-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .sl-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .sl-top span {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    .sl-top strong {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .sl-sub {
+      display: block;
+      margin-top: 6px;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .fee-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    .mini-switch {
+      display: inline-flex;
+      padding: 2px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    .mini-switch button {
+      border: 0;
+      background: transparent;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .mini-switch button.on {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .settlement-result {
+      border-radius: 16px;
+      padding: 18px 20px;
+      background: var(--accent-soft);
+      border: 1.5px solid var(--accent-mid);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .settlement-result.payout {
+      background: var(--positive-soft);
+      border-color: var(--positive-border);
+    }
+
+    .sr-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-ink);
+    }
+
+    .settlement-result.payout .sr-title {
+      color: #0f766e;
+    }
+
+    .sr-explain {
+      margin-top: 4px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    .sr-amount {
+      text-align: right;
+    }
+
+    .sr-amount strong {
+      display: block;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .settlement-result.payout .sr-amount strong {
+      color: var(--positive);
+    }
+
+    .sr-amount small {
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* Kokkuleppe 6 punkti */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .term-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+    }
+
+    .term-head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 6px;
+    }
+
+    .term-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 12px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .term-card strong {
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+
+    .term-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 660px) {
+      .pos-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .pos-stage,
+      .sliders-grid,
+      .terms-grid,
+      .settlement-result {
+        grid-template-columns: 1fr;
+      }
+      .sr-amount {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body class="theme-restoran">
+
+<script>
+  if (new URLSearchParams(location.search).get("embed") === "1") {
+    document.body.classList.add("is-embed");
+  }
+</script>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="/klubi/" class="brand">
+      <span class="brand-badge">R</span>
+      <span>Rotermanni Klubi</span>
+    </a>
+    <nav class="view-switch" aria-label="Vaate valik">
+      <a href="/klubi/inimene/">Inimese vaade</a>
+      <a href="/klubi/restoran/" class="active">Restorani vaade</a>
+    </nav>
+    <a href="/klubi/" class="split-link" title="Vaata mõlemat teekonda ühel ekraanil kõrvuti">◫ Vaata kõrvuti</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="pill"><span class="pill-dot"></span>Restorani vaade · Kassa, arveldus & kokkulepe</div>
+    <h1>Kassasse laekub 100% täishind.<br><span class="hl">Klient tuleb oma eurode järele tagasi.</span></h1>
+    <p class="hero-sub">Senine pime -10% tšekisoodustus asendub mõõdetava korduvkülastusega. Lahendus töötab otse teie olemasolevas CompuCashis — makseterminale ei vahetata ja saalis teenindajale lisatööd ei teki.</p>
+
+    <div class="stat-strip">
+      <div class="stat-chip">
+        <strong class="accent">0 € risk</strong>
+        <span>piloodis 0 € liitumistasu ja 0% platvormitasu</span>
+      </div>
+      <div class="stat-chip">
+        <strong>25 / 32 kohta</strong>
+        <span>toidukohtadest on juba CompuCashis (kokku 29 kassat)</span>
+      </div>
+      <div class="stat-chip">
+        <strong>1 koondarve</strong>
+        <span>automaatne tasaarveldus kord kuus, mitte iga päev</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-header">
+      <div class="sec-step"><b>01</b> Mis muutub</div>
+      <h2>Miks see on restoranile kasulikum kui tänane -10% kassas?</h2>
+    </div>
+
+    <div class="grid-2">
+      <article class="compare-card">
+        <span class="compare-tag">Täna · Pime -10% allahindlus</span>
+        <ul class="clean-list">
+          <li><i class="i-old">✕</i><span>100 € arvelt jääb kassasse 90 € ja klient võib homme minna mujale.</span></li>
+          <li><i class="i-old">✕</i><span>Null ülevaadet: kes käis, kui tihti käis või kas ta üldse töötab veel siin.</span></li>
+          <li><i class="i-old">✕</i><span>Kui klient küsib soodustust pärast tšeki toomist, trükib kelner tšeki ümber.</span></li>
+          <li><i class="i-old">✕</i><span>Ühtegi suunatud pakkumist vaiksemaks ajaks teha ei saa.</span></li>
+        </ul>
+      </article>
+
+      <article class="compare-card now">
+        <span class="compare-tag">Nüüd · Rotermanni Klubi</span>
+        <ul class="clean-list">
+          <li><i class="i-new">✓</i><span><strong>Kassasse tuleb kohe 100 €</strong> otse teie panka oma terminali lepinguga.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Raha jääb kvartalisse:</strong> 10 € koguneb kliendile siinsamas kulutamiseks.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Automaatne kontroll:</strong> lahkunud töötaja soodustus sulgub API kaudu ise.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Selged numbrid:</strong> näete igakuiselt uute ja korduvklientide käivet.</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-header">
+      <div class="sec-step"><b>02</b> Saalis ja kassas</div>
+      <h2>Kuidas see teenindaja käes 4 olukorras töötab</h2>
+      <p class="sec-desc">Vali teenindusviis — eesmärk on, et tipptunnil ei peaks ükski kelner tšekke ümber trükkima.</p>
+    </div>
+
+    <div class="play-shell">
+      <div class="pos-tabs" role="tablist">
+        <button type="button" class="pos-tab on" data-pos="0">
+          <small>CompuCash · Lett</small>
+          <strong>1. Letikassa</strong>
+        </button>
+        <button type="button" class="pos-tab" data-pos="1">
+          <small>CompuCash · Laud</small>
+          <strong>2. Lauateenindus</strong>
+        </button>
+        <button type="button" class="pos-tab" data-pos="2">
+          <small>CompuCash · Lunastus</small>
+          <strong>3. Saldoga makse</strong>
+        </button>
+        <button type="button" class="pos-tab" data-pos="3">
+          <small>Square / Spindl / Pood</small>
+          <strong>4. Muu kassa</strong>
+        </button>
+      </div>
+
+      <div class="pos-stage">
+        <div class="ticket-card">
+          <div>
+            <div class="tk-head">
+              <strong id="p-venue">LEVIER</strong>
+              <span id="p-type">CompuCash 5</span>
+            </div>
+            <div class="tk-line"><span id="p-i1">Kohv + croissant</span><span class="mono" id="p-v1">8,50 €</span></div>
+            <div class="tk-line"><span id="p-i2">Värske mahl</span><span class="mono" id="p-v2">3,50 €</span></div>
+            <div class="tk-line" style="margin-top:6px;padding-top:6px;border-top:1px solid #e2e8f0;font-weight:700;color:var(--ink)">
+              <span>Arve kokku</span><span class="mono" id="p-tot">12,00 €</span>
+            </div>
+            <div class="tk-line bonus" id="p-ded-row" style="display:none">
+              <span>Klubi boonusmakse</span><span class="mono" id="p-ded">−20,80 €</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="tk-bank">
+              <span>Kaarditerminali</span>
+              <span class="mono" id="p-bank">12,00 €</span>
+            </div>
+            <div class="tk-qr-hint" id="p-hint">Letiskanner piiksutab kliendi Walleti QR-i</div>
+          </div>
+        </div>
+
+        <div class="flow-boxes">
+          <div class="effort-bar">
+            <span>Teenindaja ajakulu kassas:</span>
+            <strong class="mono" id="p-effort">0 lisaklikki (automaatne)</strong>
+          </div>
+
+          <div class="fbox">
+            <small>Mida teeb teenindaja</small>
+            <p id="p-waiter">Lööb kauba tavapäraselt sisse. Kui klient näitab letiskannerile Walleti QR-koodi, seob CompuCash arve kliendiga automaatselt.</p>
+          </div>
+
+          <div class="fbox">
+            <small>Kuidas raha liigub</small>
+            <p id="p-money">Kõik 12,00 € laekub otse Levieri pangakontole. CompuCash saadab arve info API-ga list.ee arvestusse (+1,20 € kliendi Walletisse).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-header">
+      <div class="sec-step"><b>03</b> Kuidas arveldame</div>
+      <h2>Proovi kuu lõpu tasaarveldust: keegi ei maksa teiste boonuseid kinni</h2>
+      <p class="sec-desc">Kuu jooksul laekub 100% kaardimaksetest otse teie panka. Kuu lõpus liidab süsteem kokku teie juures teenitud ja teie juures lunastatud boonused.</p>
+    </div>
+
+    <div class="play-shell">
+      <div class="preset-pills">
+        <button type="button" class="ppill on" data-pre="lunch">Näide 1: Lõunakoht (nt Platz — kogutakse rohkem)</button>
+        <button type="button" class="ppill" data-pre="dinner">Näide 2: Õhturesto (nt R14 — kulutatakse rohkem)</button>
+        <button type="button" class="ppill" data-pre="even">Näide 3: Tasakaalus kuu</button>
+      </div>
+
+      <div class="sliders-grid">
+        <div class="slider-card">
+          <div class="sl-top">
+            <span>Klubiliikmete ostud kuus</span>
+            <strong class="mono" id="sl-gmv-lbl">12 000 €</strong>
+          </div>
+          <input type="range" id="sl-gmv" min="2000" max="40000" step="500" value="12000" aria-label="Klubiliikmete ostud kuus">
+          <span class="sl-sub">Sellest tekkis klientidele 10% klubiraha: <strong class="mono" id="sl-earned">1 200 €</strong></span>
+        </div>
+
+        <div class="slider-card">
+          <div class="sl-top">
+            <span>Teie kassas saldoga makstud</span>
+            <strong class="mono" id="sl-red-lbl">750 €</strong>
+          </div>
+          <input type="range" id="sl-red" min="0" max="3000" step="50" value="750" aria-label="Teie kassas saldoga makstud">
+          <span class="sl-sub">Selle soodustuse andsite kuu jooksul juba arvetelt maha</span>
+        </div>
+      </div>
+
+      <div class="fee-toggle-row">
+        <span>Platvormi teenustasu etapp:</span>
+        <div class="mini-switch">
+          <button type="button" class="on" data-fee="0">Piloot: 0% teenustasu</button>
+          <button type="button" data-fee="0.02">Pärast pilooti: +2% platvormitasu</button>
+        </div>
+      </div>
+
+      <div class="settlement-result" id="sr-box">
+        <div>
+          <div class="sr-title" id="sr-tag">Kuu lõpu 1 koondarve restoranile</div>
+          <p class="sr-explain" id="sr-text">Klientidele tekkis teie käibelt 1 200 € boonust, millest 750 € kasutasid nad juba teie kassas ära. Tasute kuu lõpus arvega ainult vahe 450 €.</p>
+        </div>
+        <div class="sr-amount">
+          <strong class="mono" id="sr-val">450 €</strong>
+          <small id="sr-sub">otse panka laekus 11 250 €</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-header">
+      <div class="sec-step"><b>04</b> Kokkuleppe põhipunktid</div>
+      <h2>6 lihtsat printsiipi, mille restoraniga kokku lepime</h2>
+    </div>
+
+    <div class="terms-grid">
+      <article class="term-card">
+        <div class="term-head"><span class="term-num">1</span><strong>Üks kuupäev (Päev X)</strong></div>
+        <p>Kokkulepitud päevast kaob vana pime kleepsu-allahindlus. 10% hüve kehtib edaspidi ainult Rotermanni Klubi Walleti kaardiga.</p>
+      </article>
+
+      <article class="term-card">
+        <div class="term-head"><span class="term-num">2</span><strong>Piloot on 0 € teenustasuga</strong></div>
+        <p>Liitumine, seadistus ja piloodi teenustasu on 0 €. Kogu restorani 10% panus läheb piloodis täies mahus kliendi saldole.</p>
+      </article>
+
+      <article class="term-card">
+        <div class="term-head"><span class="term-num">3</span><strong>+2% alles tõestatud käibelt</strong></div>
+        <p>Pärast edukat pilooti lisandub kuni 2% platvormitasu (kokku 12%) ainult päriselt toimunud klubiostudelt. Pole ostu = 0 € kulu.</p>
+      </article>
+
+      <article class="term-card">
+        <div class="term-head"><span class="term-num">4</span><strong>Igapäevane raha otse teie panka</strong></div>
+        <p>Klient maksab teie enda terminali. The List ei hoia restorani müügiraha kinni ega seisa kaardimaksete vahel.</p>
+      </article>
+
+      <article class="term-card">
+        <div class="term-head"><span class="term-num">5</span><strong>Kuu 3. tööpäeva tasaarveldus</strong></div>
+        <p>CompuCashi raporti põhjal tehakse 1 koondarve. Kui teie juures lunastati rohkem kui teeniti, kannab The List vahe 7 päevaga teile.</p>
+      </article>
+
+      <article class="term-card">
+        <div class="term-head"><span class="term-num">6</span><strong>Kaitseklauslid ja vaba väljumine</strong></div>
+        <p>Boonusega tasutud osalt uut boonust ei koguta. Restoran näeb oma kliendistatistikat ja saab lepingust väljuda 30-päevase etteteatamisega.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-header">
+      <div class="sec-step"><b>05</b> Liitumise teekond</div>
+      <h2>Kuidas restoran piloodiks live'i läheb (alla 30 minuti tööd)</h2>
+    </div>
+
+    <div class="steps-list">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <strong>1-leheküljeline piloodikokkulepe</strong>
+          <p>Fikseerime Päeva X, 10% boonuse kogumise, 0% pilooditasu ja igakuise tasaarvelduse korra.</p>
+        </div>
+        <span class="step-time">5 min</span>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <strong>CompuCash 5 API + tšeki-QR sisselülitamine</strong>
+          <p>Restorani juhataja saadab kinnitusmeili Ektacole; tehnilise sünkroonimise teevad Ektaco ja The List.</p>
+        </div>
+        <span class="step-time">Meie teeme</span>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <strong>10-minutiline lühijuhend vahetusevanemale</strong>
+          <p>Üks selge A4 spikker kassa juurde: letis skanner, lauas tšeki-QR, lunastamisel nupp „Boonusmakse”.</p>
+        </div>
+        <span class="step-time">10 min</span>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div>
+          <strong>30 päeva piloot + ühine numbrite ülevaatus</strong>
+          <p>Vaatame koos üle mitu klienti käis, kui suur oli keskmine arve ja kuidas saalis töö sujus.</p>
+        </div>
+        <span class="step-time">Kuu lõpus</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>The List Services · Rotermanni Klubi partnerimudel</span>
+    <a href="/klubi/inimene/">← Vaata teist poolt: Inimese vaade ja Wallet</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var POS_MODES = [
+      {
+        venue: "LEVIER",
+        type: "CompuCash 5 · Lett",
+        i1: "Kohv + croissant",
+        v1: "8,50 €",
+        i2: "Värske mahl",
+        v2: "3,50 €",
+        tot: "12,00 €",
+        ded: "",
+        bank: "12,00 €",
+        hint: "Letiskanner piiksutab kliendi Walleti QR-i",
+        effort: "0 lisaklikki (automaatne)",
+        waiter: "Lööb kauba tavapäraselt sisse. Kui klient näitab letiskannerile Walleti QR-koodi, seob CompuCash arve kliendiga automaatselt.",
+        money: "Kõik 12,00 € laekub otse Levieri pangakontole. CompuCash saadab arve info API-ga list.ee arvestusse (+1,20 € kliendi Walletisse)."
+      },
+      {
+        venue: "PLATZ",
+        type: "CompuCash 5 · Laud",
+        i1: "2 × Päevapraad",
+        v1: "28,00 €",
+        i2: "2 × Jook ja kohv",
+        v2: "10,00 €",
+        tot: "38,00 €",
+        ded: "",
+        bank: "38,00 €",
+        hint: "Tšeki jaluses on ühekordne arve-QR (+3,80 €)",
+        effort: "0 ümbertrükki kelnerile",
+        waiter: "Viib tavalise eel-tšeki ja makseterminali lauda. Kuna arve summa ei muutu, võtab kelner 38,00 € vastu ega jookse kliendi telefoniga leti taha.",
+        money: "38,00 € laekub otse Platzi panka. Klient skannib lauas ise tšeki QR-koodi (kehtib vaid 1 korra pärast tasumist) ja saab +3,80 € Walletisse."
+      },
+      {
+        venue: "R14",
+        type: "CompuCash 5 · Lunastus",
+        i1: "Õhtusöök kahele",
+        v1: "47,00 €",
+        i2: "2 × Pokaal veini",
+        v2: "18,00 €",
+        tot: "65,00 €",
+        ded: "−20,80 €",
+        bank: "44,20 €",
+        hint: "Sünkroonitud saldo 20,80 € lahutatud",
+        effort: "1 nupp („Boonusmakse”)",
+        waiter: "Klient ütleb arvet küsides „Kasutan Rotermanni raha” (QR või lühikood 842-19). Teenindaja vajutab CompuCashis „Boonusmakse 20,80 €”.",
+        money: "44,20 € tuleb kohe kliendi pangakaardilt; 20,80 € arvestatakse kuu lõpu tasaarvelduses R14 kasuks."
+      },
+      {
+        venue: "RÖST / POOD",
+        type: "Square / Muu kassa",
+        i1: "Hapuignasai + kohv",
+        v1: "8,00 €",
+        i2: "Kassasüsteem",
+        v2: "Square POS",
+        tot: "8,00 €",
+        ded: "",
+        bank: "8,00 €",
+        hint: "Tahvlis list.ee partnerivaade (3 sek)",
+        effort: "3 sekundit tahvlis",
+        waiter: "Kohtades, kus CompuCashi pole, skannib teenindaja iPadis kliendi sama Walleti QR-koodi ja vajutab „8 € → Kinnita”.",
+        money: "8,00 € läheb otse Rösti Square terminali. Kliendi Walletisse lisandub +0,80 € ja rida läheb kuu lõpu koondarveldusse."
+      }
+    ];
+
+    document.querySelectorAll("[data-pos]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("[data-pos]").forEach(function (b) { b.classList.remove("on"); });
+        btn.classList.add("on");
+        var m = POS_MODES[Number(btn.getAttribute("data-pos"))];
+        document.getElementById("p-venue").textContent = m.venue;
+        document.getElementById("p-type").textContent = m.type;
+        document.getElementById("p-i1").textContent = m.i1;
+        document.getElementById("p-v1").textContent = m.v1;
+        document.getElementById("p-i2").textContent = m.i2;
+        document.getElementById("p-v2").textContent = m.v2;
+        document.getElementById("p-tot").textContent = m.tot;
+        document.getElementById("p-bank").textContent = m.bank;
+        document.getElementById("p-hint").textContent = m.hint;
+        document.getElementById("p-effort").textContent = m.effort;
+        document.getElementById("p-waiter").textContent = m.waiter;
+        document.getElementById("p-money").textContent = m.money;
+        var dedRow = document.getElementById("p-ded-row");
+        if (m.ded) {
+          dedRow.style.display = "flex";
+          document.getElementById("p-ded").textContent = m.ded;
+        } else {
+          dedRow.style.display = "none";
+        }
+      });
+    });
+
+    /* Tasaarvelduse kalkulaator */
+    var slGmv = document.getElementById("sl-gmv");
+    var slRed = document.getElementById("sl-red");
+    var feeRate = 0;
+
+    function fmtEur(n) {
+      return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " €";
+    }
+
+    function updateSettlement() {
+      var gmv = Number(slGmv.value);
+      var red = Number(slRed.value);
+      var earned = Math.round(gmv * 0.1);
+      var fee = Math.round(gmv * feeRate);
+      var netInvoice = earned - red + fee;
+      var cardInBank = Math.max(0, gmv - red);
+
+      document.getElementById("sl-gmv-lbl").textContent = fmtEur(gmv);
+      document.getElementById("sl-earned").textContent = fmtEur(earned);
+      document.getElementById("sl-red-lbl").textContent = fmtEur(red);
+
+      var box = document.getElementById("sr-box");
+      var tag = document.getElementById("sr-tag");
+      var txt = document.getElementById("sr-text");
+      var val = document.getElementById("sr-val");
+      var sub = document.getElementById("sr-sub");
+
+      sub.textContent = "kuu jooksul laekus kassasse " + fmtEur(cardInBank);
+
+      var feeText = fee > 0 ? " + 2% platvormitasu (" + fmtEur(fee) + ")" : " (piloodis platvormitasu 0 €)";
+
+      if (netInvoice > 0) {
+        box.classList.remove("payout");
+        tag.textContent = "Kuu lõpu 1 koondarve restoranile";
+        val.textContent = fmtEur(netInvoice);
+        txt.textContent =
+          "Teie käibelt tekkis klientidele " + fmtEur(earned) + " boonust, millest " +
+          fmtEur(red) + " andsite juba kassas soodustusena välja" + feeText +
+          ". Tasute kuu lõpus ainult vahe.";
+      } else if (netInvoice < 0) {
+        box.classList.add("payout");
+        tag.textContent = "The List maksab restoranile juurde";
+        val.textContent = "+" + fmtEur(Math.abs(netInvoice));
+        txt.textContent =
+          "Kliendid kulutasid teie juures (" + fmtEur(red) + ") rohkem boonust kui teie käibelt tekkis (" +
+          fmtEur(earned) + ")" + feeText + ". The List kompenseerib vahe 7 päevaga teie kontole.";
+      } else {
+        box.classList.add("payout");
+        tag.textContent = "Täpselt nullis — arvet ei esitata";
+        val.textContent = "0 €";
+        txt.textContent = "Teie juures teenitud ja lunastatud boonused olid sel kuul täpselt võrdsed.";
+      }
+    }
+
+    slGmv.addEventListener("input", function () {
+      document.querySelectorAll("[data-pre]").forEach(function (b) { b.classList.remove("on"); });
+      updateSettlement();
+    });
+    slRed.addEventListener("input", function () {
+      document.querySelectorAll("[data-pre]").forEach(function (b) { b.classList.remove("on"); });
+      updateSettlement();
+    });
+
+    document.querySelectorAll("[data-pre]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("[data-pre]").forEach(function (b) { b.classList.remove("on"); });
+        btn.classList.add("on");
+        var p = btn.getAttribute("data-pre");
+        if (p === "lunch") { slGmv.value = 12000; slRed.value = 750; }
+        else if (p === "dinner") { slGmv.value = 9000; slRed.value = 1350; }
+        else { slGmv.value = 10000; slRed.value = 1000; }
+        updateSettlement();
+      });
+    });
+
+    document.querySelectorAll("[data-fee]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("[data-fee]").forEach(function (b) { b.classList.remove("on"); });
+        btn.classList.add("on");
+        feeRate = Number(btn.getAttribute("data-fee"));
+        updateSettlement();
+      });
+    });
+
+    updateSettlement();
+  })();
+</script>
+</body>
+</html>
