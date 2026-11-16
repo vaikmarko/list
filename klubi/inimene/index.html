@@ -4,77 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Rotermanni Klubi — Inimese vaade | The List</title>
-  <meta name="description" content="Kuidas Rotermanni Klubi inimese jaoks töötab: Rotermanni äpp kui värav ja Apple/Google Wallet kui 2-sekundi kassapult.">
+  <title>Rotermanni Klubi — Inimesele</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
   <style>
-    /* Inimese lehe interaktiivse telefoni-mängu stiilid */
     .wallet-game {
       display: grid;
-      grid-template-columns: 276px minmax(0, 1fr);
-      gap: 22px;
+      grid-template-columns: 256px minmax(0, 1fr);
+      gap: 20px;
       align-items: start;
     }
 
     .iphone-frame {
       background: #0f172a;
-      border-radius: 34px;
-      padding: 12px;
+      border-radius: 32px;
+      padding: 11px;
       box-shadow: var(--shadow-phone);
-      border: 3px solid #1e293b;
-      position: relative;
+      border: 2px solid #1e293b;
     }
 
     .iphone-screen {
       background: #f1f5f9;
-      border-radius: 24px;
-      padding: 14px 12px 16px;
-      position: relative;
-      overflow: hidden;
+      border-radius: 22px;
+      padding: 12px 11px 14px;
     }
 
     .notch {
-      width: 76px;
-      height: 18px;
+      width: 68px;
+      height: 16px;
       border-radius: 999px;
       background: #0f172a;
-      margin: 0 auto 12px;
+      margin: 0 auto 10px;
     }
 
     .ios-push {
-      background: rgba(255, 255, 255, 0.96);
+      background: #ffffff;
       border: 1px solid #dbeafe;
-      border-radius: 14px;
-      padding: 9px 11px;
+      border-radius: 13px;
+      padding: 9px 10px;
       margin-bottom: 10px;
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.1);
       display: flex;
       align-items: center;
-      gap: 9px;
-      transform: translateY(0);
-      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+      gap: 8px;
     }
 
     .ios-push.pop {
-      animation: pushBounce 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: pushBounce 0.36s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     @keyframes pushBounce {
-      0% { transform: translateY(-14px) scale(0.95); opacity: 0.4; }
+      0% { transform: translateY(-10px) scale(0.96); opacity: 0.5; }
       100% { transform: translateY(0) scale(1); opacity: 1; }
     }
 
     .push-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 7px;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
       background: var(--accent);
       color: #fff;
       font-weight: 800;
-      font-size: 12px;
+      font-size: 11px;
       display: grid;
       place-items: center;
       flex-shrink: 0;
@@ -93,14 +86,12 @@
       color: var(--muted);
     }
 
-    /* Titanium Matte Wallet Pass */
     .pass-card {
       background: linear-gradient(155deg, #181c24 0%, #0f1218 100%);
       color: #ffffff;
-      border-radius: 18px;
-      padding: 16px 15px;
-      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.22);
-      transition: transform 0.22s ease;
+      border-radius: 17px;
+      padding: 15px 14px;
+      transition: transform 0.2s ease;
     }
 
     .pass-card.pulse {
@@ -111,22 +102,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .pass-brand {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #e2e8f0;
+      color: #cbd5e1;
     }
 
     .pass-rate {
-      padding: 3px 8px;
+      padding: 2px 7px;
       border-radius: 999px;
       background: rgba(59, 130, 246, 0.25);
-      border: 1px solid rgba(96, 165, 250, 0.45);
       color: #93c5fd;
       font-size: 10px;
       font-weight: 800;
@@ -134,92 +124,44 @@
 
     .pass-lbl {
       font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
       color: #94a3b8;
     }
 
     .pass-balance {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
       margin: 2px 0 12px;
-      font-variant-numeric: tabular-nums;
     }
 
     .pass-qr {
       background: #ffffff;
-      border-radius: 12px;
-      padding: 10px;
-      width: 124px;
-      margin: 0 auto 12px;
-      text-align: center;
-      color: #0f172a;
+      border-radius: 11px;
+      padding: 9px;
+      width: 106px;
+      margin: 0 auto 10px;
     }
 
     .pass-qr svg {
-      width: 84px;
-      height: 84px;
+      width: 88px;
+      height: 88px;
       display: block;
-      margin: 0 auto 4px;
-    }
-
-    .pass-qr span {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
     }
 
     .pass-foot {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 10px;
+      padding-top: 9px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 11px;
+      color: #e2e8f0;
+      text-align: center;
+      font-weight: 600;
     }
 
-    .pass-foot small {
-      display: block;
-      font-size: 9px;
-      color: #94a3b8;
-      text-transform: uppercase;
-    }
-
-    /* Action buttons on right */
     .action-col {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-    }
-
-    .action-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2px;
-    }
-
-    .action-head span {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-    }
-
-    .reset-btn {
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 8px;
-    }
-
-    .reset-btn:hover {
-      background: var(--surface-muted);
-      color: var(--ink);
+      gap: 9px;
     }
 
     .venue-btn {
@@ -227,24 +169,19 @@
       text-align: left;
       background: var(--bg);
       border: 1.5px solid var(--line);
-      border-radius: 15px;
-      padding: 13px 15px;
+      border-radius: 14px;
+      padding: 12px 14px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      transition: all 0.16s ease;
+      gap: 10px;
+      transition: all 0.15s ease;
     }
 
     .venue-btn:hover:not(:disabled) {
       border-color: var(--accent);
       background: var(--accent-soft);
-      transform: translateY(-1px);
-    }
-
-    .venue-btn:active:not(:disabled) {
-      transform: translateY(0);
     }
 
     .venue-btn.spend {
@@ -258,7 +195,7 @@
     }
 
     .venue-btn:disabled {
-      opacity: 0.48;
+      opacity: 0.45;
       cursor: not-allowed;
     }
 
@@ -272,19 +209,18 @@
       display: block;
       font-size: 12px;
       color: var(--muted);
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .vb-delta {
-      padding: 5px 10px;
+      padding: 4px 10px;
       border-radius: 999px;
       background: var(--surface);
       border: 1px solid var(--line);
       font-weight: 800;
       font-size: 12.5px;
-      color: var(--accent);
+      color: var(--accent-ink);
       white-space: nowrap;
-      font-variant-numeric: tabular-nums;
     }
 
     .venue-btn.spend .vb-delta {
@@ -292,62 +228,43 @@
       border-color: var(--positive-border);
     }
 
-    .story-explain {
-      margin-top: 4px;
-      padding: 13px 15px;
-      border-radius: 14px;
+    .story-bar {
+      margin-top: 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 12px;
       background: var(--accent-soft);
-      border: 1px solid var(--accent-mid);
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--ink-soft);
-      line-height: 1.45;
     }
 
-    .story-explain strong {
+    .reset-btn {
+      border: 0;
+      background: var(--surface);
+      color: var(--ink-soft);
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .reset-btn:hover {
+      border-color: var(--accent);
       color: var(--accent-ink);
     }
 
-    /* Duo architecture cards */
-    .duo-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .duo-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 11px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 800;
-      font-size: 17px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 4px;
-    }
-
-    .duo-card h3 {
-      font-size: 16.5px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .duo-card p {
-      font-size: 13.5px;
-      color: var(--muted);
-    }
-
-    @media (max-width: 660px) {
+    @media (max-width: 640px) {
       .wallet-game {
         grid-template-columns: 1fr;
       }
       .iphone-frame {
-        max-width: 290px;
+        max-width: 270px;
         margin: 0 auto;
         width: 100%;
       }
@@ -364,75 +281,46 @@
 
 <header class="topbar">
   <div class="wrap topbar-inner">
-    <a href="/klubi/" class="brand">
-      <span class="brand-badge">R</span>
-      <span>Rotermanni Klubi</span>
-    </a>
-    <nav class="view-switch" aria-label="Vaate valik">
-      <a href="/klubi/inimene/" class="active">Inimese vaade</a>
-      <a href="/klubi/restoran/">Restorani vaade</a>
+    <span class="brand">Rotermanni Klubi</span>
+    <nav class="view-switch" aria-label="Vaade">
+      <a href="/klubi/inimene/" class="active">Inimesele</a>
+      <a href="/klubi/restoran/">Restoranile</a>
     </nav>
-    <a href="/klubi/" class="split-link" title="Vaata mõlemat teekonda ühel ekraanil kõrvuti">◫ Vaata kõrvuti</a>
   </div>
 </header>
 
 <main class="wrap">
   <section class="hero">
-    <div class="pill"><span class="pill-dot"></span>Kasutaja vaade · Kliendi teekond</div>
-    <h1>Üks kaart telefoni rahakotis.<br><span class="hl">10% koguneb eurodena tagasi.</span></h1>
-    <p class="hero-sub">Rotermanni äpp on värav, kust lisad klubikaardi ühe puudutusega oma telefoni. Igapäevaselt avad selle topeltklõpsuga Apple või Google Walletist — täpselt sealt, kus su pangakaart juba on.</p>
-
-    <div class="stat-strip">
-      <div class="stat-chip">
-        <strong class="accent">2 sekundit</strong>
-        <span>topeltklõps kassas — töötab ka keldris ilma levita</span>
-      </div>
-      <div class="stat-chip">
-        <strong>10% eurodes</strong>
-        <span>nähtav raha Walletis, mitte peidetud tšekisoodustus</span>
-      </div>
-      <div class="stat-chip">
-        <strong>0 parooli</strong>
-        <span>töötaja tuvastatakse otse Rotermanni äpist</span>
-      </div>
-    </div>
+    <span class="role-tag">Inimesele</span>
+    <h1>10% igalt ostult <span class="hl">eurodena tagasi.</span></h1>
+    <p class="hero-sub">Lisad Rotermanni äpist kaardi telefoni Walletisse. Kassas avad selle topeltklõpsuga — täpselt sealt, kus su pangakaart juba on.</p>
   </section>
 
   <section class="sec">
-    <div class="sec-header">
-      <div class="sec-step"><b>01</b> Mis muutub</div>
-      <h2>Miks see on inimesele parem kui senine -10% kleeps?</h2>
-    </div>
-
+    <h2>Mis läheb paremaks</h2>
     <div class="grid-2">
       <article class="compare-card">
-        <span class="compare-tag">Täna · Füüsiline kleeps</span>
+        <span class="compare-tag">Täna · Kleeps</span>
         <ul class="clean-list">
-          <li><i class="i-old">✕</i><span>Kleeps ununeb teise kaardi peale või kulub ära.</span></li>
-          <li><i class="i-old">✕</i><span>10% kaob märkamatult tšeki sisse — võidutunnet ei teki.</span></li>
-          <li><i class="i-old">✕</i><span>Lauas ebamugav küsida, eriti kui tšekk on juba toodud.</span></li>
-          <li><i class="i-old">✕</i><span>Kvartali püsikülalistel väljastpoolt puudub ligipääs.</span></li>
+          <li><i class="i-old">✕</i><span>Kulub maha või ununeb teise kaardi külge.</span></li>
+          <li><i class="i-old">✕</i><span>10% kaob märkamatult tšeki sisse.</span></li>
+          <li><i class="i-old">✕</i><span>Lauas ebamugav tagantjärele küsida.</span></li>
         </ul>
       </article>
 
       <article class="compare-card now">
         <span class="compare-tag">Nüüd · Kaart Walletis</span>
         <ul class="clean-list">
-          <li><i class="i-new">✓</i><span><strong>Päris eurod silme ees:</strong> näed kohe „Sul on 18,50 € Rotermanni raha”.</span></li>
-          <li><i class="i-new">✓</i><span><strong>Alati kaasas:</strong> pangakaardi kõrval, ekraan läheb QR-i jaoks ise heledaks.</span></li>
-          <li><i class="i-new">✓</i><span><strong>Lauas null kohmetust:</strong> saad boonuse sisse skannida ka otse tšekilt.</span></li>
-          <li><i class="i-new">✓</i><span><strong>Töötab kõigile:</strong> töötajale äpist tasuta, fännile linnast 4,75 €/kuu.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Eurod silme ees:</strong> näed kohe kogunenud raha.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Alati kaasas:</strong> töötab 2 sekundiga ka ilma levita.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Lauas vaba:</strong> boonuse saab skannida otse tšekilt.</span></li>
         </ul>
       </article>
     </div>
   </section>
 
   <section class="sec">
-    <div class="sec-header">
-      <div class="sec-step"><b>02</b> Proovi ise järele</div>
-      <h2>Kliki Kati ostud läbi ja vaata, mis tema telefonis juhtub</h2>
-      <p class="sec-desc">Vajuta paremal mõnda kohta kasvõi mitu korda — saldo kasvab reaalajas ja reede õhtul saad kogutud raha R14-s ära kasutada.</p>
-    </div>
+    <h2>Kuidas Kati kogub ja kasutab</h2>
 
     <div class="play-shell">
       <div class="wallet-game">
@@ -443,75 +331,67 @@
             <div class="ios-push" id="push-box">
               <div class="push-icon">R</div>
               <div>
-                <strong id="push-title">Tervitusboonus +5,00 €</strong>
-                <span id="push-sub">Kaart lisatud Rotermanni äpist</span>
+                <strong id="push-title">Stardisaldo 5,00 €</strong>
+                <span id="push-sub">Kaart lisatud Walletisse</span>
               </div>
             </div>
 
             <div class="pass-card" id="pass-card">
               <div class="pass-top">
                 <span class="pass-brand">Rotermanni Klubi</span>
-                <span class="pass-rate">10% tagasi</span>
+                <span class="pass-rate">10%</span>
               </div>
               <div class="pass-lbl">Rotermanni raha</div>
               <div class="pass-balance mono" id="bal-val">5,00 €</div>
 
               <div class="pass-qr">
-                <svg viewBox="0 0 120 120" aria-label="Klubikaardi QR-kood">
+                <svg viewBox="0 0 120 120" aria-label="QR-kood">
                   <rect width="120" height="120" fill="#fff"/>
                   <path fill="#0f172a" d="M14 14h28v28H14zM20 20v16h16V20zM24 24h8v8h-8zM78 14h28v28H78zM84 20v16h16V20zM88 24h8v8h-8zM14 78h28v28H14zM20 84v16h16V84zM24 88h8v8h-8zM50 14h8v8h-8zM62 18h8v12h-8zM48 30h12v8H48zM14 50h12v8H14zM32 48h8v12h-8zM48 48h24v24H48zM54 54v12h12V54zM80 48h12v8H80zM98 50h8v16h-8zM78 64h16v8H78zM50 80h10v12H50zM66 78h8v16h-8zM80 80h16v16H80zM98 88h8v18h-8z"/>
                 </svg>
-                <span class="mono">KOOD · 842-19</span>
               </div>
 
-              <div class="pass-foot">
-                <div><small>Liige</small><strong>Kati Tamm</strong></div>
-                <div style="text-align:right"><small>Kokku võidetud</small><strong class="mono" id="won-val">5,00 €</strong></div>
-              </div>
+              <div class="pass-foot">Kati Tamm</div>
             </div>
           </div>
         </div>
 
         <div class="action-col">
-          <div class="action-head">
-            <span>Vali tegevus kvartalis:</span>
-            <button type="button" class="reset-btn" id="reset-btn">↺ Alusta algusest</button>
-          </div>
-
           <button type="button" class="venue-btn" data-act="levier">
             <div class="vb-left">
-              <strong>1. Hommikukohv Levieris (12 €)</strong>
-              <small>Letis: näitad Walleti QR-i skannerile + viipad pangakaardiga</small>
+              <strong>Hommikukohv Levieris · 12 €</strong>
+              <small>Letis: näitad QR-koodi skannerile</small>
             </div>
             <span class="vb-delta mono">+1,20 €</span>
           </button>
 
           <button type="button" class="venue-btn" data-act="platz">
             <div class="vb-left">
-              <strong>2. Lõuna Platzis lauas (38 €)</strong>
-              <small>Lauas: maksad ära ja tõmbad kaameraga üle tšeki QR-koodi</small>
+              <strong>Lõuna Platzis · 38 €</strong>
+              <small>Lauas: skannid kaameraga tšeki QR-koodi</small>
             </div>
             <span class="vb-delta mono">+3,80 €</span>
           </button>
 
           <button type="button" class="venue-btn" data-act="rost">
             <div class="vb-left">
-              <strong>3. Hapuignasai Röstist (8 €)</strong>
-              <small>Muu kassa: sama Walleti kaart töötab ka väljaspool CompuCashi</small>
+              <strong>Saiake Röstist · 8 €</strong>
+              <small>Teised kohad ja poed: sama QR-kaart</small>
             </div>
             <span class="vb-delta mono">+0,80 €</span>
           </button>
 
           <button type="button" class="venue-btn spend" id="spend-btn" data-act="r14">
             <div class="vb-left">
-              <strong>4. Õhtusöök R14-s (65 €) — kasuta saldot!</strong>
-              <small id="spend-sub">Ütled „Kasutan Rotermanni raha” ja maksad pangakaardiga vaid jäägi</small>
+              <strong>Õhtusöök R14-s · 65 €</strong>
+              <small id="spend-sub">Kasutad saldot — kaardilt maksad 60,00 €</small>
             </div>
             <span class="vb-delta mono" id="spend-delta">−5,00 €</span>
           </button>
 
-          <div class="story-explain" id="story-box">
-            <strong>Kuidas Kati alustas:</strong> Avades Golden Gate'i töötajana Rotermanni äpi, lisas ta ühe nupuga kaardi Walletisse ja sai piloodi stardiks 5,00 €.
+          <div class="story-bar">
+            <span id="story-box">Kliki mõnda kohta, et näha rahakoti uuenemist.</span>
+            <button type="button" class="reset-btn" id="reset-btn" hidden>↺ Algusesse</button>
           </div>
         </div>
       </div>
@@ -519,78 +399,41 @@
   </section>
 
   <section class="sec">
-    <div class="sec-header">
-      <div class="sec-step"><b>03</b> Miks mitte skanner äpi sisse?</div>
-      <h2>Rotermanni äpp ja Wallet teevad kumbki oma tööd</h2>
-      <p class="sec-desc">Kassas äpi otsimine ja laadimine võtab 12 sekundit ning jääb keldris levi taha kinni. Seepärast on rollid jagatud nii:</p>
-    </div>
-
-    <div class="grid-2">
-      <article class="duo-card">
-        <div class="duo-icon">1</div>
-        <h3>Rotermanni äpp = Värav ja kodu</h3>
-        <p>Töötaja avab Sharry äpis „Rotermanni Klubi” — süsteem tunneb ta automaatselt ära ilma paroolita. Siit lisatakse kaart Walletisse ning vaadatakse ostuajalugu ja kvartali pakkumisi.</p>
-      </article>
-
-      <article class="duo-card">
-        <div class="duo-icon">2</div>
-        <h3>Apple / Google Wallet = 2-sekundi pult</h3>
-        <p>Kassas teeb inimene nagunii topeltklõpsu, et pangakaardiga maksta — klubikaart on sealsamas kõrval. Töötab 100% ilma internetita ja avab ukse ka külalistele, kellel Sharry äppi pole.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-header">
-      <div class="sec-step"><b>04</b> Piloodi algus</div>
-      <h2>Kuidas inimene 15 sekundiga pardale jõuab</h2>
-    </div>
-
+    <h2>Alustamine võtab 15 sekundit</h2>
     <div class="steps-list">
       <div class="step-row">
         <div class="step-num">1</div>
         <div>
-          <strong>Kutse Rotermanni äpis (või QR-kood laual)</strong>
-          <p>Golden Gate'i töötajad saavad kaardi kohe; teiste majade töötajatele anname äpi kätte juba enne 2027. aasta uksevõtmete valmimist.</p>
+          <strong>Ava Rotermanni äpp</strong>
+          <p>Töötaja tuvastatakse automaatselt ilma paroolita; külaline väljastpoolt liitub laua QR-koodist.</p>
         </div>
-        <span class="step-time">1 klikk</span>
       </div>
 
       <div class="step-row">
         <div class="step-num">2</div>
         <div>
-          <strong>„Lisa Apple / Google Walletisse”</strong>
-          <p>Üks vajutus salvestab personaalse QR-kaardi telefoni rahakotti ja lülitab sisse kvartali asukoha-märguanded.</p>
+          <strong>Lisa kaart Apple või Google Walletisse</strong>
+          <p>Üks vajutus paneb klubikaardi sinu pangakaardi kõrvale.</p>
         </div>
-        <span class="step-time">5 sek</span>
       </div>
 
       <div class="step-row">
         <div class="step-num">3</div>
         <div>
-          <strong>Iga ost kasvatab saldot, iga lunastus teeb arve väiksemaks</strong>
-          <p>Maksad alati oma tavalise pangakaardiga — uut pangakaarti tellima ega raha ette laadima ei pea.</p>
+          <strong>Maksa alati oma tavalise pangakaardiga</strong>
+          <p>Uut pangakaarti tellima ega raha ette laadima ei pea.</p>
         </div>
-        <span class="step-time">Igapäevane</span>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap foot-inner">
-    <span>The List Services · Rotermanni Klubi pilootmudel</span>
-    <a href="/klubi/restoran/">Vaata teist poolt: Restorani vaade ja kokkulepe →</a>
-  </div>
-</footer>
-
 <script>
   (function () {
     var balance = 5.0;
-    var totalWon = 5.0;
+    var touched = false;
 
     var elBal = document.getElementById("bal-val");
-    var elWon = document.getElementById("won-val");
     var elPushBox = document.getElementById("push-box");
     var elPushTitle = document.getElementById("push-title");
     var elPushSub = document.getElementById("push-sub");
@@ -599,23 +442,24 @@
     var elSpendDelta = document.getElementById("spend-delta");
     var elSpendSub = document.getElementById("spend-sub");
     var elStory = document.getElementById("story-box");
+    var elReset = document.getElementById("reset-btn");
 
     var fmt = new Intl.NumberFormat("et-EE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     function eur(n) { return fmt.format(n) + " €"; }
 
-    function syncUI(pushT, pushS, storyHtml) {
+    function syncUI(pushT, pushS, storyText) {
       elBal.textContent = eur(balance);
-      elWon.textContent = eur(totalWon);
+      elReset.hidden = !touched;
 
       var usable = Math.min(balance, 65);
       if (usable > 0.009) {
         elSpendBtn.disabled = false;
         elSpendDelta.textContent = "−" + eur(usable);
-        elSpendSub.textContent = "65 € arvest maksad ise vaid " + eur(65 - usable) + "!";
+        elSpendSub.textContent = "Kasutad saldot — kaardilt maksad " + eur(65 - usable);
       } else {
         elSpendBtn.disabled = true;
         elSpendDelta.textContent = "0,00 €";
-        elSpendSub.textContent = "Kogu enne mõnes kohas Rotermanni raha juurde";
+        elSpendSub.textContent = "Kogu enne mõnes kohas raha juurde";
       }
 
       if (pushT) {
@@ -626,62 +470,56 @@
         elPushBox.classList.add("pop");
 
         elPass.classList.add("pulse");
-        setTimeout(function () { elPass.classList.remove("pulse"); }, 220);
+        setTimeout(function () { elPass.classList.remove("pulse"); }, 200);
       }
 
-      if (storyHtml) {
-        elStory.innerHTML = storyHtml;
+      if (storyText) {
+        elStory.textContent = storyText;
       }
     }
 
     document.querySelectorAll("[data-act]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var act = btn.getAttribute("data-act");
+        touched = true;
         if (act === "levier") {
           balance = Math.round((balance + 1.2) * 100) / 100;
-          totalWon = Math.round((totalWon + 1.2) * 100) / 100;
           syncUI(
-            "Levier: +1,20 € lisatud!",
-            "Uus saldo " + eur(balance) + " · Makstud oma kaardiga 12,00 €",
-            "<strong>Letis (2 sekundit):</strong> Kati tegi telefonil topeltklõpsu, näitas Walleti QR-koodi CompuCashi skannerile ja viipas kohe oma tavalise pangakaardiga 12,00 €."
+            "Levier: +1,20 €",
+            "Saldo nüüd " + eur(balance),
+            "Näitasid letis QR-koodi ja maksid 12 € oma pangakaardiga."
           );
         } else if (act === "platz") {
           balance = Math.round((balance + 3.8) * 100) / 100;
-          totalWon = Math.round((totalWon + 3.8) * 100) / 100;
           syncUI(
-            "Platz: +3,80 € otse tšekilt!",
-            "Uus saldo " + eur(balance) + " · Kelner ei pidanud tšekki muutma",
-            "<strong>Lauateeninduses:</strong> Kati maksis 38,00 € ära ja skannis kaameraga paber-tšeki allservas oleva ühekordse QR-koodi — raha laekus Walletisse ilma kelnerit ootamata."
+            "Platz: +3,80 €",
+            "Saldo nüüd " + eur(balance),
+            "Maksid lauas ära ja skannisid kaameraga tšeki all oleva QR-koodi."
           );
         } else if (act === "rost") {
           balance = Math.round((balance + 0.8) * 100) / 100;
-          totalWon = Math.round((totalWon + 0.8) * 100) / 100;
           syncUI(
-            "Röst: +0,80 € lisatud!",
-            "Uus saldo " + eur(balance) + " · Üks kaart kehtib kogu kvartalis",
-            "<strong>Väljaspool CompuCashi:</strong> Rösti teenindaja skannis iPadiga Kati sama Walleti QR-koodi (3 sek). Kliendi jaoks ei muutu üheski poes ega kohvikus mitte midagi."
+            "Röst: +0,80 €",
+            "Saldo nüüd " + eur(balance),
+            "Teenindaja skannis sinu sama Walleti kaarti tahvelarvutiga."
           );
         } else if (act === "r14" && balance > 0) {
           var spent = Math.min(balance, 65);
           var cardPay = Math.round((65 - spent) * 100) / 100;
           balance = Math.round((balance - spent) * 100) / 100;
           syncUI(
-            "R14: kasutasid " + eur(spent) + " saldot!",
-            "65,00 € õhtusöögist maksid kaardiga vaid " + eur(cardPay),
-            "<strong>Reede õhtu R14-s:</strong> Kati ütles arvet küsides „Kasutan Rotermanni raha” (kood 842-19). CompuCash lahutas " + eur(spent) + " maha ja terminal küsis pangakaardilt ainult " + eur(cardPay) + "."
+            "R14: −" + eur(spent) + " kasutatud",
+            "Kaardiga maksid vaid " + eur(cardPay),
+            "65 € arvest läks " + eur(spent) + " kogutud rahast ja " + eur(cardPay) + " pangakaardilt."
           );
         }
       });
     });
 
-    document.getElementById("reset-btn").addEventListener("click", function () {
+    elReset.addEventListener("click", function () {
       balance = 5.0;
-      totalWon = 5.0;
-      syncUI(
-        "Tervitusboonus +5,00 €",
-        "Kaart lisatud Rotermanni äpist",
-        "<strong>Alustasime uuesti:</strong> Katil on stardiks 5,00 € Rotermanni raha. Vajuta mõnda söögikohta!"
-      );
+      touched = false;
+      syncUI("Stardisaldo 5,00 €", "Kaart lisatud Walletisse", "Kliki mõnda kohta, et näha rahakoti uuenemist.");
     });
 
     syncUI();

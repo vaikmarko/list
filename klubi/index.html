@@ -4,113 +4,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Rotermanni Klubi — Inimese & Restorani vaade kõrvuti | The List</title>
-  <meta name="description" content="Rotermanni Klubi otsustatud mudel: inimese teekond ja restorani teekond kõrvuti ühel ekraanil.">
+  <title>Rotermanni Klubi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f6f8fb;
+      --bg: #f7f8fa;
       --surface: #ffffff;
       --ink: #0f172a;
       --muted: #64748b;
       --line: #e2e8f0;
       --blue: #2563eb;
-      --blue-soft: #eff6ff;
       --orange: #ea580c;
-      --orange-soft: #fff7ed;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: "Plus Jakarta Sans", -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
-
-    .bar {
-      height: 54px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--line);
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: -0.02em;
+    html, body {
+      height: 100%;
+      background: var(--bg);
       color: var(--ink);
-      text-decoration: none;
+      font-family: "Plus Jakarta Sans", -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
-
-    .brand-badge {
-      width: 25px;
-      height: 25px;
-      border-radius: 7px;
-      background: var(--ink);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-size: 12.5px;
-      font-weight: 800;
-    }
-
-    .bar-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .link-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--ink);
-      transition: all 0.15s ease;
-    }
-
-    .link-pill.user:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
-    .link-pill.rest:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-soft); }
-
-    .dot { width: 7px; height: 7px; border-radius: 50%; }
-    .dot.blue { background: var(--blue); }
-    .dot.orange { background: var(--orange); }
-
-    .sync-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .sync-label input { accent-color: var(--ink); cursor: pointer; }
 
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      height: calc(100vh - 54px);
+      height: 100vh;
       width: 100%;
     }
 
     .pane {
       height: 100%;
-      border: 0;
       width: 100%;
+      border: 0;
       background: var(--bg);
     }
 
@@ -118,11 +46,10 @@
       border-left: 1px solid var(--line);
     }
 
-    /* Mobiilis näitame kahte suurt selget valikukaarti */
     .mobile-chooser {
       display: none;
-      padding: 28px 20px;
-      max-width: 520px;
+      padding: 40px 20px;
+      max-width: 480px;
       margin: 0 auto;
     }
 
@@ -130,14 +57,7 @@
       font-size: 26px;
       font-weight: 800;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .mobile-chooser p {
-      color: var(--muted);
-      font-size: 14.5px;
-      margin-bottom: 20px;
-      line-height: 1.5;
+      margin-bottom: 18px;
     }
 
     .mcard {
@@ -145,16 +65,28 @@
       text-decoration: none;
       color: var(--ink);
       background: var(--surface);
-      border: 1.5px solid var(--line);
-      border-radius: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
       padding: 20px;
       margin-bottom: 12px;
     }
 
+    .mcard .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .tag.blue { background: #eff6ff; color: var(--blue); }
+    .tag.orange { background: #fff7ed; color: var(--orange); }
+
     .mcard strong {
       display: block;
-      font-size: 17px;
-      margin: 6px 0 4px;
+      font-size: 16.5px;
+      margin-bottom: 4px;
     }
 
     .mcard span {
@@ -163,88 +95,34 @@
       line-height: 1.45;
     }
 
-    @media (max-width: 960px) {
-      .split, .sync-label { display: none; }
+    @media (max-width: 920px) {
+      .split { display: none; }
       .mobile-chooser { display: block; }
     }
   </style>
 </head>
 <body>
 
-<header class="bar">
-  <a href="/klubi/" class="brand">
-    <span class="brand-badge">R</span>
-    <span>Rotermanni Klubi · Kõrvuti vaade</span>
-  </a>
-
-  <div class="bar-links">
-    <a href="/klubi/inimene/" target="_blank" rel="noopener" class="link-pill user">
-      <span class="dot blue"></span>Ava inimese leht eraldi ↗
-    </a>
-    <a href="/klubi/restoran/" target="_blank" rel="noopener" class="link-pill rest">
-      <span class="dot orange"></span>Ava restorani leht eraldi ↗
-    </a>
-  </div>
-
-  <label class="sync-label">
-    <input type="checkbox" id="sync-scroll">
-    <span>Keri mõlemat koos</span>
-  </label>
-</header>
-
 <main class="split">
-  <iframe class="pane" id="pane-left" src="/klubi/inimene/?embed=1" title="Rotermanni Klubi — Inimese vaade"></iframe>
-  <iframe class="pane" id="pane-right" src="/klubi/restoran/?embed=1" title="Rotermanni Klubi — Restorani vaade"></iframe>
+  <iframe class="pane" src="/klubi/inimene/?embed=1" title="Rotermanni Klubi — Inimesele"></iframe>
+  <iframe class="pane" src="/klubi/restoran/?embed=1" title="Rotermanni Klubi — Restoranile"></iframe>
 </main>
 
 <section class="mobile-chooser">
   <h1>Rotermanni Klubi</h1>
-  <p>Vali, kumba teekonda soovid vaadata (arvutiekraanil avanevad mõlemad kõrvuti):</p>
 
   <a href="/klubi/inimene/" class="mcard">
-    <span class="dot blue" style="display:inline-block"></span>
-    <strong>1. Inimese vaade</strong>
-    <span>Kuidas töötaja või külaline saab Rotermanni äpist kaardi Walletisse, kogub 10% ja kasutab saldot.</span>
+    <em class="tag blue" style="font-style:normal">Inimesele</em>
+    <strong>10% igalt ostult eurodena tagasi</strong>
+    <span>Kuidas kaart jõuab Rotermanni äpist Walletisse ja kuidas sellega kassas koguda ning maksta.</span>
   </a>
 
   <a href="/klubi/restoran/" class="mcard">
-    <span class="dot orange" style="display:inline-block"></span>
-    <strong>2. Restorani vaade</strong>
-    <span>Kuidas CompuCash saalis töötab, kuidas käib kuu lõpu tasaarveldus ja milles restoraniga kokku lepime.</span>
+    <em class="tag orange" style="font-style:normal">Restoranile</em>
+    <strong>100% täishind kassasse ja püsiklient tagasi</strong>
+    <span>Kuidas CompuCash saalis töötab, kuidas käib kuu lõpu tasaarveldus ja milles kokku lepime.</span>
   </a>
 </section>
 
-<script>
-  (function () {
-    var left = document.getElementById("pane-left");
-    var right = document.getElementById("pane-right");
-    var syncBox = document.getElementById("sync-scroll");
-    var lock = false;
-
-    function bindSync(source, target) {
-      source.addEventListener("load", function () {
-        try {
-          var winS = source.contentWindow;
-          winS.addEventListener("scroll", function () {
-            if (!syncBox.checked || lock) return;
-            var winT = target.contentWindow;
-            if (!winT) return;
-            lock = true;
-            var docS = winS.document.documentElement;
-            var docT = winT.document.documentElement;
-            var maxS = Math.max(1, docS.scrollHeight - winS.innerHeight);
-            var maxT = Math.max(1, docT.scrollHeight - winT.innerHeight);
-            var ratio = winS.scrollY / maxS;
-            winT.scrollTo(0, ratio * maxT);
-            setTimeout(function () { lock = false; }, 25);
-          }, { passive: true });
-        } catch (e) {}
-      });
-    }
-
-    bindSync(left, right);
-    bindSync(right, left);
-  })();
-</script>
 </body>
 </html>
