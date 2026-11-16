@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Rotermanni Klubi. Strateegia ja plaan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    body.theme-plaan {
+      --accent: #0f766e;
+      --accent-soft: #f0fdfa;
+      --accent-mid: #99f6e4;
+      --accent-ink: #115e59;
+    }
+
+    .answer-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .decision-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .decision-card.highlight {
+      background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 78%);
+      border-color: var(--accent-mid);
+    }
+
+    .dc-kicker {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--accent-ink);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .decision-card.highlight .dc-kicker {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .decision-card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .decision-card p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.52;
+    }
+
+    .decision-card p + p {
+      margin-top: 8px;
+    }
+
+    .econ-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .econ-box {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 13px 14px;
+    }
+
+    .econ-box strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .econ-box strong.teal {
+      color: var(--accent-ink);
+    }
+
+    .econ-box span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    .phase-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .phase-when {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--accent-ink);
+    }
+
+    .phase-body strong {
+      display: block;
+      font-size: 14.5px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .phase-body p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 640px) {
+      .econ-strip,
+      .phase-card {
+        grid-template-columns: 1fr;
+      }
+      .phase-card {
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body class="theme-plaan">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <span class="brand">Rotermanni Klubi</span>
+    <nav class="view-switch" aria-label="Vaade">
+      <a href="/klubi/inimene/">Inimesele</a>
+      <a href="/klubi/restoran/">Restoranile</a>
+      <a href="/klubi/plaan/" class="active">Strateegia ja plaan</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="role-tag">Juhtimisotsused ja tegevuskava</span>
+    <h1>Kuidas viime Rotermanni Klubi <span class="hl">päriselt ellu.</span></h1>
+    <p class="hero-sub">Selged vastused neljale võtmeküsimusele: kas küsida inimeselt kuutasu, millal rääkida restoranile teenustasust, kuidas vahetada välja tänane kleeps ja mis ajakavaga liikuda.</p>
+
+    <div class="econ-strip">
+      <div class="econ-box">
+        <strong class="mono teal">~22 000 €</strong>
+        <span>kogu ehitus ja käivitus ilma pangakaardita</span>
+      </div>
+      <div class="econ-box">
+        <strong class="mono">~300 € kuus</strong>
+        <span>jooksev tehnika ja liideste püsikulu</span>
+      </div>
+      <div class="econ-box">
+        <strong class="mono teal">0 € kuus</strong>
+        <span>liitumine kvartali töötajale ja elanikule</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>1. Kas küsida inimestelt 4,75 € kuus?</h2>
+
+    <div class="answer-grid">
+      <article class="decision-card highlight">
+        <span class="dc-kicker">Soovitus: ära küsi</span>
+        <h3>Kvartali inimestele ja piloodis peab kaart olema tasuta</h3>
+        <p>Kuutasu 4,75 € tekkis varasemasse mudelisse ainult selleks, et lappida pangakaardi kõrgeid püsikulusid. Kuna CompuCashi ja Walleti mudelis seda kulu enam ei ole, kaotab kuutasu oma põhjuse.</p>
+        <p>Kui võtta kvartali töötajalt ära tänane tasuta kleeps ja küsida sama 10% eest 4,75 € kuus, tekib majades pahameel. Lisaks peaks inimene kulutama igal kuul vähemalt 47,50 € ainuüksi selleks, et nulli jõuda. Tulemuseks oleks kümme korda väiksem liikmeskond ning restoranid jääksid ilma käibemahust, mille pärast nad üldse klubiga liituvad.</p>
+      </article>
+
+      <div class="grid-2">
+        <article class="decision-card">
+          <span class="dc-kicker">Oma kvartali inimesed</span>
+          <h3>Alati 0 € ja 10% tagasi</h3>
+          <p>Kõik Rotermanni töötajad, elanikud ja USRE kliendid saavad 10% taseme tasuta. See on tugev argument rentnike hoidmiseks ja Rotermanni äpi levitamiseks.</p>
+        </article>
+
+        <article class="decision-card">
+          <span class="dc-kicker">Linnarahvas kevadel</span>
+          <h3>Tasuta 5%, aktiivsele 10%</h3>
+          <p>Kui avame klubi kevadel linnarahvale, on liitumine tasuta 5% tasemel. Kes kulutab kvartalis kuus vähemalt 150 €, tõuseb 10% peale (või ostab 4,75 € eest vabatahtliku otsetee).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>2. Millal rääkida restoranidele 2% teenustasust?</h2>
+
+    <div class="answer-grid">
+      <article class="decision-card highlight">
+        <span class="dc-kicker">Soovitus: lepi kohe alguses ausalt kokku</span>
+        <h3>Tingimus kohe lepingusse sisse, kuid esimesed kolm kuud on 0%</h3>
+        <p>Kui jätta 2% alguses mainimata ja tulla sellega välja kolme kuu pärast, tunnevad restoranid end petetuna ning me peaksime kevadel hakkama 25 kohaga lepinguid uuesti allkirjastama. Kui aga küsida 2% kohe esimesest päevast ilma ühegi tõestatud ostuta, tekib asjatu vastuseis.</p>
+        <p>Kõige puhtam kokkulepe on kaheastmeline: <strong>esimesed kolm kuud on piloot teenustasuga 0%</strong> (kogu restorani 10% läheb kliendile) ning <strong>neljandast kuust rakendub 2% platvormitasu</strong> (kokku 12%). Restorani kaitseb kuuajaline vaba väljumise õigus juhuks, kui piloodi numbrid teda ei veena.</p>
+      </article>
+
+      <article class="decision-card">
+        <span class="dc-kicker">Kust tuleb The Listi tulu</span>
+        <h3>Raha tuleb B2B poolelt ja kasutamata jäägist, mitte liikme taskust</h3>
+        <p>Kui pärast pilooti kasutab kaarti aktiivselt 2 500 inimest keskmise ostuga 100 € kuus (250 000 € klubikäivet), annab 2% teenustasu <strong>5 000 € kuus ehk 60 000 € aastas</strong>. Lisaks jääb 12 kuu kehtivusega boonusrahast praktikas ligikaudu 15% kasutamata (umbes <strong>3 750 € kuus</strong> alates teisest aastast), millest saab rahastada tervitusboonuseid ja ühiskampaaniaid.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>3. Kuidas teha üleminek kleepsult ja teavitus?</h2>
+    <p class="sec-desc">Vana kleepsu ei lõpetata üleöö, kuid üleminek ei tohi ka venima jääda. Kuulutame välja kolmenädalase üleminekuakna ja ühe kindla kuupäeva, mil plastikkleeps aegub.</p>
+
+    <div class="steps-list">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <strong>Väike stardiraha uuel kaardil (5 €)</strong>
+          <p>Kleeps andis võidu kohe, klubikaart kogub järgmiseks korraks. Kui uuel kaardil ootab kohe 5 € stardiraha esimeseks ostuks, tajub inimene vahetust selge võiduna. Kulu tekib vaid siis, kui ta päriselt sööma läheb.</p>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <strong>Golden Gate otse Rotermanni äpis</strong>
+          <p>Saadame olemasolevatele äpikasutajatele märguande, kust nad lisavad kaardi ühe puudutusega oma telefoni rahakotti.</p>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <strong>Teiste majade büroojuhid</strong>
+          <p>Saadame Rotermanni ettevõtete büroojuhtidele kutse: kleepsud sulguvad kokkulepitud kuupäeval ja töötajad saavad äpi koos klubikaardiga kasutusele võtta kohe, ilma 2027. aasta uksevõtmeid ootamata.</p>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div>
+          <strong>Sõbralik turvavõrk kassas</strong>
+          <p>Kui keegi näitab kassas vana kleepsu, ei saadeta teda tühjade kätega ära. Kassa kõrval on ruutkood ja teenindaja ütleb: kleeps kolis telefoni, loe siit kümne sekundiga kaart peale ja saad tänase boonuse juba kirja.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>4. Realistlik ajakava</h2>
+    <p class="sec-desc">Detsember on restoranides jõulupidude tippaeg, mil saali uue kassavõttega segada ei tasu. Jaanuar on seevastu aasta vaikseim kuu, mil iga restoran ootab püsikliente pikisilmi.</p>
+
+    <div class="answer-grid">
+      <div class="phase-card">
+        <div class="phase-when">November ja detsember</div>
+        <div class="phase-body">
+          <strong>Ehitus ja 5 ankurrestorani kokkulepped</strong>
+          <p>Lukustame Ektacoga CompuCashi liidese ja tšeki koodi, sõlmime kokkulepped viie kuni kuue ankurkohaga (nt Platz, R14, Levier, PULL ja Röst) ning ehitame Walleti ja kliiringu valmis.</p>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-when">Jaanuari algus</div>
+        <div class="phase-body">
+          <strong>Kahenädalane vaikne proov oma tiimiga</strong>
+          <p>Testime lahendust 50 kuni 100 oma töötajaga kahes söögikohas, et veenduda kassa lugeja, tšeki koodi ja saldo sünkroonimise veatus töös.</p>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-when">Jaanuar kuni märts</div>
+        <div class="phase-body">
+          <strong>Kvartali avamine ja kleepsu sulgemine</strong>
+          <p>Avame klubikaardi kõigile Rotermanni töötajatele, sulgeme kolme nädala järel füüsilise kleepsu ja lülitame jooksvalt sisse ülejäänud CompuCashi kohad.</p>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-when">Aprill 2027</div>
+        <div class="phase-body">
+          <strong>Tulemuste ülevaatus, 2% teenustasu ja linna avamine</strong>
+          <p>Vaatame restoranidega kolme kuu lisakäibe üle, käivitub 2% platvormitasu ning avame klubi tasuta algtasemel ka kvartali välistele püsikülalistele.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
