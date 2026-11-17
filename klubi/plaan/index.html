@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>The List. Ärimudel, bränd ja plaan</title>
+  <title>Staatus. Ärimudel, bränd ja plaan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -433,7 +433,7 @@
 
 <header class="topbar">
   <div class="wrap topbar-inner">
-    <span class="brand">The List</span>
+    <span class="brand">Staatus</span>
     <nav class="view-switch" aria-label="Vaade">
       <a href="/klubi/inimene/">Inimesele</a>
       <a href="/klubi/restoran/">Restoranile</a>
@@ -457,7 +457,7 @@
       <div class="pnl-presets">
         <button type="button" class="ppill" data-sc="small">Tagasihoidlik algus · 1 500 ostjat</button>
         <button type="button" class="ppill on" data-sc="base">Rotermann ja Artius · 2 500 ostjat</button>
-        <button type="button" class="ppill" data-sc="city">Koos linnarahvaga · 4 000 ostjat</button>
+        <button type="button" class="ppill" data-sc="city">Koos Forus Takso ja linnaga · 5 000 ostjat</button>
       </div>
 
       <div class="pnl-controls">
@@ -466,17 +466,17 @@
             <span>Aktiivseid ostjaid kuus</span>
             <strong class="mono" id="u-lbl">2 500</strong>
           </div>
-          <input type="range" id="u-range" min="500" max="6000" step="250" value="2500" aria-label="Aktiivseid ostjaid kuus">
+          <input type="range" id="u-range" min="500" max="8000" step="250" value="2500" aria-label="Aktiivseid ostjaid kuus">
           <span class="ctrl-sub">Klubikäive kuus (keskmiselt 100 € ostja kohta): <strong class="mono" id="gmv-lbl">250 000 €</strong></span>
         </div>
 
         <div class="ctrl-box">
           <div class="ctrl-top">
-            <span>Klubi Pluss 4,90 € kuutasuga tellijaid</span>
+            <span>Staatus Pluss 4,90 € kuutasuga tellijaid</span>
             <strong class="mono" id="p-lbl">300</strong>
           </div>
-          <input type="range" id="p-range" min="0" max="1500" step="50" value="300" aria-label="Klubi Pluss tellijaid">
-          <span class="ctrl-sub">Linnarahvas, kes ostab kohese 10% taseme ilma 150 € lävendita</span>
+          <input type="range" id="p-range" min="0" max="2500" step="50" value="300" aria-label="Staatus Pluss tellijaid">
+          <span class="ctrl-sub">Linnarahvas ja Foruse sõitjad, kes ostavad takso ja restoranide ühispaketi</span>
         </div>
       </div>
 
@@ -518,7 +518,7 @@
         <div class="pnl-col">
           <h4>Igakuised tulud</h4>
           <div class="prow"><span>Restoranide 2% tasu</span><span class="mono" id="r-fee">5 000 €</span></div>
-          <div class="prow"><span>Klubi Pluss kuutasud (ilma käibemaksuta)</span><span class="mono" id="r-plus">1 185 €</span></div>
+          <div class="prow"><span>Staatus Pluss kuutasud (ilma käibemaksuta)</span><span class="mono" id="r-plus">1 185 €</span></div>
           <div class="prow"><span>Kasutamata jääv boonusraha</span><span class="mono" id="r-break">3 188 €</span></div>
           <div class="prow"><span>Suurüürnike paketid</span><span class="mono" id="r-b2b">0 €</span></div>
           <div class="prow"><span>Tulud kokku</span><span class="mono" id="r-tot">9 373 €</span></div>
@@ -528,7 +528,7 @@
           <h4>Igakuised kulud</h4>
           <div class="prow"><span>Tehnika, pilv ja CompuCashi liidesed</span><span class="mono" id="c-tech">350 €</span></div>
           <div class="prow"><span>Haldus, partnerisuhtlus ja raamatupidamine</span><span class="mono" id="c-ops">1 500 €</span></div>
-          <div class="prow"><span>Klubi Pluss stardihüve ja maksevahendus</span><span class="mono" id="c-plus">450 €</span></div>
+          <div class="prow"><span>Staatus Pluss stardihüve ja maksevahendus</span><span class="mono" id="c-plus">450 €</span></div>
           <div class="prow"><span>Kampaaniad ja uute liitujate tervitusraha</span><span class="mono" id="c-mkt">600 €</span></div>
           <div class="prow"><span>Kulud kokku</span><span class="mono" id="c-tot">2 900 €</span></div>
         </div>
@@ -536,7 +536,7 @@
 
       <div class="pnl-summary" id="pnl-sum">
         <div class="ps-left">
-          <strong id="pnl-title">Igakuine puhastulu The Listile</strong>
+          <strong id="pnl-title">Igakuine puhastulu platvormile</strong>
           <span id="pnl-payback">Ühekordne ehituskulu 22 000 € teenib end tagasi 4 kuuga (aastane ülejääk +77 676 €)</span>
         </div>
         <div class="ps-val mono" id="pnl-net">+6 473 €</div>
@@ -638,45 +638,73 @@
   </section>
 
   <section class="sec">
-    <h2>5. Brändi puhastamine: üks ühtne klubikaart üle kõigi kvartalite</h2>
-    <p class="sec-desc">Artius on Artius, Rotermann on Rotermann ja Talsinki on Talsinki. Kuna klubi ühendab kõigi nende piirkondade restorane ja inimesi, peab klubil olema üks iseseisev nimi ja ühtne kaardikujundus ilma kunstlike liitnimedeta.</p>
+    <h2>5. Forus Takso ja restoranide sünergia</h2>
+    <p class="sec-desc">Takso ja restoranid moodustavad loomuliku ringi, mida ei Telliskivi ega Bolt üksi pakkuda ei suuda: inimene sõidab reede õhtul taksoga restorani ette ja pärast õhtusööki taksoga koju.</p>
 
-    <div class="brand-rows">
-      <div class="brow">
-        <strong>The List (list.ee)</strong>
-        <span class="b-status b-keep">Ühtne klubibränd</span>
-        <p><strong>Üks kaart ja üks kujundus kõigile:</strong> kehtib võrdselt nii Rotermanni, Artiuse kui ka tulevastes Talsinki restoranides. Kaardi välimus muutub ainult taseme järgi (<em>Member</em>, <em>Gold</em>, <em>Partner</em>), mitte maja järgi.</p>
-      </div>
+    <div class="stack-12">
+      <article class="decision-card highlight">
+        <span class="dc-kicker">Üks ühine Staatus, mitte kaks eraldi programmi</span>
+        <h3>Ära tee eraldi Forus Plussi ja eraldi restoranikaarti</h3>
+        <p>Kui Foruse äpis ja kvartalite restoranides jookseb <strong>üks ja sama Staatuse konto ning saldo</strong>, muutub <strong>Staatus Pluss (4,90 € kuus)</strong> kogu linna jaoks vastupandamatuks paketiks: ühe kuutasu eest saab inimene korraga 10% Kuldtaseme restoranides, Staatuse raha kogumise ja eelisjärjekorra Forus Taksos ning igakuise parkimistunni või kohvi.</p>
+        <p>Foruse äpi kümnete tuhandete aktiivsete kasutajate seas annab isegi 3 kuni 5% liitumist kohe 1 000 kuni 1 500 maksvat Pluss tellijat ja toob restoranidesse suure hulga uusi laudu.</p>
+      </article>
 
-      <div class="brow">
-        <strong>Rotermann, Artius, Talsinki</strong>
-        <span class="b-status b-keep">Puhtad kohabrändid</span>
-        <p>Iga kvartal ja hoone hoiab oma puhast nime. Me ei pane kaardile kohmakaid ühendusi nagu <em>Artius Rotermann</em> või <em>Golden Gate Rotermann</em>.</p>
-      </div>
+      <div class="grid-2">
+        <article class="decision-card">
+          <span class="dc-kicker">Taksost restorani (kaitseb takso marginaali)</span>
+          <h3>Sihtkoha boonus toob inimese kvartalisse</h3>
+          <p>Taksoteenuse marginaal on õhem kui restoranil. Seepärast annab tavasõit näiteks 3 kuni 5% Staatuse raha, kuid <strong>sõit Rotermanni, Artiusesse või Talsinkisse annab topeltboonuse</strong>, mida saab kulutada sihtkoha restoranides. Nii finantseerib uue kliendi toomise suuresti restoran, kes saab vastu 60 € õhtusöögilaua.</p>
+        </article>
 
-      <div class="brow">
-        <strong>Golden Line</strong>
-        <span class="b-status b-hide">Ainult kinnisvara</span>
-        <p>Jääb kinnisvaraarenduse üldterminiks. Kliendikaardi nimeks see ei sobi, sest piirkonnas on juba spordiklubi <em>Golden Club</em> ja hoone <em>Golden Gate</em>.</p>
-      </div>
-
-      <div class="brow">
-        <strong>Staatus</strong>
-        <span class="b-status b-drop">Loobume</span>
-        <p>Oli suvise pangakaardi projekti töönimi. Eemaldame selle täielikult, et hoida süsteemis vaid ühte klubinime.</p>
+        <article class="decision-card">
+          <span class="dc-kicker">Restoranist taksoga koju</span>
+          <h3>Õhtusöök maksab kodutee kinni</h3>
+          <p>Kui külaline teenib R14 või Platzi õhtusöögilt 7 € Staatuse raha, näeb ta sama jääki kohe Forus Takso äpis ja saab sellega tasuda oma kodusõidu eest. Tehniliselt vajab see kahe oma süsteemi vahel vaid lihtsat API ühendust ilma ühegi pangakaardita.</p>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="sec">
-    <h2>6. Kleepsu väljavahetamine ja ajakava ilma majaäppi ootamata</h2>
+    <h2>6. Brändi korrastamine: Staatus on ühtne kaart üle kogu grupi</h2>
+    <p class="sec-desc">Artius on Artius, Rotermann on Rotermann, Talsinki on Talsinki ja Forus on Forus. Nende kohal on üks ühendav liikmelisus nimega <strong>Staatus</strong> aadressil <strong>minustaatus.ee</strong>.</p>
+
+    <div class="brand-rows">
+      <div class="brow">
+        <strong>Staatus (minustaatus.ee)</strong>
+        <span class="b-status b-keep">Ühtne klubibränd</span>
+        <p><strong>Üks kaart ja üks saldo kõigile:</strong> sobib ühte perekonda nimedega <em>Forus</em> ja <em>Artius</em> ning kehtib võrdselt Rotermanni, Artiuse ja Talsinki ärides ning Forus Taksos. Välimus muutub vaid taseme järgi (<em>Liige</em>, <em>Kuld</em>, <em>Partner</em>).</p>
+      </div>
+
+      <div class="brow">
+        <strong>Rotermann, Artius, Talsinki, Forus</strong>
+        <span class="b-status b-keep">Puhtad brändid</span>
+        <p>Iga kvartal ja teenus hoiab oma puhast nime. Me ei pane kaardile kohmakaid ühendusi nagu <em>Artius Rotermann</em> ega ehita dubleerivat <em>Forus Pluss</em> rahakotti.</p>
+      </div>
+
+      <div class="brow">
+        <strong>The List Services OÜ</strong>
+        <span class="b-status b-hide">Ainult lepingutel</span>
+        <p>Jääb nähtamatuks juriidiliseks ja arvelduskehaks restoranide lepingute ning koondarvete allservas. Inimesele me seda nime ei kuva.</p>
+      </div>
+
+      <div class="brow">
+        <strong>Golden Line</strong>
+        <span class="b-status b-hide">Ainult kinnisvara</span>
+        <p>Jääb kinnisvaraarenduse üldterminiks. Kliendikaardil seda ei kasutata, et vältida segiajamist <em>Golden Club</em> spordiklubi ja <em>Golden Gate</em> hoonega.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>7. Kleepsu väljavahetamine ja ajakava (millal liitub Forus Takso)</h2>
 
     <div class="stack-12">
       <div class="phase-card">
         <div class="phase-when">November ja detsember</div>
         <div class="phase-body">
           <strong>Ehitus ja 5 ankurrestorani lepingud</strong>
-          <p>Ehitame Ektacoga CompuCashi liidese ja tšeki koodi, sõlmime kaheastmelised lepingud (kolm kuud 0%, edasi 2%) viie ankurkohaga ning väldime restoranide segamist jõulupidude tippajal.</p>
+          <p>Ehitame Ektacoga CompuCashi liidese ja tšeki koodi ning sõlmime kaheastmelised lepingud (kolm kuud 0%, edasi 2%). Juba lepingut tehes lubame restoranidele kevadist Forus Takso klientide liitumist.</p>
         </div>
       </div>
 
@@ -691,16 +719,16 @@
       <div class="phase-card">
         <div class="phase-when">Jaanuar kuni märts</div>
         <div class="phase-body">
-          <strong>Avamine veebilingiga ja kleepsu sulgemine 3 nädalaga</strong>
-          <p>Kuna majaäpp on täna vaid Golden Gate'is ja teiste majade valmidus tuleb 2027. aastal, jagame 5 € tervitusrahaga Walleti kaardi laiali otse veebilingiga büroojuhtide kaudu. Sulgeme vana kleepsu ja ühendame ülejäänud CompuCashi kohad.</p>
+          <strong>Avamine minustaatus.ee lingiga ja kleepsu sulgemine 3 nädalaga</strong>
+          <p>Jagame 5 € tervitusrahaga Staatuse kaardi laiali veebilingiga büroojuhtide kaudu (sõltumata 2027. aasta majaäpi ajakavast), sulgeme vana kleepsu ja ühendame ülejäänud CompuCashi restoranid.</p>
         </div>
       </div>
 
       <div class="phase-card">
-        <div class="phase-when">Kevad 2027 ja edasi</div>
+        <div class="phase-when">Aprill kuni mai 2027</div>
         <div class="phase-body">
-          <strong>2% teenustasu, Artius, Talsinki ja linnarahvas</strong>
-          <p>Käivitub 2% platvormitasu ning avame 5% algtaseme ja 4,90 € Pluss paketi linnarahvale. Sama The List kaart laieneb sujuvalt Artiuse üürnikele ja Talsinki uutele restoranidele.</p>
+          <strong>Forus Takso ühendamine, Staatus Pluss ja 2% teenustasu</strong>
+          <p>Kui üle kahekümne restorani kassasüsteemid töötavad sujuvalt, lülitame API kaudu külge Forus Takso äpi ja avame 4,90 € Staatus Pluss kuupaketi kümnetele tuhandetele taksoklientidele. Samal hetkel käivitub restoranide 2% platvormitasu ning laienemine Artiusesse ja Talsinkisse.</p>
         </div>
       </div>
     </div>
@@ -763,7 +791,7 @@
 
       if (net >= 0) {
         sumBox.classList.remove("loss");
-        titleEl.textContent = "Igakuine puhastulu The Listile";
+        titleEl.textContent = "Igakuine puhastulu platvormile";
         netEl.textContent = "+" + fmt(net);
         if (net > 0) {
           var months = Math.max(1, Math.ceil(22000 / net));
@@ -812,8 +840,8 @@
           tB2b.checked = false;
           tTeam.checked = false;
         } else {
-          uRange.value = 4000;
-          pRange.value = 600;
+          uRange.value = 5000;
+          pRange.value = 1000;
           tFee.checked = true;
           tBreak.checked = true;
           tB2b.checked = true;

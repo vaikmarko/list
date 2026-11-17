@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>The List. Inimesele</title>
+  <title>Staatus. Inimesele</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -287,7 +287,7 @@
 
 <header class="topbar">
   <div class="wrap topbar-inner">
-    <span class="brand">The List</span>
+    <span class="brand">Staatus</span>
     <nav class="view-switch" aria-label="Vaade">
       <a href="/klubi/inimene/" class="active">Inimesele</a>
       <a href="/klubi/restoran/">Restoranile</a>
@@ -300,7 +300,7 @@
   <section class="hero">
     <span class="role-tag">Inimesele</span>
     <h1>Kümme protsenti igalt ostult <span class="hl">eurodena tagasi.</span></h1>
-    <p class="hero-sub">Üks ühtne klubikaart sinu telefoni Apple või Google Walletis, mis kehtib Rotermannis, Artiuses ja Talsinkis. Eraldi äppi ei ole vaja, kaart avaneb otse pangakaardi kõrvalt ja saadab ise märguandeid lukuekraanile.</p>
+    <p class="hero-sub">Staatus on üks ühtne kaart sinu telefoni Apple või Google Walletis, mis kehtib Rotermannis, Artiuses ja Talsinkis. Eraldi äppi ei ole vaja, kaart avaneb otse pangakaardi kõrvalt ja saadab ise märguandeid lukuekraanile.</p>
   </section>
 
   <section class="sec">
@@ -336,19 +336,19 @@
             <div class="notch"></div>
 
             <div class="ios-push" id="push-box">
-              <div class="push-icon">W</div>
+              <div class="push-icon">S</div>
               <div>
                 <strong id="push-title">Wallet: tervitusraha 5,00 €</strong>
-                <span id="push-sub">The List kaart on lisatud rahakotti</span>
+                <span id="push-sub">Staatus on lisatud telefoni rahakotti</span>
               </div>
             </div>
 
             <div class="pass-card" id="pass-card">
               <div class="pass-top">
-                <span class="pass-brand">THE LIST</span>
-                <span class="pass-rate">GOLD 10%</span>
+                <span class="pass-brand">STAATUS</span>
+                <span class="pass-rate">KULD 10%</span>
               </div>
-              <div class="pass-lbl">Klubiraha jääk</div>
+              <div class="pass-lbl">Staatuse raha</div>
               <div class="pass-balance mono" id="bal-val">5,00 €</div>
 
               <div class="pass-qr">
@@ -358,7 +358,7 @@
                 </svg>
               </div>
 
-              <div class="pass-foot"><strong>Kati Tamm</strong><span>Member</span></div>
+              <div class="pass-foot"><strong>Kati Tamm</strong><span>Liige</span></div>
             </div>
           </div>
         </div>
@@ -391,7 +391,7 @@
           <button type="button" class="venue-btn spend" id="spend-btn" data-act="r14">
             <div class="vb-left">
               <strong>Õhtusöök restoranis R14 · 65 €</strong>
-              <small id="spend-sub">Kasutad klubiraha ja maksad kaardiga 60,00 €</small>
+              <small id="spend-sub">Kasutad Staatuse raha ja maksad kaardiga 60,00 €</small>
             </div>
             <span class="vb-delta mono" id="spend-delta">5,00 € maha</span>
           </button>
@@ -411,7 +411,7 @@
       <div class="step-row">
         <div class="step-num">1</div>
         <div>
-          <strong>Ava veebilink või loe ruutkood laualt</strong>
+          <strong>Ava minustaatus.ee link või loe ruutkood laualt</strong>
           <p>Üürniku töötaja kinnitab end oma töömeiliga (Golden Gate'is ja alates 2027. aastast saab ka majaäpist), külaline liitub ühe puudutusega Apple või Google kontoga.</p>
         </div>
       </div>
@@ -427,8 +427,8 @@
       <div class="step-row">
         <div class="step-num">3</div>
         <div>
-          <strong>Maksa oma tavalise pangakaardiga</strong>
-          <p>Üks ja sama kaart töötab võrdselt nii Rotermannis, Artiuses kui ka Talsinkis.</p>
+          <strong>Üks saldo restoranides ja Forus Taksos</strong>
+          <p>Maksad oma tavalise pangakaardiga Rotermannis, Artiuses ja Talsinkis ning kevadel ühineb sama rahakotiga ka Forus Takso: sõidad taksoga õhtusöögile ja õhtusöögilt teenitud Staatuse rahaga sõidad koju.</p>
         </div>
       </div>
     </div>
@@ -462,11 +462,11 @@
       if (usable > 0.009) {
         elSpendBtn.disabled = false;
         elSpendDelta.textContent = eur(usable) + " maha";
-        elSpendSub.textContent = "Kasutad klubiraha ja maksad kaardiga " + eur(65 - usable);
+        elSpendSub.textContent = "Kasutad Staatuse raha ja maksad kaardiga " + eur(65 - usable);
       } else {
         elSpendBtn.disabled = true;
         elSpendDelta.textContent = "0,00 €";
-        elSpendSub.textContent = "Kogu enne mõnes kohas klubiraha juurde";
+        elSpendSub.textContent = "Kogu enne mõnes kohas Staatuse raha juurde";
       }
 
       if (pushT) {
@@ -517,7 +517,7 @@
           syncUI(
             "Wallet: R14 arvelt " + eur(spent) + " maha",
             "Pangakaardiga tasusid vaid " + eur(cardPay),
-            "65 € arvest kattis klubiraha " + eur(spent) + " ja pangakaardiga tasusid " + eur(cardPay) + "."
+            "65 € arvest kattis Staatuse raha " + eur(spent) + " ja pangakaardiga tasusid " + eur(cardPay) + "."
           );
         }
       });
@@ -526,7 +526,7 @@
     elReset.addEventListener("click", function () {
       balance = 5.0;
       touched = false;
-      syncUI("Wallet: tervitusraha 5,00 €", "The List kaart on lisatud rahakotti", "Vajuta mõnele ostule ja vaata, kuidas Wallet lukuekraanil uueneb.");
+      syncUI("Wallet: tervitusraha 5,00 €", "Staatus on lisatud telefoni rahakotti", "Vajuta mõnele ostule ja vaata, kuidas Wallet lukuekraanil uueneb.");
     });
 
     syncUI();
