@@ -259,15 +259,79 @@
       color: var(--positive);
     }
 
+    .roi-banner {
+      background: var(--accent-soft);
+      border: 1.5px solid var(--accent-mid);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .roi-banner strong {
+      display: block;
+      font-size: 14.5px;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .roi-banner p {
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .roi-pill {
+      background: var(--surface);
+      border: 1px solid var(--accent-mid);
+      color: var(--accent-ink);
+      padding: 8px 13px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .roi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .roi-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 15px 17px;
+    }
+
+    .roi-card strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .roi-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
     @media (max-width: 640px) {
       .pos-tabs {
         grid-template-columns: repeat(2, 1fr);
       }
       .pos-stage,
-      .sliders-grid {
+      .sliders-grid,
+      .roi-grid {
         grid-template-columns: 1fr;
       }
-      .settlement-result {
+      .settlement-result,
+      .roi-banner {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -413,6 +477,40 @@
         </div>
         <strong class="sr-amount mono" id="sr-val">450 €</strong>
       </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Miks 2% platvormitasu end restoranile tagasi teenib</h2>
+
+    <div class="roi-banner">
+      <div>
+        <strong>10 000 € klubikäibelt on 2% tasu 200 € kuus ehk 6,60 € päevas</strong>
+        <p>Selle katab juba üksainus lisalõuna päevas või üks kahe inimese õhtusöök nädalas.</p>
+      </div>
+      <span class="roi-pill mono">Vajab vaid +3,5% käivet</span>
+    </div>
+
+    <div class="roi-grid">
+      <article class="roi-card">
+        <strong>Aegunud kleepsude sulgemine</strong>
+        <p>Endiste töötajate ja sõpradele jagatud kleepsude kadumine säästab restoranile kohe umbes sama summa, mis kulub 2% teenustasule.</p>
+      </article>
+
+      <article class="roi-card">
+        <strong>Suurem arve korduvkülastusel</strong>
+        <p>Kui külaline tuleb kulutama 20 € kogutud klubiraha, võtab ta kaaslase ja joogid ning jätab lauda 65 €.</p>
+      </article>
+
+      <article class="roi-card">
+        <strong>Otsekanal vaiksetel tundidel</strong>
+        <p>Teisipäeva õhtul või vihmasel pärastlõunal saate kutsuda kõrvalmajade kontorirahva saali ilma reklaamiraha kulutamata.</p>
+      </article>
+
+      <article class="roi-card">
+        <strong>Kümme korda soodsam kui toidukuller</strong>
+        <p>Kuller võtab kuni 30% ja jätab inimese kontorilaua taha, klubi toob külalise 2% eest teie saali istuma ja jooke tellima.</p>
+      </article>
     </div>
   </section>
 

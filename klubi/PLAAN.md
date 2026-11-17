@@ -1,81 +1,93 @@
-# Rotermanni Klubi strateegia ja tegevusplaan
+# Rotermanni Klubi ärimudel, tasemed, bränd ja tegevusplaan
 
-Kuupäev: 16. november 2026  
-Seotud vaated: [Inimesele](https://list.ee/klubi/inimene/) · [Restoranile](https://list.ee/klubi/restoran/) · [Strateegia ja plaan veebis](https://list.ee/klubi/plaan/)
+Kuupäev: 17. november 2026  
+Seotud vaated: [Inimesele](https://list.ee/klubi/inimene/) · [Restoranile](https://list.ee/klubi/restoran/) · [Ärimudel ja plaan veebis](https://list.ee/klubi/plaan/)
 
-## 1. Põhiotsus
+## 1. Miks restoran on nõus maksma 2% ja kuidas ta selle tagasi teenib?
 
-Teeme Rotermanni Klubi ära olemasolevate vahenditega: **Rotermanni äpp** on sisenemisvärav, **Apple ja Google Wallet** on igapäevane klubikaart ning **CompuCash** on kassamootor.
+Vaatame keskmist Rotermanni restorani, kus klubiliikmed teevad kuus **10 000 €** käivet.
 
-Pangakaardi lahendust me ühe kvartali jaoks ei ehita. Nii langeb käivituskulu 65 575 eurolt ligikaudu **22 000 eurole** ning igakuine tehnoloogiakulu üle 3 200 euro pealt ligikaudu **300 eurole kuus**. Just see kulude langus annab meile vabaduse teha programm nii inimesele kui ka restoranile lihtsaks ja vastuvõetavaks.
+* Kaheprotsendiline platvormitasu sellelt mahult on **200 € kuus** ehk **6,60 € päevas**.
+* Toidukoha keskmise brutokatte juures vajab restoran 200 € tagasiteenimiseks kuus vaid **345 € lisakäivet** (ehk +3,5%). See on **üksainus 12 € lõunapraad päevas** või **üks kahe inimese õhtusöök nädalas**.
 
-## 2. Kas küsida inimestelt 4,75 € kuus?
+### Neli konkreetset võitu restoranile võrreldes tänase kleepsuga
 
-**Lühike vastus: kvartali töötajalt ja elanikult kindlasti mitte ning piloodis mitte kelleltki.**
+1. **Aegunud kleepsude sulgemine katab tasu juba esimesel kuul.** Täna ei kontrolli keegi, kas plastikkleepsu näitaja töötab veel kvartalis või andis kaardi sõbrale. Praktikas lekib nii umbes 15 kuni 20% soodustustest (10 000 € mahu juures ~180 € kuus). Digikaart sulgeb lahkunud töötaja soodustuse automaatselt.
+2. **Raha jääb kvartalisse ja toob suurema arve.** Tänane kassas antud 10% allahindlus jääb kliendi pangakontole ja kulutatakse homme mujal linnas. Klubiraha saab kulutada ainult siin. Kui inimene tuleb reedel kasutama 20 € kogutud boonusraha, võtab ta kaasa kaaslase ja joogid ning jätab lauda 65 €.
+3. **Otsekanal tuhandete naabrite telefoni vaiksetel tundidel.** Restorani suurim kulu on tühi laud teisipäeva õhtul või vihmasel pärastlõunal, mil kokad ja rent jooksevad nagunii. Klubi annab restoranile võimaluse kutsuda kõrvalmajade 3 000 kontoritöötajat vaiksel ajal majja ilma ühtegi eurot Facebooki või Google reklaamidele kulutamata.
+4. **Kümme korda soodsam kui toidukuller.** Wolt ja Bolt Food võtavad restoranilt 25 kuni 30% vahendustasu ning jätavad kliendi kontorilaua taha, kus ta ei telli kunagi klaasi veini, kohvi ega magustoitu. Klubi toob inimese 2% eest saali istuma ja annab kuu lõpus täpse ülevaate uutest ning korduvatest külalistest.
 
-### Miks 4,75 € kuus ei ole praegu hea mõte
+**Lepinguline lahendus:** sõlmime restoraniga kohe alguses ausa kaheastmelise kokkuleppe, kus esimesed kolm kuud on piloot teenustasuga **0%** ning alates neljandast kuust rakendub **2% platvormitasu** koos kuuajalise vaba väljumise õigusega.
 
-1. **See hind sündis teise mudeli vajadusest.** Kuutasu 4,75 € lisati plaanidesse siis, kui oli vaja katta Wallesteri ja Apple Pay igakuiseid püsikulusid. Ilma pangakaardita seda kulu enam ei ole.
-2. **Tasuta hüve muutmine tasuliseks tekitab trotsi.** Kvartali töötajad saavad täna kleepsuga 10% tasuta. Kui asendada tasuta kleeps 4,75 € kuutasuga, tajuvad rentnikud seda hüve äravõtmisena.
-3. **Matemaatika töötab väikekasutaja vastu.** Et 4,75 € kuutasuga üldse nulli jõuda, peaks inimene kulutama partnerite juures vähemalt 47,50 € igal kuul. Inimene, kes käib Rotermannis lõunal kolm korda kuus, jääks miinusesse ega liituks.
-4. **Kuutasu tapab mahu, mida restoranid ootavad.** Restoranid tulevad kaasa ja on valmis maksma teenustasu ainult siis, kui klubil on tuhandeid aktiivseid kasutajaid. Tasuta kaart toob kvartalisse kümme korda rohkem liikmeid kui tasuline kaart.
+## 2. Tasemed, kuine kulutamine ja Wolt Pluss loogika (plussid ja miinused)
 
-### Kuidas hinnastada erinevaid gruppe
+Miks maksavad inimesed meelsasti Wolt Pluss või Bolt Pluss eest umbes 5 € kuus? Sest võit on kohene ja käega katsutav: juba kahe tellimuse tasuta kohalevedu katab kuutasu.
 
-* **Rotermanni töötajad, elanikud ja USRE kliendid:** püsivalt **0 € kuus** ja **10% klubiraha**. See on kvartalis töötamise ja elamise eelis, mis aitab hoida ka äripindade üürnikke.
-* **Külalised väljastpoolt kvartalit (alates kevadest 2027):** liitumine samuti **0 € kuus**, kuid algtase on **5%**. Kes kulutab kvartalis kuus vähemalt 150 €, tõuseb automaatselt **10%** tasemele. Kui soovite kuutasu tulevikus testida, jätke 4,75 € vaid vabatahtlikuks otseteeks väliskülalisele, kes soovib kohe 10% taset ilma ostulävendita.
+Kui me aga paneksime kõikidele Rotermanni töötajatele kohustusliku 5 € kuutasu, tekiks majades trots (tasuta kleeps muudeti tasuliseks) ja liikmete arv kuivaks kokku. Kui me seevastu ühendame **tasuta baastaseme, kuise kulutamise lävendi ja vabatahtliku 4,90 € Pluss paketi**, võidavad kõik osapooled.
 
-## 3. Millal ja kuidas rääkida restoranidele 2% lisatasust?
+### Kolm selget taset
 
-**Lühike vastus: räägime 2% teenustasust ausalt kohe esimesel kohtumisel ja paneme selle algsesse kokkuleppesse kirja, kuid esimesed kolm kuud on teenustasu 0%.**
+1. **Klubi liige (5% tagasi · 0 € kuus):** tasuta algtase igale linnast tulijale. Null barjääri liitumiseks, mis kasvatab kasutajate arvu kiiresti suureks.
+2. **Kuldtase (10% tagasi + eelisõigused):** siia viib kolm ust:
+   * **Oma kvartali inimene:** Rotermanni, Golden Gate'i ja Artiuse töötajale ning Talsinki elanikule püsivalt **tasuta**.
+   * **Kuise kulutamisega väljateenimine:** iga väliskülaline, kes kulutab kvartalis kuu jooksul vähemalt **150 €**, teenib järgmiseks kuuks automaatselt **10% Kuldtaseme tasuta**. Rahakoti kaart näitab puuduolevat summat (*„Kuldtasemeni veel 25 €”*) ja motiveerib tegema veel ühte külastust.
+   * **Klubi Pluss (4,90 € kuus linnarahvale):** kes ei soovi 150 € lävendit oodata, lülitab 4,90 € eest kohe sisse 10% taseme ja saab kaasa **ühe igakuise käega katsutava hüve** (näiteks ühe tunni tasuta parkimist kvartalis või ühe pagarikohvi). Täpselt nagu Wolt Plussis tunneb tellija, et kaart on juba esimesest kasutusest plussis.
+3. **Suurüürniku erikaart (10% + kvartali privileegid):** mõeldud ankurüürnikele (vt punkt 3).
 
-### Miks see on parim läbirääkimisviis
+### Plussid ja miinused kaalukausil
 
-* **Kui jätta 2% alguses mainimata** ja tulla sellega välja kolme kuu pärast, tunnevad restoranid, et neile müüdi varjatud hinnatõus. Lisaks peaksite kevadel hakkama 25 ettevõttega lepinguid otsast peale ümber allkirjastama.
-* **Kui küsida 2% kohe esimesest päevast**, tekib tõrge, sest meil pole veel ette näidata ühtegi mõõdetud klubiostu.
-* **Aus kaheastmeline kokkulepe lahendab mõlemad mured:**
-  1. Esimesed kolm kuud on piloot, kus restorani kulu on täpselt 10% ja platvormi teenustasu on **0%**.
-  2. Alates neljandast kuust rakendub **2% platvormitasu** (kokku 12%, millest 10% läheb kliendile ja 2% süsteemi halduseks, arvelduseks ning turunduseks).
-  3. Restoranil on lepingus **kuuajaline vaba väljumise õigus**. Kui kolme kuu pärisandmed ei näita korduvkülastusi ja lisakäivet, ei ole restoran millekski sunnitud.
+* **Plussid:** kvartali töötajad on rahul; linnarahval on nulltõkkega sisenemine; 150 € lävend kasvatab ostusagedust; keskmine väljamakstav boonus langeb 10% pealt umbes 8,5% peale; 4,90 € tellimus toob lisatulu.
+* **Miinused ja oht:** kui ehitada kõik kolm taset ja kuutasu piloodi esimeseks päevaks, venib arendus pikemaks ja sõnum saalis läheb kirjuks.
+* **Otsus:** andmebaas ehitatakse kohe tasemete valmidusega, kuid jaanuari piloodis alustame kvartali omade 10% kaardiga ning lülitame 5% algtaseme, 150 € lävendi ja 4,90 € Pluss paketi sisse kevadel linnarahvale avades.
 
-### Kust tekib The Listi tulu ilma kliendi kuutasuta
+## 3. Suurüürnike lisahüved (kuidas kaart toetab USRE üüriäri)
 
-Kui kvartalis on pärast pilooti näiteks 2 500 aktiivset kasutajat, kes kulutavad kuus keskmiselt 100 € (kokku 250 000 € klubikäivet kuus):
+Kuna Rotermanni äpp (`Sharry`) seob iga kasutaja konkreetse üürnikfirmaga, saame pakkuda Golden Gate'i, Artiuse ja Rotermanni suurtele bürooüürnikele eripaketti, mis aitab USREl üürilepinguid sõlmida ja pikendada:
 
-1. **Restoranide 2% platvormitasu:** 5 000 € kuus ehk **60 000 € aastas**.
-2. **Aeguv klubiraha (12 kuu kehtivus):** praktikas jääb ligikaudu 15% kogutud boonusest aasta jooksul kasutamata. 25 000 € igakuisest boonusest tähendab see teisest aastast ligikaudu **3 750 € kuus**, millest saab katta tervitusrahad, ühiskampaaniad ja lisamarginaali.
-3. **Kvartali äpi väärtus:** klubi annab igale rentnikule igapäevase põhjuse Rotermanni äppi kasutada, mis toetab USRE digitaalse taristu lepingut.
+1. **Garanteeritud 10% Kuldtase kõigile töötajatele** esimesest tööpäevast ilma ostulävendita.
+2. **Sissekolimise tervitusraha ja tiimifond:** uue üürniku sissekolimisel saab iga töötaja kaardile näiteks 25 € kvartaliraha kohalike restoranide avastamiseks. Lisaks saab tööandja laadida kaardile oma tiimi lõuna või ürituste krediiti, mis jääb sajaprotsendiliselt kvartali äridesse.
+3. **Kvartali teenuste püsihüved:** soodustused Golden Club spordiklubis, autopesulas ja iluteenustes ning külaliste parkimistunnid Rotermanni äpis.
+4. **Juhtkonna eelisõigused:** ankurüürniku võtmeisikutele eelisbroneeringud ärilõunateks ja kutsed kvartali sündmustele.
 
-Madala tehnoloogiakuluga (~300 € kuus) on mudel tugevalt plussis ilma üheltki inimeselt kuutasu küsimata.
+## 4. Brändi korrastamine: lõpp nelja nime segadusele
 
-## 4. Üleminek kleepsult kaardile ja teavitus
+Praegu tekitavad segadust korraga ringlevad nimed `The List`, `Staatus`, `Rotermann` ja `Golden Line`. Inimene ja restoran peavad korraga nägema vaid ühte selget nime.
 
-Vana kleepsu ei tohi ära võtta üleöö, kuid üleminek ei tohi jääda ka venima. Parim viis on **kolmenädalane üleminekuaken kindla lõppkuupäevaga**.
+| Nimi | Roll edaspidi | Põhjendus |
+|---|---|---|
+| **Rotermann** (ning **Artius** ja **Talsinki**) | **Ainus kliendile nähtav bränd** | Telefoni rahakotis on koha nimi: **Rotermanni Kaart** (Artiuse töötajal kujundusega *Artius · Rotermann* ja Talsinki elanikul *Talsinki · Rotermann*). Kõigil töötab üks ja sama ühine klubiraha eurodes. |
+| **The List (`list.ee`)** | **Vaikne operaator lepingutel** | Juriidiline ja tehniline haldaja restoranide lepingutel ja koondarvetel (nagu Stripe või Sharry). Tarbijavaates me seda nime ei rõhuta. |
+| **Golden Line** | **Ainult kinnisvara turunduses** | Ei sobi kliendikaardi nimeks, sest kvartalis tegutseb juba spordiklubi *Golden Club* ja hoone *Golden Gate*, mis läheksid inimeste peas segamini. |
+| **Staatus** | **Loobume täielikult** | Oli suvise pangakaardi projekti töönimi. Kaotame selle ära, et mitte ehitada nullist uut võõrast kaubamärki. |
 
-### Pehme maandumise valem
+## 5. Tulude ja kulude tervikpilt (kolm stsenaariumi)
 
-1. **Väike tervitusraha uuel kaardil (nt 5 €).** Kleeps andis soodustuse kohe, klubikaart kogub raha järgmiseks korraks. Kui uuel kaardil ootab liitujat kohe 5 € tervitusraha, tunneb inimene kleepsu kadumise asemel selget võitu. Kulu tekib ainult siis, kui inimene päriselt restorani sööma läheb.
-2. **Samm 1. Golden Gate otse Rotermanni äpis.** Saadame äpis märguande: sinu Rotermanni soodustus kolis telefoni rahakotti, lisa kaart ühe puudutusega.
-3. **Samm 2. Teiste majade büroojuhid.** Saadame iga Rotermanni ettevõtte kontaktisikule kutse ja selgituse, et plastikkleepsud sulguvad kokkulepitud kuupäeval ning töötajad saavad Rotermanni äpi ja klubikaardi kasutusele võtta kohe, ilma 2027. aasta uksevõtmeid ootamata.
-4. **Samm 3. Sõbralik tugi leti ääres.** Teenindaja ei ütle kleepsu näitajale kunagi lihtsalt „ei kehti”. Kassa kõrval on viisakas silt ruutkoodiga ja teenindaja lause on lihtne: *„Kleeps kolis telefoni, loe siit kood sisse ja saad tänase boonuse kohe kaardile.”*
+Ühekordne ehitus ja käivitus ilma pangakaardita on ligikaudu **22 000 €** (Walleti mootor ja äpiühendus 6 000 €, CompuCashi liidesed ja tšeki kood 9 000 €, tasaarvelduse vaade 3 000 €, käivitusmaterjalid 4 000 €).
 
-## 5. Realistlik ajaplaan neljas etapis
+Allpool on igakuine tulude ja kulude võrdlus pärast kolmekuulist pilooti (eeldusel, et aktiivne kasutaja kulutab kvartalis keskmiselt 100 € kuus):
 
-Detsember on restoranides jõulupidude kõrghooaeg, mil saalitöötajaid uue kassavõttega koormata ei tasu. Jaanuar on seevastu aasta kõige vaiksem kuu, mil iga restoran ootab pikisilmi püsikliente. Kasutame seda rütmi enda kasuks.
+| Näitaja kuus | 1. Tagasihoidlik algus (1 500 ostjat) | 2. Rotermann ja Artius baas (2 500 ostjat) | 3. Koos linnarahva ja suurüürnikega (4 000 ostjat) |
+|---|---:|---:|---:|
+| **Klubikäive kuus** | 150 000 € | 250 000 € | 400 000 € |
+| Restoranide 2% platvormitasu | +3 000 € | +5 000 € | +8 000 € |
+| Klubi Pluss 4,90 € tellijad (neto) | 0 € (0 tellijat) | +1 185 € (300 tellijat) | +2 371 € (600 tellijat) |
+| Kasutamata jääv boonusraha (15% aegumine) | 0 € (arvestamata) | +3 188 € | +5 100 € |
+| Suurüürnike ja kvartali B2B paketid | 0 € | 0 € | +1 500 € |
+| **Tulud kokku kuus** | **3 000 €** | **9 373 €** | **16 971 €** |
+| Tehnika, pilv ja CompuCashi liidesed | 350 € | 350 € | 400 € |
+| Haldus ja tugi (olemasolev tiim vs eraldi juht) | 1 500 € | 1 500 € | 3 500 € |
+| Pluss paketi stardihüve ja maksevahendus | 0 € | 450 € | 900 € |
+| Kampaaniad ja uute liitujate tervitusraha | 460 € | 600 € | 810 € |
+| **Kulud kokku kuus** | **2 310 €** | **2 900 €** | **5 610 €** |
+| **Igakuine puhastulu The Listile** | **+690 € kuus** | **+6 473 € kuus** | **+11 361 € kuus** |
+| **Aastane ülejääk** | **+8 280 €** | **+77 676 €** | **+136 332 €** |
+| **22 000 € ehituse tasuvusaeg** | ~2,5 aastat | **~4 kuud** | **~2 kuud** |
 
-### 1. etapp: ehitus ja 5 ankurrestorani (november ja detsember 2026)
-* Lepime Ektacoga kokku CompuCashi liidese, boonusraha sünkroonimise ja tšeki ruutkoodi.
-* Sõlmime üheleheküljelise kokkuleppe viie kuni kuue ankurkohaga (näiteks Platz, R14, Levier, PULL ja Röst).
-* Ehitame valmis Walleti kaardi mootori, Rotermanni äpi ühenduse ja kliiringuvaate.
+**Oluline järeldus:** mudel püsib plussis isegi kõige konservatiivsemas vaates (ainult 1 500 ostjat, null kuutasulist tellijat ja aeguvat jääki arvestamata). Koos Artiuse lisandumise, loomuliku 15% boonuse aegumise ja mõõduka hulga linnarahva Pluss tellijatega muutub programm tugevalt kasumlikuks äriks.
 
-### 2. etapp: vaikne proov oma inimestega (jaanuari esimesed kaks nädalat)
-* Testime süsteemi 50 kuni 100 oma töötajaga (USRE, US Invest, Golden Gate) kahes kuni kolmes söögikohas.
-* Veendume saalis päris ostude peal, et kassa lugeja, tšeki kood ja saldo uuenemine töötavad laitmatult.
+## 6. Kleepsu väljavahetamine ja nelja etapiga ajakava
 
-### 3. etapp: kvartali avamine ja kleepsu sulgemine (jaanuari keskpaik kuni märts 2027)
-* Avame klubikaardi kõigile kvartali töötajatele ja kuulutame välja kuupäeva, mil vana kleeps kolme nädala pärast kehtivuse kaotab.
-* Lülitame jooksvalt sisse ülejäänud CompuCashi restoranid ja kohvikud (kuna liides on valmis, on see vaid seadistamise küsimus).
-
-### 4. etapp: tulemuste ülevaatus ja laienemine (aprill 2027)
-* Vaatame iga restoraniga kolme kuu numbrid üle ning käivitub kokkulepitud 2% platvormitasu.
-* Avame klubi väljastpoolt kvartalit tulijatele (tasuta 5% algtase, aktiivsele käijale 10%) ning valmistame sama süsteemi peal ette Talsinki ja Artiuse lahendused.
+1. **November ja detsember 2026 (ehitus ja ankurlepingud):** Ektaco liidese ja tšeki koodi ehitus, Walleti valmimine ning kaheastmelised lepingud (kolm kuud 0%, edasi 2%) viie kuni kuue ankurrestoraniga. Detsembri jõulupidude ajal saalitöötajaid ei koormata.
+2. **Jaanuari algus 2027 (vaikne proov):** kahenädalane test 50 kuni 100 oma töötajaga kahes söögikohas.
+3. **Jaanuari keskpaik kuni märts 2027 (kvartali avamine ja kleepsu sulgemine):** uuele kaardile 5 € tervitusraha, teavitus Golden Gate'i äpis ja teiste majade büroojuhtide kaudu, vana kleepsu sulgemine kolme nädala jooksul ning ülejäänud CompuCashi kohtade liitmine.
+4. **Aprill 2027 (2% teenustasu, Artius ja linnarahvas):** kolme kuu tulemuste ülevaatus restoranidega, 2% platvormitasu käivitumine, suurüürnike pakettide laiendamine Artiusesse ning 5% algtaseme ja 4,90 € Pluss paketi avamine linnarahvale.

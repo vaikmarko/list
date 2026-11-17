@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Rotermanni Klubi. Strateegia ja plaan</title>
+  <title>Rotermanni Klubi. Ärimudel, bränd ja plaan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
       --accent-ink: #115e59;
     }
 
-    .answer-grid {
+    .stack-12 {
       display: grid;
       gap: 12px;
     }
@@ -26,7 +26,7 @@
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 20px 22px;
+      padding: 18px 20px;
       box-shadow: var(--shadow-sm);
     }
 
@@ -43,7 +43,7 @@
       background: var(--accent-soft);
       padding: 3px 9px;
       border-radius: 999px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .decision-card.highlight .dc-kicker {
@@ -52,62 +52,336 @@
     }
 
     .decision-card h3 {
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .decision-card p {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--ink-soft);
-      line-height: 1.52;
+      line-height: 1.5;
     }
 
     .decision-card p + p {
       margin-top: 8px;
     }
 
-    .econ-strip {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 14px;
+    /* Tulude ja kulude kalkulaator */
+    .pnl-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
-    .econ-box {
+    .ppill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      cursor: pointer;
+    }
+
+    .ppill.on {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #ffffff;
+    }
+
+    .pnl-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .ctrl-box {
       background: var(--bg);
       border: 1px solid var(--line);
-      border-radius: 13px;
-      padding: 13px 14px;
+      border-radius: 14px;
+      padding: 13px 15px;
     }
 
-    .econ-box strong {
-      display: block;
-      font-size: 20px;
+    .ctrl-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .ctrl-top span {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    .ctrl-top strong {
+      font-size: 16px;
       font-weight: 800;
       color: var(--ink);
-      letter-spacing: -0.02em;
     }
 
-    .econ-box strong.teal {
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .ctrl-sub {
+      display: block;
+      margin-top: 5px;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .toggles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .trow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 13px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .trow span {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    .trow small {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .trow input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .pnl-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .pnl-col {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 15px 16px;
+    }
+
+    .pnl-col h4 {
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .prow {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 13px;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .prow:last-child {
+      border-bottom: 0;
+      font-weight: 800;
+      color: var(--ink);
+      padding-top: 9px;
+    }
+
+    .pnl-summary {
+      background: var(--accent-soft);
+      border: 1.5px solid var(--accent-mid);
+      border-radius: 16px;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pnl-summary.loss {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .ps-left strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
       color: var(--accent-ink);
     }
 
-    .econ-box span {
+    .pnl-summary.loss .ps-left strong {
+      color: #b91c1c;
+    }
+
+    .ps-left span {
       display: block;
-      font-size: 12px;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    .ps-val {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent-ink);
+      white-space: nowrap;
+    }
+
+    .pnl-summary.loss .ps-val {
+      color: #b91c1c;
+    }
+
+    /* Tasemete 3 kaarti */
+    .tiers-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .tier-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+    }
+
+    .tier-box.gold {
+      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 80%);
+      border-color: #fde68a;
+    }
+
+    .tier-box.vip {
+      background: #0f172a;
+      border-color: #1e293b;
+      color: #ffffff;
+    }
+
+    .tier-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--surface-muted);
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    .tier-box.gold .tier-badge {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .tier-box.vip .tier-badge {
+      background: rgba(255, 255, 255, 0.14);
+      color: #e2e8f0;
+    }
+
+    .tier-rate {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .tier-box p {
+      font-size: 12.5px;
       color: var(--muted);
-      margin-top: 3px;
-      line-height: 1.35;
+      line-height: 1.45;
+    }
+
+    .tier-box.vip p {
+      color: #cbd5e1;
+    }
+
+    /* Brändi tabel */
+    .brand-rows {
+      display: grid;
+      gap: 8px;
+    }
+
+    .brow {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px 16px;
+      display: grid;
+      grid-template-columns: 160px 120px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .b-status {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .b-keep {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+    }
+
+    .b-hide {
+      background: var(--surface-muted);
+      color: var(--ink-soft);
+    }
+
+    .b-drop {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .brow p {
+      font-size: 13px;
+      color: var(--ink-soft);
     }
 
     .phase-card {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 16px 18px;
+      padding: 15px 18px;
       display: grid;
       grid-template-columns: 150px 1fr;
       gap: 16px;
@@ -122,24 +396,35 @@
 
     .phase-body strong {
       display: block;
-      font-size: 14.5px;
+      font-size: 14px;
       color: var(--ink);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .phase-body p {
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--muted);
       line-height: 1.45;
     }
 
-    @media (max-width: 640px) {
-      .econ-strip,
+    @media (max-width: 680px) {
+      .pnl-controls,
+      .toggles-grid,
+      .pnl-board,
+      .tiers-3,
+      .brow,
       .phase-card {
         grid-template-columns: 1fr;
       }
-      .phase-card {
+      .pnl-summary {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .brow {
         gap: 6px;
+      }
+      .b-status {
+        justify-self: start;
       }
     }
   </style>
@@ -159,150 +444,387 @@
 
 <main class="wrap">
   <section class="hero">
-    <span class="role-tag">Juhtimisotsused ja tegevuskava</span>
-    <h1>Kuidas viime Rotermanni Klubi <span class="hl">päriselt ellu.</span></h1>
-    <p class="hero-sub">Selged vastused neljale võtmeküsimusele: kas küsida inimeselt kuutasu, millal rääkida restoranile teenustasust, kuidas vahetada välja tänane kleeps ja mis ajakavaga liikuda.</p>
+    <span class="role-tag">Ärimudel, tasemed, bränd ja ajakava</span>
+    <h1>Tervikpilt tuludest, kuludest ja <span class="hl">selgest brändist.</span></h1>
+    <p class="hero-sub">Kõik lahtised otsused ühes kohas: miks restoran maksab 2%, kuidas siduda tasemed kuise kulutamise ja suurüürnikega, kuidas puhastada bränd ning kuidas numbrid kokku jooksevad.</p>
+  </section>
 
-    <div class="econ-strip">
-      <div class="econ-box">
-        <strong class="mono teal">~22 000 €</strong>
-        <span>kogu ehitus ja käivitus ilma pangakaardita</span>
+  <section class="sec">
+    <h2>1. Tulude ja kulude tervikmudel</h2>
+    <p class="sec-desc">Lülita tuluallikaid ja kulusid sisse või välja ning vaata, millal programm on tugevalt plussis ja kui kiiresti 22 000 € ehituskulu end tagasi teenib.</p>
+
+    <div class="play-shell">
+      <div class="pnl-presets">
+        <button type="button" class="ppill" data-sc="small">Tagasihoidlik algus · 1 500 ostjat</button>
+        <button type="button" class="ppill on" data-sc="base">Rotermann ja Artius · 2 500 ostjat</button>
+        <button type="button" class="ppill" data-sc="city">Koos linnarahvaga · 4 000 ostjat</button>
       </div>
-      <div class="econ-box">
-        <strong class="mono">~300 € kuus</strong>
-        <span>jooksev tehnika ja liideste püsikulu</span>
+
+      <div class="pnl-controls">
+        <div class="ctrl-box">
+          <div class="ctrl-top">
+            <span>Aktiivseid ostjaid kuus</span>
+            <strong class="mono" id="u-lbl">2 500</strong>
+          </div>
+          <input type="range" id="u-range" min="500" max="6000" step="250" value="2500" aria-label="Aktiivseid ostjaid kuus">
+          <span class="ctrl-sub">Klubikäive kuus (keskmiselt 100 € ostja kohta): <strong class="mono" id="gmv-lbl">250 000 €</strong></span>
+        </div>
+
+        <div class="ctrl-box">
+          <div class="ctrl-top">
+            <span>Klubi Pluss 4,90 € kuutasuga tellijaid</span>
+            <strong class="mono" id="p-lbl">300</strong>
+          </div>
+          <input type="range" id="p-range" min="0" max="1500" step="50" value="300" aria-label="Klubi Pluss tellijaid">
+          <span class="ctrl-sub">Linnarahvas, kes ostab kohese 10% taseme ilma 150 € lävendita</span>
+        </div>
       </div>
-      <div class="econ-box">
-        <strong class="mono teal">0 € kuus</strong>
-        <span>liitumine kvartali töötajale ja elanikule</span>
+
+      <div class="toggles-grid">
+        <label class="trow">
+          <div>
+            <span>Restoranide 2% platvormitasu</span>
+            <small>Käivitub alates neljandast kuust pärast pilooti</small>
+          </div>
+          <input type="checkbox" id="t-fee" checked>
+        </label>
+
+        <label class="trow">
+          <div>
+            <span>Kasutamata jääv klubiraha (15%)</span>
+            <small>12 kuu järel aeguv boonusraha reserv</small>
+          </div>
+          <input type="checkbox" id="t-break" checked>
+        </label>
+
+        <label class="trow">
+          <div>
+            <span>Suurüürnike eripaketid (1 500 € kuus)</span>
+            <small>Ankurüürnike ja uute büroode väärtuspakett</small>
+          </div>
+          <input type="checkbox" id="t-b2b">
+        </label>
+
+        <label class="trow">
+          <div>
+            <span>Eraldi palgaline klubijuht (+2 000 € kuus)</span>
+            <small>Väljas olekus jookseb olemasoleva tiimi peal (1 500 €)</small>
+          </div>
+          <input type="checkbox" id="t-team">
+        </label>
+      </div>
+
+      <div class="pnl-board">
+        <div class="pnl-col">
+          <h4>Igakuised tulud</h4>
+          <div class="prow"><span>Restoranide 2% tasu</span><span class="mono" id="r-fee">5 000 €</span></div>
+          <div class="prow"><span>Klubi Pluss kuutasud (ilma käibemaksuta)</span><span class="mono" id="r-plus">1 185 €</span></div>
+          <div class="prow"><span>Kasutamata jääv boonusraha</span><span class="mono" id="r-break">3 188 €</span></div>
+          <div class="prow"><span>Suurüürnike paketid</span><span class="mono" id="r-b2b">0 €</span></div>
+          <div class="prow"><span>Tulud kokku</span><span class="mono" id="r-tot">9 373 €</span></div>
+        </div>
+
+        <div class="pnl-col">
+          <h4>Igakuised kulud</h4>
+          <div class="prow"><span>Tehnika, pilv ja CompuCashi liidesed</span><span class="mono" id="c-tech">350 €</span></div>
+          <div class="prow"><span>Haldus, partnerisuhtlus ja raamatupidamine</span><span class="mono" id="c-ops">1 500 €</span></div>
+          <div class="prow"><span>Klubi Pluss stardihüve ja maksevahendus</span><span class="mono" id="c-plus">450 €</span></div>
+          <div class="prow"><span>Kampaaniad ja uute liitujate tervitusraha</span><span class="mono" id="c-mkt">600 €</span></div>
+          <div class="prow"><span>Kulud kokku</span><span class="mono" id="c-tot">2 900 €</span></div>
+        </div>
+      </div>
+
+      <div class="pnl-summary" id="pnl-sum">
+        <div class="ps-left">
+          <strong id="pnl-title">Igakuine puhastulu The Listile</strong>
+          <span id="pnl-payback">Ühekordne ehituskulu 22 000 € teenib end tagasi 4 kuuga (aastane ülejääk +77 676 €)</span>
+        </div>
+        <div class="ps-val mono" id="pnl-net">+6 473 €</div>
       </div>
     </div>
   </section>
 
   <section class="sec">
-    <h2>1. Kas küsida inimestelt 4,75 € kuus?</h2>
+    <h2>2. Miks restoran on nõus 2% maksma ja kuidas ta selle tagasi teenib?</h2>
 
-    <div class="answer-grid">
+    <div class="stack-12">
       <article class="decision-card highlight">
-        <span class="dc-kicker">Soovitus: ära küsi</span>
-        <h3>Kvartali inimestele ja piloodis peab kaart olema tasuta</h3>
-        <p>Kuutasu 4,75 € tekkis varasemasse mudelisse ainult selleks, et lappida pangakaardi kõrgeid püsikulusid. Kuna CompuCashi ja Walleti mudelis seda kulu enam ei ole, kaotab kuutasu oma põhjuse.</p>
-        <p>Kui võtta kvartali töötajalt ära tänane tasuta kleeps ja küsida sama 10% eest 4,75 € kuus, tekib majades pahameel. Lisaks peaks inimene kulutama igal kuul vähemalt 47,50 € ainuüksi selleks, et nulli jõuda. Tulemuseks oleks kümme korda väiksem liikmeskond ning restoranid jääksid ilma käibemahust, mille pärast nad üldse klubiga liituvad.</p>
+        <span class="dc-kicker">Restorani tasuvuse matemaatika</span>
+        <h3>10 000 € klubikäibelt on 2% tasu vaid 200 € kuus ehk üks lisalõuna päevas</h3>
+        <p>Toidukoha keskmise katte juures vajab restoran 200 € teenustasu tagasiteenimiseks kuus vaid <strong>345 € lisakäivet</strong>. See tähendab ühte 12 € lõunapraadi päevas või ühte kahe inimese õhtusööki nädalas.</p>
       </article>
 
       <div class="grid-2">
-        <article class="decision-card">
-          <span class="dc-kicker">Oma kvartali inimesed</span>
-          <h3>Alati 0 € ja 10% tagasi</h3>
-          <p>Kõik Rotermanni töötajad, elanikud ja USRE kliendid saavad 10% taseme tasuta. See on tugev argument rentnike hoidmiseks ja Rotermanni äpi levitamiseks.</p>
+        <article class="compare-card">
+          <span class="compare-tag">Mis kaob (restorani tänane leke)</span>
+          <ul class="clean-list">
+            <li><i class="i-old">✕</i><span><strong>Aegunud kleepsud:</strong> endised töötajad ja sõpradele antud kaardid võtavad täna umbes 15 kuni 20% soodustusest ehk ~180 € kuus tühja.</span></li>
+            <li><i class="i-old">✕</i><span><strong>Lahkuv raha:</strong> kassas antud 10% soodustus jääb kliendi pangakontole ja kulutatakse homme mujal linnas.</span></li>
+          </ul>
         </article>
 
-        <article class="decision-card">
-          <span class="dc-kicker">Linnarahvas kevadel</span>
-          <h3>Tasuta 5%, aktiivsele 10%</h3>
-          <p>Kui avame klubi kevadel linnarahvale, on liitumine tasuta 5% tasemel. Kes kulutab kvartalis kuus vähemalt 150 €, tõuseb 10% peale (või ostab 4,75 € eest vabatahtliku otsetee).</p>
+        <article class="compare-card now">
+          <span class="compare-tag">Mida restoran 2% eest juurde saab</span>
+          <ul class="clean-list">
+            <li><i class="i-new">✓</i><span><strong>Suurem korduvost:</strong> 20 € klubiraha kulutama tulles võtab külaline kaaslase ja joogid ning jätab lauda 65 €.</span></li>
+            <li><i class="i-new">✓</i><span><strong>Vaiksete aegade täitmine:</strong> otsekanal kõrvalmajade 3 000 inimese telefoni teisipäeva õhtul, kümme korda odavamalt kui 30% toidukuller.</span></li>
+          </ul>
         </article>
       </div>
     </div>
   </section>
 
   <section class="sec">
-    <h2>2. Millal rääkida restoranidele 2% teenustasust?</h2>
+    <h2>3. Tasemed ja Wolt Pluss loogika: plussid, miinused ja õige mudel</h2>
+    <p class="sec-desc">Ühendame tasuta ligipääsu, kuise kulutamise mängulisuse ja vabatahtliku 4,90 € kuutasu nii, et keegi ei tunneks end kaotajana.</p>
 
-    <div class="answer-grid">
-      <article class="decision-card highlight">
-        <span class="dc-kicker">Soovitus: lepi kohe alguses ausalt kokku</span>
-        <h3>Tingimus kohe lepingusse sisse, kuid esimesed kolm kuud on 0%</h3>
-        <p>Kui jätta 2% alguses mainimata ja tulla sellega välja kolme kuu pärast, tunnevad restoranid end petetuna ning me peaksime kevadel hakkama 25 kohaga lepinguid uuesti allkirjastama. Kui aga küsida 2% kohe esimesest päevast ilma ühegi tõestatud ostuta, tekib asjatu vastuseis.</p>
-        <p>Kõige puhtam kokkulepe on kaheastmeline: <strong>esimesed kolm kuud on piloot teenustasuga 0%</strong> (kogu restorani 10% läheb kliendile) ning <strong>neljandast kuust rakendub 2% platvormitasu</strong> (kokku 12%). Restorani kaitseb kuuajaline vaba väljumise õigus juhuks, kui piloodi numbrid teda ei veena.</p>
+    <div class="tiers-3">
+      <article class="tier-box">
+        <span class="tier-badge">1. Klubi liige · 0 €</span>
+        <div class="tier-rate mono">5% tagasi</div>
+        <p>Tasuta algtase igale linnast tulijale. Null barjääri liitumiseks ja kasvatab kiiresti kasutajate arvu.</p>
+      </article>
+
+      <article class="tier-box gold">
+        <span class="tier-badge">2. Kuldtase · Kvartali omad ja püsikäijad</span>
+        <div class="tier-rate mono">10% tagasi</div>
+        <p><strong>Kolm ust:</strong> kvartali töötajale ja elanikule tasuta, linnast tulijale <strong>150 € kuukuluga</strong> tasuta või <strong>4,90 € kuus</strong> (sisaldab igakuist kohvi või parkimistundi).</p>
+      </article>
+
+      <article class="tier-box vip">
+        <span class="tier-badge">3. Suurüürnik · Partner</span>
+        <div class="tier-rate mono">10% + hüved</div>
+        <p>Ankurüürnike töötajatele: püsiv 10%, sissekolimise tervitusraha, spordiklubi ja autopesula erihind ning külaliste parkimine.</p>
+      </article>
+    </div>
+
+    <div class="grid-2">
+      <article class="compare-card now">
+        <span class="compare-tag">Miks kuise kulutamise ja Plussi kombinatsioon töötab</span>
+        <ul class="clean-list">
+          <li><i class="i-new">✓</i><span><strong>Kasvatab ostukorvi:</strong> teade rahakotis („Kuldtasemeni on jäänud 25 €”) toob inimese kuu lõpus veel ühele õhtusöögile.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Wolt Plussi efekt:</strong> kui 4,90 € kuutasuga kaasneb üks tasuta kohv või parkimistund, on tellija juba esimesel päeval omadega plussis.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Madalam keskmine kulu:</strong> kuna juhukülaline on 5% peal, jääb keskmine väljamakse ~8,5% juurde.</span></li>
+        </ul>
+      </article>
+
+      <article class="compare-card">
+        <span class="compare-tag">Ohud, mida vältida</span>
+        <ul class="clean-list">
+          <li><i class="i-old">✕</i><span><strong>Ära küsi kuutasu kvartali oma töötajalt:</strong> tänase tasuta 10% panemine maksu alla tekitaks rentnike seas pahameelt.</span></li>
+          <li><i class="i-old">✕</i><span><strong>Ära ehita kõike esimeseks päevaks:</strong> jaanuari piloodis alustame kvartali omade 10% kaardiga ning avame 5% ja Plussi kevadel linnarahvale.</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>4. Suurüürnike lisahüved kaardil</h2>
+    <p class="sec-desc">Kuna Rotermanni äpp teab täpselt, millises ettevõttes inimene töötab, muutub klubikaart tugevaks argumendiks Golden Gate'i, Artiuse ja Rotermanni suurte büroopindade väljaüürimisel.</p>
+
+    <div class="grid-2">
+      <article class="decision-card">
+        <span class="dc-kicker">Sissekolimise ja tiimi krediit</span>
+        <h3>Tervitusraha uuele büroole ja tiimifond</h3>
+        <p>Kui ankurüürnik kolib uude majja või pikendab üürilepingut, saab iga tema töötaja kaardile näiteks 25 € sissekolimisraha kvartali söögikohtadega tutvumiseks. Samuti saab tööandja laadida kaardile oma tiimi lõuna või sündmuste krediiti, mis jääb tervikuna kvartalisse.</p>
       </article>
 
       <article class="decision-card">
-        <span class="dc-kicker">Kust tuleb The Listi tulu</span>
-        <h3>Raha tuleb B2B poolelt ja kasutamata jäägist, mitte liikme taskust</h3>
-        <p>Kui pärast pilooti kasutab kaarti aktiivselt 2 500 inimest keskmise ostuga 100 € kuus (250 000 € klubikäivet), annab 2% teenustasu <strong>5 000 € kuus ehk 60 000 € aastas</strong>. Lisaks jääb 12 kuu kehtivusega boonusrahast praktikas ligikaudu 15% kasutamata (umbes <strong>3 750 € kuus</strong> alates teisest aastast), millest saab rahastada tervitusboonuseid ja ühiskampaaniaid.</p>
+        <span class="dc-kicker">Igapäevased privileegid</span>
+        <h3>Kvartali teenused ja juhtkonna kaart</h3>
+        <p>Suurüürniku kaart avab lisaks restoranide 10% boonusele eritingimused Golden Club spordiklubis, autopesulas ja ilusalongides, külaliste parkimistunnid Rotermanni äpis ning ettevõtte võtmeisikutele eelisbroneeringud ärilõunateks.</p>
       </article>
     </div>
   </section>
 
   <section class="sec">
-    <h2>3. Kuidas teha üleminek kleepsult ja teavitus?</h2>
-    <p class="sec-desc">Vana kleepsu ei lõpetata üleöö, kuid üleminek ei tohi ka venima jääda. Kuulutame välja kolmenädalase üleminekuakna ja ühe kindla kuupäeva, mil plastikkleeps aegub.</p>
+    <h2>5. Brändi puhastamine: lõpp nelja nime segadusele</h2>
+    <p class="sec-desc">Inimene peab nägema korraga ainult ühte tuttavat nime. Siin on selge tööjaotus praeguste nimede vahel:</p>
 
-    <div class="steps-list">
-      <div class="step-row">
-        <div class="step-num">1</div>
-        <div>
-          <strong>Väike stardiraha uuel kaardil (5 €)</strong>
-          <p>Kleeps andis võidu kohe, klubikaart kogub järgmiseks korraks. Kui uuel kaardil ootab kohe 5 € stardiraha esimeseks ostuks, tajub inimene vahetust selge võiduna. Kulu tekib vaid siis, kui ta päriselt sööma läheb.</p>
-        </div>
+    <div class="brand-rows">
+      <div class="brow">
+        <strong>Rotermann (Artius, Talsinki)</strong>
+        <span class="b-status b-keep">Kliendile nähtav</span>
+        <p>Telefoni rahakotis on koha nimi: <strong>Rotermanni Kaart</strong> (Artiuse töötajal kujundusega <strong>Artius · Rotermann</strong>, Talsinki elanikul <strong>Talsinki · Rotermann</strong>). Kõigil kehtib sama ühine klubiraha eurodes.</p>
       </div>
 
-      <div class="step-row">
-        <div class="step-num">2</div>
-        <div>
-          <strong>Golden Gate otse Rotermanni äpis</strong>
-          <p>Saadame olemasolevatele äpikasutajatele märguande, kust nad lisavad kaardi ühe puudutusega oma telefoni rahakotti.</p>
-        </div>
+      <div class="brow">
+        <strong>The List (list.ee)</strong>
+        <span class="b-status b-hide">Ainult lepingutel</span>
+        <p>Vaikne tehnoloogia ja arvelduse operaator restoranide lepingutel ja koondarvetel. Lõppkasutajale me sellega segadust ei tekita.</p>
       </div>
 
-      <div class="step-row">
-        <div class="step-num">3</div>
-        <div>
-          <strong>Teiste majade büroojuhid</strong>
-          <p>Saadame Rotermanni ettevõtete büroojuhtidele kutse: kleepsud sulguvad kokkulepitud kuupäeval ja töötajad saavad äpi koos klubikaardiga kasutusele võtta kohe, ilma 2027. aasta uksevõtmeid ootamata.</p>
-        </div>
+      <div class="brow">
+        <strong>Golden Line</strong>
+        <span class="b-status b-hide">Ainult kinnisvara</span>
+        <p>Jääb kinnisvaraarenduse turundusterminiks. Kliendikaardi nimeks see ei sobi, sest kvartalis on juba spordiklubi <em>Golden Club</em> ja hoone <em>Golden Gate</em>, mis läheksid omavahel sassi.</p>
       </div>
 
-      <div class="step-row">
-        <div class="step-num">4</div>
-        <div>
-          <strong>Sõbralik turvavõrk kassas</strong>
-          <p>Kui keegi näitab kassas vana kleepsu, ei saadeta teda tühjade kätega ära. Kassa kõrval on ruutkood ja teenindaja ütleb: kleeps kolis telefoni, loe siit kümne sekundiga kaart peale ja saad tänase boonuse juba kirja.</p>
-        </div>
+      <div class="brow">
+        <strong>Staatus</strong>
+        <span class="b-status b-drop">Loobume</span>
+        <p>Oli suvise pangakaardi projekti töönimi. Eemaldame selle täielikult, et mitte ehitada nullist uut võõrast kaubamärki.</p>
       </div>
     </div>
   </section>
 
   <section class="sec">
-    <h2>4. Realistlik ajakava</h2>
-    <p class="sec-desc">Detsember on restoranides jõulupidude tippaeg, mil saali uue kassavõttega segada ei tasu. Jaanuar on seevastu aasta vaikseim kuu, mil iga restoran ootab püsikliente pikisilmi.</p>
+    <h2>6. Kleepsu väljavahetamine ja ajakava</h2>
 
-    <div class="answer-grid">
+    <div class="stack-12">
       <div class="phase-card">
         <div class="phase-when">November ja detsember</div>
         <div class="phase-body">
-          <strong>Ehitus ja 5 ankurrestorani kokkulepped</strong>
-          <p>Lukustame Ektacoga CompuCashi liidese ja tšeki koodi, sõlmime kokkulepped viie kuni kuue ankurkohaga (nt Platz, R14, Levier, PULL ja Röst) ning ehitame Walleti ja kliiringu valmis.</p>
+          <strong>Ehitus ja 5 ankurrestorani lepingud</strong>
+          <p>Ehitame Ektacoga CompuCashi liidese ja tšeki koodi, sõlmime kaheastmelised lepingud (kolm kuud 0%, edasi 2%) viie ankurkohaga ning väldime restoranide segamist jõulupidude tippajal.</p>
         </div>
       </div>
 
       <div class="phase-card">
         <div class="phase-when">Jaanuari algus</div>
         <div class="phase-body">
-          <strong>Kahenädalane vaikne proov oma tiimiga</strong>
-          <p>Testime lahendust 50 kuni 100 oma töötajaga kahes söögikohas, et veenduda kassa lugeja, tšeki koodi ja saldo sünkroonimise veatus töös.</p>
+          <strong>Vaikne proov oma inimestega</strong>
+          <p>Testime kahe nädala jooksul 50 kuni 100 oma töötajaga, et kassa lugeja, lauatšeki kood ja saldo uuenemine toimiksid veatult.</p>
         </div>
       </div>
 
       <div class="phase-card">
         <div class="phase-when">Jaanuar kuni märts</div>
         <div class="phase-body">
-          <strong>Kvartali avamine ja kleepsu sulgemine</strong>
-          <p>Avame klubikaardi kõigile Rotermanni töötajatele, sulgeme kolme nädala järel füüsilise kleepsu ja lülitame jooksvalt sisse ülejäänud CompuCashi kohad.</p>
+          <strong>Kvartali avamine ja kleepsu sulgemine 3 nädalaga</strong>
+          <p>Paneme uuele kaardile 5 € tervitusraha, saadame kutse Golden Gate'i äppi ja teiste majade büroojuhtidele, sulgeme vana kleepsu ning ühendame ülejäänud CompuCashi kohad.</p>
         </div>
       </div>
 
       <div class="phase-card">
         <div class="phase-when">Aprill 2027</div>
         <div class="phase-body">
-          <strong>Tulemuste ülevaatus, 2% teenustasu ja linna avamine</strong>
-          <p>Vaatame restoranidega kolme kuu lisakäibe üle, käivitub 2% platvormitasu ning avame klubi tasuta algtasemel ka kvartali välistele püsikülalistele.</p>
+          <strong>2% teenustasu käivitus, Artius ja linnarahva avamine</strong>
+          <p>Vaatame restoranidega piloodi lisakäibe üle, käivitub 2% platvormitasu ning avame 5% algtaseme ja 4,90 € Pluss paketi kogu linnale.</p>
         </div>
       </div>
     </div>
   </section>
 </main>
 
+<script>
+  (function () {
+    var uRange = document.getElementById("u-range");
+    var pRange = document.getElementById("p-range");
+    var tFee = document.getElementById("t-fee");
+    var tBreak = document.getElementById("t-break");
+    var tB2b = document.getElementById("t-b2b");
+    var tTeam = document.getElementById("t-team");
+
+    function fmt(n) {
+      return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " €";
+    }
+
+    function updatePnL() {
+      var users = Number(uRange.value);
+      var plusSubs = Number(pRange.value);
+      var gmv = users * 100;
+
+      var revFee = tFee.checked ? gmv * 0.02 : 0;
+      var revPlus = plusSubs * (4.9 / 1.24);
+      var avgBonusRate = 0.085;
+      var revBreak = tBreak.checked ? gmv * avgBonusRate * 0.15 : 0;
+      var revB2b = tB2b.checked ? 1500 : 0;
+      var revTotal = revFee + revPlus + revBreak + revB2b;
+
+      var costTech = 350;
+      var costOps = tTeam.checked ? 3500 : 1500;
+      var costPlusPerks = plusSubs * 1.5;
+      var costMkt = Math.round(250 + users * 0.14);
+      var costTotal = costTech + costOps + costPlusPerks + costMkt;
+
+      var net = Math.round(revTotal - costTotal);
+
+      document.getElementById("u-lbl").textContent = users.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      document.getElementById("gmv-lbl").textContent = fmt(gmv);
+      document.getElementById("p-lbl").textContent = plusSubs.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+      document.getElementById("r-fee").textContent = fmt(revFee);
+      document.getElementById("r-plus").textContent = fmt(revPlus);
+      document.getElementById("r-break").textContent = fmt(revBreak);
+      document.getElementById("r-b2b").textContent = fmt(revB2b);
+      document.getElementById("r-tot").textContent = fmt(revTotal);
+
+      document.getElementById("c-tech").textContent = fmt(costTech);
+      document.getElementById("c-ops").textContent = fmt(costOps);
+      document.getElementById("c-plus").textContent = fmt(costPlusPerks);
+      document.getElementById("c-mkt").textContent = fmt(costMkt);
+      document.getElementById("c-tot").textContent = fmt(costTotal);
+
+      var sumBox = document.getElementById("pnl-sum");
+      var titleEl = document.getElementById("pnl-title");
+      var pbEl = document.getElementById("pnl-payback");
+      var netEl = document.getElementById("pnl-net");
+
+      if (net >= 0) {
+        sumBox.classList.remove("loss");
+        titleEl.textContent = "Igakuine puhastulu The Listile";
+        netEl.textContent = "+" + fmt(net);
+        if (net > 0) {
+          var months = Math.max(1, Math.ceil(22000 / net));
+          pbEl.textContent =
+            "Ühekordne ehituskulu 22 000 € teenib end tagasi umbes " +
+            months +
+            " kuuga (aastane ülejääk +" +
+            fmt(net * 12) +
+            ")";
+        } else {
+          pbEl.textContent = "Tulud ja jooksvad kulud on täpselt tasakaalus";
+        }
+      } else {
+        sumBox.classList.add("loss");
+        titleEl.textContent = "Igakuine puudujääk valitud seadetega";
+        netEl.textContent = fmt(net);
+        pbEl.textContent = "Lülita sisse restoranide 2% tasu või suurenda aktiivsete ostjate arvu";
+      }
+    }
+
+    [uRange, pRange, tFee, tBreak, tB2b, tTeam].forEach(function (el) {
+      el.addEventListener("input", function () {
+        document.querySelectorAll("[data-sc]").forEach(function (b) { b.classList.remove("on"); });
+        updatePnL();
+      });
+      el.addEventListener("change", updatePnL);
+    });
+
+    document.querySelectorAll("[data-sc]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("[data-sc]").forEach(function (b) { b.classList.remove("on"); });
+        btn.classList.add("on");
+        var sc = btn.getAttribute("data-sc");
+        if (sc === "small") {
+          uRange.value = 1500;
+          pRange.value = 0;
+          tFee.checked = true;
+          tBreak.checked = false;
+          tB2b.checked = false;
+          tTeam.checked = false;
+        } else if (sc === "base") {
+          uRange.value = 2500;
+          pRange.value = 300;
+          tFee.checked = true;
+          tBreak.checked = true;
+          tB2b.checked = false;
+          tTeam.checked = false;
+        } else {
+          uRange.value = 4000;
+          pRange.value = 600;
+          tFee.checked = true;
+          tBreak.checked = true;
+          tB2b.checked = true;
+          tTeam.checked = true;
+        }
+        updatePnL();
+      });
+    });
+
+    updatePnL();
+  })();
+</script>
 </body>
 </html>
