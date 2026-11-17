@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Staatus. Ärimudel, bränd ja plaan</title>
+  <title>Staatus. Terviklik strateegia ja tegevusplaan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -67,6 +67,41 @@
 
     .decision-card p + p {
       margin-top: 8px;
+    }
+
+    .econ-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .econ-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .econ-box strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .econ-box strong.teal {
+      color: var(--accent-ink);
+    }
+
+    .econ-box span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.35;
     }
 
     /* Tulude ja kulude kalkulaator */
@@ -343,7 +378,7 @@
       border-radius: 14px;
       padding: 13px 16px;
       display: grid;
-      grid-template-columns: 160px 120px 1fr;
+      grid-template-columns: 170px 120px 1fr;
       gap: 14px;
       align-items: center;
     }
@@ -367,11 +402,6 @@
       color: var(--ink-soft);
     }
 
-    .b-drop {
-      background: #fee2e2;
-      color: #b91c1c;
-    }
-
     .brow p {
       font-size: 13px;
       color: var(--ink-soft);
@@ -383,7 +413,7 @@
       border-radius: var(--radius-lg);
       padding: 15px 18px;
       display: grid;
-      grid-template-columns: 150px 1fr;
+      grid-template-columns: 155px 1fr;
       gap: 16px;
       align-items: baseline;
     }
@@ -408,6 +438,7 @@
     }
 
     @media (max-width: 680px) {
+      .econ-strip,
       .pnl-controls,
       .toggles-grid,
       .pnl-board,
@@ -444,14 +475,49 @@
 
 <main class="wrap">
   <section class="hero">
-    <span class="role-tag">Ärimudel, tasemed, bränd ja ajakava</span>
-    <h1>Tervikpilt tuludest, kuludest ja <span class="hl">selgest brändist.</span></h1>
-    <p class="hero-sub">Kõik lahtised otsused ühes kohas: miks restoran maksab 2%, kuidas siduda tasemed kuise kulutamise ja suurüürnikega, kuidas puhastada bränd ning kuidas numbrid kokku jooksevad.</p>
+    <span class="role-tag">Terviklik strateegia ja tegevusplaan</span>
+    <h1>Staatus ühendab kvartalid, restoranid ja <span class="hl">Forus Takso.</span></h1>
+    <p class="hero-sub">Kõik otsused ühes plaanis: kuidas Wallet ja CompuCash ilma äpi ja pangakaardita töötavad, kuidas jooksevad tulud ja kulud, miks restoran maksab 2%, kuidas toimivad tasemed ning millal lülitame külge Forus Takso.</p>
+
+    <div class="econ-strip">
+      <div class="econ-box">
+        <strong class="mono teal">minustaatus.ee</strong>
+        <span>vaba domeen ja ühtne bränd üle kogu grupi</span>
+      </div>
+      <div class="econ-box">
+        <strong class="mono">~22 000 €</strong>
+        <span>kogu ehitus ja käivitus ilma pangakaardita</span>
+      </div>
+      <div class="econ-box">
+        <strong class="mono teal">~350 € kuus</strong>
+        <span>igakuine tehnika ja liideste püsikulu</span>
+      </div>
+    </div>
   </section>
 
   <section class="sec">
-    <h2>1. Tulude ja kulude tervikmudel</h2>
-    <p class="sec-desc">Lülita tuluallikaid ja kulusid sisse või välja ning vaata, millal programm on tugevalt plussis ja kui kiiresti 22 000 € ehituskulu end tagasi teenib.</p>
+    <h2>1. Kuidas tehnika, märguanded ja sisselogimine ilma äpita töötavad</h2>
+
+    <div class="grid-2">
+      <article class="decision-card">
+        <span class="dc-kicker">Apple ja Google Wallet</span>
+        <h3>Märguanded otse telefoni rahakotist</h3>
+        <p>Staatus elab telefoni sisseehitatud rahakotis, mitte eraldi äpis. Wallet saadab ise lukuekraanile märguande kohe pärast ostu, päevapakkumise uuendamisel ning piirkonda sisenemisel.</p>
+        <p>Kuna Rotermanni majaäpp on täna vaid Golden Gate'i hoones ja teiste majade valmidus tuleb 2027. aastal, liituvad kõigi majade töötajad kohe otse <strong>minustaatus.ee</strong> lingi ja töömeiliga.</p>
+      </article>
+
+      <article class="decision-card">
+        <span class="dc-kicker">Üks konto ilma paroolita</span>
+        <h3>Kassa, tšeki kood ja Foruse äpp koos</h3>
+        <p>Inimese konto võti on tema meiliaadress (töömeil või ühe puudutusega Apple ja Google sisselogimine). Kaardi lisamisel jätab telefoni põhibrauser kasutaja aastaks meelde, nii et ka lauatšeki ruutkoodi lugemine teab kohe, kellele boonus kanda.</p>
+        <p>61 kaardistatud ärist töötab 29 CompuCashi kassat otse API kaudu ning ülejäänud kohad tahvli kiirkinnitusega.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>2. Tulude ja kulude tervikmudel</h2>
+    <p class="sec-desc">Vali stsenaarium või lülita tuluallikaid ise sisse ja välja, et näha igakuist puhastulemust ja 22 000 € ehituse tasuvusaega.</p>
 
     <div class="play-shell">
       <div class="pnl-presets">
@@ -491,7 +557,7 @@
 
         <label class="trow">
           <div>
-            <span>Kasutamata jääv klubiraha (15%)</span>
+            <span>Kasutamata jääv boonusraha (15%)</span>
             <small>12 kuu järel aeguv boonusraha reserv</small>
           </div>
           <input type="checkbox" id="t-break" checked>
@@ -545,13 +611,13 @@
   </section>
 
   <section class="sec">
-    <h2>2. Miks restoran on nõus 2% maksma ja kuidas ta selle tagasi teenib?</h2>
+    <h2>3. Miks restoran on nõus 2% maksma ja kuidas ta selle tagasi teenib?</h2>
 
     <div class="stack-12">
       <article class="decision-card highlight">
-        <span class="dc-kicker">Restorani tasuvuse matemaatika</span>
+        <span class="dc-kicker">Restorani tasuvuse valem ja kaheastmeline leping</span>
         <h3>10 000 € klubikäibelt on 2% tasu vaid 200 € kuus ehk üks lisalõuna päevas</h3>
-        <p>Toidukoha keskmise katte juures vajab restoran 200 € teenustasu tagasiteenimiseks kuus vaid <strong>345 € lisakäivet</strong>. See tähendab ühte 12 € lõunapraadi päevas või ühte kahe inimese õhtusööki nädalas.</p>
+        <p>Toidukoha keskmise katte juures vajab restoran 200 € teenustasu tagasiteenimiseks kuus vaid <strong>345 € lisakäivet</strong> (+3,5%). Sõlmime restoraniga kohe alguses ausa kaheastmelise lepingu: <strong>esimesed kolm kuud on piloot teenustasuga 0%</strong> ning alates neljandast kuust rakendub <strong>2% platvormitasu</strong> koos kuuajalise vaba väljumise õigusega.</p>
       </article>
 
       <div class="grid-2">
@@ -566,8 +632,8 @@
         <article class="compare-card now">
           <span class="compare-tag">Mida restoran 2% eest juurde saab</span>
           <ul class="clean-list">
-            <li><i class="i-new">✓</i><span><strong>Suurem korduvost:</strong> 20 € klubiraha kulutama tulles võtab külaline kaaslase ja joogid ning jätab lauda 65 €.</span></li>
-            <li><i class="i-new">✓</i><span><strong>Walleti märguanne vaiksetel aegadel:</strong> kui uuendame kaardil päevapakkumist, kuvab Apple ja Google Wallet ise lukuekraanil teate ilma ühegi äpita.</span></li>
+            <li><i class="i-new">✓</i><span><strong>Suurem korduvost ja Foruse kliendid:</strong> 20 € boonust kulutama tulles jätab külaline lauda 65 € ning kevadel lisanduvad Forus Takso sõitjad.</span></li>
+            <li><i class="i-new">✓</i><span><strong>Walleti märguanne vaiksetel aegadel:</strong> päevapakkumise uuendus ilmub kontorirahva lukuekraanile kümme korda odavamalt kui 30% toidukuller.</span></li>
           </ul>
         </article>
       </div>
@@ -575,24 +641,24 @@
   </section>
 
   <section class="sec">
-    <h2>3. Tasemed ja Wolt Pluss loogika: plussid, miinused ja õige mudel</h2>
+    <h2>4. Tasemed, kuine kulutamine ja Staatus Pluss (4,90 € kuus)</h2>
     <p class="sec-desc">Ühendame tasuta ligipääsu, kuise kulutamise mängulisuse ja vabatahtliku 4,90 € kuutasu nii, et keegi ei tunneks end kaotajana.</p>
 
     <div class="tiers-3">
       <article class="tier-box">
-        <span class="tier-badge">1. Klubi liige · 0 €</span>
+        <span class="tier-badge">1. Liige · 0 € kuus</span>
         <div class="tier-rate mono">5% tagasi</div>
-        <p>Tasuta algtase igale linnast tulijale. Null barjääri liitumiseks ja kasvatab kiiresti kasutajate arvu.</p>
+        <p>Tasuta algtase igale linnast tulijale ja Forus Takso tavakasutajale. Null barjääri liitumiseks ja kiire kasutajate kasv.</p>
       </article>
 
       <article class="tier-box gold">
-        <span class="tier-badge">2. Kuldtase · Kvartali omad ja püsikäijad</span>
+        <span class="tier-badge">2. Kuld · Kvartali omad ja püsikäijad</span>
         <div class="tier-rate mono">10% tagasi</div>
-        <p><strong>Kolm ust:</strong> kvartali töötajale ja elanikule tasuta, linnast tulijale <strong>150 € kuukuluga</strong> tasuta või <strong>4,90 € kuus</strong> (sisaldab igakuist kohvi või parkimistundi).</p>
+        <p><strong>Kolm ust:</strong> kvartalite töötajale ja elanikule tasuta, väliskülalisele <strong>150 € kuukuluga</strong> tasuta või <strong>Staatus Pluss 4,90 € kuus</strong> (koos taksohüve ja igakuise kohvi või parkimistunniga).</p>
       </article>
 
       <article class="tier-box vip">
-        <span class="tier-badge">3. Suurüürnik · Partner</span>
+        <span class="tier-badge">3. Partner · Suurüürnik</span>
         <div class="tier-rate mono">10% + hüved</div>
         <p>Ankurüürnike töötajatele: püsiv 10%, sissekolimise tervitusraha, spordiklubi ja autopesula erihind ning külaliste parkimine.</p>
       </article>
@@ -600,33 +666,32 @@
 
     <div class="grid-2">
       <article class="compare-card now">
-        <span class="compare-tag">Miks kuise kulutamise ja Plussi kombinatsioon töötab</span>
+        <span class="compare-tag">Plussid</span>
         <ul class="clean-list">
-          <li><i class="i-new">✓</i><span><strong>Kasvatab ostukorvi:</strong> teade rahakotis („Kuldtasemeni on jäänud 25 €”) toob inimese kuu lõpus veel ühele õhtusöögile.</span></li>
-          <li><i class="i-new">✓</i><span><strong>Wolt Plussi efekt:</strong> kui 4,90 € kuutasuga kaasneb üks tasuta kohv või parkimistund, on tellija juba esimesel päeval omadega plussis.</span></li>
-          <li><i class="i-new">✓</i><span><strong>Madalam keskmine kulu:</strong> kuna juhukülaline on 5% peal, jääb keskmine väljamakse ~8,5% juurde.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Kasvatab ostukorvi:</strong> teade kaardil („Kuldtasemeni veel 25 €”) toob inimese kuu lõpus veel ühele õhtusöögile.</span></li>
+          <li><i class="i-new">✓</i><span><strong>Kohene tasuvus tellijale:</strong> taksohüve ja tasuta kohv või parkimistund teevad 4,90 € paketi esimesest kasutusest kasulikuks.</span></li>
         </ul>
       </article>
 
       <article class="compare-card">
-        <span class="compare-tag">Ohud, mida vältida</span>
+        <span class="compare-tag">Ohud, mida väldime</span>
         <ul class="clean-list">
-          <li><i class="i-old">✕</i><span><strong>Ära küsi kuutasu kvartali oma töötajalt:</strong> tänase tasuta 10% panemine maksu alla tekitaks rentnike seas pahameelt.</span></li>
-          <li><i class="i-old">✕</i><span><strong>Ära ehita kõike esimeseks päevaks:</strong> jaanuari piloodis alustame kvartali omade 10% kaardiga ning avame 5% ja Plussi kevadel linnarahvale.</span></li>
+          <li><i class="i-old">✕</i><span><strong>Oma töötajatelt raha ei küsita:</strong> kvartali töötajale jääb 10% tasuta, et vältida pahameelt kleepsu kadumisel.</span></li>
+          <li><i class="i-old">✕</i><span><strong>Lihtne algus:</strong> jaanuari piloot algab ühe 10% tasemega ning 5% ja Staatus Pluss avanevad kevadel koos Forus Taksoga.</span></li>
         </ul>
       </article>
     </div>
   </section>
 
   <section class="sec">
-    <h2>4. Suurüürnike lisahüved kaardil</h2>
-    <p class="sec-desc">Üürnikfirma töötajad tuvastatakse kohe täna ettevõtte töömeili või üürnikupõhise kutselingi kaudu ilma 2027. aasta majaäppi ootamata. Nii muutub kaart tugevaks argumendiks Golden Gate'i, Artiuse, Talsinki ja Rotermanni büroopindade väljaüürimisel.</p>
+    <h2>5. Suurüürnike lisahüved (tugi USRE üüriärile)</h2>
+    <p class="sec-desc">Üürnikfirma töötajad tuvastatakse kohe täna ettevõtte töömeili või üürnikupõhise kutselingiga ilma 2027. aasta majaäppi ootamata. See annab tugeva müügiargumendi Golden Gate'i, Artiuse, Talsinki ja Rotermanni büroopindade üürimisel.</p>
 
     <div class="grid-2">
       <article class="decision-card">
         <span class="dc-kicker">Sissekolimise ja tiimi krediit</span>
         <h3>Tervitusraha uuele büroole ja tiimifond</h3>
-        <p>Kui ankurüürnik kolib uude majja või pikendab üürilepingut, saab iga tema töötaja Walleti kaardile näiteks 25 € sissekolimisraha piirkonna söögikohtadega tutvumiseks. Samuti saab tööandja laadida kaardile oma tiimi lõuna või sündmuste krediiti.</p>
+        <p>Kui ankurüürnik kolib uude majja või pikendab üürilepingut, saab iga tema töötaja Staatuse kaardile näiteks 25 € sissekolimisraha piirkonna söögikohtadega tutvumiseks. Samuti saab tööandja laadida kaardile oma tiimi lõuna või sündmuste krediiti.</p>
       </article>
 
       <article class="decision-card">
@@ -638,36 +703,35 @@
   </section>
 
   <section class="sec">
-    <h2>5. Forus Takso ja restoranide sünergia</h2>
+    <h2>6. Forus Takso ja restoranide sünergia ning tasaarveldus</h2>
     <p class="sec-desc">Takso ja restoranid moodustavad loomuliku ringi, mida ei Telliskivi ega Bolt üksi pakkuda ei suuda: inimene sõidab reede õhtul taksoga restorani ette ja pärast õhtusööki taksoga koju.</p>
 
     <div class="stack-12">
       <article class="decision-card highlight">
-        <span class="dc-kicker">Üks ühine Staatus, mitte kaks eraldi programmi</span>
-        <h3>Ära tee eraldi Forus Plussi ja eraldi restoranikaarti</h3>
-        <p>Kui Foruse äpis ja kvartalite restoranides jookseb <strong>üks ja sama Staatuse konto ning saldo</strong>, muutub <strong>Staatus Pluss (4,90 € kuus)</strong> kogu linna jaoks vastupandamatuks paketiks: ühe kuutasu eest saab inimene korraga 10% Kuldtaseme restoranides, Staatuse raha kogumise ja eelisjärjekorra Forus Taksos ning igakuise parkimistunni või kohvi.</p>
-        <p>Foruse äpi kümnete tuhandete aktiivsete kasutajate seas annab isegi 3 kuni 5% liitumist kohe 1 000 kuni 1 500 maksvat Pluss tellijat ja toob restoranidesse suure hulga uusi laudu.</p>
+        <span class="dc-kicker">Üks ühine Staatus, mitte eraldi Forus Pluss</span>
+        <h3>Ühine konto ja saldo nii Foruse äpis kui ka telefoni Walletis</h3>
+        <p>Eraldi <em>Forus Pluss</em> tekitaks jälle kaks rahakotti ja kaks kuutasu. Ühise <strong>Staatuse</strong> kontoga annab üks <strong>4,90 € Staatus Pluss</strong> pakett korraga 10% Kuldtaseme restoranides, sõiduboonuse ja reedeõhtuse eelisjärjekorra Forus Taksos ning igakuise parkimistunni või kohvi. Foruse kümnete tuhandete kasutajate seas toob isegi 3 kuni 5% liitumist kohe 1 000 kuni 1 500 maksvat tellijat.</p>
       </article>
 
       <div class="grid-2">
         <article class="decision-card">
           <span class="dc-kicker">Taksost restorani (kaitseb takso marginaali)</span>
-          <h3>Sihtkoha boonus toob inimese kvartalisse</h3>
-          <p>Taksoteenuse marginaal on õhem kui restoranil. Seepärast annab tavasõit näiteks 3 kuni 5% Staatuse raha, kuid <strong>sõit Rotermanni, Artiusesse või Talsinkisse annab topeltboonuse</strong>, mida saab kulutada sihtkoha restoranides. Nii finantseerib uue kliendi toomise suuresti restoran, kes saab vastu 60 € õhtusöögilaua.</p>
+          <h3>Sihtkoha topeltboonus toob inimese lauda</h3>
+          <p>Kuna takso vahendusmarginaal (~20%) on õhem kui restorani toidukate (~70%), annab tavasõit näiteks 3 kuni 5% Staatuse raha, kuid <strong>sõit Rotermanni, Artiusesse või Talsinkisse annab topeltboonuse</strong> sihtkoha restoranides kasutamiseks. Uue 60 € laua saanud restoran katab sihtkoha lisaboonuse oma turunduskuluna.</p>
         </article>
 
         <article class="decision-card">
-          <span class="dc-kicker">Restoranist taksoga koju</span>
+          <span class="dc-kicker">Restoranist koju ja lihtne API</span>
           <h3>Õhtusöök maksab kodutee kinni</h3>
-          <p>Kui külaline teenib R14 või Platzi õhtusöögilt 7 € Staatuse raha, näeb ta sama jääki kohe Forus Takso äpis ja saab sellega tasuda oma kodusõidu eest. Tehniliselt vajab see kahe oma süsteemi vahel vaid lihtsat API ühendust ilma ühegi pangakaardita.</p>
+          <p>Kui külaline teenib R14 õhtusöögilt 7 € Staatuse raha ja kasutab seda kojumineku taksosõiduks, liigub see 7 € kuu lõpu tasaarvelduses restorani koondarvelt Forus Taksole. Tehniliselt suhtleb Foruse äpp <strong>minustaatus.ee</strong> serveriga kahe lihtsa API päringuga ilma ühegi pangakaardita.</p>
         </article>
       </div>
     </div>
   </section>
 
   <section class="sec">
-    <h2>6. Brändi korrastamine: Staatus on ühtne kaart üle kogu grupi</h2>
-    <p class="sec-desc">Artius on Artius, Rotermann on Rotermann, Talsinki on Talsinki ja Forus on Forus. Nende kohal on üks ühendav liikmelisus nimega <strong>Staatus</strong> aadressil <strong>minustaatus.ee</strong>.</p>
+    <h2>7. Brändi ja domeeni selgus</h2>
+    <p class="sec-desc">Artius on Artius, Rotermann on Rotermann, Talsinki on Talsinki ja Forus on Forus. Nende kohal on üks ühendav liikmelisus nimega <strong>Staatus</strong> ja kohe vaba domeen <strong>minustaatus.ee</strong> (ning edu korral saab hiljem välja osta ka täna tühjal parkimislehel seisva <em>staatus.ee</em>).</p>
 
     <div class="brand-rows">
       <div class="brow">
@@ -697,30 +761,60 @@
   </section>
 
   <section class="sec">
-    <h2>7. Kleepsu väljavahetamine ja ajakava (millal liitub Forus Takso)</h2>
+    <h2>8. Kuidas vahetame välja tänase kleepsu (3 nädalaga)</h2>
+
+    <div class="steps-list">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <strong>5 € tervitusraha uuel kaardil</strong>
+          <p>Kleeps andis soodustuse kohe, Staatus kogub järgmiseks korraks. 5 € stardiraha kaardil muudab vahetuse inimese silmis koheseks võiduks ja kulu tekib vaid päris külastusel.</p>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <strong>Büroojuhid ja Golden Gate</strong>
+          <p>Saadame kõigi majade büroojuhtidele ettevõttepõhise <strong>minustaatus.ee</strong> kutselingi (ja Golden Gate'is ka märguande majaäppi) koos kindla kuupäevaga, mil kleeps kolme nädala pärast sulgub.</p>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <strong>Sõbralik turvavõrk leti ääres</strong>
+          <p>Kleepsu näitajat ei saadeta tühjade kätega ära: leti kõrval oleva ruutkoodiga lisab ta kümne sekundiga Staatuse oma Walletisse ja saab tänase boonuse juba kirja.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>9. Nelja etapiga tegevuskava</h2>
 
     <div class="stack-12">
       <div class="phase-card">
         <div class="phase-when">November ja detsember</div>
         <div class="phase-body">
-          <strong>Ehitus ja 5 ankurrestorani lepingud</strong>
-          <p>Ehitame Ektacoga CompuCashi liidese ja tšeki koodi ning sõlmime kaheastmelised lepingud (kolm kuud 0%, edasi 2%). Juba lepingut tehes lubame restoranidele kevadist Forus Takso klientide liitumist.</p>
+          <strong>Domeen, ehitus ja 5 ankurrestorani lepingud</strong>
+          <p>Registreerime <strong>minustaatus.ee</strong>, ehitame Ektacoga CompuCashi liidese ja tšeki koodi ning sõlmime kaheastmelised lepingud (kolm kuud 0%, edasi 2%) viie ankurkohaga, kasutades kevadist Forus Takso liitumist peamise müügiargumendina.</p>
         </div>
       </div>
 
       <div class="phase-card">
-        <div class="phase-when">Jaanuari algus</div>
+        <div class="phase-when">Jaanuari algus 2027</div>
         <div class="phase-body">
           <strong>Vaikne proov oma inimestega</strong>
-          <p>Testime kahe nädala jooksul 50 kuni 100 oma töötajaga, et kassa lugeja, lauatšeki kood ja Walleti enda lukuekraani märguanded toimiksid veatult.</p>
+          <p>Testime kahe nädala jooksul 50 kuni 100 oma töötajaga kahes söögikohas, et kassa lugeja, lauatšeki kood ja Walleti lukuekraani märguanded toimiksid veatult.</p>
         </div>
       </div>
 
       <div class="phase-card">
         <div class="phase-when">Jaanuar kuni märts</div>
         <div class="phase-body">
-          <strong>Avamine minustaatus.ee lingiga ja kleepsu sulgemine 3 nädalaga</strong>
-          <p>Jagame 5 € tervitusrahaga Staatuse kaardi laiali veebilingiga büroojuhtide kaudu (sõltumata 2027. aasta majaäpi ajakavast), sulgeme vana kleepsu ja ühendame ülejäänud CompuCashi restoranid.</p>
+          <strong>Kvartali avamine ja vana kleepsu sulgemine</strong>
+          <p>Avame Staatuse kaardi kõigile kvartali töötajatele, sulgeme kolme nädala järel füüsilise kleepsu ja ühendame ülejäänud CompuCashi restoranid.</p>
         </div>
       </div>
 
@@ -728,7 +822,7 @@
         <div class="phase-when">Aprill kuni mai 2027</div>
         <div class="phase-body">
           <strong>Forus Takso ühendamine, Staatus Pluss ja 2% teenustasu</strong>
-          <p>Kui üle kahekümne restorani kassasüsteemid töötavad sujuvalt, lülitame API kaudu külge Forus Takso äpi ja avame 4,90 € Staatus Pluss kuupaketi kümnetele tuhandetele taksoklientidele. Samal hetkel käivitub restoranide 2% platvormitasu ning laienemine Artiusesse ja Talsinkisse.</p>
+          <p>Kui üle kahekümne restorani kassad töötavad sujuvalt, lülitame API kaudu külge Forus Takso äpi ja avame 4,90 € Staatus Pluss kuupaketi kümnetele tuhandetele taksoklientidele. Samal hetkel käivitub restoranide 2% platvormitasu ning laienemine Artiusesse ja Talsinkisse.</p>
         </div>
       </div>
     </div>
