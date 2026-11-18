@@ -16,14 +16,12 @@ Veebivaated: [Inimesele](https://list.ee/klubi/inimene/) · [Restoranile](https:
 
 Stardiraha jaguneb kaheks selgelt eristatud osaks: **5 € tervitusraha** kleepsu väljavahetamisel ja **25 € sissekolimisraha** suurüürnikele.
 
-### A. Ülemineku 5 € tervitusraha uuele liitujale
+### A. Ülemineku 5 € tervitusraha uuele liitujale (täielikult Staatuse kanda)
 
+* **Otsus:** uute liitujate 5 € tervitusraha katab täielikult Staatus ja hüvitab selle restoranidele kuu lõpu tasaarvelduses. Restorani kulu on 0 €, mis muudab restoranide liitumisotsuse ülilihtsaks, sest platvorm toob oma raha eest uued kliendid neile lauda.
 * **Kaitse kuritarvituse vastu:** 5 € tervitusraha kehtib **30 päeva** alates kaardi lisamisest ja rakendub ostule, mille summa on **vähemalt 15 €** (inimene maksab vähemalt 10 € oma pangakaardiga juurde). Nii ei saa keegi võtta tasuta kohvi ja kaduda.
-* **Tegelik lunastamise maht:** kui esimeses laines liitub 2 000 inimest, on välja lubatud nimiväärtus 10 000 €, kuid 30 päeva ja 15 € ostulävendi juures kasutatakse sellest reaalselt ära umbes **65% ehk 6 500 €** (1 300 päris ostu; ülejäänud 35% aegub kuluta).
-* **Kolm rahastusviisi (otsustamiseks restoraniläbirääkimistel):**
-  1. **Variant A (Soovitus, platvormi kulu 0 €):** esimese vähemalt 15 € ostu 5 € soodustus on lepingus restorani uue digikliendi tervitus. Restoran saab kassasse kohe 10 € (mis katab ~4,50 € toorainekulu enam kui kahekordselt) ja uue püsikliendi oma andmebaasi.
-  2. **Variant B (Jagatud pooleks, platvormi ühekordne kulu 3 250 €):** restoran katab 2,50 € ja Staatus hüvitab kuu lõpu tasaarvelduses 2,50 €. Esimese 2 000 liituja ühekordne kulu platvormile on 3 250 €.
-  3. **Variant C (Täielikult Staatuse kanda, ühekordne kulu 6 500 €):** kui soovite hoida restorani kulu nullis, hüvitab Staatus kogu tervitusraha. Siis lisandub 22 000 € ehituseelarvele ühekordne 6 500 € avamiskulu (käivitus kokku **28 500 €** ehk 3,25 € liituja kohta) ning hilisemate uute liitujate jooksev stardiraha kaetakse igakuisest kampaaniaeelarvest ja aeguvast boonusrahast.
+* **Avamislaine ühekordne reserv (6 500 €):** esimese 2 000 liituja puhul on välja lubatud nimiväärtus 10 000 €, kuid 30 päeva ja 15 € ostulävendi juures kasutatakse sellest reaalselt ära umbes **65% ehk 6 500 €** (1 300 päris ostu ehk **3,25 € liituja kohta**). See lisandub ühekordse reana 22 000 € ehituseelarvele (käivitus kokku **28 500 €**).
+* **Edasiste liitujate jooksev stardiraha:** on juba arvestatud igakuisesse kulutabelisse ning alates teisest aastast katab selle kuhjaga 12 kuu järel aeguv kasutamata boonusraha.
 
 ### B. Suurüürnike 25 € sissekolimisraha (Golden Gate, Artius, Talsinki)
 
@@ -89,33 +87,35 @@ Artius on Artius, Rotermann on Rotermann, Talsinki on Talsinki ja Forus on Forus
 
 ## 8. Tulude, stardiraha ja realistlike Eesti tööjõukulude tervikpilt
 
-### Ühekordne käivitusinvesteering
+### Ühekordne käivitusinvesteering (28 500 €)
 * **Tarkvara ja seadistus: 22 000 €** (Walleti mootor ja sisselogimine 6 000 €, CompuCashi liidesed ja tšeki kood 9 000 €, tasaarvelduse ja Foruse API vaade 3 000 €, käivitusmaterjalid saalidesse 4 000 €).
-* **Avamislaine 5 € stardiraha reserv: 0 € kuni 6 500 €** (0 €, kui esimese ostu tervitus on restorani kanda; 3 250 € pooleks jagatuna; 6 500 €, kui Staatus maksab 100% kinni → käivitus kokku **kuni 28 500 €**).
+* **Avamislaine 5 € stardiraha reserv: 6 500 €** (2 000 esimest liitujat, 65% tegelik kasutus vähemalt 15 € ostult ehk 3,25 € liituja kohta, mille Staatus hüvitab restoranidele täies mahus).
+* **Käivitus kokku: 28 500 €.**
 
 ### Tööjõukulude realistlik arvestus Eestis
 * **Etapp 1 ja 2 (olemasoleva tiimi osakoormus):** partnerihaldus, klienditugi ja raamatupidamine maksavad kokku **1 800 € kuus**.
 * **Etapp 3 (eraldi täiskohaga klubijuht palgal):** kogenud juhi brutopalk **3 200 € kuus** tähendab koos Eesti sotsiaalmaksu (33%) ja tööandja töötuskindlustusmaksuga (0,8%) reaalset palgafondi kulu **4 282 € kuus**. Koos raamatupidamise ja tegevuskuludega (**518 € kuus**) on palgalise juhiga püsikulu **4 800 € kuus**.
 
-### Kolm stsenaariumi kuus (pärast kolmekuulist pilooti)
+### Kolm stsenaariumi kuus (pärast kolmekuulist pilooti, stardiraha kõigis kuludes sees)
 
-| Näitaja kuus | 1. Tagasihoidlik algus (1 500 ostjat · jagatud tiim · Staatus maksab stardiraha) | 2. Rotermann ja Artius baas (2 500 ostjat · jagatud tiim · restoran katab stardiraha) | 3. Koos Forus Takso ja palgalise juhiga (5 000 ostjat · täiskohaga juht · Staatus maksab stardiraha) |
+| Näitaja kuus | 1. Tagasihoidlik algus (1 500 ostjat · jagatud tiim) | 2. Rotermann ja Artius baas (2 500 ostjat · jagatud tiim) | 3. Koos Forus Takso ja palgalise juhiga (5 000 ostjat · täiskohaga juht) |
 |---|---:|---:|---:|
 | **Klubikäive kuus** | 150 000 € | 250 000 € | 500 000 € |
 | Restoranide 2% platvormitasu | +3 000 € | +5 000 € | +10 000 € |
 | Staatus Pluss 4,90 € tellijad (neto) | 0 € (0 tellijat) | +1 185 € (300 tellijat) | +3 952 € (1 000 tellijat) |
 | Kasutamata jääv boonusraha (15% aegumine) | 0 € (arvestamata) | +3 188 € | +6 375 € |
-| **Tulud kokku kuus** | **3 000 €** | **9 373 €** | **20 327 €** |
+| Suurüürnike paketid | 0 € | 0 € | +1 500 € |
+| **Tulud kokku kuus** | **3 000 €** | **9 373 €** | **21 827 €** |
 | Tehnika, pilv ja liidesed | 350 € | 350 € | 400 € |
 | Tiim, tööjõumaksud ja raamatupidamine | 1 800 € (jagatud tiim) | 1 800 € (jagatud tiim) | **4 800 €** (juht 4 282 € + rmp 518 €) |
 | Pluss paketi stardihüve ja maksevahendus | 0 € | 450 € | 1 500 € |
-| Kampaaniad ja uute liitujate 5 € stardiraha | 680 € (sh stardiraha) | 350 € (resto katab) | 1 450 € (sh stardiraha) |
-| **Kulud kokku kuus** | **2 830 €** | **2 950 €** | **8 150 €** |
-| **Igakuine puhastulu platvormile** | **+170 € kuus** | **+6 423 € kuus** | **+12 177 € kuus** |
-| **Aastane ülejääk** | **+2 040 €** | **+77 076 €** | **+146 124 €** |
-| **Käivituskulu (22 000 kuni 28 500 €) tasuvusaeg** | Püsib jooksvalt plussis | **~4 kuud** | **~2,5 kuud** |
+| Kampaaniad ja uute liitujate 5 € stardiraha | 680 € | 900 € | 1 450 € |
+| **Kulud kokku kuus** | **2 830 €** | **3 500 €** | **8 150 €** |
+| **Igakuine puhastulu platvormile** | **+170 € kuus** | **+5 873 € kuus** | **+13 677 € kuus** |
+| **Aastane ülejääk** | **+2 040 €** | **+70 476 €** | **+164 124 €** |
+| **28 500 € käivituse tasuvusaeg** | Püsib jooksvalt plussis | **~5 kuud** | **~2,5 kuud** |
 
-*Kontrollarvutus:* kui palgata täiskohaga klubijuht (**4 800 € kuus** koos kõigi tööandjamaksudega) juba 2. stsenaariumi mahu pealt (2 500 ostjat, tulu 9 373 €), on igakuine kulu kokku 5 950 € ning programm jääb endiselt **+3 423 € kuus (+41 076 € aastas) puhaskasumisse**.
+*Kontrollarvutus:* kui palgata täiskohaga klubijuht (**4 800 € kuus** koos kõigi tööandjamaksudega) juba 2. stsenaariumi mahu pealt (2 500 ostjat, tulu 9 373 € ja kogu stardiraha Staatuse kulust), on igakuine kulu kokku 6 500 € ning programm jääb endiselt **+2 873 € kuus (+34 476 € aastas) puhaskasumisse**.
 
 ## 9. Üleminek kleepsult (3 nädalaga) ja nelja etapiga ajakava
 
