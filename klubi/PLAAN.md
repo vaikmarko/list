@@ -117,9 +117,15 @@ Artius on Artius, Rotermann on Rotermann, Talsinki on Talsinki ja Forus on Forus
 
 *Kontrollarvutus:* kui palgata täiskohaga klubijuht (**4 800 € kuus** koos kõigi tööandjamaksudega) juba 2. stsenaariumi mahu pealt (2 500 ostjat, tulu 9 373 € ja kogu stardiraha Staatuse kulust), on igakuine kulu kokku 6 500 € ning programm jääb endiselt **+2 873 € kuus (+34 476 € aastas) puhaskasumisse**.
 
-## 9. Üleminek kleepsult (3 nädalaga) ja nelja etapiga ajakava
+## 9. Kuidas eristame oma inimest tänavalt tulijast, boonusraha kasutusreegel ja ajakava
 
-1. **November ja detsember 2026 (domeen, ehitus ja 5 ankurrestorani):** registreerime kohe `minustaatus.ee`, ehitame Ektacoga CompuCashi liidese ja tšeki koodi ning sõlmime kaheastmelised lepingud (kolm kuud 0%, edasi 2%) viie kuni kuue ankurrestoraniga.
+* **Oma töötaja ja elaniku tuvastamine:** kvartali inimene tuvastatakse automaatselt ettevõtte töömeili domeeni või büroojuhi ning majahalduri piiratud kohtade arvuga kutselingi järgi. Juhuslik mööduja tänavalt 10% töötajakaarti ega 5 € stardiraha ei saa.
+* **Vana kleepsu vahetuskaart leti ääres:** avalikku 10% ruutkoodi letile ei panda. Kui hilinenud töötaja või elanik näitab kassas vana plastikkleepsu, eemaldab teenindaja vana kleepsu kaardilt ja ulatab talle ühekordse koodiga vahetuskaardi. Nii korjatakse vana kleeps füüsiliselt käibelt ära ja välistatakse kuritarvitus.
+* **Boonusraha kasutamise ulatus (kuni 100% arvest):** kliendi enda teenitud Staatuse rahaga saab tasuda nii osa arvest kui ka kogu arve täies ulatuses (näiteks tasuta hommikukohvi ja saiakese eest), sest sellele eelnenud täishinnaga käive on kvartalis juba tehtud. Boonusrahaga tasutud osalt uut 10% boonust ei teeni ning 15 € miinimumarve piirang kehtib ainult tasuta antud 5 € stardirahale.
+
+### Nelja etapiga tegevuskava
+
+1. **November ja detsember 2026 (domeen, ehitus ja 5 ankurrestorani):** registreerime kohe `minustaatus.ee`, ehitame Ektacoga CompuCashi liidese ja tšeki koodi ning kaasame ise viis kuni kuus ankurrestorani kaheastmelise lepinguga (kolm kuud 0%, edasi 2%).
 2. **Jaanuari algus 2027 (vaikne proov):** kahenädalane test 50 kuni 100 oma töötajaga kahes söögikohas, et kontrollida kassa lugejat, lauatšeki koodi ja Walleti lukuekraani märguandeid.
-3. **Jaanuari keskpaik kuni märts 2027 (kvartali avamine ja kleepsu sulgemine):** saadame büroojuhtidele `minustaatus.ee` kutselingi koos 5 € tervitusrahaga, paneme kassade juurde hilinejatele kümnesekundilise liitumiskoodi, sulgeme kolme nädala järel vana plastikkleepsu ning ühendame ülejäänud CompuCashi restoranid.
+3. **Jaanuari keskpaik kuni märts 2027 (kvartali avamine ja kleepsu sulgemine):** saadame büroojuhtidele ja majahalduritele piiratud kutselingid koos 5 € stardirahaga, vahetame letis välja viimased plastikkleepsud ühekordsete vahetuskaartidega ning ühendame ülejäänud CompuCashi restoranid.
 4. **Aprill kuni mai 2027 (Forus Takso ühendamine, Staatus Pluss ja 2% teenustasu):** kui üle kahekümne restorani kassad töötavad sujuvalt, ühendame API kaudu Forus Takso äpi, võtame tööle täiskohaga klubijuhi ja avame 4,90 € `Staatus Pluss` paketi kümnetele tuhandetele taksoklientidele. Samal hetkel käivitub restoranide 2% platvormitasu ning laienemine Artiusesse ja Talsinkisse.

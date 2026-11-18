@@ -91,6 +91,39 @@
       gap: 10px;
     }
 
+    .view-switch {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+    }
+
+    .view-switch a {
+      padding: 5px 13px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .view-switch a:hover {
+      color: var(--ink);
+    }
+
+    .view-switch a.active {
+      background: var(--surface);
+      color: var(--blue);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    :fullscreen .view-switch {
+      display: none;
+    }
+
     .fs-btn {
       border: 1px solid var(--line);
       background: var(--surface);
@@ -623,10 +656,16 @@
 <body>
 
 <header class="deck-bar">
-  <a href="/klubi/esitlus/" class="deck-brand">
+  <a href="/klubi/" class="deck-brand">
     <span class="deck-mark">S</span>
-    <span>Staatus · Rotermanni lansseerimine</span>
+    <span>Staatus</span>
   </a>
+  <nav class="view-switch" aria-label="Vaade">
+    <a href="/klubi/inimene/">Inimesele</a>
+    <a href="/klubi/restoran/">Restoranile</a>
+    <a href="/klubi/plaan/">Strateegia ja plaan</a>
+    <a href="/klubi/esitlus/" class="active">Esitlus</a>
+  </nav>
   <div class="deck-controls">
     <button type="button" class="fs-btn" id="fs-btn">⛶ Täisekraan</button>
   </div>
@@ -733,8 +772,8 @@
           </div>
 
           <div class="frow">
-            <div class="frow-tag">Rahaga maksmisel<small>Ja kuu lõpu arveldus</small></div>
-            <p>Kogutud eurode kasutamisel lahutab CompuCash summa arvelt maha ning kuu lõpus teeme restoranide vahel ühe automaatse tasaarvelduse.</p>
+            <div class="frow-tag">Rahaga maksmisel<small>Kuni 100% kogu arvest</small></div>
+            <p>Kogutud eurodega saab tasuda nii osa arvest kui ka kogu arve (kasvõi tasuta hommikukohvi). Ainult tasuta 5 € stardirahal kehtib 15 € miinimumarve.</p>
           </div>
         </div>
       </div>
@@ -791,14 +830,14 @@
 
         <article class="scard">
           <span class="scard-num">2</span>
-          <h3>Büroojuhid ja kindel kuupäev</h3>
-          <p>Saadame koos Rotermanni tiimiga kõigi majade büroojuhtidele valmis kutselingi ja kuulutame välja ühe selge kuupäeva kolme nädala pärast, mil vana kleeps aegub.</p>
+          <h3>Töömeil ja piiratud kutselink</h3>
+          <p>Kvartali töötaja ja elanik tuvastatakse ettevõtte töömeili domeeni või büroojuhi ja majahalduri piiratud kohtade arvuga kutselingi järgi. Juhuslik mööduja tänavalt 10% töötajakaarti ei saa.</p>
         </article>
 
         <article class="scard">
           <span class="scard-num">3</span>
-          <h3>Sõbralik tugi leti ääres</h3>
-          <p>Kui keegi näitab pärast tähtaega vana kleepsu, ei saadeta teda tühjade kätega ära: leti kõrval oleva ruutkoodiga lisab ta 10 sekundiga kaardi telefoni ja saab boonuse kirja.</p>
+          <h3>Vana kleepsu vahetuskaart letis</h3>
+          <p>Avalikku silti letil ei ole. Kui hilinenud töötaja näitab kassas vana kleepsu, võtab teenindaja vana kleepsu kaardilt ära ja ulatab ühekordse koodiga vahetuskaardi.</p>
         </article>
       </div>
     </div>
@@ -850,18 +889,17 @@
           <h3>Meie teeme ja rahastame (võtmed kätte)</h3>
           <ul class="bullet-list">
             <li><span class="b-dot teal">✓</span><span>Ehitame ja haldame kogu tehnilise platvormi (<strong>minustaatus.ee</strong>, Walleti kaardid, CompuCashi liidesed ja tšeki koodid).</span></li>
-            <li><span class="b-dot teal">✓</span><span>Sõlmime restoranidega lepingud, teeme lühikoolituse ja igakuise automaatse tasaarvelduse.</span></li>
-            <li><span class="b-dot teal">✓</span><span>Rahastame täielikult uute liitujate <strong>5 € tervitusraha</strong> (6 500 € avamisreserv meie eelarvest).</span></li>
+            <li><span class="b-dot teal">✓</span><span><strong>Kaasame pilootrestoranid</strong> ja sõlmime lepingud, teeme saalikoolituse ning igakuise automaatse tasaarvelduse.</span></li>
+            <li><span class="b-dot teal">✓</span><span>Anname uutele liitujatele <strong>5 € stardiraha Staatuse poolt</strong> (6 500 € avamisreserv meie eelarvest).</span></li>
           </ul>
         </article>
 
         <article class="scard accent-blue">
           <h3>Mida ootame Rotermanni juhilt ja turunduselt</h3>
           <ul class="bullet-list">
-            <li><span class="b-dot">1</span><span><strong>Pilootrestoranide kaasamine:</strong> ühine soe sissejuhatus 5 kuni 6 ankurrestoranile novembri lõpuks ja kvartali otsus plastikkleepsu lõppkuupäevale.</span></li>
-            <li><span class="b-dot">2</span><span><strong>Üürnike teavitus:</strong> büroojuhtide kontaktid ja ühine teavituskiri jaanuaris kõigile kvartali ettevõtetele.</span></li>
-            <li><span class="b-dot">3</span><span><strong>Nähtavus kanalites ja saalis:</strong> laua ja kassa ruutkoodide visuaalne kooskõla ning kajastus Rotermanni kanalites.</span></li>
-            <li><span class="b-dot">4</span><span><strong>Üks kontaktisik turundusest:</strong> kellega kooskõlastada igakuised eripakkumised ja ürituste märguanded Walletis.</span></li>
+            <li><span class="b-dot">1</span><span><strong>Kleepsu lõppkuupäev:</strong> ühine otsus kuupäevale, millest alates füüsiline plastikkleeps enam ei kehti.</span></li>
+            <li><span class="b-dot">2</span><span><strong>Üürnike ja elanike teavitus:</strong> büroojuhtide ning majahaldurite kontaktid ja ühine teavituskiri jaanuaris.</span></li>
+            <li><span class="b-dot">3</span><span><strong>Nähtavus ja kontaktisik turundusest:</strong> laua ja kassa materjalide visuaalne kooskõla ning üks kontaktisik Walleti kampaaniate kooskõlastamiseks.</span></li>
           </ul>
         </article>
       </div>
