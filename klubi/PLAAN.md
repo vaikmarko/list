@@ -12,11 +12,11 @@ Veebivaated: [Inimesele](https://list.ee/klubi/inimene/) · [Restoranile](https:
 * **Üks paroolivaba konto üle Walleti, lauatšeki ja Foruse äpi.** Inimese konto võti on tema meiliaadress (töömeil või ühe puudutusega Apple ja Google sisselogimine). Kui inimene lisab `minustaatus.ee` lehelt kaardi oma telefoni rahakotti, jätab telefoni põhibrauser (Safari või Chrome) ta aastaks meelde. Nii tunneb telefon kasutaja kohe ära ka siis, kui ta loeb restoranilauas kaameraga paberil tšeki ruutkoodi, ning sama meiliaadress seob konto kevadel Forus Takso äpiga.
 * **Kassade katvus (61 kaardistatud äri):** 32 toidukohast 25 (ja kokku kvartalis 29 kohta) kasutavad CompuCashi, kus boonuse kogumine, tšeki ruutkood ja saldo kasutamine liidestatakse otse CompuCash 5 API kaudu. Kolm pilvekassaga kohta (Sanga, Whippet ja Röst) liidestatakse API või tahvlivaatega ning harva külastatavad butiigid ja salongid töötavad kolmesekundilise tahvlikinnitusega ilma kassaliideseta.
 
-## 2. Stardiraha täpne mudel: reeglid, maht ja kes selle kinni maksab
+## 2. Stardiraha Staatuse poolt
 
-Stardiraha jaguneb kaheks selgelt eristatud osaks: **5 € tervitusraha** kleepsu väljavahetamisel ja **25 € sissekolimisraha** suurüürnikele.
+Stardiraha jaguneb kaheks selgelt eristatud osaks: **5 € stardiraha** kleepsu väljavahetamisel ja **25 € sissekolimisraha** suurüürnikele.
 
-### A. Ülemineku 5 € tervitusraha uuele liitujale (täielikult Staatuse kanda)
+### A. Uue liituja 5 € stardiraha
 
 * **Otsus:** uute liitujate 5 € tervitusraha katab täielikult Staatus ja hüvitab selle restoranidele kuu lõpu tasaarvelduses. Restorani kulu on 0 €, mis muudab restoranide liitumisotsuse ülilihtsaks, sest platvorm toob oma raha eest uued kliendid neile lauda.
 * **Kaitse kuritarvituse vastu:** 5 € tervitusraha kehtib **30 päeva** alates kaardi lisamisest ja rakendub ostule, mille summa on **vähemalt 15 €** (inimene maksab vähemalt 10 € oma pangakaardiga juurde). Nii ei saa keegi võtta tasuta kohvi ja kaduda.
