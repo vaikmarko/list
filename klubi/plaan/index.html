@@ -302,7 +302,7 @@
       color: #b91c1c;
     }
 
-    /* Tasemete 3 kaarti */
+    /* Tasemete ja stardiraha 3 kaarti */
     .tiers-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -350,7 +350,7 @@
     }
 
     .tier-rate {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-bottom: 6px;
@@ -477,7 +477,7 @@
   <section class="hero">
     <span class="role-tag">Terviklik strateegia ja tegevusplaan</span>
     <h1>Staatus ühendab kvartalid, restoranid ja <span class="hl">Forus Takso.</span></h1>
-    <p class="hero-sub">Kõik otsused ühes plaanis: kuidas Wallet ja CompuCash ilma äpi ja pangakaardita töötavad, kuidas jooksevad tulud ja kulud, miks restoran maksab 2%, kuidas toimivad tasemed ning millal lülitame külge Forus Takso.</p>
+    <p class="hero-sub">Kõik otsused ühes plaanis: kuidas Wallet ja CompuCash ilma äpi ja pangakaardita töötavad, kuidas kaetakse stardiraha, kuidas jooksevad tulud ja tööjõumaksudega palgakulud ning millal lülitame külge Forus Takso.</p>
 
     <div class="econ-strip">
       <div class="econ-box">
@@ -485,8 +485,8 @@
         <span>vaba domeen ja ühtne bränd üle kogu grupi</span>
       </div>
       <div class="econ-box">
-        <strong class="mono">~22 000 €</strong>
-        <span>kogu ehitus ja käivitus ilma pangakaardita</span>
+        <strong class="mono">22 000 €</strong>
+        <span>ehitus (koos avamise stardirahaga kuni 28 500 €)</span>
       </div>
       <div class="econ-box">
         <strong class="mono teal">~350 € kuus</strong>
@@ -516,14 +516,14 @@
   </section>
 
   <section class="sec">
-    <h2>2. Tulude ja kulude tervikmudel</h2>
-    <p class="sec-desc">Vali stsenaarium või lülita tuluallikaid ise sisse ja välja, et näha igakuist puhastulemust ja 22 000 € ehituse tasuvusaega.</p>
+    <h2>2. Tulude, stardiraha ja tööjõukulude tervikmudel</h2>
+    <p class="sec-desc">Vali stsenaarium või lülita kulud ise sisse ja välja. Eraldi klubijuhi rida sisaldab Eesti tööandjamakse (3 200 € brutopalk on koos 33,8% sotsiaal ja töötuskindlustusmaksuga 4 282 € kuus, pluss 518 € raamatupidamine ehk kokku 4 800 € kuus).</p>
 
     <div class="play-shell">
       <div class="pnl-presets">
         <button type="button" class="ppill" data-sc="small">Tagasihoidlik algus · 1 500 ostjat</button>
         <button type="button" class="ppill on" data-sc="base">Rotermann ja Artius · 2 500 ostjat</button>
-        <button type="button" class="ppill" data-sc="city">Koos Forus Takso ja linnaga · 5 000 ostjat</button>
+        <button type="button" class="ppill" data-sc="city">Koos Forus Takso ja juhiga · 5 000 ostjat</button>
       </div>
 
       <div class="pnl-controls">
@@ -565,18 +565,18 @@
 
         <label class="trow">
           <div>
-            <span>Suurüürnike eripaketid (1 500 € kuus)</span>
-            <small>Ankurüürnike ja uute büroode väärtuspakett</small>
+            <span>Täiskohaga klubijuht palgal (4 282 € tööandjakulu)</span>
+            <small>3 200 € bruto + maksud + raamatupidamine (kokku 4 800 € vs 1 800 € jagatud tiim)</small>
           </div>
-          <input type="checkbox" id="t-b2b">
+          <input type="checkbox" id="t-team">
         </label>
 
         <label class="trow">
           <div>
-            <span>Eraldi palgaline klubijuht (+2 000 € kuus)</span>
-            <small>Väljas olekus jookseb olemasoleva tiimi peal (1 500 €)</small>
+            <span>5 € stardiraha maksab Staatus (mitte restoran)</span>
+            <small>Lisab +6 500 € avamiskulule ja jooksvate liitujate tervitusraha kulu</small>
           </div>
-          <input type="checkbox" id="t-team">
+          <input type="checkbox" id="t-welcome">
         </label>
       </div>
 
@@ -586,32 +586,62 @@
           <div class="prow"><span>Restoranide 2% tasu</span><span class="mono" id="r-fee">5 000 €</span></div>
           <div class="prow"><span>Staatus Pluss kuutasud (ilma käibemaksuta)</span><span class="mono" id="r-plus">1 185 €</span></div>
           <div class="prow"><span>Kasutamata jääv boonusraha</span><span class="mono" id="r-break">3 188 €</span></div>
-          <div class="prow"><span>Suurüürnike paketid</span><span class="mono" id="r-b2b">0 €</span></div>
           <div class="prow"><span>Tulud kokku</span><span class="mono" id="r-tot">9 373 €</span></div>
         </div>
 
         <div class="pnl-col">
           <h4>Igakuised kulud</h4>
           <div class="prow"><span>Tehnika, pilv ja CompuCashi liidesed</span><span class="mono" id="c-tech">350 €</span></div>
-          <div class="prow"><span>Haldus, partnerisuhtlus ja raamatupidamine</span><span class="mono" id="c-ops">1 500 €</span></div>
+          <div class="prow"><span id="c-ops-lbl">Jagatud tiim ja raamatupidamine</span><span class="mono" id="c-ops">1 800 €</span></div>
           <div class="prow"><span>Staatus Pluss stardihüve ja maksevahendus</span><span class="mono" id="c-plus">450 €</span></div>
-          <div class="prow"><span>Kampaaniad ja uute liitujate tervitusraha</span><span class="mono" id="c-mkt">600 €</span></div>
-          <div class="prow"><span>Kulud kokku</span><span class="mono" id="c-tot">2 900 €</span></div>
+          <div class="prow"><span id="c-mkt-lbl">Kampaaniad (stardiraha katab restoran)</span><span class="mono" id="c-mkt">350 €</span></div>
+          <div class="prow"><span>Kulud kokku</span><span class="mono" id="c-tot">2 950 €</span></div>
         </div>
       </div>
 
       <div class="pnl-summary" id="pnl-sum">
         <div class="ps-left">
           <strong id="pnl-title">Igakuine puhastulu platvormile</strong>
-          <span id="pnl-payback">Ühekordne ehituskulu 22 000 € teenib end tagasi 4 kuuga (aastane ülejääk +77 676 €)</span>
+          <span id="pnl-payback">Käivituskulu 22 000 € teenib end tagasi umbes 4 kuuga (aastane ülejääk +77 076 €)</span>
         </div>
-        <div class="ps-val mono" id="pnl-net">+6 473 €</div>
+        <div class="ps-val mono" id="pnl-net">+6 423 €</div>
       </div>
     </div>
   </section>
 
   <section class="sec">
-    <h2>3. Miks restoran on nõus 2% maksma ja kuidas ta selle tagasi teenib?</h2>
+    <h2>3. Stardiraha täpne mudel: kes maksab 5 € tervitusraha ja 25 € üürnikuraha?</h2>
+    <p class="sec-desc">Stardiraha on jagatud kaheks: ülemineku 5 € tervitusraha kleepsu väljavahetamisel ja suurüürnike 25 € sissekolimisraha. Kuritarvituse vältimiseks kehtib 5 € tervitusraha 30 päeva ja rakendub alates 15 € arvest (inimene tasub vähemalt 10 € oma pangakaardiga). 2 000 liituja puhul kasutatakse sellest reaalselt ära umbes 65% ehk <strong>6 500 €</strong>.</p>
+
+    <div class="tiers-3">
+      <article class="tier-box gold">
+        <span class="tier-badge">Variant A · Soovitus (0 € kulu)</span>
+        <div class="tier-rate mono">Restoran katab</div>
+        <p>Lepingus on esimese vähemalt 15 € ostu 5 € soodustus restorani uue digikliendi tervitus. Kassasse laekub kohe 10 €, mis katab toorainekulu enam kui kahekordselt, ja platvormi kulu on 0 €.</p>
+      </article>
+
+      <article class="tier-box">
+        <span class="tier-badge">Variant B · Jagatud pooleks</span>
+        <div class="tier-rate mono">3 250 € kokku</div>
+        <p>Restoran katab 2,50 € ja Staatus hüvitab kuu lõpus 2,50 €. Esimese 2 000 liituja (1 300 tegeliku ostja) ühekordne kogukulu platvormile on vaid 3 250 €.</p>
+      </article>
+
+      <article class="tier-box">
+        <span class="tier-badge">Variant C · Staatuse eelarvest</span>
+        <div class="tier-rate mono">6 500 € kokku</div>
+        <p>Kui Staatus hüvitab restoranidele kogu 5 € tervitusraha, lisandub 22 000 € ehitusele ühekordne 6 500 € avamiskulu (kokku 28 500 €) ehk 3,25 € liituja kohta.</p>
+      </article>
+    </div>
+
+    <article class="decision-card">
+      <span class="dc-kicker">Suurüürnike 25 € sissekolimisraha</span>
+      <h3>B2B müügitoode, mitte platvormi kulu</h3>
+      <p>Kui Golden Gate'i, Artiuse või Talsinki suurüürniku töötajatele pannakse kaardile 25 € sissekolimisraha (näiteks 100 töötajaga büroole 2 500 €), tasub selle eest kas kinnisvaraarendaja üürilepingu tervituspaketina või tööandja ise oma tiimifondist. Staatusele on kulu 0 € ning kogu raha läheb otse partnerrestoranide käibeks.</p>
+    </article>
+  </section>
+
+  <section class="sec">
+    <h2>4. Miks restoran on nõus 2% maksma ja kuidas ta selle tagasi teenib?</h2>
 
     <div class="stack-12">
       <article class="decision-card highlight">
@@ -641,7 +671,7 @@
   </section>
 
   <section class="sec">
-    <h2>4. Tasemed, kuine kulutamine ja Staatus Pluss (4,90 € kuus)</h2>
+    <h2>5. Tasemed, kuine kulutamine ja Staatus Pluss (4,90 € kuus)</h2>
     <p class="sec-desc">Ühendame tasuta ligipääsu, kuise kulutamise mängulisuse ja vabatahtliku 4,90 € kuutasu nii, et keegi ei tunneks end kaotajana.</p>
 
     <div class="tiers-3">
@@ -663,47 +693,29 @@
         <p>Ankurüürnike töötajatele: püsiv 10%, sissekolimise tervitusraha, spordiklubi ja autopesula erihind ning külaliste parkimine.</p>
       </article>
     </div>
-
-    <div class="grid-2">
-      <article class="compare-card now">
-        <span class="compare-tag">Plussid</span>
-        <ul class="clean-list">
-          <li><i class="i-new">✓</i><span><strong>Kasvatab ostukorvi:</strong> teade kaardil („Kuldtasemeni veel 25 €”) toob inimese kuu lõpus veel ühele õhtusöögile.</span></li>
-          <li><i class="i-new">✓</i><span><strong>Kohene tasuvus tellijale:</strong> taksohüve ja tasuta kohv või parkimistund teevad 4,90 € paketi esimesest kasutusest kasulikuks.</span></li>
-        </ul>
-      </article>
-
-      <article class="compare-card">
-        <span class="compare-tag">Ohud, mida väldime</span>
-        <ul class="clean-list">
-          <li><i class="i-old">✕</i><span><strong>Oma töötajatelt raha ei küsita:</strong> kvartali töötajale jääb 10% tasuta, et vältida pahameelt kleepsu kadumisel.</span></li>
-          <li><i class="i-old">✕</i><span><strong>Lihtne algus:</strong> jaanuari piloot algab ühe 10% tasemega ning 5% ja Staatus Pluss avanevad kevadel koos Forus Taksoga.</span></li>
-        </ul>
-      </article>
-    </div>
   </section>
 
   <section class="sec">
-    <h2>5. Suurüürnike lisahüved (tugi USRE üüriärile)</h2>
+    <h2>6. Suurüürnike lisahüved (tugi USRE üüriärile)</h2>
     <p class="sec-desc">Üürnikfirma töötajad tuvastatakse kohe täna ettevõtte töömeili või üürnikupõhise kutselingiga ilma 2027. aasta majaäppi ootamata. See annab tugeva müügiargumendi Golden Gate'i, Artiuse, Talsinki ja Rotermanni büroopindade üürimisel.</p>
 
     <div class="grid-2">
-      <article class="decision-card">
-        <span class="dc-kicker">Sissekolimise ja tiimi krediit</span>
-        <h3>Tervitusraha uuele büroole ja tiimifond</h3>
-        <p>Kui ankurüürnik kolib uude majja või pikendab üürilepingut, saab iga tema töötaja Staatuse kaardile näiteks 25 € sissekolimisraha piirkonna söögikohtadega tutvumiseks. Samuti saab tööandja laadida kaardile oma tiimi lõuna või sündmuste krediiti.</p>
-      </article>
-
       <article class="decision-card">
         <span class="dc-kicker">Igapäevased privileegid</span>
         <h3>Teenuste erihinnad ja juhtkonna kaart</h3>
         <p>Suurüürniku kaart avab lisaks restoranide 10% boonusele eritingimused Golden Club spordiklubis, autopesulas ja ilusalongides, soodsama parkimise ning ettevõtte võtmeisikutele eelisbroneeringud ärilõunateks.</p>
       </article>
+
+      <article class="decision-card">
+        <span class="dc-kicker">Tööandja motivatsioonipakett</span>
+        <h3>Tiimi lõuna ja sündmuste krediit</h3>
+        <p>Suurettevõte saab laadida oma töötajate Staatuse kaartidele igakuist tiimikrediiti või tähtpäevade boonust, mis jääb sajaprotsendiliselt kvartalite restoranidesse ja teenustesse.</p>
+      </article>
     </div>
   </section>
 
   <section class="sec">
-    <h2>6. Forus Takso ja restoranide sünergia ning tasaarveldus</h2>
+    <h2>7. Forus Takso ja restoranide sünergia ning tasaarveldus</h2>
     <p class="sec-desc">Takso ja restoranid moodustavad loomuliku ringi, mida ei Telliskivi ega Bolt üksi pakkuda ei suuda: inimene sõidab reede õhtul taksoga restorani ette ja pärast õhtusööki taksoga koju.</p>
 
     <div class="stack-12">
@@ -730,7 +742,7 @@
   </section>
 
   <section class="sec">
-    <h2>7. Brändi ja domeeni selgus</h2>
+    <h2>8. Brändi ja domeeni selgus</h2>
     <p class="sec-desc">Artius on Artius, Rotermann on Rotermann, Talsinki on Talsinki ja Forus on Forus. Nende kohal on üks ühendav liikmelisus nimega <strong>Staatus</strong> ja kohe vaba domeen <strong>minustaatus.ee</strong> (ning edu korral saab hiljem välja osta ka täna tühjal parkimislehel seisva <em>staatus.ee</em>).</p>
 
     <div class="brand-rows">
@@ -761,37 +773,25 @@
   </section>
 
   <section class="sec">
-    <h2>8. Kuidas vahetame välja tänase kleepsu (3 nädalaga)</h2>
+    <h2>9. Kleepsu väljavahetamine (3 nädalaga) ja nelja etapiga tegevuskava</h2>
 
-    <div class="steps-list">
+    <div class="steps-list" style="margin-bottom:14px">
       <div class="step-row">
         <div class="step-num">1</div>
         <div>
-          <strong>5 € tervitusraha uuel kaardil</strong>
-          <p>Kleeps andis soodustuse kohe, Staatus kogub järgmiseks korraks. 5 € stardiraha kaardil muudab vahetuse inimese silmis koheseks võiduks ja kulu tekib vaid päris külastusel.</p>
+          <strong>5 € tervitusraha ja büroojuhtide otsekanal</strong>
+          <p>Saadame kõigi majade büroojuhtidele ettevõttepõhise <strong>minustaatus.ee</strong> kutselingi koos 5 € tervitusrahaga (alates 15 € ostust) ja kindla kuupäevaga, mil kleeps kolme nädala pärast sulgub.</p>
         </div>
       </div>
 
       <div class="step-row">
         <div class="step-num">2</div>
         <div>
-          <strong>Büroojuhid ja Golden Gate</strong>
-          <p>Saadame kõigi majade büroojuhtidele ettevõttepõhise <strong>minustaatus.ee</strong> kutselingi (ja Golden Gate'is ka märguande majaäppi) koos kindla kuupäevaga, mil kleeps kolme nädala pärast sulgub.</p>
-        </div>
-      </div>
-
-      <div class="step-row">
-        <div class="step-num">3</div>
-        <div>
           <strong>Sõbralik turvavõrk leti ääres</strong>
-          <p>Kleepsu näitajat ei saadeta tühjade kätega ära: leti kõrval oleva ruutkoodiga lisab ta kümne sekundiga Staatuse oma Walletisse ja saab tänase boonuse juba kirja.</p>
+          <p>Kleepsu näitajat ei saadeta kunagi tühjade kätega ära: leti kõrval oleva ruutkoodiga lisab ta kümne sekundiga Staatuse oma Walletisse ja saab tänase boonuse juba kirja.</p>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="sec">
-    <h2>9. Nelja etapiga tegevuskava</h2>
 
     <div class="stack-12">
       <div class="phase-card">
@@ -835,8 +835,8 @@
     var pRange = document.getElementById("p-range");
     var tFee = document.getElementById("t-fee");
     var tBreak = document.getElementById("t-break");
-    var tB2b = document.getElementById("t-b2b");
     var tTeam = document.getElementById("t-team");
+    var tWelcome = document.getElementById("t-welcome");
 
     function fmt(n) {
       return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " €";
@@ -851,15 +851,16 @@
       var revPlus = plusSubs * (4.9 / 1.24);
       var avgBonusRate = 0.085;
       var revBreak = tBreak.checked ? gmv * avgBonusRate * 0.15 : 0;
-      var revB2b = tB2b.checked ? 1500 : 0;
-      var revTotal = revFee + revPlus + revBreak + revB2b;
+      var revTotal = revFee + revPlus + revBreak;
 
-      var costTech = 350;
-      var costOps = tTeam.checked ? 3500 : 1500;
+      var costTech = users > 3500 ? 400 : 350;
+      var costOps = tTeam.checked ? 4800 : 1800;
       var costPlusPerks = plusSubs * 1.5;
-      var costMkt = Math.round(250 + users * 0.14);
+      var ongoingWelcome = tWelcome.checked ? Math.round(users * 0.22) : 0;
+      var costMkt = 350 + ongoingWelcome;
       var costTotal = costTech + costOps + costPlusPerks + costMkt;
 
+      var launchCapex = tWelcome.checked ? 28500 : 22000;
       var net = Math.round(revTotal - costTotal);
 
       document.getElementById("u-lbl").textContent = users.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -869,8 +870,14 @@
       document.getElementById("r-fee").textContent = fmt(revFee);
       document.getElementById("r-plus").textContent = fmt(revPlus);
       document.getElementById("r-break").textContent = fmt(revBreak);
-      document.getElementById("r-b2b").textContent = fmt(revB2b);
       document.getElementById("r-tot").textContent = fmt(revTotal);
+
+      document.getElementById("c-ops-lbl").textContent = tTeam.checked
+        ? "Klubijuht (4 282 € maksudega) + raamatupidamine"
+        : "Jagatud tiim ja raamatupidamine";
+      document.getElementById("c-mkt-lbl").textContent = tWelcome.checked
+        ? "Kampaaniad ja uute liitujate 5 € stardiraha"
+        : "Kampaaniad (stardiraha katab restoran)";
 
       document.getElementById("c-tech").textContent = fmt(costTech);
       document.getElementById("c-ops").textContent = fmt(costOps);
@@ -888,9 +895,11 @@
         titleEl.textContent = "Igakuine puhastulu platvormile";
         netEl.textContent = "+" + fmt(net);
         if (net > 0) {
-          var months = Math.max(1, Math.ceil(22000 / net));
+          var months = Math.max(1, Math.ceil(launchCapex / net));
           pbEl.textContent =
-            "Ühekordne ehituskulu 22 000 € teenib end tagasi umbes " +
+            "Käivituskulu " +
+            fmt(launchCapex) +
+            " teenib end tagasi umbes " +
             months +
             " kuuga (aastane ülejääk +" +
             fmt(net * 12) +
@@ -906,7 +915,7 @@
       }
     }
 
-    [uRange, pRange, tFee, tBreak, tB2b, tTeam].forEach(function (el) {
+    [uRange, pRange, tFee, tBreak, tTeam, tWelcome].forEach(function (el) {
       el.addEventListener("input", function () {
         document.querySelectorAll("[data-sc]").forEach(function (b) { b.classList.remove("on"); });
         updatePnL();
@@ -924,22 +933,22 @@
           pRange.value = 0;
           tFee.checked = true;
           tBreak.checked = false;
-          tB2b.checked = false;
           tTeam.checked = false;
+          tWelcome.checked = true;
         } else if (sc === "base") {
           uRange.value = 2500;
           pRange.value = 300;
           tFee.checked = true;
           tBreak.checked = true;
-          tB2b.checked = false;
           tTeam.checked = false;
+          tWelcome.checked = false;
         } else {
           uRange.value = 5000;
           pRange.value = 1000;
           tFee.checked = true;
           tBreak.checked = true;
-          tB2b.checked = true;
           tTeam.checked = true;
+          tWelcome.checked = true;
         }
         updatePnL();
       });
